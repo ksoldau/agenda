@@ -1,0 +1,11 @@
+%h1 My Assignments
+
+.new_assignment_button 
+  = link_to "new assignment", new_user_assignment_path(current_user) 
+
+- @assignments.each do |a|
+  = a.description
+  = a.due_date
+  = a.subject
+  %br 
+  -#fdsnjj
