@@ -8,9 +8,14 @@ class AssignmentsController < ApplicationController
     when 'week' 
       @assignments = current_user.assignments #devise gives us current_user
     when 'month'
-      @assignments = current_user.assignments #devise gives us current_user
+      # only passes it dates in the current month
+      @assignments = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
+                                                    {:start_month => Date.today.beginning_of_month,
+                                                      :end_month => Date.today.end_of_month})
     else 
        @assignments = current_user.assignments #devise gives us current_user
+       #for now
+       redirect_to user_assignments_path(current_user, :query => 'week');
     end
   end
 
