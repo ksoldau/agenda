@@ -10,8 +10,6 @@
   .assignment_box
     .due_date_and_time
       = a.due_date.to_formatted_s(:long)
-      %p
-        =  DateTime.current.to_s(:number)
     .description
       = a.description
     .subject
