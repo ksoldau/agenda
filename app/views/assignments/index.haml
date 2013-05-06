@@ -8,16 +8,19 @@
   .monday.assignment_box
     %h4 Monday
     - if !@assignments_monday.empty?
-      - @assignments_monday.each do |a| 
+      - @assignments_monday.each do |a|
         .due_date_and_time
-          = a.due_date.to_formatted_s(:long)
-        .description
-          = a.description
-        .subject
-          = a.subject
-        .delete_assignment_button
-          -#for delete, just use the one for show
-          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+          .due_date_day_of_week
+            = a.due_date.strftime("%a")
+            = a.due_date.to_formatted_s(:long)
+          .description
+            = a.description
+          .subject
+            = a.subject
+          .delete_assignment_button
+            -#for delete, just use the one for show
+            = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
 
@@ -25,7 +28,7 @@
 - @assignments.each do |a|
   -# = render "partialexample.haml" #no underscore when call it to render
   .assignment_box
-   
+
 
 = link_to "sign out", destroy_user_session_path, :method => :delete
 
