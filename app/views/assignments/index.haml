@@ -7,19 +7,96 @@
 - if params[:query] == 'week'
   .monday.assignment_box
     %h4 Monday
-    - if !@assignments_monday.empty?
-      - @assignments_monday.each do |a|
+    - if !@assignments_mon.empty?
+      - @assignments_mon.each do |a|
         .due_date_and_time
-          .due_date_day_of_week
-            = a.due_date.strftime("%a")
-            = a.due_date.to_formatted_s(:long)
-          .description
-            = a.description
+          = a.due_date.to_formatted_s(:long)
+        .description
+          = a.description
           .subject
             = a.subject
           .delete_assignment_button
             -#for delete, just use the one for show
             = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .tuesday.assignment_box
+    %h4 Tuesday 
+    - if !@assignments_tues.empty?
+      - @assignments_tues.each do |a|
+        .due_date_and_time
+          = a.due_date.to_formatted_s(:long)
+        .description
+          = a.description
+          .subject
+            = a.subject
+          .delete_assignment_button
+            -#for delete, just use the one for show
+            = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .wednesday.assignment_box
+    %h4 Wednesday 
+    - @assignments_wed.each do |a|
+      .due_date_and_time
+        = a.due_date.to_formatted_s(:long)
+      .description
+        = a.description
+      .subject
+        = a.subject
+        .delete_assignment_button
+          -#for delete, just use the one for show
+          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .thursday.assignment_box
+    %h4 Thursday
+    - @assignments_thurs.each do |a|
+      .due_date_and_time
+        = a.due_date.to_formatted_s(:long)
+      .description
+        = a.description
+      .subject
+        = a.subject
+        .delete_assignment_button
+          -#for delete, just use the one for show
+          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .friday.assignment_box
+    %h4 Friday
+    - @assignments_fri.each do |a|
+      .due_date_and_time
+        = a.due_date.to_formatted_s(:long)
+      .description
+        = a.description
+      .subject
+        = a.subject
+        .delete_assignment_button
+          -#for delete, just use the one for show
+          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .saturday.assignment_box
+    %h4 Saturday
+    - @assignments_sat.each do |a|
+      .due_date_and_time
+        = a.due_date.to_formatted_s(:long)
+      .description
+        = a.description
+      .subject
+        = a.subject
+        .delete_assignment_button
+          -#for delete, just use the one for show
+          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .sunday.assignment_box
+    %h4 Thursday
+    - @assignments_sun.each do |a|
+      .due_date_and_time
+        = a.due_date.to_formatted_s(:long)
+      .description
+        = a.description
+      .subject
+        = a.subject
+        .delete_assignment_button
+          -#for delete, just use the one for show
+          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+
+
+
+
+    
+  
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask

@@ -9,8 +9,15 @@ class AssignmentsController < ApplicationController
       @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
                                                     {:start_week => Date.today.beginning_of_month,
                                                       :end_week => Date.today.end_of_week})
-      @assignments_sorted = @assignments.group_by {|a| a.due_date.wday}    
-      @assignments_monday = @assignments_sorted[1]
+      @assignments_sorted = @assignments.group_by {|a| a.due_date.wday}   
+      
+      @assignments_mon = @assignments_sorted.fetch(1, [])
+      @assignments_tues = @assignments_sorted.fetch(2, [])
+      @assignments_wed = @assignments_sorted.fetch(3, [])
+      @assignments_thurs = @assignments_sorted.fetch(4, [])
+      @assignments_fri = @assignments_sorted.fetch(5, [])
+      @assignments_sat = @assignments_sorted.fetch(6, [])
+      @assignments_sun = @assignments_sorted.fetch(0, [])
       #binding.pry
 
     when 'month'
