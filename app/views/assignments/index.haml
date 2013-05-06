@@ -80,7 +80,7 @@
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
   .sunday.assignment_box
-    %h4 Thursday
+    %h4 Sunday
     - @assignments_sun.each do |a|
       .due_date_and_time
         = a.due_date.to_formatted_s(:long)
