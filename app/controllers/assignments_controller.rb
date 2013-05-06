@@ -2,7 +2,16 @@ class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @assignments = current_user.assignments #devise gives us current_user
+    #case statements currently doesn't do anything different
+    #binding.pry
+    case params[:query] 
+    when 'week' 
+      @assignments = current_user.assignments #devise gives us current_user
+    when 'month'
+      @assignments = current_user.assignments #devise gives us current_user
+    else 
+       @assignments = current_user.assignments #devise gives us current_user
+    end
   end
 
   def show
