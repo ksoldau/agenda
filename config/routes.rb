@@ -7,5 +7,4 @@ Scratch::Application.routes.draw do
 
   root :to => 'assignments#index'
 
-
 end

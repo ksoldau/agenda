@@ -1,11 +1,21 @@
 %h1 My Assignments
 
-.new_assignment_button 
-  = link_to "new assignment", new_user_assignment_path(current_user) 
+
+.new_assignment_button
+  = link_to "new assignment", new_user_assignment_path(current_user)
 
 - @assignments.each do |a|
-  = a.description
-  = a.due_date
-  = a.subject
-  %br 
-  -#fdsnjj
+  -# = render "partialexample.haml" #no underscore when call it to render
+  .assignment_box
+    .due_date
+      = a.due_date
+    .description
+      = a.description
+    .subject
+      = a.subject
+    .delete_assignment_button
+      -#for delete, just use the one for show
+      = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+
+      -#link_to has an option called confirm, value you give it is ? you want to ask
+

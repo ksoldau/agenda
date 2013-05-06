@@ -1,5 +1,5 @@
-class AssignmentsController < ApplicationController 
-  before_filter :authenticate_user! 
+class AssignmentsController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @assignments = current_user.assignments #devise gives us current_user
@@ -7,17 +7,16 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = current_user.assignments.where(id: params[:id]).first
-
   end
-  
+
   def new
-    @assignment = Assignment.new 
+    @assignment = Assignment.new
   end
 
   def create
     @assignment = Assignment.new(params['assignment'])
     @assignment.user_id = current_user.id
-    if @assignment.save 
+    if @assignment.save
       redirect_to user_assignment_path(current_user, @assignment) #redirect
     else
       render :new #if saving doesn't work, doesn't run logic but renders view,
@@ -30,6 +29,8 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-
+    #deletes
+    current_user.assignments.where(id: params[:id]).first.destroy
+    redirect_to user_assignments_path(current_user)
   end
 end

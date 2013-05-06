@@ -1,4 +1,27 @@
+
+
 .new_assignment_button {
   background-color: #ccc;
   width: 107px;
+  margin-bottom: 20px;
 }
+
+.assignment_box {
+  background-color: #00ccff;
+  width: 600px;
+  margin: 20px;
+  .due_date {
+    color: #1a2c71;
+    text-align: center;
+    font-weight: bold;
+  }
+  .description {
+     color: #fff;
+  }
+}
+
+.header {
+  background-color: #1e4c70;
+  width: 100%;
+}
+
