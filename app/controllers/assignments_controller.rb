@@ -7,6 +7,7 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = current_user.assignments.where(id: params[:id]).first
+    redirect_to user_assignments_path(current_user)
   end
 
   def new
