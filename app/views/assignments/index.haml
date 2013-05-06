@@ -9,6 +9,8 @@
   -# = render "partialexample.haml" #no underscore when call it to render
   .assignment_box
     .due_date_and_time
+      .due_date_day_of_week
+        = a.due_date.strftime("%a")
       = a.due_date.to_formatted_s(:long)
     .description
       = a.description
