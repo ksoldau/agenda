@@ -9,7 +9,10 @@ class AssignmentsController < ApplicationController
       @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
                                                     {:start_week => Date.today.beginning_of_month,
                                                       :end_week => Date.today.end_of_week})
-        #devise gives us current_user
+      @assignments_sorted = @assignments.group_by {|a| a.due_date.wday}    
+      @assignments_monday = @assignments_sorted[1]
+      #binding.pry
+
     when 'month'
       # only passes it dates in the current month
       @assignments = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 

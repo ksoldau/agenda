@@ -4,6 +4,11 @@
 .new_assignment_button
   = link_to "new assignment", new_user_assignment_path(current_user)
 
+- if params[:query] == 'week'
+  .monday
+    - if !@assignments_monday.empty?
+      - @assignments_monday.each do |a| 
+        = a.due_date.to_formatted_s(:long)
 - #do this for each assignment
 - @assignments.each do |a|
   -# = render "partialexample.haml" #no underscore when call it to render
