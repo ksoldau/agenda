@@ -28,9 +28,6 @@ class AssignmentsController < ApplicationController
       @as_grouped = @as.group_by {|a| a.due_date.to_date}
 
       @as_to_array = []
-      #@as_grouped.each {|k,v| 
-      #  @as_to_array << [k, v]
-      #}
       #binding.pry
     else #just here for now 
        @assignments = current_user.assignments #devise gives us current_user
