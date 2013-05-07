@@ -9,23 +9,30 @@ class AssignmentsController < ApplicationController
       @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
                                                     {:start_week => Date.today.beginning_of_month,
                                                       :end_week => Date.today.end_of_week})
-      @assignments_sorted = @assignments.group_by {|a| a.due_date.wday}   
+      @assignments_grouped = @assignments.group_by {|a| a.due_date.wday}   
       
-      @assignments_mon = @assignments_sorted.fetch(1, [])
-      @assignments_tues = @assignments_sorted.fetch(2, [])
-      @assignments_wed = @assignments_sorted.fetch(3, [])
-      @assignments_thurs = @assignments_sorted.fetch(4, [])
-      @assignments_fri = @assignments_sorted.fetch(5, [])
-      @assignments_sat = @assignments_sorted.fetch(6, [])
-      @assignments_sun = @assignments_sorted.fetch(0, [])
+      @assignments_mon = @assignments_grouped.fetch(1, [])
+      @assignments_tues = @assignments_grouped.fetch(2, [])
+      @assignments_wed = @assignments_grouped.fetch(3, [])
+      @assignments_thurs = @assignments_grouped.fetch(4, [])
+      @assignments_fri = @assignments_grouped.fetch(5, [])
+      @assignments_sat = @assignments_grouped.fetch(6, [])
+      @assignments_sun = @assignments_grouped.fetch(0, [])
       #binding.pry
 
     when 'month'
       # only passes it dates in the current month
-      @assignments = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
+      @as = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
                                                     {:start_month => Date.today.beginning_of_month,
                                                       :end_month => Date.today.end_of_month})
-    else 
+      @as_grouped = @as.group_by {|a| a.due_date.to_date}
+
+      @as_to_array = []
+      #@as_grouped.each {|k,v| 
+      #  @as_to_array << [k, v]
+      #}
+      #binding.pry
+    else #just here for now 
        @assignments = current_user.assignments #devise gives us current_user
        #for now
        redirect_to user_assignments_path(current_user, :query => 'week');

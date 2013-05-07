@@ -6,7 +6,7 @@
 
 - if params[:query] == 'week'
   .monday.assignment_box
-    %h4 Monday
+    %h4 Monday 
     - if !@assignments_mon.empty?
       - @assignments_mon.each do |a|
         .due_date_and_time
@@ -83,29 +83,40 @@
     %h4 Sunday
     - @assignments_sun.each do |a|
       .due_date_and_time
-        = a.due_date.to_formatted_s(:long)
+        = k.strftime("%t")
+        -#= a.due_date.to_formatted_s(:long)
       .description
         = a.description
       .subject
         = a.subject
         .delete_assignment_button
-          -#for delete, just use the one for show
+          -#for delete just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
 
 
+- if params[:query] == 'month'
+  - @as_grouped.each do |k,v|
+    .assignment_box
+      %h4 
+        =k.strftime("%A")
+      -v.each do |a|
+        .due_date_and_time
+          = a.due_date.to_formatted_s(:long)
+        .description
+          = a.description
+        .subject
+          = a.subject
+          .delete_assignment_button
+            = link_to "delete", user_assignment_path(current_user, a), :method => :delete
 
+
+  
 
     
   
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
-
-- #do this for each assignment
-- @assignments.each do |a|
-  -# = render "partialexample.haml" #no underscore when call it to render
-  .assignment_box
-
 
 = link_to "sign out", destroy_user_session_path, :method => :delete
 
