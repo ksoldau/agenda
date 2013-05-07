@@ -1,4 +1,6 @@
-
+body {
+  font-family: "Helvetica", Optima, sans-serif;
+}
 .header {
   background-color: #1e4c70;
   width: 100%;
@@ -30,9 +32,11 @@
   }
   .subject {
     float: right;
+    margin-right: 0.5em;
   }
   .description {
      color: #fff;
+     font-weight: normal;
   }
   .completed {
     background-color: #00ccff;
