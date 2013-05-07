@@ -15,7 +15,7 @@
     = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
 
 .new_assignment_button
-  = link_to "new assignment", new_user_assignment_path(current_user)
+  = link_to "add assignment", new_user_assignment_path(current_user)
 
 - if params[:query] == 'week'
   .monday.assignment_box
