@@ -2,17 +2,14 @@ class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    #case statements currently doesn't do anything different
-    #binding.pry
     case params[:query] 
     when 'week'
       @week_want = params[:which_week]
 
       if params[:which_week] != nil
         @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
-                                                    {:start_week => @week_want.to_date.beginning_of_week, #Date.today.beginning_of_month?,
-                                                      :end_week => @week_want.to_date.end_of_week})#Date.today.end_of_week})
-      else
+                                                    {:start_week => @week_want.to_date.beginning_of_week,                                                                                   :end_week => @week_want.to_date.end_of_week})
+      else 
         @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
                                                     {:start_week => Date.today.beginning_of_week,
                                                       :end_week => Date.today.end_of_week})
@@ -27,7 +24,6 @@ class AssignmentsController < ApplicationController
       @assignments_fri = @assignments_grouped.fetch(5, [])
       @assignments_sat = @assignments_grouped.fetch(6, [])
       @assignments_sun = @assignments_grouped.fetch(0, [])
-      #binding.pry
 
     when 'month'
       # only passes it dates in the current month
