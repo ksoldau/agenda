@@ -12,10 +12,10 @@
         %div{:class => (a.completed ? "completed" : "not_completed")}
           .due_date_and_time 
             = a.due_date.to_formatted_s(:long)
-          .description
-            = a.description
           .subject
             = a.subject
+          .description
+            = a.description
           .delete_assignment_button
             -#for delete, just use the one for show
             = link_to "delete", user_assignment_path(current_user, a), :method => :delete
