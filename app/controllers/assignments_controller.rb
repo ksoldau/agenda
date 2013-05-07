@@ -4,9 +4,9 @@ class AssignmentsController < ApplicationController
   def index
     case params[:query] 
     when 'week'
-      @week_want = params[:which_week]
+      @week_want = params[:which]
 
-      if params[:which_week] != nil
+      if params[:which] != nil
         @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
                                                     {:start_week => @week_want.to_date.beginning_of_week,                                                                                   :end_week => @week_want.to_date.end_of_week})
       else 
