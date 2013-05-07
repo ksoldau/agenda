@@ -3,7 +3,6 @@
   .nav_view
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which])
     = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which])
-  = link_to "sign out", destroy_user_session_path, :method => :delete
   %h1 My Assignments
   - if params[:query] == 'week'
     = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)
