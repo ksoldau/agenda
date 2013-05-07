@@ -7,7 +7,7 @@
 }
 
 .assignment_box {
-  background-color: #00ccff;
+  background-color: #ccc;  
   width: 600px;
   margin: 20px;
   .due_date_and_time {
@@ -17,6 +17,12 @@
   }
   .description {
      color: #fff;
+  }
+  .completed {
+    background-color: #00ccff;
+  }
+  .not_completed {
+    background-color: #ff0000;
   }
 }
 

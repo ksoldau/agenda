@@ -9,15 +9,18 @@
     %h4 Monday 
     - if !@assignments_mon.empty?
       - @assignments_mon.each do |a|
-        .due_date_and_time
-          = a.due_date.to_formatted_s(:long)
-        .description
-          = a.description
+        %div{:class => (a.completed ? "completed" : "not_completed")}
+          .due_date_and_time 
+            = a.due_date.to_formatted_s(:long)
+          .description
+            = a.description
           .subject
             = a.subject
           .delete_assignment_button
             -#for delete, just use the one for show
             = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+          .completed_as_button
+            = link_to "edit", edit_user_assignment_path(current_user,a)
   .tuesday.assignment_box
     %h4 Tuesday 
     - if !@assignments_tues.empty?
