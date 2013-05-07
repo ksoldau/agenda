@@ -14,9 +14,13 @@ body {
 }
 
 .new_assignment_button {
-  background-color: #ccc;
-  width: 107px;
+  background-color: #555;
+  color: #fff;
+  width: 7em;
   margin-bottom: 20px;
+}
+.new_assignment_button a:hover {
+  color:#fff;
 }
 
 .assignment_box {

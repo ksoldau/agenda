@@ -32,7 +32,7 @@ class AssignmentsController < ApplicationController
 
   def create
     createNewAssignment
-    end
+  end
 
   def update
     @as = current_user.assignments.where(id: params[:id]).first
@@ -94,8 +94,6 @@ class AssignmentsController < ApplicationController
                                            {:start_month => Date.today.beginning_of_month,
                                              :end_month => Date.today.end_of_month})
     end
-
-
   end
 
   def createNewAssignment
