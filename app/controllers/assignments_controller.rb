@@ -5,10 +5,19 @@ class AssignmentsController < ApplicationController
     #case statements currently doesn't do anything different
     #binding.pry
     case params[:query] 
-    when 'week' 
-      @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
-                                                    {:start_week => Date.today.beginning_of_month,
+    when 'week'
+      @week_want = params[:which_week]
+
+      if params[:which_week] != nil
+        @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
+                                                    {:start_week => @week_want.to_date.beginning_of_week, #Date.today.beginning_of_month?,
+                                                      :end_week => @week_want.to_date.end_of_week})#Date.today.end_of_week})
+      else
+        @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
+                                                    {:start_week => Date.today.beginning_of_week,
                                                       :end_week => Date.today.end_of_week})
+
+      end
       @assignments_grouped = @assignments.group_by {|a| a.due_date.wday}   
       
       @assignments_mon = @assignments_grouped.fetch(1, [])
