@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Scratch
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application" 
+    = csrf_meta_tags
+
+%body
+  .header
+    %h5 This is a header
+
+  -#  .nav #only want to do this if someone's signed in, not always
+    = link_to "this week", user_assignments_path(current_user, :query => 'week')
+    = link_to "this month", user_assignments_path(current_user, :query => 'month')
+
+  = yield
+

@@ -29,6 +29,7 @@ class AssignmentsController < ApplicationController
 
       @as_to_array = []
       #binding.pry
+
     else #just here for now 
        @assignments = current_user.assignments #devise gives us current_user
        #for now

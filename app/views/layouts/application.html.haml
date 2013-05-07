@@ -10,9 +10,10 @@
   .header
     %h5 This is a header
 
-  -#  .nav #only want to do this if someone's signed in, not always
-    = link_to "this week", user_assignments_path(current_user, :query => 'week')
-    = link_to "this month", user_assignments_path(current_user, :query => 'month')
+  - if current_user != nil
+    .nav
+      = link_to "this week", user_assignments_path(current_user, :query => 'week')
+      = link_to "this month", user_assignments_path(current_user, :query => 'month')
 
   = yield
 
