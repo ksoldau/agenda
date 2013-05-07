@@ -10,6 +10,6 @@
  *
  *= require_self
  *= require base
- *= require test
+ *= require style.ccs
  *= require_tree .
  */
