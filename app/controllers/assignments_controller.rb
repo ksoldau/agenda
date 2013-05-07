@@ -58,11 +58,16 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-
+    @as = current_user.assignments.where(id: params[:id]).first
+    if @as.update_attributes(params[:assignment])
+      redirect_to user_assignments_path(current_user, :query => 'week')      
+    else 
+     render :new 
+    end
   end
 
   def edit 
-
+    @as = current_user.assignments.where(id: params[:id]).first
   end
 
   def destroy
