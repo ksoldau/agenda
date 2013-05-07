@@ -1,5 +1,12 @@
 %h1 My Assignments
 
+.nav
+  = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)
+  = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
+  = link_to "prev month", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month) 
+  = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month)
+  = link_to "sign out", destroy_user_session_path, :method => :delete
+
 .new_assignment_button
   = link_to "new assignment", new_user_assignment_path(current_user)
 

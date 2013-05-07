@@ -26,10 +26,19 @@ class AssignmentsController < ApplicationController
       @assignments_sun = @assignments_grouped.fetch(0, [])
 
     when 'month'
-      # only passes it dates in the current month
-      @as = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
+      @month_want = params[:which]
+
+      if params[:which] != nil
+        @as = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
+                                                    {:start_month => @month_want.to_date.beginning_of_month,
+                                                      :end_month => @month_want.to_date.end_of_month})
+
+      else 
+        @as = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
                                                     {:start_month => Date.today.beginning_of_month,
                                                       :end_month => Date.today.end_of_month})
+      end
+
       @as_grouped = @as.group_by {|a| a.due_date.to_date}
 
       @as_to_array = []
