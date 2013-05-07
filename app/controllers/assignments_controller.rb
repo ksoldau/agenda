@@ -4,17 +4,8 @@ class AssignmentsController < ApplicationController
   def index
     case params[:query] 
     when 'week'
-      @week_want = params[:which]
+      getAssignmentsForWeek
 
-      if params[:which] != nil
-        @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
-                                                    {:start_week => @week_want.to_date.beginning_of_week,                                                                                   :end_week => @week_want.to_date.end_of_week})
-      else 
-        @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
-                                                    {:start_week => Date.today.beginning_of_week,
-                                                      :end_week => Date.today.end_of_week})
-
-      end
       @assignments_grouped = @assignments.group_by {|a| a.due_date.wday}   
       
       @assignments_mon = @assignments_grouped.fetch(1, [])
@@ -47,7 +38,7 @@ class AssignmentsController < ApplicationController
     else #just here for now 
        @assignments = current_user.assignments #devise gives us current_user
        #for now
-       redirect_to user_assignments_path(current_user, :query => 'week');
+       redirect_to user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week);
     end
   end
 
@@ -91,4 +82,19 @@ class AssignmentsController < ApplicationController
     #binding.pry
     redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week)
   end
+
+  # gets array of assignments that should be shown for wanted week
+  def getAssignmentsForWeek
+    @week_want = params[:which]
+    
+    if params[:which] != nil
+        @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
+                                                    {:start_week => @week_want.to_date.beginning_of_week,                                                                                   :end_week => @week_want.to_date.end_of_week})
+    else 
+        @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
+                                                    {:start_week => Date.today.beginning_of_week,
+                                                      :end_week => Date.today.end_of_week})
+    end
+  end
+
 end
