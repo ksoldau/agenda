@@ -1,12 +1,18 @@
-%h1 My Assignments
-%h3 TEST TEST
 
 .nav
-  = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)
-  = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
-  = link_to "prev month", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month) 
-  = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month)
+  .nav_view
+    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which])
+    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which])
   = link_to "sign out", destroy_user_session_path, :method => :delete
+  %h1 My Assignments
+  - if params[:query] == 'week'
+    = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)
+    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
+    = link_to "next week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week)
+  - elsif params[:query] == 'month'
+    = link_to "prev month", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month)
+    = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month)
+    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
 
 .new_assignment_button
   = link_to "new assignment", new_user_assignment_path(current_user)
