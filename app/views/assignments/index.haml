@@ -11,7 +11,7 @@
   - elsif params[:query] == 'month'
     = link_to "prev month", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month)
     = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month)
-    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
+    = link_to "next month", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month)
 
 .new_assignment_button
   = link_to "add assignment", new_user_assignment_path(current_user)
