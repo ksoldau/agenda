@@ -3,7 +3,11 @@ body {
 }
 .header {
   background-color: #1e4c70;
-  width: 100%;
+  .sign_out_button {
+    float: right;
+    background-color: #fff;
+    color: #000;
+  }
 }
 
 .nav {

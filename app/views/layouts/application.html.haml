@@ -9,7 +9,7 @@
 %body
   .header
     %h5 This is a header
-    - if current_user != nil 
+    %div{:class => (current_user != nil ? "sign_out_button" : nil)}
       = link_to "sign out", destroy_user_session_path, :method => :delete
 
   = yield
