@@ -83,12 +83,12 @@ class AssignmentsController < ApplicationController
     @assignments_sun = @assignments_grouped.fetch(0, [])
 
     @as_grouped[:m] = @assignments_mon
-    @as_grouped.merge(:t => @assignments_tues)
-    @as_grouped.merge(:w => @assignments_wed)
-    @as_grouped.merge(:r => @assignments_thurs)
-    @as_grouped.merge(:f => @assignments_fri)
-    @as_grouped.merge(:s => @assignments_sat)
-    @as_grouped.merge(:n => @assignments_sun)
+    @as_grouped[:t] = @assignments_tues
+    @as_grouped[:w] = @assignments_wed
+    @as_grouped[:r] = @assignments_thurs
+    @as_grouped[:f] = @assignments_fri
+    @as_grouped[:s] = @assignments_sat
+    @as_grouped[:n] = @assignments_sun
 
     
 
