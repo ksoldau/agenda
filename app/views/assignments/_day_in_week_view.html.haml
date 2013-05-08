@@ -1,6 +1,6 @@
 .assignment_box
-  %h4 Elephant
-  -#=k.strftime("%A")
+  %h4 
+    =@assignments_mon.first.due_date.strftime("%A")
   - if !@assignments_mon.empty?
     = @assignments_mon.first.due_date.to_date.to_formatted_s(:long)
   - if !@assignments_mon.empty?
