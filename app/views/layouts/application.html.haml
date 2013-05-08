@@ -7,9 +7,10 @@
     = csrf_meta_tags
     
   %body
-  .header
-    %h5 This is a header
-    %div{:class => (current_user != nil ? "sign_out_button" : nil)}
+    .header
+      .sign_out_button
+        = link_to "sign out", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'}
+    %div{:class => (current_user != nil ? "sign_out_button" : "nil")}
       = link_to "sign out", destroy_user_session_path, :method => :delete
 
   = yield
