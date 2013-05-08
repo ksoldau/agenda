@@ -102,8 +102,8 @@
     .assignment_box
       %h4 
         Day
-      - if !as.empty?
-        = as.first.due_date.to_date.to_formatted_s(:long)
+        - if !as.empty?
+          = as.first.due_date.to_date.to_formatted_s(:long)
       - if !as.empty?
         - as.each do |a|
           %div{:class => (a.completed ? "completed" : "not_completed")}
