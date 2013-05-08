@@ -104,7 +104,7 @@
     .assignment_box
       %p.day_heading 
         = @key_to_day[dayn]
-        = getDate(dayn, params[:which].to_date) 
+        = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
       -#- if !as.empty?
         -#= as.first.due_date.to_date.to_formatted_s(:long)
       - if !as.empty?
