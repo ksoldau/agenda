@@ -97,11 +97,12 @@
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
 
 -if params[:query] == 'week'
+  - @key_to_day = {:m => "Monday", :t => "Tuesday", :w => "Wednesday", :r => "Thursday", :f => "Friday", :s => "Saturday", :n => "Sunday", }
   -# binding.pry
   - @as_grouped.each do |dayn,as|
     .assignment_box
       %h4 
-        Day
+        = @key_to_day[dayn]
         - if !as.empty?
           = as.first.due_date.to_date.to_formatted_s(:long)
       - if !as.empty?
