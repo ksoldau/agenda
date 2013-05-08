@@ -1,7 +1,4 @@
-body {
-  font-family: "Cabin", Optima, sans-serif;
-  background-color: #4c2b2f;
-}
+
 .header {
   background-color: #1e4c70;
   .sign_out_button {
@@ -28,7 +25,8 @@ body {
 
 .assignment_box {
   background-color: #ffefc3;  
-  width: 600px;
+  width: 400px;
+  margin: 15px;
   padding: 0.1em;
   .day_heading {
     font-weight: bold;
