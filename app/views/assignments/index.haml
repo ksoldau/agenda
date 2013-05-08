@@ -101,7 +101,7 @@
   -# binding.pry
   - @as_grouped.each do |dayn,as|
     .assignment_box
-      %h4 
+      %p.day_heading 
         = @key_to_day[dayn]
         - if !as.empty?
           = as.first.due_date.to_date.to_formatted_s(:long)
@@ -114,9 +114,10 @@
               = a.subject
             .description
               = a.description
-            .delete_assignment_button
+            .delete_as_button
               -#for delete, just use the one for show
               = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+
             .completed_as_button
               = link_to "edit", edit_user_assignment_path(current_user,a)
 
