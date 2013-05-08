@@ -1,0 +1,68 @@
+@import 'variables';
+
+body {
+  font-family: "Cabin", Optima, sans-serif;
+  background-color: $purple;
+}
+.header {
+  background-color: #1e4c70;
+  .sign_out_button {
+    float: right;
+    background-color: #fff;
+    color: #000;
+  }
+}
+.nav {
+  text-align: center;
+}
+.nav_view {
+}
+
+.new_assignment_button {
+  background-color: #555;
+  color: #fff;
+  width: 7em;
+  margin-bottom: 20px;
+}
+.new_assignment_button a:hover {
+  color:#fff;
+}
+
+.right_side_days, .left_side_days {
+  float: left;
+}
+.assignment_box {
+  background-color: $yellow;  
+  width: 400px;
+  margin: 15px;
+  padding: 0.1em;
+  .day_heading {
+    font-weight: bold;
+    margin: 2px;
+  }
+  .due_time {
+    float: right;
+    margin-right: 0.5em;
+    color: #1a2c71;
+    text-align: center;
+    font-weight: bold;
+  }
+  .subject {
+    margin-right: 0.5em;
+  }
+  .description {
+    float:left;
+    color: #000;
+    width: 100%;
+    font-weight: normal;
+  }
+  .completed {
+    background-color: $yellow-green;
+    margin: 10px;
+  }
+  .not_completed {
+    background-color: $red;
+    margin: 10px;
+  }
+}
+
