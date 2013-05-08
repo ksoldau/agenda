@@ -18,17 +18,14 @@ body {
 .nav_view {
   width: 200px;
   margin: auto;
-  
-  a {
-    color: $purple;
-    background-color: $green;
+
+  #radio {
+     span {
+      background-color: $green;
+      color: $purple;
+    }
   }
-  a:link {}
-  a:visited {}
-  a:hover {
-    color: $red;
-  }
-  a:active {}
+
 }
 
 .new_assignment_button {
