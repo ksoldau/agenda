@@ -71,7 +71,8 @@ class AssignmentsController < ApplicationController
 
   # creates arrays for each day of the week
   def getAssignmentsForDays
-    @assignments_grouped = @assignments.group_by {|a| a.due_date.wday}   
+    @assignments_grouped = @assignments.group_by {|a| a.due_date.wday}
+    @as_grouped = {}
 
     @assignments_mon = @assignments_grouped.fetch(1, [])
     @assignments_tues = @assignments_grouped.fetch(2, [])
@@ -80,6 +81,18 @@ class AssignmentsController < ApplicationController
     @assignments_fri = @assignments_grouped.fetch(5, [])
     @assignments_sat = @assignments_grouped.fetch(6, [])
     @assignments_sun = @assignments_grouped.fetch(0, [])
+
+    @as_grouped[:m] = @assignments_mon
+    @as_grouped.merge(:t => @assignments_tues)
+    @as_grouped.merge(:w => @assignments_wed)
+    @as_grouped.merge(:r => @assignments_thurs)
+    @as_grouped.merge(:f => @assignments_fri)
+    @as_grouped.merge(:s => @assignments_sat)
+    @as_grouped.merge(:n => @assignments_sun)
+
+    
+
+
   end
 
   # gets assignments that should be shown from wanted month

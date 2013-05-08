@@ -16,10 +16,10 @@
 .new_assignment_button
   = link_to "add assignment", new_user_assignment_path(current_user)
 
-- if params[:query] == 'week'
+-# - if params[:query] == 'week'
   = render 'day_in_week_view'
   .assignment_box
-    %h4 Tuesday 
+    %h4 tuesday 
     - if !@assignments_tues.empty?
       - @assignments_tues.each do |a|
         .due_date_and_time
@@ -35,7 +35,7 @@
             = link_to "edit", edit_user_assignment_path(current_user,a)
 
   .assignment_box
-    %h4 Wednesday 
+    %h4 wednesday 
     - @assignments_wed.each do |a|
       .due_date_and_time
         = a.due_date.to_formatted_s(:long)
@@ -47,7 +47,7 @@
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
   .assignment_box
-    %h4 Thursday
+    %h4 thursday
     - @assignments_thurs.each do |a|
       .due_date_and_time
         = a.due_date.to_formatted_s(:long)
@@ -59,7 +59,7 @@
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
   .assignment_box
-    %h4 Friday
+    %h4 friday
     - @assignments_fri.each do |a|
       .due_date_and_time
         = a.due_date.to_formatted_s(:long)
@@ -71,7 +71,7 @@
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
   .assignment_box
-    %h4 Saturday
+    %h4 saturday
     - @assignments_sat.each do |a|
       .due_date_and_time
         = a.due_date.to_formatted_s(:long)
@@ -83,7 +83,7 @@
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
   .assignment_box
-    %h4 Sunday
+    %h4 sunday
     - @assignments_sun.each do |a|
       .due_date_and_time
         = k.strftime("%t")
@@ -96,7 +96,30 @@
           -#for delete just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
 
+-if params[:query] == 'week'
+  -# binding.pry
+  - @as_grouped.each do |dayn,as|
+    .assignment_box
+      %h4 
+        Day
+      - if !as.empty?
+        = as.first.due_date.to_date.to_formatted_s(:long)
+      - if !as.empty?
+        - as.each do |a|
+          %div{:class => (a.completed ? "completed" : "not_completed")}
+            .due_time 
+              = a.due_date.strftime("%H:%M");
+            .subject
+              = a.subject
+            .description
+              = a.description
+            .delete_assignment_button
+              -#for delete, just use the one for show
+              = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+            .completed_as_button
+              = link_to "edit", edit_user_assignment_path(current_user,a)
 
+        
 - if params[:query] == 'month'
   - @as_grouped.each do |k,v|
     .assignment_box
