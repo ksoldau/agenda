@@ -17,7 +17,7 @@
   = link_to "add assignment", new_user_assignment_path(current_user)
 
 - if params[:query] == 'week'
-  .monday.assignment_box
+  .assignment_box
     %h4 
       Monday
       - if !@assignments_mon.empty?
@@ -36,7 +36,7 @@
               = link_to "delete", user_assignment_path(current_user, a), :method => :delete
             .completed_as_button
               = link_to "edit", edit_user_assignment_path(current_user,a)
-  .tuesday.assignment_box
+  .assignment_box
     %h4 Tuesday 
     - if !@assignments_tues.empty?
       - @assignments_tues.each do |a|
@@ -52,7 +52,7 @@
           .completed_as_button
             = link_to "edit", edit_user_assignment_path(current_user,a)
 
-  .wednesday.assignment_box
+  .assignment_box
     %h4 Wednesday 
     - @assignments_wed.each do |a|
       .due_date_and_time
@@ -64,7 +64,7 @@
         .delete_assignment_button
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-  .thursday.assignment_box
+  .assignment_box
     %h4 Thursday
     - @assignments_thurs.each do |a|
       .due_date_and_time
@@ -76,7 +76,7 @@
         .delete_assignment_button
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-  .friday.assignment_box
+  .assignment_box
     %h4 Friday
     - @assignments_fri.each do |a|
       .due_date_and_time
@@ -88,7 +88,7 @@
         .delete_assignment_button
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-  .saturday.assignment_box
+  .assignment_box
     %h4 Saturday
     - @assignments_sat.each do |a|
       .due_date_and_time
@@ -100,7 +100,7 @@
         .delete_assignment_button
           -#for delete, just use the one for show
           = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-  .sunday.assignment_box
+  .assignment_box
     %h4 Sunday
     - @assignments_sun.each do |a|
       .due_date_and_time
