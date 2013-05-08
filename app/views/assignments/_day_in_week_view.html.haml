@@ -1,0 +1,20 @@
+.assignment_box
+  %h4 Elephant
+  -#=k.strftime("%A")
+  - if !@assignments_mon.empty?
+    = @assignments_mon.first.due_date.to_date.to_formatted_s(:long)
+  - if !@assignments_mon.empty?
+    - @assignments_mon.each do |a|
+      %div{:class => (a.completed ? "completed" : "not_completed")}
+        .due_time 
+          = a.due_date.strftime("%H:%M");
+        .subject
+          = a.subject
+        .description
+          = a.description
+        .delete_assignment_button
+          -#for delete, just use the one for show
+          = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+        .completed_as_button
+          = link_to "edit", edit_user_assignment_path(current_user,a)
+
