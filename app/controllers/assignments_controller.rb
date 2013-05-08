@@ -82,13 +82,13 @@ class AssignmentsController < ApplicationController
     @assignments_sat = @assignments_grouped.fetch(6, [])
     @assignments_sun = @assignments_grouped.fetch(0, [])
 
-    @as_grouped[:m] = @assignments_mon
-    @as_grouped[:t] = @assignments_tues
-    @as_grouped[:w] = @assignments_wed
-    @as_grouped[:r] = @assignments_thurs
-    @as_grouped[:f] = @assignments_fri
-    @as_grouped[:s] = @assignments_sat
-    @as_grouped[:n] = @assignments_sun
+    @as_grouped[1] = @assignments_mon
+    @as_grouped[2] = @assignments_tues
+    @as_grouped[3] = @assignments_wed
+    @as_grouped[4] = @assignments_thurs
+    @as_grouped[5] = @assignments_fri
+    @as_grouped[6] = @assignments_sat
+    @as_grouped[0] = @assignments_sun
 
     
 
