@@ -16,6 +16,19 @@ body {
   text-align: center;
 }
 .nav_view {
+  width: 200px;
+  margin: auto;
+  
+  a {
+    color: $purple;
+    background-color: $green;
+  }
+  a:link {}
+  a:visited {}
+  a:hover {
+    color: $red;
+  }
+  a:active {}
 }
 
 .new_assignment_button {

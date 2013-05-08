@@ -1,8 +1,16 @@
 
 .nav
   .nav_view
-    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which])
-    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which])
+    %form
+      #radio
+        %input{:type => "radio", :id => "radio_week", :name => "radio"}
+          %label{:for=>"radio1"}
+            Choice 1
+        %input{:type => "radio", :id => "radio_month", :name => "radio"}
+          %label{:for=>"radio2"}
+            Choice 2
+    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
+    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'} 
   %h1 My Assignments
   - if params[:query] == 'week'
     = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)
@@ -86,5 +94,3 @@
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
-
-
