@@ -72,7 +72,8 @@ class AssignmentsController < ApplicationController
   # creates arrays for each day of the week
   def getAssignmentsForDays
     @assignments_grouped = @assignments.group_by {|a| a.due_date.wday}
-    @as_grouped = {}
+    @as_grouped_left = {}
+    @as_grouped_right = {}
 
     @assignments_mon = @assignments_grouped.fetch(1, [])
     @assignments_tues = @assignments_grouped.fetch(2, [])
@@ -82,16 +83,16 @@ class AssignmentsController < ApplicationController
     @assignments_sat = @assignments_grouped.fetch(6, [])
     @assignments_sun = @assignments_grouped.fetch(0, [])
 
-    @as_grouped[1] = @assignments_mon
-    @as_grouped[2] = @assignments_tues
-    @as_grouped[3] = @assignments_wed
-    @as_grouped[4] = @assignments_thurs
-    @as_grouped[5] = @assignments_fri
-    @as_grouped[6] = @assignments_sat
-    @as_grouped[0] = @assignments_sun
-
     
-
+    #should do this in view instead of separating here, 
+    #but this works for now
+    @as_grouped_left[1] = @assignments_mon
+    @as_grouped_left[2] = @assignments_tues
+    @as_grouped_left[3] = @assignments_wed
+    @as_grouped_right[4] = @assignments_thurs
+    @as_grouped_right[5] = @assignments_fri
+    @as_grouped_right[6] = @assignments_sat
+    @as_grouped_right[0] = @assignments_sun
 
   end
 
