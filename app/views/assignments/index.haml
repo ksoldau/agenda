@@ -5,10 +5,10 @@
       #radio
         %input{:type => "radio", :id => "radio_week", :name => "radio"}
           %label{:for=>"radio1"}
-            Choice 1
+            Week
         %input{:type => "radio", :id => "radio_month", :name => "radio"}
           %label{:for=>"radio2"}
-            Choice 2
+            Month
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
     = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'} 
   %h1 My Assignments
