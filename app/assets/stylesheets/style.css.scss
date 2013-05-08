@@ -5,6 +5,7 @@ body {
   background-color: $purple;
 }
 .header {
+  overflow: hidden;
   background-color: #1e4c70;
   .sign_out_button {
     float: right;
