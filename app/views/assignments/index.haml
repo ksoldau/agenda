@@ -3,14 +3,15 @@
   .nav_view
     %form
       #radio
-        %input{:type => "radio", :id => "radio_week", :name => "radio"}
-          %label{:for=>"radio1"}
-            Week
-        %input{:type => "radio", :id => "radio_month", :name => "radio"}
-          %label{:for=>"radio2"}
-            Month
+        %input#radio1{:name => "radio", :type => "radio"}/
+        %label{:for => "radio1"} Week
+        %input#radio2{:checked => "checked", :name => "radio", :type => "radio"}/
+        %label{:for => "radio2"} Month
+
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
-    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'} 
+    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'}     
+
+
   %h1 My Assignments
   - if params[:query] == 'week'
     = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)

@@ -15,3 +15,7 @@
 //= require jquery_ujs
 //= require radiobutton
 //= require_tree .
+
+$(function() { 
+  $( "#radio" ).buttonset(); 
+}); 
