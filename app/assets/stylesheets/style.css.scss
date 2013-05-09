@@ -2,12 +2,18 @@
 
 body {
   font-family: "Cabin", Optima, sans-serif;
-  background-color: $purple;
+  background-color: $dark_blue;
   margin: 0;
 }
 .header {
   overflow: hidden;
-  background-color: #1e4c70;
+  background-color: $blue;
+  h1 {
+    float: left;
+    margin: 0.5em 0 0.3em 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
   .sign_out_button {
     float: right;
     background-color: #fff;
@@ -23,8 +29,8 @@ body {
 
   #radio {
      span {
-      background-color: $green;
-      color: $purple;
+      background-color: $blue;
+      color: $light_blue;
     }
   }
 
@@ -48,10 +54,18 @@ body {
   float: left;
 }
 .assignment_box {
-  background-color: $yellow;  
+  background-color: $blue;  
   width: 400px;
   margin: 15px;
   padding: 0.1em;
+  color: $light_blue;         
+  -moz-box-shadow: 3px 3px 6px #202B30;
+  -webkit-box-shadow: 3px 3px 6px #202B30;
+  box-shadow: 3px 3px 6px #202B30;
+
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+
   .day_heading {
     font-weight: bold;
     margin: 2px;
@@ -65,19 +79,20 @@ body {
   }
   .subject {
     margin-right: 0.5em;
+    color: $dark_blue;
   }
   .description {
     float:left;
-    color: #000;
+    color: $dark_blue;
     width: 100%;
     font-weight: normal;
   }
   .completed {
-    background-color: $yellow-green;
+    background-color: $light_blue;
     margin: 10px;
   }
   .not_completed {
-    background-color: $red;
+    background-color: $orange;
     margin: 10px;
   }
 }
