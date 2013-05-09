@@ -112,9 +112,32 @@ body {
   }
 }
 
+.cal {
+  width: 542px;
+  margin: 0 auto;
+  .cal_header {
+    width: 700px;
+    margin: 0 auto;
+  }
+  h2 { 
+    float: left; 
+   } 
+  .rotate_through {
+    font-size: 0.75em;
+     float: right;
+     margin: 0 13em 0 0;
+     span {
+     font-size: 1.2em;
+     padding: 0.4em;
+     background-color: $blue;
+     }
+
+  } 
+}
+
 table {
   border-collapse: collapse;
-  margin: 10px auto;
+  /* margin: 10px auto; */
   border: 1px solid $dark_blue;
   background-color: $gray;
   td {
