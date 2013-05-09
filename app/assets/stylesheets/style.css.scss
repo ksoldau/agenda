@@ -66,9 +66,37 @@ body {
   color:#fff;
 }
 
+.week {
+  margin: 0 auto;
+  max-width: 800px;
+  
+  .week_header {
+    max-width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .rotate_through {
+    float: right;
+    margin-right: 0;
+  }
+
+}
+
+.cal {
+  width: 542px;
+  margin: 0 auto;
+  .cal_header {
+    width: 700px;
+    margin: 0 auto;
+  }
+  h2 { 
+    float: left; 
+   } 
+}
 .right_side_days, .left_side_days {
   float: left;
 }
+
 .assignment_box {
   background-color: $gray;  
   width: 350px;
@@ -122,17 +150,6 @@ body {
   h2 { 
     float: left; 
    } 
-  .rotate_through {
-    font-size: 0.75em;
-     float: right;
-     margin: 0 13em 0 0;
-     span {
-     font-size: 1.2em;
-     padding: 0.4em;
-     background-color: $blue;
-     }
-
-  } 
 }
 
 table {
@@ -167,5 +184,17 @@ table {
 
 .not_completed {
     background-color: $orange;
+}
+
+
+ .rotate_through {
+    font-size: 0.75em;
+     float: right;
+     margin: 0 13em 0 0;
+     span {
+     font-size: 1.2em;
+     padding: 0.4em;
+     background-color: $blue;
+     }
 }
 

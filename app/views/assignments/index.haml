@@ -12,15 +12,6 @@
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
     = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'}     
 
-  - if params[:query] == 'week'
-    .rotate_through
-      = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week), 
-      {:class => "which_btn"}
-      = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
-      {:class => "which_btn"}
-
-      = link_to "next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
-      {:class => "which_btn"}
 
 
 .new_assignment_button
@@ -28,48 +19,58 @@
 
 -if params[:query] == 'week'
   - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
-  .left_side_days 
-    - @as_grouped_left.each do |dayn,as|
-      .assignment_box
-        %p.day_heading 
-          = @key_to_day[dayn]
-          = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
-        - if !as.empty?
-          - as.each do |a|
-            %div{:class => (a.completed ? "completed" : "not_completed")}
-              .due_time 
-                = a.due_date.strftime("%H:%M");
-              .subject
-                = a.subject
-              .description
-                = a.description
-              .delete_as_button
-                -#for delete, just use the one for show
-                = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+  .week
+    .week_header
+      .rotate_through
+        = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week), 
+        {:class => "which_btn"}
+        = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
+        {:class => "which_btn"}
+        = link_to "next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
+        {:class => "which_btn"}
 
-              .completed_as_button
-                = link_to "edit", edit_user_assignment_path(current_user,a)
-  .right_side_days 
-    - @as_grouped_right.each do |dayn,as|
-      .assignment_box
-        %p.day_heading 
-          = @key_to_day[dayn]
-          = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
-        - if !as.empty?
-          - as.each do |a|
-            %div{:class => (a.completed ? "completed" : "not_completed")}
-              .due_time 
-                = a.due_date.strftime("%H:%M");
-              .subject
-                = a.subject
-              .description
-                = a.description
-              .delete_as_button
-                -#for delete, just use the one for show
-                = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+    .left_side_days 
+      - @as_grouped_left.each do |dayn,as|
+        .assignment_box
+          %p.day_heading 
+            = @key_to_day[dayn]
+            = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
+          - if !as.empty?
+            - as.each do |a|
+              %div{:class => (a.completed ? "completed" : "not_completed")}
+                .due_time 
+                  = a.due_date.strftime("%H:%M");
+                .subject
+                  = a.subject
+                .description
+                  = a.description
+                .delete_as_button
+                  -#for delete, just use the one for show
+                  = link_to "delete", user_assignment_path(current_user, a), :method => :delete
 
-              .completed_as_button
-                = link_to "edit", edit_user_assignment_path(current_user,a)
+                .completed_as_button
+                  = link_to "edit", edit_user_assignment_path(current_user,a)
+    .right_side_days 
+      - @as_grouped_right.each do |dayn,as|
+        .assignment_box
+          %p.day_heading 
+            = @key_to_day[dayn]
+            = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
+          - if !as.empty?
+            - as.each do |a|
+              %div{:class => (a.completed ? "completed" : "not_completed")}
+                .due_time 
+                  = a.due_date.strftime("%H:%M");
+                .subject
+                  = a.subject
+                .description
+                  = a.description
+                .delete_as_button
+                  -#for delete, just use the one for show
+                  = link_to "delete", user_assignment_path(current_user, a), :method => :delete
+
+                .completed_as_button
+                  = link_to "edit", edit_user_assignment_path(current_user,a)
 
 
         
