@@ -79,8 +79,9 @@
 
         
 - if params[:query] == 'month'
-  %h4
+  %h2
     = params[:which].to_date.strftime("%B, %Y")
+
   - @list_each_week= []
   - @list_each_week << @days_in_cal_month[0..6]
   - @list_each_week << @days_in_cal_month[7..13]
@@ -104,19 +105,16 @@
           %td
             .cal_day
               = date.strftime("%d")
-            - if @as_grouped_by_dd[date]
-              /-binding.pry
-              - @as_grouped_by_dd[date].each do |a|
-                %p
+            .day_cal
+              - if @as_grouped_by_dd[date]
+                - @as_grouped_by_dd[date].each do |a|
                   .subj_link{:class => (a.completed ? "completed" : "not_completed")}
                     = a.subject
-                    .a_dialog{:title => "Basic dialog"}
-                      %p 
-                        due 
-                        = a.due_date.to_date.to_formatted_s(:long)
-                        = a.subject
-                        = a.description
-            - else 
+                    .a_dialog{:title => "Basic dialog"} 
+                      due 
+                      = a.due_date.to_date.to_formatted_s(:long)
+                      = a.subject
+                      = a.description
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
