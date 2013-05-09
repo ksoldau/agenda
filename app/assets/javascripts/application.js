@@ -14,17 +14,49 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require radiobutton
+//= require assignment_dialog
 //= require_tree .
 
 $(function() { 
-  $( "#radio" ).buttonset(); 
-});
+    $( "#radio" ).buttonset(); 
+    });
 
 
 
 $(function() {
     $( ".which_btn" )
-      .button()
-      .click(function( event ) {
+    .button()
+    .click(function( event ) {
       });
-  });
+    });
+
+$(function() {
+     $( ".a_dialog" ).dialog(); 
+});
+
+
+/* var $link = $("#legal_terms").one('click', function() { */
+/*   $dialog.dialog({ */
+/*     closeOnEscape: true, */ 
+/*     title: Assignment */
+/*     width: 600, */ 
+/*     height: 500, */ 
+/*     draggable: true, */ 
+/*     resisable: true, */
+/*     modal: true, */ 
+/*   }); */
+  
+/*   $link.click(function() { */
+/*     $dialog.dialog('open'); */
+
+/*     return false; */
+/*   }); */
+  
+/*   $close.click(function() { */
+/*     $dialog.dialog('close'); */
+
+/*   }); */
+
+/*   return false; */
+/*   }); */
+
