@@ -22,7 +22,11 @@ body {
 }
 .nav {
   text-align: center;
+  span {
+    background-color: $blue;
+  }
 }
+
 .nav_view {
   width: 200px;
   margin: auto;
@@ -38,7 +42,12 @@ body {
   a {
     visibility: hidden;
   }
+}
 
+.which_btn {
+  font-size: .75em;
+  color: $light_blue;
+  background-color: $blue;
 }
 
 .new_assignment_button {
