@@ -1,4 +1,4 @@
-
+ 
  function initializeAssignmentsDialogs() {
  console.log("it got to initialize assignmentsdiolags");
   $(".subj_link").each(

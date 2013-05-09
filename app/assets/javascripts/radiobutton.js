@@ -1,8 +1,3 @@
-/* $(function() { */
-/*   $( "#radio" ).buttonset(); */
-/* }); */
-
-
 $(function() {
   console.log("in the function");
   $( "#radio1" ).click(function(e) {
