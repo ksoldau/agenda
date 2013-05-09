@@ -7,11 +7,12 @@
        //open: function(event, ui) { $(".ui-dialog-titlebar-close").show(); },
         closeOnEscape: true,
         title: "Terms",
-        width: 600,
-        height: 500,
+        width: 300,
+        height: 200,
         draggable: false,
         resizable: false,
         modal: true,
+        autoOpen: false,
         });
 
       console.log("got into the each");
