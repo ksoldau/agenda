@@ -111,12 +111,10 @@
       /- binding.pry
       %tr 
         -week.each do |date|
-          - if @as_grouped_by_dd[date]
-            %td
-              = date
-          - else 
-            %td
-              = date
+          %td
+            = date.strftime("%d")
+            - if @as_grouped_by_dd[date]
+            - else 
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
