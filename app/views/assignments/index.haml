@@ -23,16 +23,6 @@
       {:class => "which_btn"}
 
 
-  - elsif params[:query] == 'month'
-    .rotate_through
-      = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
-      {:class => "which_btn"}
-      = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
-      {:class => "which_btn"}    
-      = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
-      {:class => "which_btn"}
-    
-
 .new_assignment_button
   = link_to "add assignment", new_user_assignment_path(current_user)
 
@@ -84,42 +74,54 @@
 
         
 - if params[:query] == 'month'
-  %h2
-    = params[:which].to_date.strftime("%B, %Y")
+  .cal
+    .cal_header
+      %h2
+        = params[:which].to_date.strftime("%B, %Y")
 
-  - @list_each_week= []
-  - @list_each_week << @days_in_cal_month[0..6]
-  - @list_each_week << @days_in_cal_month[7..13]
-  - @list_each_week << @days_in_cal_month[14..20]
-  - @list_each_week << @days_in_cal_month[21..27]
-  - @list_each_week << @days_in_cal_month[28..34]
-  %table
-    %tr
-      %th Sunday
-      %th Monday
-      %th Tuesday
-      %th Wednesday
-      %th Thursday
-      %th Friday
-      %th Saturday
-    %tr
-    - @list_each_week.each do |week|
-      /- binding.pry
-      %tr 
-        -week.each do |date|
-          %td
-            .cal_day
-              = date.strftime("%d")
-            .day_cal
-              - if @as_grouped_by_dd[date]
-                - @as_grouped_by_dd[date].each do |a|
-                  .subj_link{:class => (a.completed ? "completed" : "not_completed")}
-                    = a.subject
-                    .a_dialog{:title => "Basic dialog"} 
-                      due 
-                      = a.due_date.to_date.to_formatted_s(:long)
+
+      - if params[:query] == 'month'
+        .rotate_through
+          = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
+          {:class => "which_btn"}
+          = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
+          {:class => "which_btn"}    
+          = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
+          {:class => "which_btn"}
+    
+    - @list_each_week= []
+    - @list_each_week << @days_in_cal_month[0..6]
+    - @list_each_week << @days_in_cal_month[7..13]
+    - @list_each_week << @days_in_cal_month[14..20]
+    - @list_each_week << @days_in_cal_month[21..27]
+    - @list_each_week << @days_in_cal_month[28..34]
+    %table
+      %tr
+        %th Sunday
+        %th Monday
+        %th Tuesday
+        %th Wednesday
+        %th Thursday
+        %th Friday
+        %th Saturday
+      %tr
+      - @list_each_week.each do |week|
+        /- binding.pry
+        %tr 
+          -week.each do |date|
+            %td
+              .cal_day
+                = date.strftime("%d")
+              .day_cal
+                - if @as_grouped_by_dd[date]
+                  - @as_grouped_by_dd[date].each do |a|
+                    .subj_link{:class => (a.completed ? "completed" : "not_completed")}
                       = a.subject
-                      = a.description
+                      .a_dialog{:title => "Basic dialog"} 
+                        due 
+                        = a.due_date.to_date.to_formatted_s(:long)
+                        = a.subject
+                        = a.description
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
