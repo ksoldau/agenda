@@ -110,7 +110,9 @@
                   .subj_link
                     = a.subject
                     .a_dialog{:title => "Basic dialog"}
-                      %p 
+                      %p
+                        due 
+                        = a.due_date.to_date.to_formatted_s(:long)
                         = a.subject
                         = a.description
             - else 
