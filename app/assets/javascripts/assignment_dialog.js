@@ -17,10 +17,10 @@
       console.log("got into the each");
       $(this).on('click', function() {
         dialog.dialog('open');
+      });
 
-      })
-    })
-    }
+    });
+  }
   
 
 
