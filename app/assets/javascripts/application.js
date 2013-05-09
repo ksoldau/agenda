@@ -35,28 +35,3 @@ $(function() {
 });
 
 
-/* var $link = $("#legal_terms").one('click', function() { */
-/*   $dialog.dialog({ */
-/*     closeOnEscape: true, */ 
-/*     title: Assignment */
-/*     width: 600, */ 
-/*     height: 500, */ 
-/*     draggable: true, */ 
-/*     resisable: true, */
-/*     modal: true, */ 
-/*   }); */
-  
-/*   $link.click(function() { */
-/*     $dialog.dialog('open'); */
-
-/*     return false; */
-/*   }); */
-  
-/*   $close.click(function() { */
-/*     $dialog.dialog('close'); */
-
-/*   }); */
-
-/*   return false; */
-/*   }); */
-
