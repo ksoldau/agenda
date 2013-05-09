@@ -102,7 +102,8 @@
       %tr 
         -week.each do |date|
           %td
-            = date.strftime("%d")
+            .cal_day
+              = date.strftime("%d")
             - if @as_grouped_by_dd[date]
               /-binding.pry
               - @as_grouped_by_dd[date].each do |a|
