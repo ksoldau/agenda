@@ -13,7 +13,6 @@ class AssignmentsController < ApplicationController
       get_last_day_cal
       get_month_as
       get_group_month_as
-      @as_grouped_by_week = GroupByWeek.new(@as_grouped_by_dd)
      # getAssignmentsForMonth
      # #group assignments by date to use in view
      # @as_grouped = @as.group_by {|a| a.due_date.to_date}

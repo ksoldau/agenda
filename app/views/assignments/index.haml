@@ -82,11 +82,32 @@
   %h4
     -# get first day of the calendar (it's a Sunday)
     = @first_day.strftime("%d")
+  - @list_each_week= []
+  - @list_each_week << @days_in_cal_month[0..6]
+  - @list_each_week << @days_in_cal_month[7..13]
+  - @list_each_week << @days_in_cal_month[14..20]
+  - @list_each_week << @days_in_cal_month[21..27]
+  - @list_each_week << @days_in_cal_month[28..34]
+
   - @days_in_cal_month.each do |date|
     - if @as_grouped_by_dd[date]
       %h5 
         =date
+        /- binding.pry
     -else
+
+
+  %table{:border => 1}
+    - @list_each_week.each do |week|
+      /- binding.pry
+      %tr 
+        -week.each do |date|
+          - if @as_grouped_by_dd[date]
+            %td
+              = date
+          - else 
+            %td
+              = date
   
   
   
