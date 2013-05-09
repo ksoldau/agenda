@@ -80,22 +80,13 @@
         
 - if params[:query] == 'month'
   %h4
-    -# get first day of the calendar (it's a Sunday)
-    = @first_day.strftime("%d")
+    = params[:which].to_date.strftime("%B, %Y")
   - @list_each_week= []
   - @list_each_week << @days_in_cal_month[0..6]
   - @list_each_week << @days_in_cal_month[7..13]
   - @list_each_week << @days_in_cal_month[14..20]
   - @list_each_week << @days_in_cal_month[21..27]
   - @list_each_week << @days_in_cal_month[28..34]
-
-  - @days_in_cal_month.each do |date|
-    - if @as_grouped_by_dd[date]
-      %h5 
-        =date
-        /- binding.pry
-    -else
-
 
   %table{:border => 1}
     %tr
@@ -114,6 +105,15 @@
           %td
             = date.strftime("%d")
             - if @as_grouped_by_dd[date]
+              /-binding.pry
+              - @as_grouped_by_dd[date].each do |a|
+                %p 
+                  = a.subject
+              
+              /* - @as_grouped_by_dd.each do |date, as| */
+              /*   - as.each do |a| */
+              /*     %p */
+              /*       = a.subject */
             - else 
 
 
