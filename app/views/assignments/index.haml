@@ -14,9 +14,15 @@
 
   %h1 My Assignments
   - if params[:query] == 'week'
-    = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week)
-    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week)
-    = link_to "next week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week)
+    = link_to "prev week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week), 
+      {:class => "which_btn"}
+    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
+      {:class => "which_btn"}
+
+    = link_to "next week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
+      {:class => "which_btn"}
+
+
   - elsif params[:query] == 'month'
     = link_to "prev month", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month)
     = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month)

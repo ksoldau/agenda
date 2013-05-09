@@ -15,4 +15,4 @@ $(function() {
     $( '#month_view' )[0].click();
     });
 });
-    
+

@@ -54,14 +54,14 @@ body {
   float: left;
 }
 .assignment_box {
-  background-color: $blue;  
+  background-color: $gray;  
   width: 400px;
   margin: 15px;
   padding: 0.1em;
-  color: $light_blue;         
+  color: $dark_blue;         
   -moz-box-shadow: 3px 3px 6px #202B30;
   -webkit-box-shadow: 3px 3px 6px #202B30;
-  box-shadow: 3px 3px 6px #202B30;
+  box-shadow: 0px 0px 10px #809096;
 
   -moz-border-radius: 4px;
   border-radius: 4px;
