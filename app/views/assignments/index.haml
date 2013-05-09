@@ -80,14 +80,13 @@
         = params[:which].to_date.strftime("%B, %Y")
 
 
-      - if params[:query] == 'month'
-        .rotate_through
-          = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
-          {:class => "which_btn"}
-          = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
-          {:class => "which_btn"}    
-          = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
-          {:class => "which_btn"}
+      .rotate_through
+        = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
+        {:class => "which_btn"}
+        = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
+        {:class => "which_btn"}    
+        = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
+        {:class => "which_btn"}
     
     - @list_each_week= []
     - @list_each_week << @days_in_cal_month[0..6]

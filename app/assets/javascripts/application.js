@@ -30,6 +30,7 @@ $(function() {
       });
     });
 
+
 $(function() {
      $( ".a_dialog" ).dialog(); 
 });
