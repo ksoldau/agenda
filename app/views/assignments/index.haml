@@ -98,6 +98,15 @@
 
 
   %table{:border => 1}
+    %tr
+      %th Sunday
+      %th Monday
+      %th Tuesday
+      %th Wednesday
+      %th Thursday
+      %th Friday
+      %th Saturday
+    %tr
     - @list_each_week.each do |week|
       /- binding.pry
       %tr 
@@ -108,55 +117,6 @@
           - else 
             %td
               = date
-  
-  
-  
-  /* -@as.each do |a| */
-  /*   - @all35[a.due_date.to_date] << a */
-
-  /* - grouped_by_week do |k, v| */
-  /*   .assignment_box */
-  /*     %h4 */ 
-  /*       =k.strftime("%d") */
-  /*     -v.each do |a| */
-  /*       .due_date_and_time */
-  /*         = a.due_date.to_formatted_s(:long) */
-  /*       .description */
-  /*         = a.description */
-  /*       .subject */
-  /*         = a.subject */
-  /*         .delete_assignment_button */
-  /*           = link_to "delete", user_assignment_path(current_user, a), :method => :delete */
-
-
-    
-  %table{:border => 1}
-    %tr
-      %th Sunday
-      %th Monday
-      %th Tuesday
-      %th Wednesday
-      %th Thursday
-      %th Friday
-      %th Saturday
-    %tr
-      %td row 1, cell 1
-      %td row 1, cell 2 
-    %tr
-      %td row 2, cell 1
-      %td row 2, cell 2
-    %tr
-      %td 3
-    %tr
-      %td 4
-    %tr
-      %td 5
-
-
-  
-
-    
-  
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
