@@ -108,10 +108,10 @@
               /-binding.pry
               - @as_grouped_by_dd[date].each do |a|
                 %p
-                  .subj_link
+                  .subj_link{:class => (a.completed ? "completed" : "not_completed")}
                     = a.subject
                     .a_dialog{:title => "Basic dialog"}
-                      %p
+                      %p 
                         due 
                         = a.due_date.to_date.to_formatted_s(:long)
                         = a.subject
