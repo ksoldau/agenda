@@ -27,8 +27,15 @@ $(function() {
     $( ".which_btn" )
     .button()
     .click(function( event ) {
-      });
-    });
+  });
+});
+
+$(function() {
+    $( ".sign_out_btn")
+    .button()
+    .click(function ( event ) {
+  });
+});
 
 
 $(function() {
