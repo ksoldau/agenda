@@ -8,6 +8,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.boolean :completed, :default => false
 
       t.integer :user_id, :null => false
+      t.integer :subject_id, :null => false
 
       t.timestamps
     end

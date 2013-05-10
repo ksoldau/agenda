@@ -19,15 +19,16 @@ ActiveRecord::Schema.define(:version => 20130509203150) do
     t.string   "subject",     :default => ""
     t.boolean  "completed",   :default => false
     t.integer  "user_id",                        :null => false
+    t.integer  "subject_id",                     :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
 
   create_table "subjects", :force => true do |t|
-    t.string   "name",          :null => false
-    t.integer  "assignment_id", :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "name",       :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
