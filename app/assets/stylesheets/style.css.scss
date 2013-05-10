@@ -129,7 +129,7 @@ body {
   .due_time {
     float: right;
     margin-right: 0.5em;
-    color: #1a2c71;
+    color: $dark_blue;
     text-align: center;
     font-weight: bold;
   }
@@ -229,7 +229,7 @@ table {
   margin-right: 0.1em;
   width: 13px;
   height: 13px;
-  background-image: url("pencil.png"); /*change to delete button later*/
+  background-image: url("delete.png"); /*change to delete button later*/
 }
 .completed_as_button {
   display: none;

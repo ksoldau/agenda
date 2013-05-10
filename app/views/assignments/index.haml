@@ -40,19 +40,19 @@
             - as.each do |a|
               %div{:class => (a.completed ? "completed" : "not_completed")}
                 .due_time
-                  = a.due_date.to_formatted_s(:long)
-                  -#= a.due_date.strftime("%H:%M");
+                  -#= a.due_date.to_formatted_s(:long)
+                  = a.due_date.strftime("%H:%M");
                 .subject
                   = a.subject.name
                 .description
                   = a.description
                 .delete_btn
-                .edit_btn
+                
+                = link_to "", edit_user_assignment_path(current_user,a), {:class => "edit_btn"}
+                  
                 .delete_as_button
                   -#for delete, just use the one for show
-                  = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-                .completed_as_button
-                  = link_to "edit", edit_user_assignment_path(current_user,a)
+                  = link_to "delete", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn" 
 
 
     .right_side_days 
@@ -65,19 +65,16 @@
             - as.each do |a|
               %div{:class => (a.completed ? "completed" : "not_completed")}
                 .due_time
-                  = a.due_date.to_formatted_s(:long)
-                  -#= a.due_date.strftime("%H:%M");
+                  -#= a.due_date.to_formatted_s(:long)
+                  = a.due_date.strftime("%H:%M");
                 .subject
                   = a.subject.name
                 .description
                   = a.description
-                .delete_btn
-                .edit_btn
-                .delete_as_button
-                  -#for delete, just use the one for show
-                  = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-                .completed_as_button
-                  = link_to "edit", edit_user_assignment_path(current_user,a)
+                = link_to "", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn"
+                = link_to "", edit_user_assignment_path(current_user,a), {:class => "edit_btn"}
+              -#for delete, just use the one for show
+                /* = link_to "delete", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn" */
 
 
         
