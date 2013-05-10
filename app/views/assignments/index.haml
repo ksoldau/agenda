@@ -43,7 +43,7 @@
                   = a.due_date.to_formatted_s(:long)
                   -#= a.due_date.strftime("%H:%M");
                 .subject
-                  = a.subject
+                  = a.subject.name
                 .description
                   = a.description
                 .delete_as_button
@@ -65,7 +65,7 @@
                   = a.due_date.to_formatted_s(:long)
                   -#= a.due_date.strftime("%H:%M");
                 .subject
-                  = a.subject
+                  = a.subject.name
                 .description
                   = a.description
                 .delete_as_button
@@ -119,11 +119,11 @@
                 - if @as_grouped_by_dd[date]
                   - @as_grouped_by_dd[date].each do |a|
                     .subj_link{:class => (a.completed ? "completed" : "not_completed")}
-                      = a.subject
+                      = a.subject.name
                       .a_dialog{:title => "Basic dialog"} 
                         due 
                         = a.due_date.to_date.to_formatted_s(:long)
-                        = a.subject
+                        = a.subject.name
                         = a.description
 
 
