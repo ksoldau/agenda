@@ -31,15 +31,17 @@
 
     .left_side_days 
       - @as_grouped_left.each do |dayn,as|
+        -#- binding.pry
         .assignment_box
           %p.day_heading 
             = @key_to_day[dayn]
-            = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
+            = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
           - if !as.empty?
             - as.each do |a|
               %div{:class => (a.completed ? "completed" : "not_completed")}
-                .due_time 
-                  = a.due_date.strftime("%H:%M");
+                .due_time
+                  = a.due_date.to_formatted_s(:long)
+                  -#= a.due_date.strftime("%H:%M");
                 .subject
                   = a.subject
                 .description
@@ -55,12 +57,13 @@
         .assignment_box
           %p.day_heading 
             = @key_to_day[dayn]
-            = getDate(dayn, params[:which].to_date).to_formatted_s(:long) 
+            = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long) 
           - if !as.empty?
             - as.each do |a|
               %div{:class => (a.completed ? "completed" : "not_completed")}
-                .due_time 
-                  = a.due_date.strftime("%H:%M");
+                .due_time
+                  = a.due_date.to_formatted_s(:long)
+                  -#= a.due_date.strftime("%H:%M");
                 .subject
                   = a.subject
                 .description
