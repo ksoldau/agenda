@@ -21,8 +21,6 @@ $(function() {
     $( "#radio" ).buttonset(); 
     });
 
-
-
 $(function() {
     $( ".which_btn" )
     .button()
@@ -41,5 +39,4 @@ $(function() {
 $(function() {
      $( ".a_dialog" ).dialog(); 
 });
-
 
