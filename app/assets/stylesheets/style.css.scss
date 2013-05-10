@@ -231,6 +231,14 @@ table {
   height: 13px;
   background-image: url("delete.png"); /*change to delete button later*/
 }
+.add_btn {
+  float:right;
+  margin-top: 0.2em;
+  margin-right: 0.2em;
+  width: 13px;
+  height: 13px;
+  background-image: url("add.png");
+}
 .completed_as_button {
   display: none;
 }

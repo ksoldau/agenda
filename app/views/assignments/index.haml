@@ -32,6 +32,7 @@
       - @as_grouped_left.each do |dayn,as|
         -#- binding.pry
         .assignment_box
+          = link_to "", new_user_assignment_path(current_user), :class => "add_btn"
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
@@ -57,6 +58,7 @@
     .right_side_days 
       - @as_grouped_right.each do |dayn,as|
         .assignment_box
+          = link_to "", new_user_assignment_path(current_user), :class => "add_btn"
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long) 
