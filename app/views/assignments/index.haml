@@ -1,6 +1,5 @@
 
 .nav
-  %h1 My Assignments
   .nav_view
     %form
       #radio
@@ -12,6 +11,7 @@
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
     = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'}     
 
+  %h1 My Assignments
 
 
 .new_assignment_button
@@ -19,16 +19,16 @@
 
 -if params[:query] == 'week'
   - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
-  .week
-    .week_header
-      .rotate_through
-        = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week), 
-        {:class => "which_btn"}
-        = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
-        {:class => "which_btn"}
-        = link_to "next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
-        {:class => "which_btn"}
+  .rotate_through
+    = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week), 
+      {:class => "which_btn"}
+    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
+      {:class => "which_btn"}
+    = link_to "next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
+      {:class => "which_btn"}
 
+  .week
+   
     .left_side_days 
       - @as_grouped_left.each do |dayn,as|
         -#- binding.pry
