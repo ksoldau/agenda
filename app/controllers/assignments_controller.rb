@@ -32,7 +32,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
-    # session['referer'] = request.referer
+    #session['referer'] = request.referer
   end
 
   def create
@@ -40,16 +40,18 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    @as = current_user.assignments.where(id: params[:id]).first
-    if @as.update_attributes(params[:assignment])
-      #redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week)           
-    else 
-      render :new 
-    end
+   @as = current_user.assignments.where(id: params[:id]).first
+   if @as.update_attributes(params[:assignment])
+     #redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week) 
+     redirect_to user_assignments_path(current_user, :query => "week", :which => @as.due_date.to_date.beginning_of_week)
+   else 
+     render :new 
+   end
   end
 
-  def edit 
+  def edit
     @as = current_user.assignments.where(id: params[:id]).first
+    #redirect_to user_assignments_path(current_user, :query => "week", :which => Date.today.end_of_month)
   end
 
   def destroy
@@ -66,7 +68,7 @@ class AssignmentsController < ApplicationController
 
     if params[:which] != nil
       @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
-                                                    {:start_week => @week_want.to_date.beginning_of_week,                                                                                   :end_week => @week_want.to_date.end_of_week})
+                                                    {:start_week => @week_want.to_date.beginning_of_week,                                                                                   :end_week => @week_want.to_date.end_of_week.tomorrow})
     else 
       @assignments = current_user.assignments.where("due_date >= :start_week AND due_date <= :end_week", 
                                                     {:start_week => Date.today.beginning_of_week,
