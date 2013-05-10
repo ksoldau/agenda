@@ -1,7 +1,6 @@
 @import 'variables';
 
 h1 {
-  text-align: center;
   color: $light-blue;
   margin: 0;
 }
@@ -15,6 +14,13 @@ h2 {
   font-size: .75em;
   color: $light_blue;
   background-color: $blue;
+}
+
+.ui-state-hover {
+  background-color: #000;
+  background-image: none;
+  border-color: #222F33;
+  border-width: 2px;
 }
 
 .subject {

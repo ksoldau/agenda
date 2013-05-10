@@ -5,14 +5,24 @@ body {
   background-color: $dark_blue;
   margin: 0;
 }
+
 .header {
   overflow: hidden;
-  background-color: $blue;
+  background-color: $light_blue;
 
-  .sign_out_button {
+  h1 {
+    color: $blue;
+    width: 300px;
+  }
+
+  .sign_out_btn {
     float: right;
+    margin: 1em;
+    color: $blue; 
+    font-size: 0.75em;
     background-color: #fff;
     color: #000;
+
   }
 
   h1 {
