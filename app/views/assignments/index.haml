@@ -11,8 +11,7 @@
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
     = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'}     
 
-%h1 My Assignments
-
+%h1 Agenda
 
 .new_assignment_button
   = link_to "add assignment", new_user_assignment_path(current_user)
