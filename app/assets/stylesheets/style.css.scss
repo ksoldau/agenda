@@ -24,6 +24,7 @@ body {
 }
 .nav {
   text-align: center;
+  
   span {
     background-color: $blue;
   }
@@ -37,6 +38,7 @@ body {
   width: 200px;
   margin: 10px auto 0 auto;
   font-size: 0.75em;
+  float: right;
 
   #radio {
      span {
@@ -69,15 +71,10 @@ body {
 .week {
   margin: 0 auto;
   max-width: 800px;
-  
-  .week_header {
-    max-width: 700px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
+
   .rotate_through {
-    float: right;
-    margin-right: 0;
+    margin: 0 auto;
+    width: 200px;
   }
 
 }
@@ -187,14 +184,14 @@ table {
 }
 
 
- .rotate_through {
-    font-size: 0.75em;
-     float: right;
-     margin: 0 13em 0 0;
-     span {
-     font-size: 1.2em;
-     padding: 0.4em;
-     background-color: $blue;
-     }
+.rotate_through {
+  font-size: 0.75em;
+  width: 185px;
+  margin: 0 auto;
+  span {
+    font-size: 1.2em;
+    padding: 0.4em;
+    background-color: $blue;
+  }
 }
 
