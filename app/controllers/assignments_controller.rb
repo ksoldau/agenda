@@ -37,6 +37,13 @@ class AssignmentsController < ApplicationController
 
   def create
     createNewAssignment
+    if @assignment.save
+      redirect_to user_assignments_path(current_user, :query => "week", :which => @assignment.due_date.to_date.beginning_of_week)
+    else
+      render :new #if saving doesn't work, doesn't run logic but renders view,
+      #so user can correct themselves
+    end
+
   end
 
   def update
@@ -167,12 +174,6 @@ class AssignmentsController < ApplicationController
   def createNewAssignment
     @assignment = Assignment.new(params['assignment'])
     @assignment.user_id = current_user.id
-    if @assignment.save
-      redirect_to session['referer'] || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week)
-    else
-      render :new #if saving doesn't work, doesn't run logic but renders view,
-      #so user can correct themselves
-    end
 
   end
 
