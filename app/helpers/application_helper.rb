@@ -1,6 +1,6 @@
 module ApplicationHelper
   def getDate(n, beginning_of_week)
-    $i = -1
+    $i = 2
     $day = beginning_of_week
 
     #key for Sunday is 0, so have to change it 
