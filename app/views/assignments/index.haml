@@ -46,12 +46,15 @@
                   = a.subject.name
                 .description
                   = a.description
+                .delete_btn
+                .edit_btn
                 .delete_as_button
                   -#for delete, just use the one for show
                   = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-
                 .completed_as_button
                   = link_to "edit", edit_user_assignment_path(current_user,a)
+
+
     .right_side_days 
       - @as_grouped_right.each do |dayn,as|
         .assignment_box
@@ -68,10 +71,11 @@
                   = a.subject.name
                 .description
                   = a.description
+                .delete_btn
+                .edit_btn
                 .delete_as_button
                   -#for delete, just use the one for show
                   = link_to "delete", user_assignment_path(current_user, a), :method => :delete
-
                 .completed_as_button
                   = link_to "edit", edit_user_assignment_path(current_user,a)
 

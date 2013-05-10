@@ -14,15 +14,20 @@ body {
     color: $blue;
     width: 300px;
   }
+  
+  .name {
+    float: right;
+    color: $blue;
+    margin: 1.2em 0 0 0;
+  }
 
   .sign_out_btn {
     float: right;
-    margin: 1em;
+    margin: 1.2em 1em;
     color: $blue; 
     font-size: 0.75em;
     background-color: #fff;
     color: #000;
-
   }
 
   h1 {
@@ -140,10 +145,14 @@ body {
   }
   .completed {
     margin: 10px;
+    overflow: hidden;
+    padding-bottom: 0.2em;
   }
   .not_completed {
     background-color: $orange;
     margin: 10px;
+    overflow: hidden;
+    padding-bottom: 0.2em;
   }
 }
 
@@ -205,3 +214,26 @@ table {
   }
 }
 
+
+.edit_btn {
+  float: right;
+  margin-top: 0.1em;
+  margin-right: 0.1em;
+  width: 13px;
+  height: 13px;
+  background-image: url("pencil.png");
+}
+.delete_btn {
+  float: right;
+  margin-top: 0.1em;
+  margin-right: 0.1em;
+  width: 13px;
+  height: 13px;
+  background-image: url("pencil.png"); /*change to delete button later*/
+}
+.completed_as_button {
+  display: none;
+}
+.delete_as_button {
+  display:none;
+}
