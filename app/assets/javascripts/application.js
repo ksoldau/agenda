@@ -61,6 +61,12 @@ $(function() {
 });
 
 $(function() {
+  $(".delete_dialog").dialog({
+    autoOpen:false
+  });
+});
+
+$(function() {
   $( ".assignment_box" ).hover(function() {
     $(this).find(".add_btn").toggle();
     

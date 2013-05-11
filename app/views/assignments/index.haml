@@ -39,8 +39,10 @@
                   = a.subject.name
                 .description
                   = a.description
-
-                = link_to "", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn"
+                .delete_btn
+                  .delete_dialog{:title => "Delete Assignment"}
+                    Are you sure you want to delete this assignment?
+                    = link_to "Delete", user_assignment_path(current_user, a), :method => :delete
                 .edit_btn
                   .edit_dialog{:title => "Edit Assignment"}
                     = simple_form_for [current_user, a] do |f|
@@ -68,7 +70,10 @@
                 .description
                   = a.description
 
-                = link_to "", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn"
+                .delete_btn
+                  .delete_dialog{:title => "Delete Assignment"}
+                    Are you sure you want to delete this assignment?
+                    = link_to "Delete", user_assignment_path(current_user, a), :method => :delete
                 .edit_btn
                   .edit_dialog{:title => "Edit Assignment"}
                     = simple_form_for [current_user, a] do |f|
