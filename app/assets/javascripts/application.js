@@ -14,6 +14,7 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require radiobutton
+//= require dialogs
 //= require assignment_dialog
 //= require_tree .
 
@@ -49,7 +50,14 @@ $(function() {
 
 
 $(function() {
-     $( ".a_dialog" ).dialog(); 
+     $( ".a_dialog" ).dialog({
+     }); 
+});
+
+$(function() {
+  $(".edit_dialog").dialog({
+    autoOpen: false
+  });
 });
 
 $(function() {

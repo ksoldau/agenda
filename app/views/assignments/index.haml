@@ -39,8 +39,17 @@
                   = a.subject.name
                 .description
                   = a.description
-                = link_to "", edit_user_assignment_path(current_user,a), {:class => "edit_btn"}
+
                 = link_to "", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn"
+                .edit_btn
+                  .edit_dialog{:title => "Edit Assignment"}
+                    = simple_form_for [current_user, a] do |f|
+                      = f.input :completed 
+                      = f.input :description 
+                      = f.input :due_date
+                      = f.association :subject, collection: current_user.subjects    
+                      = f.submit 
+
     .right_side_days 
       - @as_grouped_right.each do |dayn,as|
         .assignment_box
@@ -58,9 +67,21 @@
                   = a.subject.name
                 .description
                   = a.description
+
                 = link_to "", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn"
-                = link_to "", edit_user_assignment_path(current_user,a), {:class => "edit_btn"}
-              -#for delete, just use the one for show
+                .edit_btn
+                  .edit_dialog{:title => "Edit Assignment"}
+                    = simple_form_for [current_user, a] do |f|
+                      = f.input :completed 
+                      = f.input :description 
+                      = f.input :due_date
+                      = f.association :subject, collection: current_user.subjects    
+                      = f.submit 
+
+
+                
+                
+                -#for delete, just use the one for show
                 /* = link_to "delete", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn" */
 
 
@@ -113,6 +134,12 @@
                         = a.due_date.to_date.to_formatted_s(:long)
                         = a.subject.name
                         = a.description
+                        = simple_form_for [current_user, a] do |f|
+                          = f.input :completed 
+                          = f.input :description 
+                          = f.input :due_date
+                          = f.association :subject, collection: current_user.subjects    
+                          = f.submit 
 
 
       -#link_to has an option called confirm, value you give it is ? you want to ask
