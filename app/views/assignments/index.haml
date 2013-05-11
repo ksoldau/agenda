@@ -46,15 +46,8 @@
                   = a.subject.name
                 .description
                   = a.description
-                .delete_btn
-                
                 = link_to "", edit_user_assignment_path(current_user,a), {:class => "edit_btn"}
-                  
-                .delete_as_button
-                  -#for delete, just use the one for show
-                  = link_to "delete", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn" 
-
-
+                = link_to "", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn"
     .right_side_days 
       - @as_grouped_right.each do |dayn,as|
         .assignment_box
