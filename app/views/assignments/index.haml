@@ -38,7 +38,7 @@
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
           - if !as.empty?
             - as.each do |a|
-              %div{:class => (a.completed ? "completed" : "not_completed")}
+              .as_box{:class => (a.completed ? "completed" : "not_completed")}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   = a.due_date.strftime("%H:%M");
@@ -57,7 +57,7 @@
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long) 
           - if !as.empty?
             - as.each do |a|
-              %div{:class => (a.completed ? "completed" : "not_completed")}
+              .as_box{:class => (a.completed ? "completed" : "not_completed")}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   = a.due_date.strftime("%H:%M");

@@ -40,3 +40,28 @@ $(function() {
      $( ".a_dialog" ).dialog(); 
 });
 
+$(function() {
+  $( ".assignment_box" ).hover(function() {
+    $(this).find(".add_btn").toggle();
+    
+    })
+})
+
+$(function() {
+  $( ".as_box").hover(
+    function() {
+      $(this).find(".delete_btn").css("visibility", "visible");
+      $(this).find(".edit_btn").css("visibility", "visible");
+    }, 
+    function() {
+      $(this).find(".delete_btn").css("visibility", "hidden");
+      $(this).find(".edit_btn").css("visibility", "hidden");
+      });
+})
+
+$(function() {
+  $(".not_completed").hover(function() {
+    var e = $(this).find(".delete_btn")
+    e.style.display == 'visible';
+  });
+})
