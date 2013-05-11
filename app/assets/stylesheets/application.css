@@ -12,5 +12,7 @@
  *= require jquery.ui.all
  *= require base
  *= require style
+ *= require nav
+ *= require week
  *= require_tree .
  */
