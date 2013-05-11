@@ -1,4 +1,3 @@
-
 function initializeEditButtonAndDialogs() {
   $(".edit_btn").each(
     function() {
@@ -36,6 +35,14 @@ function initializeDeleteDialogs() {
       $(this).on('click', function() {
         dialog.dialog('open');
       });
+
+      $(this).hover(
+        function() {
+          $(this).css("background-color", "#fff");
+        },
+        function() {
+          $(this).css("background-color", "transparent");
+        });
   });
 }
   
