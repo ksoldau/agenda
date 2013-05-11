@@ -201,10 +201,11 @@ table {
   float: right;
   visibility: hidden;
   margin-top: 0.1em;
-  margin-right: 0.1em;
+  margin-right: 0.3em;
   width: 13px;
   height: 13px;
   background-image: url("pencil.png");
+  cursor: pointer;
 }
 .delete_btn {
   float: right;
@@ -214,6 +215,7 @@ table {
   width: 13px;
   height: 13px;
   background-image: url("delete.png"); /*change to delete button later*/
+  cursor: pointer;
 }
 .add_btn {
   float:right;
