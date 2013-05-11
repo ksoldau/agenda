@@ -35,6 +35,18 @@ $(function() {
   });
 });
 
+$(function() {
+  $("#week_view_btn")
+  .button()
+  /* .click(function (e) { */
+  /* }); */
+  });
+
+$(function() {
+  $("#month_view_btn")
+  .button()
+  });
+
 
 $(function() {
      $( ".a_dialog" ).dialog(); 

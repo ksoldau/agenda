@@ -24,10 +24,10 @@ body {
   .sign_out_btn {
     float: right;
     margin: 1.2em 1em;
-    color: $blue; 
+    /* color: $blue; */ 
     font-size: 0.75em;
-    background-color: #fff;
-    color: #000;
+    /* background-color: #fff; */
+    /* color: #000; */
   }
 
   h1 {
@@ -37,40 +37,22 @@ body {
     margin-bottom: 0;
   }
 }
-.nav {
-  text-align: center;
+/* .nav { */
+/*   text-align: center; */
   
-  span {
-    background-color: $blue;
-  }
+/*   span { */
+/*     background-color: $blue; */
+/*   } */
   
-  .rotate_through {
-    font-size: 0.5em;
-  }
-}
-
-.nav_view {
-  width: 200px;
-  margin: 10px auto 0 auto;
-  font-size: 0.75em;
-  float: right;
-
-  #radio {
-     span {
-      background-color: $blue;
-      color: $light_blue;
-    }
-  }
-
-  a {
-    visibility: hidden;
-  }
-}
+/*   .rotate_through { */
+/*     font-size: 0.75em; */
+/*   } */
+/* } */
 
 .which_btn {
   font-size: .75em;
-  color: $light_blue;
-  background-color: $blue;
+  /* color: $light_blue; */
+  /* background-color: $blue; */
 }
 
 .new_assignment_button {
@@ -87,10 +69,10 @@ body {
   margin: 0 auto;
   max-width: 800px;
 
-  .rotate_through {
-    margin: 0 auto;
-    width: 200px;
-  }
+  /* .rotate_through { */
+  /*   margin: 0 auto; */
+  /*   width: 200px; */
+  /* } */
 
 }
 
@@ -210,13 +192,14 @@ table {
   span {
     font-size: 1.2em;
     padding: 0.4em;
-    background-color: $blue;
+    /* background-color: $blue; */
   }
 }
 
 
 .edit_btn {
   float: right;
+  visibility: hidden;
   margin-top: 0.1em;
   margin-right: 0.1em;
   width: 13px;
@@ -225,6 +208,7 @@ table {
 }
 .delete_btn {
   float: right;
+  visibility: hidden;
   margin-top: 0.1em;
   margin-right: 0.1em;
   width: 13px;
@@ -238,10 +222,11 @@ table {
   width: 13px;
   height: 13px;
   background-image: url("add.png");
+  display: none; /* toggled with jquery/js */
 }
-.completed_as_button {
-  display: none;
-}
-.delete_as_button {
-  display:none;
-}
+/* .completed_as_button { */
+/*   display: none; */
+/* } */
+/* .delete_as_button { */
+/*   display:none; */
+/* } */

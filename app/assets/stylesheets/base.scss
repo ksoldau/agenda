@@ -10,18 +10,22 @@ h2 {
   margin: 0;
 }
 
-.btn {
-  font-size: .75em;
-  color: $light_blue;
-  background-color: $blue;
-}
+/* .btn { */
+/*   font-size: .75em; */
+/*   color: $light_blue; */
+/*   background-color: $blue; */
+/* } */
 
-.ui-state-hover {
-  background-color: #000;
-  background-image: none;
-  border-color: #222F33;
-  border-width: 2px;
-}
+/* .ui-button { */
+/*   /1* border-width: 2px; *1/ */
+/*   border-color: $light_blue; */
+/* } */
+/* .ui-state-hover { */
+/*   background-color: #000; */
+/*   background-image: none; */
+/*   border-color: #222F33; */
+/*   /1* border-width: 2px; *1/ */
+/* } */
 
 .subject {
   font-weight: bold;

@@ -1,17 +1,10 @@
 
 .nav
-  .nav_view
-    %form
-      #radio
-        %input#radio1{:name => "radio", :type => "radio"}/
-        %label{:for => "radio1"} Week
-        %input#radio2{:checked => "checked", :name => "radio", :type => "radio"}/
-        %label{:for => "radio2"} Month
+  %h1 Agenda
+.nav_view  
+  = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view_btn'} 
+  = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view_btn'}     
 
-    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view'} 
-    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view'}     
-
-%h1 Agenda
 
 .new_assignment_button
   = link_to "add assignment", new_user_assignment_path(current_user)
