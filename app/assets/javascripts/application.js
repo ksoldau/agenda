@@ -85,9 +85,4 @@ $(function() {
       });
 })
 
-$(function() {
-  $(".not_completed").hover(function() {
-    var e = $(this).find(".delete_btn")
-    e.style.display == 'visible';
-  });
-})
+
