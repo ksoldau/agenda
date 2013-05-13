@@ -6,12 +6,12 @@
       var dialog = $(this).find(".a_dialog").dialog({
        //open: function(event, ui) { $(".ui-dialog-titlebar-close").show(); },
         closeOnEscape: true,
-        title: "Terms",
-        width: 300,
-        height: 200,
-        draggable: false,
+        title: "Edit Assignment",
+        width: 600,
+        height: 300,
+        draggable: true,
         resizable: false,
-        modal: true,
+        modal: false,
         autoOpen: false,
         });
 
