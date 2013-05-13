@@ -25,7 +25,14 @@
       - @as_grouped_left.each do |dayn,as|
         -#- binding.pry
         .assignment_box
-          = link_to "", new_user_assignment_path(current_user), :class => "add_btn"
+          .add_btn
+            .add_dialog
+              = simple_form_for [current_user, @newa] do |f|
+                = f.association :subject, collection: current_user.subjects    
+                = f.input :description
+                = f.input :due_date
+                = f.input :completed
+                = f.submit 
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
@@ -46,15 +53,23 @@
                 .edit_btn
                   .edit_dialog{:title => "Edit Assignment"}
                     = simple_form_for [current_user, a] do |f|
-                      = f.input :completed 
+                      = f.association :subject, collection: current_user.subjects    
                       = f.input :description 
                       = f.input :due_date
-                      = f.association :subject, collection: current_user.subjects    
+                      = f.input :completed 
                       = f.submit 
 
     .right_side_days 
       - @as_grouped_right.each do |dayn,as|
         .assignment_box
+          .add_btn
+            .add_dialog
+              = simple_form_for [current_user, @newa] do |f|
+                = f.association :subject, collection: current_user.subjects    
+                = f.input :description
+                = f.input :due_date
+                = f.input :completed
+                = f.submit 
           = link_to "", new_user_assignment_path(current_user), :class => "add_btn"
           %p.day_heading 
             = @key_to_day[dayn]

@@ -14,5 +14,6 @@
  *= require style
  *= require nav
  *= require week
+ *= require forms
  *= require_tree .
  */

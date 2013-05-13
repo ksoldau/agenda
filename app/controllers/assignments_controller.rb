@@ -2,7 +2,10 @@ class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    case params[:query] 
+    
+    @newa = Assignment.new    
+    
+    case params[:query]
 
     when 'week'
       getAssignmentsForWeek
