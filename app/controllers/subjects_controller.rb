@@ -32,6 +32,9 @@ class SubjectsController < ApplicationController
   end
 
   def destroy
+    #delete from database
+    current_user.subjects.where(id: params[:id]).first.destroy 
+    redirect_to user_subjects_path(current_user)
   end
 
  
