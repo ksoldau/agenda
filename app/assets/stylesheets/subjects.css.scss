@@ -1,6 +1,63 @@
+@import 'variables';
+
 .ui-tabs-vertical { width: 55em; }
 .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
 .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
 .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; border-right-width: 1px; }
 .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
+
+/********/
+
+.ui-tabs-nav {
+  background-color: $gray;
+  border-color: $gray;
+}
+.ui-tabs-active {
+  background-color: $gray;
+  a {
+    background-color: $gray;
+    width: 90%;
+  }
+}
+
+.add_subj_btn {
+  float: right;
+  margin-top: 2em;
+  margin-right: 3em;
+  font-size: .75em;
+}
+
+#tabs {
+  margin: 2em auto 0 auto;
+  background-color: $gray;
+  border-color: $gray;
+  background-image: none;
+  color: $dark_blue;
+  font-family: Cabin;
+  li {
+    border-color: $blue;
+  }
+  .ui-tabs-nav {
+    background-color: $gray;
+    border-color: $gray;
+    font-family: Cabin;
+    .ui-state-default {
+      background-image: none;
+      background-color: $blue;
+      a {
+        color: $gray;
+      }
+    }
+    .ui-tabs-active {
+      background-color: $gray;
+      color: $dark_blue;
+       a {
+         background-color: $gray;
+         color: $dark_blue;
+       }
+    }
+
+    }
+
+}
