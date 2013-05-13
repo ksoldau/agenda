@@ -99,6 +99,31 @@ function initializeAddSubjectDialog() {
   });
 }
 
+function initializeDeleteSubjectDialog() {
+  $(".delete_subj_btn").each(
+    function() {
+      var dialog = $(this).find(".delete_subj_dialog").dialog({
+      closeOnEscape: true, 
+      title: "Delete Subject", 
+      width: 300, 
+      height: 200, 
+      draggable: false,
+      resizable: false, 
+      modal: true, 
+      autoOpen: false, 
+      }); 
+
+      $(this).on('click', function() {
+        dialog.dialog('open');
+      });
+
+      $(this).hover( 
+        function() {}, 
+        function() {}
+      );
+    });
+}
+
   
 $(document).ready(function(){
 
@@ -106,6 +131,7 @@ $(document).ready(function(){
  initializeDeleteDialogs();
  initializeAddDialogs();
  initializeAddSubjectDialog();
+ initializeDeleteSubjectDialog();
 
 })
 
