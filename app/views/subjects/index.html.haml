@@ -1,1 +1,23 @@
 %h1 This is the index page for subjects
+.add_subj_btn
+  This will be the add_subj_btn
+  .add_subj_dialog
+    = simple_form_for [current_user, @news] do |f|
+      = f.input :name
+      = f.submit 
+
+#tabs
+  %ul
+    - i = 1;
+    - @ss.each do |s|
+      %li
+        %a{:href =>"#tabs-#{i}"} 
+          = s.name
+          - i += 1
+  -i = 1;
+  - @ss.each do |s|
+    %div{:id => "tabs-#{i}"}
+      %h4
+        = s.name
+        - i += 1
+

@@ -17,6 +17,10 @@
 //= require dialogs
 //= require assignment_dialog
 //= require_tree .
+ $(function() {
+    $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+    $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+  });
 
 $(function() { 
     $( "#radio" ).buttonset(); 
@@ -33,6 +37,12 @@ $(function() {
     $( ".sign_out_btn")
     .button()
     .click(function ( event ) {
+  });
+});
+
+$(function() {
+  $(".add_subj_btn").button()
+  .click(function (e) {
   });
 });
 
@@ -68,6 +78,12 @@ $(function() {
 })
 
 $(function() {
+  $(".add_subj_dialog").dialog({
+    autoOpen: false
+  });
+});
+
+$(function() {
   $( ".assignment_box" ).hover(function() {
     $(this).find(".add_btn").toggle();
     
@@ -85,5 +101,4 @@ $(function() {
       $(this).find(".edit_btn").css("visibility", "hidden");
       });
 })
-
 
