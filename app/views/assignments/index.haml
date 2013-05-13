@@ -1,26 +1,19 @@
-
-.nav
-  %h1 Agenda
-.nav_view  
-  = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), {:id => 'week_view_btn'} 
-  = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), {:id => 'month_view_btn'}     
-
-
-.new_assignment_button
-  = link_to "add assignment", new_user_assignment_path(current_user)
-
 -if params[:query] == 'week'
-  - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
-  .rotate_through
-    = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week), 
-      {:class => "which_btn"}
-    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
-      {:class => "which_btn"}
-    = link_to "next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
-      {:class => "which_btn"}
+  .choose_view
+    .nav_view
+      = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]) 
+      = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]) 
 
+    .rotate_through
+      = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_week),
+        {:class => "which_btn"}
+      = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_week), 
+        {:class => "which_btn"}    
+      = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_week), 
+        {:class => "which_btn"}
+
+  - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
   .week
-   
     .left_side_days 
       - @as_grouped_left.each do |dayn,as|
         -#- binding.pry
@@ -30,7 +23,7 @@
               = simple_form_for [current_user, @newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
-                = f.input :due_date
+                = f.input :due_date, :default => getDate(dayn, params[:which].to_date) 
                 = f.input :completed
                 = f.submit 
           %p.day_heading 
@@ -67,10 +60,9 @@
               = simple_form_for [current_user, @newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
-                = f.input :due_date
+                = f.input :due_date, :default => getDate(dayn, params[:which].to_date) 
                 = f.input :completed
                 = f.submit 
-          = link_to "", new_user_assignment_path(current_user), :class => "add_btn"
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long) 
@@ -107,20 +99,24 @@
 
         
 - if params[:query] == 'month'
+  .choose_view
+    .nav_view
+      = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]) 
+      = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]) 
+
+    .rotate_through
+      = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
+        {:class => "which_btn"}
+      = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
+        {:class => "which_btn"}    
+      = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
+        {:class => "which_btn"}
+  %h2
+    = params[:which].to_date.strftime("%B, %Y")
+
   .cal
     .cal_header
-      %h2
-        = params[:which].to_date.strftime("%B, %Y")
-
-
-      .rotate_through
-        = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
-        {:class => "which_btn"}
-        = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
-        {:class => "which_btn"}    
-        = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
-        {:class => "which_btn"}
-    
+         
     - @list_each_week= []
     - @list_each_week << @days_in_cal_month[0..6]
     - @list_each_week << @days_in_cal_month[7..13]
