@@ -45,6 +45,16 @@ $(function() {
   .click(function (e) {
   });
 });
+$(function() {
+  $(".delete_subj_btn").button()
+  .click(function (e) {
+  });
+});
+$(function() {
+  $(".delete_subj_dialog").dialog({
+    autoOpen:false
+  });
+})
 
 $(function() {
   $(".nav_view").buttonset()
