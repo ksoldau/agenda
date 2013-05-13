@@ -1,0 +1,19 @@
+.simple_form {
+  font-family: cursive;
+  .input {
+    font-size: 15px;
+  }
+  input {
+    font-family: cursive;
+  }
+  label {
+    display: block;
+  }
+  .boolean {
+    display: inline-block;
+  }
+  input[type="submit"] {
+    display: block;
+    margin-left: 350px;
+  }
+}
