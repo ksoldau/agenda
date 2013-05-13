@@ -20,7 +20,7 @@
 
 $(function() { 
     $( "#radio" ).buttonset(); 
-    });
+});
 
 $(function() {
     $( ".which_btn" )
@@ -37,17 +37,12 @@ $(function() {
 });
 
 $(function() {
-  $("#week_view_btn")
-  .button()
-  /* .click(function (e) { */
-  /* }); */
-  });
+  $(".nav_view").buttonset()
+});
 
 $(function() {
-  $("#month_view_btn")
-  .button()
-  });
-
+  $(".rotate_through").buttonset()
+});
 
 $(function() {
      $( ".a_dialog" ).dialog({
