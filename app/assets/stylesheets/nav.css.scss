@@ -1,20 +1,49 @@
 @import 'variables';
 
+
+.logo {
+  float: left;
+  margin-top: 0.5em;
+  margin-left: 1em;
+  margin-bottom: 0em;
+  font-size: 1.5em;
+}
 .nav {
   background-color: $light_blue;
-  h1 {
+  //text-align: center;
+
+  .tab {
+    display: inline-block;
+    margin-top: 0.7em;
+    color: $dark_blue;
+    background-color: $blue;
+    font-size: 1.4em;
+    padding: 0.2em 0.5em 0.1em 0.5em;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    a{
+      text-decoration: none;
+    }
+    a:visited {
+      color: $dark_blue;
+    }
+    a:hover {
+      color: $light_blue;
+    }
+  }
+  .agenda {
     margin-left: 1em;
-    padding-left: 1em;
-    width: 4em;
+  }
+  .current_tab {
     background-color: $dark_blue;
+    a {
+      text-decoration: none;
+    }
+    a:visited {
+      color: $light_blue;
+    }
   }
 }
-.nav_view {
-  float: left;
-  display: inline-block;
-  margin-top: 1em;
-  margin-left: 2.5em;
-  span {
-    font-size: 0.75em;
-  }
-}
+
