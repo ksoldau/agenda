@@ -73,11 +73,39 @@ function initializeAddDialogs() {
 }
     
   
+function initializeAddSubjectDialog() {
+  $(".add_subj_btn").each(
+    function() {
+      var dialog = $(this).find(".add_subj_dialog").dialog({
+      closeOnEscape: true,
+      title: "Add Assignment", 
+      width: 600, 
+      height: 300, 
+      draggable: false, 
+      resizable: false, 
+      modal: true, 
+      autoOpen: false,
+      });
+
+      $(this).on('click', function() {
+        dialog.dialog('open');
+      });
+
+      $(this).hover(
+        function() {}, 
+        function() {}
+      );
+
+  });
+}
+
+  
 $(document).ready(function(){
 
  initializeEditButtonAndDialogs();
  initializeDeleteDialogs();
  initializeAddDialogs();
+ initializeAddSubjectDialog();
 
 })
 
