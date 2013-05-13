@@ -4,6 +4,7 @@ body {
   font-family: "Cabin", Optima, sans-serif;
   background-color: $dark_blue;
   margin: 0;
+  z-index: 0;
 }
 
 .header {
@@ -21,14 +22,7 @@ body {
     margin: 1.2em 0 0 0;
   }
 
-  .sign_out_btn {
-    float: right;
-    margin: 1.2em 1em;
-    /* color: $blue; */ 
-    font-size: 0.75em;
-    /* background-color: #fff; */
-    /* color: #000; */
-  }
+
 
   h1 {
     text-align: left;
@@ -66,13 +60,9 @@ body {
 }
 
 .week {
-  margin: 0 auto;
-  max-width: 800px;
-
-  /* .rotate_through { */
-  /*   margin: 0 auto; */
-  /*   width: 200px; */
-  /* } */
+  margin: 3em auto 0 auto;
+  overflow: hidden;
+  max-width: 767px;
 
 }
 
@@ -183,19 +173,38 @@ table {
 .not_completed {
     background-color: $orange;
 }
-
-
-.rotate_through {
-  font-size: 0.75em;
-  width: 185px;
-  margin: 0 auto;
-  span {
-    font-size: 1.2em;
-    padding: 0.4em;
-    /* background-color: $blue; */
-  }
+.nav_view{
+  float: left;
 }
 
+
+/* .agenda_nav { */
+/*   background-color: $dark_blue; */
+/*   .nav_view { */
+/*     float: left; */
+/*     margin-top: 1em; */
+/*     margin-left: 1.2em; */
+/*     a { */
+/*       text-decoration: none; */
+/*       /1* color: $light_blue; *1/ */
+/*     } */
+/*     a:visited { */
+/*       text-decoration: none; */
+/*     } */
+/*   } */
+/*   .rotate_through { */
+/*     background-color: #fff; */
+/*     float: right; */
+/*     padding: 10px 10px 2px 10px; */
+/*     font-size: 0.75em; */
+/*     display: inline-block; */
+/*     span { */
+/*       font-size: 1.2em; */
+/*       padding: 0.4em; */
+/*       /1* background-color: $blue; *1/ */
+/*     } */
+/*   } */
+/* } */
 
 .edit_btn {
   float: right;
@@ -225,6 +234,7 @@ table {
   height: 13px;
   background-image: url("add.png");
   display: none; /* toggled with jquery/js */
+  cursor: pointer;
 }
 /* .completed_as_button { */
 /*   display: none; */
@@ -232,3 +242,23 @@ table {
 /* .delete_as_button { */
 /*   display:none; */
 /* } */
+
+
+
+
+.choose_view {
+  overflow: hidden;
+  display: block;
+  margin-top: 1em;
+  .nav_view, h2, .rotate_through {
+    display: inline-block;
+  }
+  .nav_view {
+    font-size: .75em;
+    margin-left: 1em;
+  }
+  .rotate_through {
+    float: right;
+    margin-right: 1em;
+  }
+}
