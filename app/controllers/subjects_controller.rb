@@ -4,6 +4,7 @@ class SubjectsController < ApplicationController
   def index
    @news = Subject.new
    @ss = current_user.subjects
+   @as_grouped_by_s = current_user.assignments.group_by {|a| a.subject}
   end
 
   def show
