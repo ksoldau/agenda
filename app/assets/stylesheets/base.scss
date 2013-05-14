@@ -9,39 +9,68 @@ h2 {
   color: $light_blue;
   margin: 0;
 }
-
-/* .btn { */
-/*   font-size: .75em; */
-/*   color: $light_blue; */
-/*   background-color: $blue; */
-/* } */
-
-/* .ui-button { */
-/*   /1* border-width: 2px; *1/ */
-/*   border-color: $light_blue; */
-/* } */
-/* .ui-state-hover { */
-/*   background-color: #000; */
-/*   background-image: none; */
-/*   border-color: #222F33; */
-/*   /1* border-width: 2px; *1/ */
-/* } */
-
 .subject {
   font-weight: bold;
   }
 
+/* overide the simple_form and jquery styles*/
+.ui-dialog {
+  background-image: none;
+  background-color: $gray;
+  font-family: Cabin;
 
-.sign_out_btn {
-float: right;
-margin-top: 1em;
-margin-left: 0.5em;
-margin-right: 0.5em;
-  span {
-  font-size: 10px;
-  padding: 0.4em 0.5em;
+  .ui-dialog-titlebar {
+    background-image: none;
+    background-color: $blue;
+    border-color: $blue;
+    color: $light_blue;
   }
-  .ui-button-text {
-    padding: 0.4em 0.5em;
+
+  select {
+    background-color: $light_blue;
+    background-image: none;
+    color: $dark_blue;
+  }
+  .input 
+    input {
+      background-color: $light_blue;
+      border: 2px inset;
+    }
+  input[type="submit"] {
+    background-color: $blue;
+    color: $light_blue;
+    border-radius: 8px;
+    width: 4em;
+  }
+
+  label {
+    font-family: Cabin;
+    color: $dark_blue;
+  }
+
+}
+
+.ui-widget-overlay {
+  background-color: $light_blue;
+  background-image: none;
+  opacity: .5;
+}
+
+
+.ui-buttonset {
+  .ui-button {
+    background-image: none;
+    background-color: $blue;
+    color: $light_blue;
+    border-color: $dark_blue;
+  }
+    a:hover, .current {
+      background-color: $blue_hover;
+      color: $light_blue_hover;
+    }
+
+  .which_btn {
+    margin-right: -5px;
   }
 }
+
