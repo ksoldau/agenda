@@ -7,27 +7,28 @@
     = csrf_meta_tags
     
   %body
-    .header
-      - if current_user != nil
-        .sign_out_btn
-          = link_to "sign out", destroy_user_session_path, :method => :delete
-        .name 
-          Hi, 
-          = current_user.first_name
-      -else 
-        //add sign in button then drop down stuff
-      .logo
+    - if current_user != nil 
+      .header
         - if current_user != nil
-          = link_to "AgendaApp", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
-        - else
-          AgendaApp
+          .sign_out_btn
+            = link_to "sign out", destroy_user_session_path, :method => :delete
+          .name 
+            Hi, 
+            = current_user.first_name
+        -else 
+          //add sign in button then drop down stuff
+        .logo
+          - if current_user != nil
+            = link_to "AgendaApp", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
+          - else
+            AgendaApp
 
-      - if current_user != nil
-        .nav
-          .tab{:class => (params[:query] ? "current_tab agenda" : "agenda")}
-            = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
-          .tab{:class => (!params[:query] ? "current_tab" : nil)}
-            =link_to "Subjects", user_subjects_path(current_user)
+        - if current_user != nil
+          .nav
+            .tab{:class => (params[:query] ? "current_tab agenda" : "agenda")}
+              = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
+            .tab{:class => (!params[:query] ? "current_tab" : nil)}
+              =link_to "Subjects", user_subjects_path(current_user)
 
     = yield
 
