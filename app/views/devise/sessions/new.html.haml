@@ -6,14 +6,6 @@
 
 .sign_in_btn
   Sign in
-  .sign_in_dialog
-    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      .form-inputs
-        = f.input :email, :required => false, :autofocus => true ,:input_html => {:size => 30}
-        = f.input :password, :required => false, :input_html =>  {:size => 30}
-        = f.input :remember_me, :as => :boolean if devise_mapping.rememberable? 
-
-      .form-actions
-        = f.button :submit, "Sign in"
-
+  .sign_in_dialog= render "form"
+   
 = render "devise/shared/links" 
