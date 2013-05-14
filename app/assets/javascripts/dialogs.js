@@ -124,6 +124,29 @@ function initializeDeleteSubjectDialog() {
     });
 }
 
+function initializeSignInDialog() {
+  var dialog = $(".sign_in_btn").find(".sign_in_dialog").dialog({
+    closeOnEscape: true, 
+    title: "Sign In", 
+    width: 400, 
+    height: 300, 
+    draggable: false, 
+    resizable: false, 
+    modal: true, 
+    autoOpen: false
+    });
+
+    $(".sign_in_btn").on('click', function() {
+      dialog.dialog('open');
+    });
+
+    $(this).hover( 
+      function() {},
+      function() {}
+    );
+}
+
+
   
 $(document).ready(function(){
 
@@ -132,6 +155,7 @@ $(document).ready(function(){
  initializeAddDialogs();
  initializeAddSubjectDialog();
  initializeDeleteSubjectDialog();
+ initializeSignInDialog();
 
 })
 
