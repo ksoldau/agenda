@@ -112,3 +112,13 @@ $(function() {
       });
 })
 
+$(function() {
+  $(".ui-tabs-panel").hover(
+    function() {
+      $(this).find(".add_btn").css("visibility", "visible");
+    },
+    function() {
+      $(this).find(".add_btn").css("visibility", "hidden");
+    });
+})
+
