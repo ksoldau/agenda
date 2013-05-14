@@ -234,3 +234,12 @@ table {
 .edit_btn:hover {
   background-image: url("pencil_hover.png");
 }
+
+
+.as_box.not_completed{
+  .edit_dialog {
+    .ui-dialog select {
+      background-color: $orange;
+    }
+  }
+}
