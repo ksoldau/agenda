@@ -25,11 +25,10 @@
 
         - if current_user != nil
           .nav
-            .tab{:class => (params[:query] ? "current_tab agenda" : "agenda")}
+            .tab{:class => (params[:query] ? "current_tab agenda" : "not_current_tab agenda")}
               = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
-            .tab{:class => (!params[:query] ? "current_tab" : nil)}
+            .tab{:class => (!params[:query] ? "current_tab" : "not_current_tab")}
               =link_to "Subjects", user_subjects_path(current_user)
-
     = yield
 
 
