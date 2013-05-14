@@ -16,18 +16,40 @@
   -i = 1;
   - @ss.each do |s|
     %div{:id => "tabs-#{i}"}
-      %h4
-        = s.name
-        - i += 1
-      .delete_subj_btn
-        this will be the delete_subj_btn
-        .delete_subj_dialog{:title => "Delete Subject"}
-          Are you sure you want to delete this subject?
-          = link_to "Delete", user_subject_path(current_user, s), :method => :delete
+      - i += 1
+      .add_btn
+        .add_dialog
+          = simple_form_for [current_user, @newa] do |f|
+            = f.association :subject, collection: current_user.subjects, :selected => s.id
+            = f.input :description
+            = f.input :due_date
+            = f.input :completed
+            = f.submit "Add", :class => "button" 
+
       - if @as_grouped_by_s[s]
         - @as_grouped_by_s[s].each do |a|
-          = a.subject.name
-          = a.description
-          = a.due_date
+          .as_box{:class => (a.completed ? "completed" : "not_completed")}
+            .due_time
+              -#= a.due_date.to_formatted_s(:long)
+              = a.due_date.strftime("%H:%M");
+            .subject
+              = a.subject.name
+            .description
+              = a.description
+            .delete_btn
+              .delete_dialog{:title => "Delete Assignment"}
+                Are you sure you want to delete this assignment?
+                = link_to "Delete", user_assignment_path(current_user, a), :method => :delete
+            .edit_btn
+              .edit_dialog{:title => "Edit Assignment"}
+                = simple_form_for [current_user, a] do |f|
+                  = f.association :subject, collection: current_user.subjects    
+                  = f.input :description 
+                  = f.input :due_date
+                  = f.input :completed 
+                  = f.submit 
+
+
+
 
 
