@@ -31,22 +31,8 @@ body {
     margin-bottom: 0;
   }
 }
-/* .nav { */
-/*   text-align: center; */
-  
-/*   span { */
-/*     background-color: $blue; */
-/*   } */
-  
-/*   .rotate_through { */
-/*     font-size: 0.75em; */
-/*   } */
-/* } */
-
 .which_btn {
   font-size: .75em;
-  /* color: $light_blue; */
-  /* background-color: $blue; */
 }
 
 .new_assignment_button {
@@ -216,15 +202,6 @@ table {
   display: none; /* toggled with jquery/js */
   cursor: pointer;
 }
-/* .completed_as_button { */
-/*   display: none; */
-/* } */
-/* .delete_as_button { */
-/*   display:none; */
-/* } */
-
-
-
 
 .choose_view {
   overflow: hidden;
