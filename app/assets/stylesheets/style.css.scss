@@ -249,3 +249,11 @@ table {
 .a_dialog.completed {
   background-color: $light_blue;
 }
+
+
+.delete_btn:hover {
+  background-image: url("delete_hover.png");
+}
+.edit_btn:hover {
+  background-image: url("pencil_hover.png");
+}
