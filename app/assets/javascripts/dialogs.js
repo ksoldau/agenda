@@ -70,9 +70,9 @@ function initializeAddSubjectDialog() {
     function() {
       var dialog = $(this).find(".add_subj_dialog").dialog({
       closeOnEscape: true,
-      title: "Add Assignment", 
-      width: 600, 
-      height: 300, 
+      title: "Add Subject", 
+      /* width: 400, */ 
+      height: 200, 
       draggable: false, 
       resizable: false, 
       modal: true, 
