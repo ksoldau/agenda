@@ -2,8 +2,11 @@
 -if params[:query] == 'week'
   .choose_view
     .nav_view
-      = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]) 
-      = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]) 
+      = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), 
+      {:class => (params[:query] == 'week') ? "current" : nil}
+      = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]),
+     {:class => (params[:query] == 'month') ? "current" : nil}
+
 
     .rotate_through
       = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week),
