@@ -109,13 +109,13 @@ body {
   .completed {
     margin: 10px;
     overflow: hidden;
-    padding-bottom: 0.2em;
+    padding: 0.1em 0 0.2em 0.1em;
   }
   .not_completed {
     background-color: $orange;
     margin: 10px;
     overflow: hidden;
-    padding-bottom: 0.2em;
+    padding: 0.1em 0 0.2em 0.1em;
   }
 }
 
