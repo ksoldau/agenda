@@ -21,12 +21,6 @@
   }
 }
 
-.add_subj_btn {
-  float: right;
-  margin-top: 2em;
-  margin-right: 3em;
-  font-size: .75em;
-}
 
 #tabs {
   margin: 2em auto 0 auto;
@@ -35,11 +29,13 @@
   background-image: none;
   color: $dark_blue;
   font-family: Cabin;
+  width: 700px;
   li {
     border-color: $blue;
   }
   .ui-tabs-nav {
     background-color: $gray;
+    background-image: none;
     border-color: $gray;
     font-family: Cabin;
     .ui-state-default {
@@ -57,7 +53,80 @@
          color: $dark_blue;
        }
     }
+  }
+  .ui-tabs-panel {
+    width:400px;
+  }
 
+}
+
+.ui-tabs-panel {
+  .as_box {
+    width: 330px;
+    overflow: hidden;
+    padding-bottom: 0.2em;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    .day_heading {
+      font-weight: bold;
+      margin: 2px;
     }
+    .due_time {
+      float: right;
+      margin-right: 0.5em;
+      color: $dark_blue;
+      text-align: center;
+      font-weight: bold;
+    }
+    .subject {
+      margin-right: 0.5em;
+      color: $dark_blue;
+    }
+    .description {
+      float:left;
+      color: $dark_blue;
+      width: 100%;
+      font-weight: normal;
+    }
+    .completed {
+      margin: 10px;
+      overflow: hidden;
+      padding-bottom: 0.2em;
+    }
+    .not_completed {
+      background-color: $orange;
+      margin: 10px;
+      overflow: hidden;
+      padding-bottom: 0.2em;
+    }
+  }
+  .add_btn {
+    display: block;
+    visibility: hidden;
+  }
+  .add_dialog {
+    .new_assignment{
+      input[type="submit"] {
+        float: right;
+      }
+    }
+  }
+}
 
+.add_subj_btn {
+  margin-top: 2em;
+  margin-left: 3em;
+  font-size: .75em;
+}
+
+.add_subj_dialog {
+  input[type="submit"] {
+    margin-top: 1.5em;
+    border: none;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: $blue_hover;
+    color: $light_blue_hover;
+  }
 }
