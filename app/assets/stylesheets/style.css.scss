@@ -168,6 +168,7 @@ table {
   }
   .subj_link {
     cursor: pointer;
+    margin-bottom: 0.2em;
   }
 }
 
@@ -240,4 +241,11 @@ table {
     float: right;
     margin-right: 1em;
   }
+}
+
+.a_dialog.not_completed {
+  background-color: $orange;
+}
+.a_dialog.completed {
+  background-color: $light_blue;
 }
