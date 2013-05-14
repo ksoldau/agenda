@@ -52,7 +52,7 @@ function initializeAddDialogs() {
       var dialog = $(this).find(".add_dialog").dialog({
       closeOnEscape: true,
       title: "Add Assignment", 
-      width: 600, 
+      width: 450, 
       height: 300, 
       draggable: false, 
       resizable: false, 
