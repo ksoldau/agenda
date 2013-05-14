@@ -59,11 +59,16 @@ body {
   color:#fff;
 }
 
-.week {
-  margin: 3em auto 0 auto;
-  overflow: hidden;
-  max-width: 767px;
-
+.week_wrapper {
+  float: left;
+  position: relative;
+  left: 50%;
+  .week {
+    float: left;
+    position: relative;
+    left: -50%;
+    margin-top: 2em;
+  }
 }
 
 .cal {
