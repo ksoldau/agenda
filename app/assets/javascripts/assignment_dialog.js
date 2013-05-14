@@ -6,9 +6,8 @@
       var dialog = $(this).find(".a_dialog").dialog({
        //open: function(event, ui) { $(".ui-dialog-titlebar-close").show(); },
         closeOnEscape: true,
-        title: "Edit Assignment",
-        width: 600,
-        height: 300,
+        title: "Assignment",
+        width: 300,
         draggable: true,
         resizable: false,
         modal: false,
