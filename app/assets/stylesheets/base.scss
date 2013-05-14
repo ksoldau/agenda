@@ -8,6 +8,7 @@ h2 {
   text-align: center;
   color: $light_blue;
   margin: 0;
+  margin-bottom: 0.5em;
 }
 .subject {
   font-weight: bold;
@@ -91,4 +92,27 @@ h2 {
 .button:hover {
   background-color: $blue_hover;
   color: $light_blue_hover;
+}
+
+
+
+
+.not_completed {
+  select {
+    background-color: $orange;
+  }
+ .input 
+    input {
+      background-color: $orange;
+    }
+}
+.completed {
+  select {
+    background-color: $light_blue;
+  }
+  .input
+    input {
+      background-color: $light_blue;
+    }
+      
 }
