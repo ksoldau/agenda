@@ -31,7 +31,10 @@
   font-family: Cabin;
   width: 700px;
   li {
-    border-color: $blue;
+    border: none;
+  }
+  li:hover {
+    background-color: $blue_hover;
   }
   .ui-tabs-nav {
     background-color: $gray;
