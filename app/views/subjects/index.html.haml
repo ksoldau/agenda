@@ -1,9 +1,9 @@
-.add_subj_btn
-  add
+.add_subj_btn.button
+  Add Subject
   .add_subj_dialog
     = simple_form_for [current_user, @news] do |f|
-      = f.input :name
-      = f.submit 
+      = f.input :name, :input_html => {:size => 30}
+      = f.submit "Add"
 
 #tabs
   %ul
