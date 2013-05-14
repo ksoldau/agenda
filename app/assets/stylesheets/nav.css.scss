@@ -32,18 +32,23 @@
     font-weight: bold;
     a{
       text-decoration: none;
-      color: $dark_blue;
-    }
-    a:visited {
-      color: $dark_blue;
-    }
-    a:hover {
       color: $light_blue;
     }
+    a:visited {
+      color: $light_blue;
+    }
+    /* a:hover { */
+    /*   color: $light_blue_hover; */
+    /*   background-color: $blue_hover; */
+    /* } */
   }
   .agenda {
     margin-left: 1em;
   }
+  .not_current_tab:hover {
+    background-color: $blue_hover;
+    }
+
   .current_tab {
     background-color: $dark_blue;
     a {
@@ -78,4 +83,7 @@
     padding: 0.4em 0.5em;
   }
 }
+
+
+
 
