@@ -5,5 +5,6 @@ class Subject < ActiveRecord::Base
 
   validates :name, :user_id, :presence => true
 
-  #may want to default scope it to order alphabetically
+  # to order alphabetically
+ default_scope order('name') 
 end
