@@ -186,10 +186,10 @@ table {
   float: right;
   visibility: hidden;
   margin-top: 0.1em;
-  margin-right: 0.1em;
+  margin-right: 0.3em;
   width: 13px;
   height: 13px;
-  background-image: url("delete.png"); /*change to delete button later*/
+  background-image: url("delete.png"); 
   cursor: pointer;
 }
 .add_btn {
