@@ -180,37 +180,11 @@ table {
 }
 .nav_view{
   float: left;
+  a {
+    background-color: $light_blue;
+    border-color: $blue;
+  }
 }
-
-
-/* .agenda_nav { */
-/*   background-color: $dark_blue; */
-/*   .nav_view { */
-/*     float: left; */
-/*     margin-top: 1em; */
-/*     margin-left: 1.2em; */
-/*     a { */
-/*       text-decoration: none; */
-/*       /1* color: $light_blue; *1/ */
-/*     } */
-/*     a:visited { */
-/*       text-decoration: none; */
-/*     } */
-/*   } */
-/*   .rotate_through { */
-/*     background-color: #fff; */
-/*     float: right; */
-/*     padding: 10px 10px 2px 10px; */
-/*     font-size: 0.75em; */
-/*     display: inline-block; */
-/*     span { */
-/*       font-size: 1.2em; */
-/*       padding: 0.4em; */
-/*       /1* background-color: $blue; *1/ */
-/*     } */
-/*   } */
-/* } */
-
 .edit_btn {
   float: right;
   visibility: hidden;
