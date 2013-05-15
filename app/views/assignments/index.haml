@@ -22,7 +22,7 @@
         - @as_grouped_left.each do |dayn,as|
           -#- binding.pry
           .assignment_box
-            .add_btn
+            %a.add_btn{:id => "day_#{dayn}"}
               .add_dialog
                 = simple_form_for [current_user, @newa] do |f|
                   = f.association :subject, collection: current_user.subjects    
