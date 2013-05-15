@@ -1,5 +1,4 @@
 $(function() {
-  console.log("in the function");
   $( "#radio1" ).click(function(e) {
     $( '#week_view' )[0].click();
 
