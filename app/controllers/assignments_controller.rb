@@ -1,7 +1,9 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
+  #respond_to :html, :json 
 
   def index
+    session[:return_to] ||= request.referer
     
     @newa = Assignment.new    
     
@@ -50,16 +52,22 @@ class AssignmentsController < ApplicationController
   end
 
   def update
+   # get assignment want to update 
    @as = current_user.assignments.where(id: params[:id]).first
+   
+   # save url of where you are
+   session['referer'] = request.referer
+
    if @as.update_attributes(params[:assignment])
-     #redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week) 
-     redirect_to user_assignments_path(current_user, :query => "week", :which => @as.due_date.to_date.beginning_of_week)
+     redirect_to session['referer']
    else 
-     render :new 
+     render :new #? 
    end
+
   end
 
   def edit
+    session[:return_to] ||= request.referer
     @as = current_user.assignments.where(id: params[:id]).first
     #redirect_to user_assignments_path(current_user, :query => "week", :which => Date.today.end_of_month)
   end
