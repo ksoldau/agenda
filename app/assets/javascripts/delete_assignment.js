@@ -15,27 +15,6 @@ $(function() {
   });
 })
 
-
-    /* $.ajax({ */
-    /*   type: "DELETE", */ 
-    /*   url: url, */ 
-    /*   //"user_assignment_path(current_user, a), :method => :delete", */
-    /*   /1* data: { assignment: { *1/ */
-    /*   /1*   subject_id: subject_id, *1/ */ 
-    /*   /1*   description: description, *1/ */ 
-    /*   /1*   due_date: due_date *1/ */
-    /*   /1* }}, *1/ */
-    /*   dataType: 'JSON', */
-    /*   success: function(data) { */
-    /*     console.log("it was a success") */
-    /*     //$(this).parents(".as_box").css("visibility", "hidden"); */
-
-        
-    /*   //manually update dom *s
-    /*   //close modal */
-
-    /*   } */
-    /* }); */
 /* /1* a a char *1/ */
 /* /1* . any char *1/ */
 /* /1* a* zero or more *1/ */
