@@ -1,26 +1,41 @@
-/* $("a[data-method='delete']").on('click', function(e) { */
-/*   e.preventDefault(); */
+$(function() {
+  $(".delete_dialog").each(function() {
+    var dialog = $(this);
+    var trigger = dialog.data("trigger");
+    dialog.find("a").on('ajax:success', function(e) {
+      console.log("log successfully deleted");
+      /* $(".delete_dialog a").closest(".ui-dialog").first().hide(); */
+      /* $(".ui-widget-overlay").hide(); */
+      dialog.dialog('close');
+      trigger.closest(".as_box").slideUp();
 
-/*   url = $('form').attr('action'); */
-
-/*   $.ajax({ */
-/*     type: "DELETE", */ 
-/*     url: <url>, */ 
-/*     data: { assignment: { */
-/*       subject_id: subject_id, */ 
-/*       description: description, */ 
-/*       due_date: due_date */
-/*     }}, */
-/*     dataType: 'json' */
-/*     success: function(data) { */
-/*       //manually update dom */
-/*       //close modal */
-/*     } */
+   }).on('ajax:failure', function(e) {
+    console.log("log deletion FAILED");
+    });
+  });
+})
 
 
-/*   }); */
-/* }) */
+    /* $.ajax({ */
+    /*   type: "DELETE", */ 
+    /*   url: url, */ 
+    /*   //"user_assignment_path(current_user, a), :method => :delete", */
+    /*   /1* data: { assignment: { *1/ */
+    /*   /1*   subject_id: subject_id, *1/ */ 
+    /*   /1*   description: description, *1/ */ 
+    /*   /1*   due_date: due_date *1/ */
+    /*   /1* }}, *1/ */
+    /*   dataType: 'JSON', */
+    /*   success: function(data) { */
+    /*     console.log("it was a success") */
+    /*     //$(this).parents(".as_box").css("visibility", "hidden"); */
 
+        
+    /*   //manually update dom *s
+    /*   //close modal */
+
+    /*   } */
+    /* }); */
 /* /1* a a char *1/ */
 /* /1* . any char *1/ */
 /* /1* a* zero or more *1/ */

@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
-  #respond_to :html, :json 
+  respond_to :html, :json 
 
   def index
     session[:return_to] ||= request.referer
@@ -76,7 +76,8 @@ class AssignmentsController < ApplicationController
     #deletes
     current_user.assignments.where(id: params[:id]).first.destroy
     #binding.pry
-    redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week)
+    #redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week)
+
   end
 
   #--------------------------------------------------------------------#

@@ -21,7 +21,7 @@ function initializeEditButtonAndDialogs() {
 function initializeDeleteDialogs() {
   $(".delete_btn").each(
     function() {
-      var dialog = $(this).find(".delete_dialog").dialog({
+      var dlg = $(this).find(".delete_dialog").dialog({
       closeOnEscape: true,
       title: "Delete Assignment", 
       width: 300, 
@@ -33,8 +33,11 @@ function initializeDeleteDialogs() {
       });
 
       $(this).on('click', function() {
-        dialog.dialog('open');
+        dlg.dialog('open');
       });
+      
+      dlg.data("trigger", $(this));
+
      });
 }
 
