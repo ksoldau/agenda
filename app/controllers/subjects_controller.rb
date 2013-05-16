@@ -16,10 +16,12 @@ class SubjectsController < ApplicationController
   end
 
   def create
+
+    session['referer'] = request.referer
     @s = Subject.new(params['subject'])
     @s.user_id = current_user.id
     if @s.save
-      redirect_to user_subjects_path(current_user)
+      redirect_to session['referer']
     else
       render :new #if saving doesn't work, doesn't run logic but renders view,
       #so user can correct themselves
@@ -28,16 +30,20 @@ class SubjectsController < ApplicationController
   end
 
   def update
+    session['referer'] = request.referer
+    redirect_to session['referer']
   end
 
-  def edit 
+  def edit
+    session['referer'] = request.referer
+    redirect_to session['referer']
   end
 
   def destroy
     #delete from database
     current_user.subjects.where(id: params[:id]).first.destroy 
-    redirect_to user_subjects_path(current_user)
-  end
+    redirect_to request.referer
+    end
 
  
 ####################################################### 
