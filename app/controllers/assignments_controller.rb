@@ -43,7 +43,7 @@ class AssignmentsController < ApplicationController
   def create
     createNewAssignment
     if @assignment.save
-      redirect_to user_assignments_path(current_user, :query => "week", :which => @assignment.due_date.to_date.beginning_of_week)
+      redirect_to request.referer
     else
       render :new #if saving doesn't work, doesn't run logic but renders view,
       #so user can correct themselves
