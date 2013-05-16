@@ -1,13 +1,10 @@
-/* $('<update button>').on('click', function(e) { */
+/* $("a[data-method='delete']").on('click', function(e) { */
 /*   e.preventDefault(); */
 
 /*   url = $('form').attr('action'); */
-/*   subject_id = ... */
-/*   description = ... */
-/*   due_date = ... */
 
 /*   $.ajax({ */
-/*     type: "PUT", */ 
+/*     type: "DELETE", */ 
 /*     url: <url>, */ 
 /*     data: { assignment: { */
 /*       subject_id: subject_id, */ 
