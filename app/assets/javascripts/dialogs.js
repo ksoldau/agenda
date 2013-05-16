@@ -11,7 +11,7 @@ function initializeEditButtonAndDialogs() {
       modal: true, 
       autoOpen: false,
       //show: 'fade',
-      hide: 'fade',
+      //hide: 'fade',
       });
 
       $(this).on('click', function() {
