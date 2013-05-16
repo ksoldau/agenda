@@ -1,7 +1,7 @@
 function initializeEditButtonAndDialogs() {
   $(".edit_btn").each(
     function() {
-      var dialog = $(this).find(".edit_dialog").dialog({
+      var dlg = $(this).find(".edit_dialog").dialog({
       closeOnEscape: true, 
       title: "Edit Assignment",
       width: 600, 
@@ -9,12 +9,17 @@ function initializeEditButtonAndDialogs() {
       draggable: false, 
       resizable: false, 
       modal: true, 
-      autoOpen: false, 
+      autoOpen: false,
+      //show: 'fade',
+      hide: 'fade',
       });
 
       $(this).on('click', function() {
-        dialog.dialog('open');
+        dlg.dialog('open');
       });
+
+
+      dlg.data("trigger", $(this));
   });
  }
 

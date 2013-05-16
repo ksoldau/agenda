@@ -17,6 +17,7 @@
 //= require dialogs
 //= require assignment_dialog
 //= require delete_assignment
+//= require edit_assignment
 //= require_tree .
  $(function() {
     $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );

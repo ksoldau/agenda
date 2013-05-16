@@ -52,18 +52,16 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-   # get assignment want to update 
-   @as = current_user.assignments.where(id: params[:id]).first
+    # get assignment want to update 
+    @as = current_user.assignments.where(id: params[:id]).first
    
-   # save url of where you are
-   session['referer'] = request.referer
+    # save url of where you are
+    session['referer'] = request.referer
 
-   if @as.update_attributes(params[:assignment])
-     redirect_to session['referer']
-   else 
-     render :new #? 
-   end
-
+    @as.update_attributes(params[:assignment])
+    respond_with @as do |format|
+      format.json {render json: @as.to_json}
+    end
   end
 
   def edit
