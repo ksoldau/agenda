@@ -45,18 +45,10 @@ body {
   color:#fff;
 }
 
-.week_wrapper {
-  float: left;
-  position: relative;
-  left: 50%;
-  .week {
-    float: left;
-    position: relative;
-    left: -50%;
-    margin-top: 2em;
-  }
+.week {
+  width: 767px;
+  margin: 2em auto 0 auto;  
 }
-
 .cal {
   width: 542px;
   margin: 0 auto;
@@ -68,7 +60,7 @@ body {
     float: left; 
    } 
 }
-.right_side_days, .left_side_days {
+.side {
   float: left;
 }
 

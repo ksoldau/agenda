@@ -16,10 +16,10 @@
         {:class => "which_btn"}
 
   - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
-  .week_wrapper
-    .week
-      .left_side_days 
-        - @as_grouped_left.each do |dayn,as|
+  .week
+    -@as_grouped_sides.each do |side| 
+      .side 
+        - side.each do |dayn,as|
           -#- binding.pry
           .assignment_box
             %a.add_btn{:id => "day_#{dayn}"}
@@ -56,51 +56,10 @@
                         = f.input :completed 
                         = f.submit 
 
-      .right_side_days 
-        - @as_grouped_right.each do |dayn,as|
-          .assignment_box
-            .add_btn
-              .add_dialog
-                = simple_form_for [current_user, @newa] do |f|
-                  = f.association :subject, collection: current_user.subjects    
-                  = f.input :description
-                  = f.input :due_date, :default => getDate(dayn, params[:which].to_date) 
-                  = f.input :completed
-                  = f.submit 
-            %p.day_heading 
-              = @key_to_day[dayn]
-              = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long) 
-            - if !as.empty?
-              - as.each do |a|
-                .as_box{:class => (a.completed ? "completed" : "not_completed")}
-                  .due_time
-                    -#= a.due_date.to_formatted_s(:long)
-                    = a.due_date.strftime("%H:%M");
-                  .subject
-                    = a.subject.name
-                  .description
-                    = a.description
-
-                  .delete_btn
-                    .delete_dialog{:title => "Delete Assignment"}
-                      Are you sure you want to delete this assignment?
-                      = link_to "Delete", user_assignment_path(current_user, a), :method => :delete, :remote => true
-                      -#= link_to "Delete", user_assignment_path(current_user, a), :method => :delete
-                  .edit_btn
-                    .edit_dialog{:title => "Edit Assignment"}
-                      = simple_form_for [current_user, a], remote: true, html: {data: {type: 'json'}} do |f|
-                        = f.association :subject, collection: current_user.subjects    
-                        = f.input :description 
-                        = f.input :due_date
-                        = f.input :completed 
-                        = f.submit 
-
-
-
                 
-                
-                -#for delete, just use the one for show
-                /* = link_to "delete", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn" */
+            
+    -#for delete, just use the one for show
+    /* = link_to "delete", user_assignment_path(current_user, a), :method => :delete, :class => "delete_btn" */
 
 
         

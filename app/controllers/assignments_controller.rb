@@ -11,7 +11,8 @@ class AssignmentsController < ApplicationController
 
     when 'week'
       getAssignmentsForWeek
-      getAssignmentsForDays
+      @as_grouped_sides = getAssignmentsForDays
+
 
     when 'month'
       get_first_day_cal
@@ -117,6 +118,9 @@ class AssignmentsController < ApplicationController
     @as_grouped_right[5] = @assignments_fri
     @as_grouped_right[6] = @assignments_sat
     @as_grouped_right[0] = @assignments_sun
+    @as_grouped_sides = []
+    @as_grouped_sides = @as_grouped_sides << @as_grouped_left
+    @as_grouped_sides = @as_grouped_sides << @as_grouped_right
 
   end
 
