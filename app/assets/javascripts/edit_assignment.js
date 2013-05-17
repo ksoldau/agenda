@@ -70,6 +70,8 @@ $(function() {
           console.log("got hereeee");
           h = headingArray[i];
           htext = $(h).text();
+
+          //if in right day
           if (htext.indexOf(new_day_string + ",") >= 0) {
             console.log("it's in " + new_day_string);
             
@@ -77,11 +79,13 @@ $(function() {
             var assignment = trigger.closest(".as_box");
 
             assignment.slideUp(600, function () {
-              //assignment.appendTo(day);
+            assignment.appendTo(day);
               
             var assignmentsArray = day.find(".as_box");
 
+            outer_loop:
             for (var i = 0; i <assignmentsArray.length; i++) {
+              console.log("in the loop");
               var o_a = $(assignmentsArray[i]);
               var o_due_time = o_a.find(".due_time");
               var o_due_time_text = o_due_time.text().replace(/\s+/g, '');
@@ -95,8 +99,8 @@ $(function() {
 
               if (new_date_time.getTime() <= o_date.getTime()) {
                 o_a.before(assignment);
+                break outer_loop;
               }
-
             }
 
 
