@@ -49,7 +49,7 @@ function initializeDeleteDialogs() {
 function initializeAddDialogs() {
   $(".add_btn").each(
     function() {
-      var dialog = $(this).find(".add_dialog").dialog({
+      var dlg = $(this).find(".add_dialog").dialog({
       closeOnEscape: true,
       title: "Add Assignment", 
       width: 450, 
@@ -61,13 +61,16 @@ function initializeAddDialogs() {
       });
 
       $(this).on('click', function() {
-        dialog.dialog('open');
+        dlg.dialog('open');
       });
 
       $(this).hover(
         function() {}, 
         function() {}
       );
+
+      dlg.data("trigger", $(this));
+
 
   });
 }

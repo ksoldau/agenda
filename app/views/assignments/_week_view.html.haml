@@ -22,7 +22,7 @@
         .assignment_box
           %a.add_btn{:id => "day_#{dayn}"}
             .add_dialog
-              = simple_form_for [current_user, @newa] do |f|
+              = simple_form_for [current_user, @newa], remote: true, html: {data: {type: 'json'}} do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
                 = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) 
