@@ -11,10 +11,6 @@ $(function() {
       console.log("ajax success");
       console.log("assignment successfully edited");
       dialog.dialog('close');
-      //console.log("data.fdsaf
-      console.log(data.completed);
-
-      
       
       //change subject if edited
       var subj = trigger.closest(".as_box").find(".subject").first();
@@ -30,17 +26,17 @@ $(function() {
           desc.text(data.description).animate({opacity: "1"}, 700);
         });
       }
-      //change due time based on edit
-      //change to have it only change if time changed
-      trigger.closest(".as_box").find(".due_time").first().text(data.due_date)
-      
+
       //change of placement based on time edit
       var dd = data.due_date;
       var new_parsed = dd.split('T')[0].split('-');
+      var new_parsed_time = dd.split('T')[1].split(':');
 
       var url = window.location.href
       var url_parsed = url.split('=')[2].split('-');
 
+      var new_min = Number(new_parsed_time[1]);
+      var new_hour = Number(new_parsed_time[0]);
       var new_day = Number(new_parsed[2]);
       var new_month = Number(new_parsed[1]) -1; //0 is jan
       var new_year = Number(new_parsed[0]);
@@ -76,17 +72,46 @@ $(function() {
           htext = $(h).text();
           if (htext.indexOf(new_day_string + ",") >= 0) {
             console.log("it's in " + new_day_string);
+            
             var day = $(h).closest(".assignment_box");
             var assignment = trigger.closest(".as_box");
 
             assignment.slideUp(600, function () {
-              assignment.appendTo(day);
-              assignment.slideDown();
+              //assignment.appendTo(day);
+              
+            var assignmentsArray = day.find(".as_box");
+
+            for (var i = 0; i <assignmentsArray.length; i++) {
+              var o_a = $(assignmentsArray[i]);
+              var o_due_time = o_a.find(".due_time");
+              var o_due_time_text = o_due_time.text().replace(/\s+/g, '');
+              var o_hour = Number(o_due_time_text.split(':')[0]);
+              var o_min = Number(o_due_time_text.split(':')[1]);
+              console.log(o_hour);
+              console.log(o_min);
+              var o_date = new Date(0, 0, 1, o_hour, o_min);
+
+              var new_date_time = new Date(0, 0, 1, new_hour, new_min);
+
+              if (new_date_time.getTime() <= o_date.getTime()) {
+                o_a.before(assignment);
+              }
+
+            }
+
+
+            assignment.slideDown();
             });            
           }
         }
         
         }
+
+      //change due time based on edit
+      //change to have it only change if time changed
+
+      trigger.closest(".as_box").find(".due_time").first().text(new_hour + ":" + new_min)
+      
    
       //change background color based on completion 
       trigger.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
