@@ -1,0 +1,71 @@
+.choose_view
+  .nav_view
+    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]) 
+    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), 
+    {:class => "current"}
+
+  .rotate_through
+    = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
+      {:class => "which_btn"}
+    - @other_class = params[:which].to_date.beginning_of_month == Date.today.beginning_of_month ? "current" : nil
+    = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
+      {:class => "#{@other_class} which_btn"}
+    = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
+      {:class => "which_btn"}
+%h2
+  = params[:which].to_date.strftime("%B, %Y")
+
+.cal
+  .cal_header
+       
+  - @list_each_week= []
+  - @list_each_week << @days_in_cal_month[0..6]
+  - @list_each_week << @days_in_cal_month[7..13]
+  - @list_each_week << @days_in_cal_month[14..20]
+  - @list_each_week << @days_in_cal_month[21..27]
+  - @list_each_week << @days_in_cal_month[28..34]
+  %table
+    %tr
+      %th Sunday
+      %th Monday
+      %th Tuesday
+      %th Wednesday
+      %th Thursday
+      %th Friday
+      %th Saturday
+    %tr
+    - @list_each_week.each do |week|
+      /- binding.pry
+      %tr 
+        -week.each do |date|
+          %td
+            .cal_day
+              = date.strftime("%d")
+            .day_cal
+              - if @as_grouped_by_dd[date]
+                - @as_grouped_by_dd[date].each do |a|
+                  .subj_link{:class => (a.completed ? "completed" : "not_completed")}
+                    = a.subject.name
+                    .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
+                      .as_box
+                        .due_time
+                          = a.due_date.to_formatted_s(:long)
+                          -#= a.due_date.strftime("%H:%M");
+                        .subject
+                          = a.subject.name
+                        .description
+                          = a.description
+                        .delete_btn
+                          .delete_dialog{:title => "Delete Assignment"}
+                            Are you sure you want to delete this assignment?
+                            = link_to "Delete", user_assignment_path(current_user, a), :method => :delete
+                        .edit_btn
+                          .edit_dialog{:title => "Edit Assignment"}
+                            = simple_form_for [current_user, a] do |f|
+                              = f.association :subject, collection: current_user.subjects    
+                              = f.input :description 
+                              = f.input :due_date
+                              = f.input :completed 
+                              = f.submit 
+ 
+
