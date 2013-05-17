@@ -48,6 +48,7 @@ $(function() {
 
 $(function() {
      $( ".a_dialog" ).dialog({
+     autoOpen: false
      }); 
 });
 
