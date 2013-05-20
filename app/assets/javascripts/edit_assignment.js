@@ -48,6 +48,7 @@ $(function() {
       var url_date = new Date(url_year, url_month, url_day)
       var url_date_end_week = new Date(url_date.getTime() + 6 * 24 * 60 * 60 * 1000);
 
+      
       if (new_date.getTime() < url_date.getTime()) {
         trigger.closest(".as_box").animate({left: '-999px'}, 800, function() {
           trigger.closest(".as_box").slideUp();
@@ -74,42 +75,54 @@ $(function() {
           //if in right day
           if (htext.indexOf(new_day_string + ",") >= 0) {
             console.log("it's in " + new_day_string);
+          }
             
             var day = $(h).closest(".assignment_box");
             var assignment = trigger.closest(".as_box");
 
-            assignment.animate({opacity: '0'}, 800, function() {
-            assignment.slideUp(600, function () {
-            assignment.appendTo(day);
-              
-            var assignmentsArray = day.find(".as_box");
+            var dt = assignment.find(".due_time").text();
+            console.log(dt);
+            var dt_hour = dt.split(':')[0];
+            var dt_min = dt.split(':')[1];
+            var dt_already = new Date(0, 0, 1, dt_hour, dt_min);
+            console.log("dt_hour is %o and dt_min is %o", dt_hour, dt_min);
+            var new_dt = new Date(0, 0, 1, new_hour, new_min);
 
-            outer_loop:
-            for (var i = 0; i <assignmentsArray.length; i++) {
-              console.log("in the loop");
-              var o_a = $(assignmentsArray[i]);
-              var o_due_time = o_a.find(".due_time");
-              var o_due_time_text = o_due_time.text().replace(/\s+/g, '');
-              var o_hour = Number(o_due_time_text.split(':')[0]);
-              var o_min = Number(o_due_time_text.split(':')[1]);
-              console.log(o_hour);
-              console.log(o_min);
-              var o_date = new Date(0, 0, 1, o_hour, o_min);
+            if (dt_already.getTime() !== new_dt.getTime()) {
 
-              var new_date_time = new Date(0, 0, 1, new_hour, new_min);
+              assignment.animate({opacity: '0'}, 800, function() {
+                assignment.slideUp(600, function () {
+                  assignment.appendTo(day);
+                  
+                  var assignmentsArray = day.find(".as_box");
+                  
+                  outer_loop:
+                  for (var i = 0; i <assignmentsArray.length; i++) {
+                    console.log("in the loop");
+                    var o_a = $(assignmentsArray[i]);
+                    var o_due_time = o_a.find(".due_time");
+                    var o_due_time_text = o_due_time.text().replace(/\s+/g, '');
+                    var o_hour = Number(o_due_time_text.split(':')[0]);
+                    var o_min = Number(o_due_time_text.split(':')[1]);
+                    console.log(o_hour);
+                    console.log(o_min);
+                    var o_date = new Date(0, 0, 1, o_hour, o_min);
 
-              if (new_date_time.getTime() <= o_date.getTime()) {
-                o_a.before(assignment);
-                break outer_loop;
-              }
-            }
+                    var new_date_time = new Date(0, 0, 1, new_hour, new_min);
 
-            assignment.slideDown(600, function() {
-              assignment.animate({opacity: '1'}, 800);
-            });
-            });            
-          });
-          }
+                    if (new_date_time.getTime() <= o_date.getTime()) {
+                      o_a.before(assignment);
+                      break outer_loop;
+                    }
+                  }
+
+                  assignment.slideDown(600, function() {
+                    assignment.animate({opacity: '1'}, 800);
+                  });
+
+                });   
+              });
+          }; //close the if
         }
         
         }
@@ -117,7 +130,7 @@ $(function() {
       //change due time based on edit
       //change to have it only change if time changed
 
-      trigger.closest(".as_box").find(".due_time").first().text(new_hour + ":" + new_min)
+      trigger.closest(".as_box").find(".due_time").first().text(new_hour + ":" + new_min);
       
    
       //change background color based on completion 
