@@ -42,17 +42,17 @@ class AssignmentsController < ApplicationController
 
   def create
     createNewAssignment
-    @assignment.save
+    #@assignment.save
     #binding.pry
-    respond_with @assignment do |format|
-        format.json {render json: @assignment.to_json}
-    end
-    #if @assignment.save
-      #redirect_to request.referer
-    #else
-      #render :new #if saving doesn't work, doesn't run logic but renders view,
-      #so user can correct themselves
+    #respond_with @assignment do |format|
+    #    format.json {render json: @assignment.to_json}
     #end
+    if @assignment.save
+      redirect_to request.referer
+    else
+      render :new #if saving doesn't work, doesn't run logic but renders view,
+      #so user can correct themselves
+    end
 
   end
 

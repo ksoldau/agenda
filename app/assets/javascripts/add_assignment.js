@@ -54,7 +54,9 @@ $(function() {
             console.log("it's logging here");
             
             var day = $(h).closest(".assignment_box");
-            var assignment = trigger.closest(".as_box"); 
+            //var htmla = render 'assignment'
+            //var assignment = $("%o", htmla)
+            //var assignment = trigger.closest(".as_box"); 
 
 
 
@@ -66,7 +68,7 @@ $(function() {
 
             // ^^ need to make html
             
-            //trigger.closest(".as_box");
+            trigger.closest(".as_box");
             console.log("it's logging here 2");
 
             assignment.slideDown(600, function () {
