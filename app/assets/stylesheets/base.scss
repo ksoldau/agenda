@@ -41,7 +41,10 @@ h2 {
     background-color: $blue;
     color: $light_blue;
     border-radius: 8px;
-    width: 4em;
+    width: auto;
+    border: none;
+    padding: 0.2em 0.5em;
+    cursor: pointer;
   }
 
   label {
