@@ -238,3 +238,24 @@ table {
     }
   }
 }
+
+
+
+.delete_dialog {
+  a {
+    float: right;
+    margin-top: 3em;
+    text-decoration: none;
+    background-color: $orange;
+    color: $dark_blue;
+    padding: 0.3em;
+    border-radius: 8px;
+  }
+}
+
+.edit_dialog {
+  input[type='submit'] {
+    float: right;
+    margin-top: 2em;
+  }
+}
