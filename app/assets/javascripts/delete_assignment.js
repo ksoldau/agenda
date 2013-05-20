@@ -7,7 +7,10 @@ $(function() {
       /* $(".delete_dialog a").closest(".ui-dialog").first().hide(); */
       /* $(".ui-widget-overlay").hide(); */
       dialog.dialog('close');
-      trigger.closest(".as_box").slideUp();
+      //trigger.closest(".as_box").slideUp();
+      trigger.closest(".as_box").animate({opacity: '0'}, 900, function() {
+        trigger.closest(".as_box").slideUp()
+        });
 
    }).on('ajax:failure', function(e) {
     console.log("log deletion FAILED");
