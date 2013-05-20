@@ -14,14 +14,14 @@ $(function() {
       
       //change subject if edited
       var subj = trigger.closest(".as_box").find(".subject").first();
-      if (subj.text() !== data.subject.name) {
+      if (subj.text().trim() !== data.subject.name.trim()) {
          subj.animate({opacity: "0"}, 700, function() {
           subj.text(data.subject.name).animate({opacity: "1"}, 700);
         });
       }
       //change description based on edit
       var desc = trigger.closest(".as_box").find(".description").first()
-      if (desc.text() !== data.description) {
+      if (desc.text().trim() !== data.description.trim()) {
         desc.animate({opacity: "0"}, 700, function() {
           desc.text(data.description).animate({opacity: "1"}, 700);
         });
