@@ -46,6 +46,10 @@
       background-color: $blue;
       a {
         color: $light_blue;
+        width: 90%; //so can click anywhere on tab
+      }
+      span {
+        float: right;
       }
     }
     .ui-tabs-active {
@@ -133,3 +137,15 @@
     color: $light_blue_hover;
   }
 }
+
+.delete_subj_btn {
+  float: right;
+  visibility: hidden;
+  margin-top: 0.1em;
+  margin-right: 0.3em;
+  width: 13px;
+  height: 13px;
+  background-image: url("delete.png"); 
+  cursor: pointer;
+}
+
