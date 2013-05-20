@@ -78,6 +78,7 @@ $(function() {
             var day = $(h).closest(".assignment_box");
             var assignment = trigger.closest(".as_box");
 
+            assignment.animate({opacity: '0'}, 800, function() {
             assignment.slideUp(600, function () {
             assignment.appendTo(day);
               
@@ -103,9 +104,11 @@ $(function() {
               }
             }
 
-
-            assignment.slideDown();
+            assignment.slideDown(600, function() {
+              assignment.animate({opacity: '1'}, 800);
+            });
             });            
+          });
           }
         }
         
