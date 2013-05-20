@@ -50,15 +50,32 @@ $(function() {
 
           //if in right day
           if (htext.indexOf(new_day_string + ",") >= 0) {
-            console.log("it's in " + new_day_string);
+            console.log("it's innnn " + new_day_string);
+            console.log("it's logging here");
             
             var day = $(h).closest(".assignment_box");
-            var assignment = trigger.closest(".as_box");
+            var assignment = trigger.closest(".as_box"); 
 
-            assignment.slideUp(600, function () {
+
+
+
+
+            //maybe could always have a blank haml element with display none whose html could be copied? idk
+
+
+
+            // ^^ need to make html
+            
+            //trigger.closest(".as_box");
+            console.log("it's logging here 2");
+
+            assignment.slideDown(600, function () {
             assignment.appendTo(day);
+            console.log("it's logging here 3");
               
             var assignmentsArray = day.find(".as_box");
+            console.log("logging" + "%o", assignmentsArray);
+            console.log("it should be logging");
 
             outer_loop:
             for (var i = 0; i <assignmentsArray.length; i++) {

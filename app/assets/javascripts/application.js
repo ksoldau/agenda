@@ -15,8 +15,8 @@
 //= require jquery_ujs
 //= require radiobutton
 //= require dialogs
-//= require init
 //= require assignment_dialog
+//= require init
 //= require delete_assignment
 //= require edit_assignment
 //= require_tree .
