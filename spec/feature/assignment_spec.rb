@@ -14,7 +14,7 @@ feature 'create assignment', :js => true do
     current_path.should == user_assignments_path(user) #signed in
 
     # click on add assignment button for first Monday in week
-    assignment_box = ".week .left_side_days .assignment_box:first-child"
+    assignment_box = ".week .side:first-child .assignment_box:first-child"
     find(assignment_box).hover
     find("#day_1").click
 
@@ -39,7 +39,7 @@ feature 'edit/delete assignment', :js => true do
     fill_in 'user[email]', :with => user.email
     fill_in 'user[password]', :with => 'p@ssword'
     click_button 'Sign in'
-    find(".week .left_side_days .assignment_box:first-child").hover
+    find(".week .side:first-child .assignment_box:first-child").hover
     find("#day_1").click
     select('Other', :from => 'assignment[subject_id]')
     fill_in('assignment[description]', :with => 'Example description.')
@@ -51,7 +51,7 @@ feature 'edit/delete assignment', :js => true do
 
   scenario 'edit description of assignment' do
    
-    a = ".week .left_side_days .assignment_box:first-child .as_box"
+    a = ".week .side:first-child .assignment_box:first-child .as_box"
 
     find(a).hover
     find(a + " .edit_btn").click
@@ -67,7 +67,7 @@ feature 'edit/delete assignment', :js => true do
 
   scenario 'edit month of due date for assignment' do
     
-    a = ".week .left_side_days .assignment_box:first-child"
+    a = ".week .side:first-child .assignment_box:first-child .as_box"
 
     # assure assignment is in Monday
     find(a).should have_content('Example description.')
@@ -80,9 +80,6 @@ feature 'edit/delete assignment', :js => true do
     select('1', :from => 'assignment[due_date(3i)]')
     find('input[type="submit"]').click
 
-    
-
-
     # make sure no longer on Monday
     find(a).should_not have_content('Example description.')
 
@@ -90,12 +87,11 @@ feature 'edit/delete assignment', :js => true do
     visit user_assignments_path(user, :query => 'week', :which => "July 1, 2013".to_date.prev_week)
     page.should have_content('Example description.')
 
-    
   end
     
   scenario 'delete assignment' do
    
-    a = ".week .left_side_days .assignment_box:first-child .as_box"
+    a = ".week .side:first-child .assignment_box:first-child .as_box"
 
     find(a).hover
     find(a + " .delete_btn").click
