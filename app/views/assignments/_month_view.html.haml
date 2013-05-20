@@ -47,7 +47,7 @@
                   .subj_link{:class => (a.completed ? "completed" : "not_completed")}
                     = a.subject.name
                     .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
-                      .as_box
+                      .a_box_month
                         .due_time
                           = a.due_date.to_formatted_s(:long)
                           -#= a.due_date.strftime("%H:%M");
