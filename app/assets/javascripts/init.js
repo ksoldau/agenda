@@ -47,9 +47,9 @@ $(function() {
 });
 
 $(function() {
-     $( ".a_dialog" ).dialog({
-     autoOpen: false
-     }); 
+   $( ".a_dialog" ).dialog({
+   autoOpen: false
+   }); 
 });
 
 $(function() {
@@ -64,18 +64,12 @@ $(function() {
   });
 });
 
-$(function() {
-  $(".delete_dialog").dialog({
-    autoOpen: false
-  });
-})
 
 $(function() {
   $(".add_subj_dialog").dialog({
     autoOpen: false
   });
 });
-
 $(function() {
   $( ".assignment_box" ).hover(function() {
     $(this).find(".add_btn").toggle();
@@ -96,12 +90,28 @@ $(function() {
 })
 
 $(function() {
-  $(".ui-tabs-panel").hover(
+  $("#tabs").hover(
     function() {
       $(this).find(".add_btn").css("visibility", "visible");
+      $(this).find(".delete_subj_btn").css("visibility", "visible");
     },
     function() {
       $(this).find(".add_btn").css("visibility", "hidden");
+      $(this).find(".delete_subj_btn").css("visibility", "hidden");
     });
 })
+
+
+$(function() {
+  $( ".a_dialog").hover(
+    function() {
+      $(this).find(".delete_btn").css("visibility", "visible");
+      $(this).find(".edit_btn").css("visibility", "visible");
+    },
+    function() {
+      $(this).find(".delete_btn").css("visibility", "hidden");
+      $(this).find(".edit_btn").css("visibility", "hidden");
+      });
+})
+
 
