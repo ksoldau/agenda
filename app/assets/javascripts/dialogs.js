@@ -4,7 +4,7 @@ function initializeEditButtonAndDialogs() {
       var dlg = $(this).find(".edit_dialog").dialog({
       closeOnEscape: true, 
       title: "Update Assignment",
-      width: 600, 
+      width: 470,
       height: 300, 
       draggable: false, 
       resizable: false, 
