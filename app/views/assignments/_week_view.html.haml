@@ -19,7 +19,13 @@
     .side 
       - side.each do |dayn,as|
         -#- binding.pry
-        .assignment_box
+        - todayHuh = (Date.today.to_date === getDate(dayn, params[:which].to_date.beginning_of_week))
+        - today_complete = true;
+        - as.each do |a|
+          - if !a.completed
+            - today_complete = false;
+
+        .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
           %a.add_btn{:id => "day_#{dayn}"}
             .add_dialog
               = simple_form_for [current_user, @newa] do |f|

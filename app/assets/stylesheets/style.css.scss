@@ -82,6 +82,10 @@ body {
   -moz-border-radius: 4px;
   border-radius: 4px;
 
+  border-width: 3px;
+  border-style: solid;
+  border-color: $gray;
+
   .day_heading {
     font-weight: bold;
     margin: 2px;
@@ -263,4 +267,11 @@ table {
     float: right;
     margin-top: 2em;
   }
+}
+
+#today_border {
+  border-color: $light_blue;
+}
+#today_nc_border {
+  border-color: $orange;
 }

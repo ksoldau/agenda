@@ -188,7 +188,9 @@ $(function() {
       trigger.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
       ).removeClass(data.completed ? "not_completed" : "completed", {duration: 800});}).on('ajax:failure', function(e) {
     console.log("assignment edit FAILED");
-    });
+
+   //find new date assignment box and change the border of it if it's today, also change border of old date
+   });
   });
 })
 
