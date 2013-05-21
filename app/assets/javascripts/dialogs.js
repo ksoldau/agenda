@@ -5,7 +5,6 @@ function initializeEditButtonAndDialogs() {
       closeOnEscape: true, 
       title: "Update Assignment",
       width: 470,
-      height: 300, 
       draggable: false, 
       resizable: false, 
       modal: true, 
