@@ -1,10 +1,16 @@
-$dark_blue: #2B3A42;
-$blue: #3F5765;
-$light_blue: #BDD4DE;
-$gray: #EFEFEF;
-$orange: #FF530D; 
+/* $dark_blue: #2B3A42; */
+/* $blue: #3F5765; */
+/* $light_blue: #BDD4DE; */
+/* $gray: #EFEFEF; */
+/* $orange: #FF530D; */ 
 
-$blue_hover: #364B57;
-$light_blue_hover: #9CAFB8;
+$dark_blue: #3E454C;
+$blue:#2185C5;
+$light_blue: #7ECEFD;
+$gray: #FFF6E5;
+$orange: #FF7F66;
+
+$blue_hover: $light_blue;
+$light_blue_hover: $blue;
 
 
