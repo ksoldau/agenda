@@ -22,8 +22,8 @@ h2 {
 
   .ui-dialog-titlebar {
     background-image: none;
-    background-color: $blue;
-    border-color: $blue;
+    background-color: $dark_blue;
+    border: none;
     color: $light_blue;
   }
 
@@ -37,7 +37,9 @@ h2 {
       background-color: $light_blue;
       border: 2px inset;
     }
-  input[type="submit"] {
+  .edit_dialog_submit, .add_dialog_submit {
+    float: right;
+    margin-top: 3em;
     background-color: $blue;
     color: $light_blue;
     border-radius: 8px;
@@ -115,6 +117,12 @@ h2 {
       background-color: $light_blue;
     }
       
+}
+
+/************************/
+.edit_dialog_submit:hover, .add_dialog_submit:hover {
+  background-color: $blue_hover;
+  color: $light_blue_hover;
 }
 
 

@@ -27,7 +27,7 @@
                 = f.input :description
                 = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) 
                 = f.input :completed
-                = f.submit "Add" 
+                = f.submit "Add", :class => "add_dialog_submit"
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
@@ -52,5 +52,6 @@
                       = f.input :description 
                       = f.input :due_date
                       = f.input :completed 
-                      = f.submit 
+                      = f.submit :class => "edit_dialog_submit"
+
 
