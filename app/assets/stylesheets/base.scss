@@ -19,6 +19,9 @@ h2 {
   background-image: none;
   background-color: $gray;
   font-family: Cabin;
+  border: none;
+  border-radius: 8px;
+  color: $dark_blue;
 
   .ui-dialog-titlebar {
     background-image: none;
