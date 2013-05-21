@@ -58,7 +58,8 @@
                         .delete_btn
                           .delete_dialog{:title => "Delete Assignment"}
                             Are you sure you want to delete this assignment?
-                            = link_to "Delete", user_assignment_path(current_user, a), :method => :delete
+                            = link_to "Yes, delete", user_assignment_path(current_user, a), :method => :delete, :tabindex => -1
+                            = link_to "No", :tabindex => 20
                         .edit_btn
                           .edit_dialog{:title => "Edit Assignment"}
                             = simple_form_for [current_user, a] do |f|
