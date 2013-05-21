@@ -46,6 +46,11 @@
   }
   .not_current_tab:hover {
     background-color: $blue_hover;
+    
+    a {
+      color: $light_blue_hover;
+    }
+
     }
 
   .current_tab {
@@ -60,29 +65,28 @@
   }
 }
 
-.sign_out_btn {
+
+
+
+#header_link {
   float: right;
-  margin-top: 1em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  border-color: $dark_blue;
-  span {
-    font-size: 10px;
-    padding: 0.4em 0.5em;
-    background-color: $blue;
+  margin: 0.7em 0.5em;
+  border-radius: 8px;
+
+  a {
+    text-align: center;
+    font-size: 1em;
     color: $light_blue;
-    a {
-      color: $light_blue;
-    }
-    a:visited {
-      color: $light_blue;
-    }
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 4px 8px;
+    background-color: $blue;
   }
-  .ui-button-text {
-    padding: 0.4em 0.5em;
+  a:visited {
+    color: $light_blue;
+  }
+  a:hover {
+    color: $light_blue_hover;
+    background-color: $blue_hover;
   }
 }
-
-
-
-
