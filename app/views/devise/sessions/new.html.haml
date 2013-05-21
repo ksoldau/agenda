@@ -1,13 +1,4 @@
-.header
-  //add sign in button then drop down stuff
-  .logo      
-    AgendaApp
+= render 'partials/header'
 
-
--#.sign_in_btn
-Sign in
--#.sign_in_dialog= 
-
-= render "form"
-   
-= render "devise/shared/links" 
+#form_wrapper
+  = render "form"
