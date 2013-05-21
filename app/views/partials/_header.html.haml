@@ -1,9 +1,49 @@
 .header
-  .logo      
-    = link_to "AgendaApp", new_session_path(resource_name)
   #header_link
+    - if current_user != nil
+      = link_to "Sign out", destroy_user_session_path, :method => :delete
     //if on sign up page
     //= link_to "Sign in", new_session_path(resource_name)
     //if on sign in page
-    = link_to "Sign up", new_registration_path(resource_name)
+    - if current_user == nil
+      = link_to "Sign up", new_registration_path(resource_name)
+
+
+  .logo
+    - if current_user == nil
+      = link_to "AgendaApp", new_session_path(resource_name)
+    - if current_user != nil
+      = link_to "AgendaApp", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date.beginning_of_week)
+  
+  -if current_user != nil
+    .nav
+      .tab{:class => (params[:query] ? "current_tab agenda" : "not_current_tab agenda")}
+        = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
+      .tab{:class => (!params[:query] ? "current_tab" : "not_current_tab")}
+        =link_to "Subjects", user_subjects_path(current_user)
+
+      
+
+/* - if current_user != nil */ 
+/*       .header */
+/*         - if current_user != nil */
+/*           .sign_out_btn */
+/*             = link_to "sign out", destroy_user_session_path, :method => :delete */
+/*           .name */ 
+/*             Hi, */ 
+/*             = current_user.first_name */
+/*         -else */ 
+/*           //add sign in button then drop down stuff */
+/*         .logo */
+/*           - if current_user != nil */
+/*             = link_to "AgendaApp", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date) */
+/*           - else */
+/*             AgendaApp */
+
+/*         - if current_user != nil */
+/*           .nav */
+/*             .tab{:class => (params[:query] ? "current_tab agenda" : "not_current_tab agenda")} */
+/*               = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date) */
+/*             .tab{:class => (!params[:query] ? "current_tab" : "not_current_tab")} */
+/*               =link_to "Subjects", user_subjects_path(current_user) */
 
