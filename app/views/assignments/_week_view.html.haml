@@ -31,7 +31,7 @@
               = simple_form_for [current_user, @newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
-                = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) 
+                = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes 
                 = f.input :completed
                 = f.submit "Add", :class => "add_dialog_submit"
           %p.day_heading 
