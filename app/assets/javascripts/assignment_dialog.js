@@ -22,28 +22,7 @@
         }
       });
 
-      /* $(this).mouseover( function() { */
-      /*   dialog.dialog('open'); */
-      /* }); */
-      /* $(this).mouseout( function() { */
-      /*   dialog.dialog('close'); */
-      /* }); */
-
-    /* $(this).mouseover(function() { */
-    /*   dlg.dialog("open"); */
-    /* }).mousemove(function(event) { */
-    /*   /1* dlg.dialog("option", "position", { *1/ */
-    /*   /1*   my: "left top", *1/ */
-    /*   /1*   at: "right bottom", *1/ */
-    /*   /1*   of: event, *1/ */
-    /*   /1*   offset: "200 2000 200 200" *1/ */
-    /*   /1* }); *1/ */
-    /*   dlg.dialog("option", "position", [event.clientX - 150, event.clientY - 170]); */
-    /* }).mouseout(function() { */
-    /*   dlg.dialog("close"); */
-    /* }); */
-
-    });
+     });
   }
 
 function initializeAssignmentPopups() {
