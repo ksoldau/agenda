@@ -134,32 +134,7 @@ body {
    } 
 }
 
-table {
-  border-collapse: collapse;
-  /* margin: 10px auto; */
-  border: 1px solid $dark_blue;
-  background-color: $gray;
-  td {
-    border: 1px solid black;
-    margin: 0;
-    padding: 0;
-    background-color: $gray;
-    min-width: 75px;
-    min-height: 75px;
 
-    .day_cal {
-      min-height: 75px;
-    }
-    
-  }
-  .cal_day {
-    color: $dark_blue;
-  }
-  .subj_link {
-    cursor: pointer;
-    margin-bottom: 0.2em;
-  }
-}
 
 .completed {
   background-color: $light_blue;
