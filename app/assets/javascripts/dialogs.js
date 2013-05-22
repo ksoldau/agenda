@@ -58,8 +58,7 @@ function initializeAddDialogs() {
       var dlg = $(this).find(".add_dialog").dialog({
       closeOnEscape: true,
       title: "Add Assignment", 
-      width: 450, 
-      height: 300, 
+      width: 'auto',
       draggable: false, 
       resizable: false, 
       modal: true, 
@@ -90,7 +89,7 @@ function initializeAddSubjectDialog() {
       title: "Add Subject", 
       /* width: 400, */ 
       height: 200, 
-      draggable: false, 
+      draggable: true, 
       resizable: false, 
       modal: true, 
       autoOpen: false,
