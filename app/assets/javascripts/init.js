@@ -108,16 +108,16 @@ $(function() {
 })
 
 
-$(function() {
-  $( ".a_dialog").hover(
-    function() {
-      $(this).find(".delete_btn").css("visibility", "visible");
-      $(this).find(".edit_btn").css("visibility", "visible");
-    },
-    function() {
-      $(this).find(".delete_btn").css("visibility", "hidden");
-      $(this).find(".edit_btn").css("visibility", "hidden");
-      });
-})
+/* $(function() { */
+/*   $( ".a_dialog").hover( */
+/*     function() { */
+/*       $(this).find(".delete_btn").css("visibility", "visible"); */
+/*       $(this).find(".edit_btn").css("visibility", "visible"); */
+/*     }, */
+/*     function() { */
+/*       $(this).find(".delete_btn").css("visibility", "hidden"); */
+/*       $(this).find(".edit_btn").css("visibility", "hidden"); */
+/*       }); */
+/* }) */
 
 
