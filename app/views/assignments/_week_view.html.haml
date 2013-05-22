@@ -37,6 +37,8 @@
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
+            - if todayHuh
+              %span Today
           - if !as.empty?
             - as.each do |a|
               .as_box{:class => (a.completed ? "completed" : "not_completed")}

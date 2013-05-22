@@ -1,15 +1,25 @@
 @import 'variables.css.scss';
 
 
-/* .which_btn { */
-/*   border-width: 2px; */
-/* } */
-
-/* .ui-state-hover { */
-/*   background-color: #fff; */
-/*   border-color: #57798C; */
-
-/*   span { */
-/*     color: #57798C; */
-/*   } */
-/* } */
+#today_border {
+  border-color: $light_blue;
+  .day_heading {
+    background-color: $blue;
+  }
+}
+#today_nc_border {
+  border-color: $orange;
+  .day_heading {
+    padding-left: 3px;
+    background-color: $blue;
+    border-radius: 4px;
+    width: 85%;
+    
+    span {
+      float: right;
+      margin-right: 4px;
+      margin-top: 1px;
+      font-size: 0.8em;
+    }
+  }
+}
