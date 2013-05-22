@@ -1,6 +1,5 @@
 @import 'variables.css.scss';
 
-
 .cal {
   padding: 10px;
   background-color: $gray;
@@ -12,6 +11,19 @@
 }
 .a_popup.not_completed {
   background-color: $orange;
+}
+
+.a_popup {
+  font-size: 0.9em;
+  .description {
+    margin-bottom: 0.5em;
+  }
+  .due_date {
+    font-weight: bold;
+  }
+  .due_time {
+    font-weight: bold;
+  }
 }
 
 .a_dialog {
@@ -42,6 +54,8 @@ table {
     color: $dark_blue;
   }
   .subj_link {
+    margin-left: 2px;
+    margin-right: 2px;
     cursor: pointer;
     margin-bottom: 0.2em;
     border-radius: 4px;
