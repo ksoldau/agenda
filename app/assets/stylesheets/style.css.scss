@@ -205,6 +205,9 @@ table {
   display: none; /* toggled with jquery/js */
   cursor: pointer;
 }
+.add_btn:hover {
+  background-image: url("add_hover.png");
+}
 
 .choose_view {
   overflow: hidden;
@@ -228,14 +231,6 @@ table {
 }
 .a_dialog.completed {
   background-color: $light_blue;
-}
-
-
-.delete_btn:hover {
-  background-image: url("delete_hover.png");
-}
-.edit_btn:hover {
-  background-image: url("pencil_hover.png");
 }
 
 
@@ -267,4 +262,56 @@ table {
     margin-top: 2em;
   }
 }
+
+
+.edit_btn {
+  float: right;
+  visibility: hidden;
+  margin-top: 0.1em;
+  margin-right: 0.3em;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.delete_btn {
+  float: right;
+  visibility: hidden;
+  margin-top: 0.1em;
+  margin-right: 0.3em;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.as_box.completed, .a_dialog.completed {
+  .delete_btn {
+    background-image: url("delete.png");
+  }
+  .delete_btn:hover {
+    background-image: url("delete_hover.png");
+  }
+  .edit_btn {
+    background-image: url("pencil.png");
+  }
+  .edit_btn:hover {
+    background-image: url("pencil_hover.png");
+  }
+}
+
+.as_box.not_completed, .a_dialog.not_completed {
+  .delete_btn {
+    background-image: url("delete_o.png");
+  }
+  .delete_btn:hover {
+    background-image: url("delete_hover_o.png");
+  }
+  .edit_btn {
+    background-image: url("pencil_o.png");
+  }
+  .edit_btn:hover {
+    background-image: url("pencil_hover_o.png");
+  }
+}
+
 
