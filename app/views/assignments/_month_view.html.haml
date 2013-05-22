@@ -48,12 +48,16 @@
                     = a.subject.name
                     .a_popup{:class => (a.completed ? "completed" : "not_completed")}
                       .a_box_month
-                        .due_time
-                          = a.due_date.to_formatted_s(:long)
                         .subject
                           = a.subject.name
                         .description
                           = a.description
+                        .due_time
+                          due on 
+                          = a.due_date.strftime("%B %d, %Y");
+                          at 
+                          = a.due_date.strftime("%H:%M");
+
                     .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
                       .a_box_month
                         .due_time
