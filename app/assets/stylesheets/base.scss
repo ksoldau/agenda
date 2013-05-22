@@ -1,5 +1,9 @@
 @import 'variables.css.scss';
 
+input {
+  -webkit-appearance: none;
+}
+
 h1 {
   color: $light-blue;
   margin: 0;
