@@ -228,6 +228,9 @@ body {
     padding: 0.3em;
     border-radius: 8px;
   }
+  a:hover {
+    background-color: $dark_orange;
+  }
 }
 
 .edit_dialog {
