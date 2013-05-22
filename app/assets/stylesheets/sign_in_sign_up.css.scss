@@ -43,6 +43,9 @@
       background-color: $orange;
       margin-top: 0.75em;
       }
+    input[type='submit']:hover {
+      background-color: $dark_orange;
+    }
     }
   #forgot_password_link {
     text-align: right;
