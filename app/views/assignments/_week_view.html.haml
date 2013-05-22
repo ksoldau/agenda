@@ -44,6 +44,7 @@
               .as_box{:class => (a.completed ? "completed" : "not_completed")}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
+                  due at 
                   = a.due_date.strftime("%H:%M");
                 .subject
                   = a.subject.name
