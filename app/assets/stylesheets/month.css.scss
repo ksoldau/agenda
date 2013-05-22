@@ -13,3 +13,9 @@
 .a_popup.not_completed {
   background-color: $orange;
 }
+
+.a_dialog {
+  .edit_btn, .delete_btn {
+    visibility: visible;
+  }
+}
