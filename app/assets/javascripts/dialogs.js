@@ -41,6 +41,13 @@ function initializeDeleteDialogs() {
       });
       
       dlg.data("trigger", $(this));
+     
+      //find parent .a_dialog
+      var par = $(this).closest(".a_dialog");
+      console.log("Par is %o", par);
+      console.log("Par trgr value is: %o", $(par).data("trgr"));
+      dlg.data("trigger_subj", $(par).data("trgr"));
+      console.log("IN DIALOGS JS. THIS IS THE TRIGGER ABOVE %o", $(this).data("trigger"));
 
      });
 }

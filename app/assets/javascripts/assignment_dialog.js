@@ -23,6 +23,10 @@
         }
       });
 
+      //maybe this is how you do it
+      dlg.data("trgr", $(this));
+      console.log("IN ASSIGNMENT_DIALOG.JS. this is the trigger: %o", $(this));
+
      });
   }
 
@@ -59,12 +63,12 @@ function initializeAssignmentPopups() {
       $(this).click( function() {
         popup.dialog("close");
       });
-    
   });
 }
 
 
-$(document).ready(function(){
+
+$(function(){
 
  initializeAssignmentsDialogs();
  initializeAssignmentPopups();

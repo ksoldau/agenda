@@ -14,8 +14,8 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require radiobutton
-//= require dialogs
 //= require assignment_dialog
+//= require dialogs
 //= require init
 //= require delete_assignment
 //= require edit_assignment
