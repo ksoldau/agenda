@@ -26,10 +26,23 @@
   }
 }
 
+
 .a_dialog {
+  font-size: 0.9em;
+  .description {
+    margin-bottom: 0.5em;
+  }
+  .due_date {
+    font-weight: bold;
+  }
+  .due_time {
+    font-weight: bold;
+  }
   .edit_btn, .delete_btn {
     visibility: visible;
+    margin-top: 0.5em;
   }
+
 }
 
 table {
