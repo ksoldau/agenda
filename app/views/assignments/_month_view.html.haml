@@ -1,6 +1,6 @@
 .choose_view
   .nav_view
-    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]) 
+    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.beginning_of_week) 
     = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which]), 
     {:class => "current"}
 
