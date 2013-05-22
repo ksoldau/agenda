@@ -6,7 +6,10 @@
     //= link_to "Sign in", new_session_path(resource_name)
     //if on sign in page
     - if current_user == nil
-      = link_to "Sign up", new_registration_path(resource_name)
+      - if params[:controller] == "devise/sessions"
+        = link_to "Sign up", new_registration_path(resource_name)
+      - if params[:controller] == "devise/registrations"
+        = link_to "Sign in", new_session_path(resource_name)
 
 
   .logo
