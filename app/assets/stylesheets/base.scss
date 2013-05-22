@@ -22,12 +22,33 @@ h2 {
   border: none;
   border-radius: 8px;
   color: $dark_blue;
+  -moz-box-shadow: 3px 3px 10px #000;
+  -webkit-box-shadow: 3px 3px 10px #000;
+  box-shadow: 3px 3px 10px #000;
+
 
   .ui-dialog-titlebar {
     background-image: none;
     background-color: $dark_blue;
     border: none;
     color: $light_blue;
+
+  .ui-dialog-titlebar-close {
+    background-image: url("dialog_close.png");
+    background-repeat: no-repeat; 
+    background-color: $blue;
+    border-radius: 4px;
+    border: none;
+    span {
+      background-image: none;
+    }
+  }
+  .ui-dialog-titlebar-close:hover {
+    background-color: $blue_hover;
+    background-image: url("dialog_close_hover.png");
+  }
+
+
   }
 
   select {
