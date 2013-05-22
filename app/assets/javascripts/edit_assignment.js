@@ -188,9 +188,24 @@ $(function() {
       trigger.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
       ).removeClass(data.completed ? "not_completed" : "completed", {duration: 800});}).on('ajax:failure', function(e) {
     console.log("assignment edit FAILED");
-
-   //find new date assignment box and change the border of it if it's today, also change border of old date
    });
+
+/*    //find new date assignment box and change the border of it if it's today, also change border of old date */
+/*       var today = new Date(); */
+/*       var d = today.getDate(); */
+/*       var dayhtml = trigger.closest(".as_box").parent(".assignment_box").find(".day_heading"); */
+/*       var day = dayhtml.text().trim(); */
+/*       var todayHuh = (day.indexOf(d + ",") >= 0); */
+/*       console.log("todayHUh was %o", todayHuh); */
+
+/*       //if no assignments go to blue */
+/*       var ab = trigger.closest(".assignment_box"); */
+/*       var as = $(ab).find(".as_box"); */
+
+/*       if (todayHuh && as.length === 0) { */
+/*        dlg.parent(".ui-dialog").css("border-color", "#000000"); */ 
+        
+/*       } */
   });
 })
 
