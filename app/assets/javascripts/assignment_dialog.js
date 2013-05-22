@@ -10,6 +10,7 @@
         resizable: false,
         modal: true,
         autoOpen: false,
+        width: 'auto', 
         });
 
       $(this).on('click', function() {
@@ -35,6 +36,8 @@ function initializeAssignmentPopups() {
         resizable: false, 
         modal: false,
         autoOpen: false,
+        width: 'auto',
+        minHeight: 0,
       });
 
       $(this).mouseover( function() {
