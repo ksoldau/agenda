@@ -1,6 +1,23 @@
 @import 'variables.css.scss';
 
+#today_border, #today_nc_border {
+  .day_heading {
+    background-color: $blue;
+    margin-top: 3px;
+    margin-left: 3px;
+    padding-left: 3px;
+    border-radius: 4px;
+    width: 85%;
 
+    span {
+      float: right;
+      margin-right: 4px;
+      margin-top: 1px;
+      font-size: 0.8em;
+    }
+
+  }
+}
 #today_border {
   border-color: $light_blue;
   .day_heading {
@@ -9,17 +26,4 @@
 }
 #today_nc_border {
   border-color: $orange;
-  .day_heading {
-    padding-left: 3px;
-    background-color: $blue;
-    border-radius: 4px;
-    width: 85%;
-    
-    span {
-      float: right;
-      margin-right: 4px;
-      margin-top: 1px;
-      font-size: 0.8em;
-    }
-  }
 }
