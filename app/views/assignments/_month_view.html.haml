@@ -46,6 +46,14 @@
                 - @as_grouped_by_dd[date].each do |a|
                   .subj_link{:class => (a.completed ? "completed" : "not_completed")}
                     = a.subject.name
+                    .a_popup{:class => (a.completed ? "completed" : "not_completed")}
+                      .a_box_month
+                        .due_time
+                          = a.due_date.to_formatted_s(:long)
+                        .subject
+                          = a.subject.name
+                        .description
+                          = a.description
                     .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
                       .a_box_month
                         .due_time

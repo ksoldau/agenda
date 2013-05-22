@@ -6,3 +6,10 @@
   background-color: $gray;
   border-radius: 8px;
 }
+
+.a_popup.completed {
+  background-color: $light_blue;
+}
+.a_popup.not_completed {
+  background-color: $orange;
+}

@@ -53,6 +53,12 @@ $(function() {
 });
 
 $(function() {
+  $(".a_popup").dialog({
+    autoOpen: false
+  });
+});
+
+$(function() {
   $(".edit_dialog").dialog({
     autoOpen: false
   });
