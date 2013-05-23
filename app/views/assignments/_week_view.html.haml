@@ -59,7 +59,7 @@
                       = f.association :subject, collection: current_user.subjects    
                       = f.input :description 
                       = f.input :due_date
-                      = f.input :completed 
+                      = f.input :completed, :label => "Completed?", :as => "radio_buttons" 
                       = f.submit :class => "edit_dialog_submit"
 
 
