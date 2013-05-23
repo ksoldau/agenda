@@ -24,7 +24,6 @@
 
     #user_email, #user_password, #user_password_confirmation,
     #user_first_name, #user_last_name {
-      height: 2.5em;
       width: 25em;
     }
 
@@ -49,6 +48,10 @@
     input[type='submit']:hover {
       background-color: $dark_orange;
     }
+    input[type='email'], input[type='password'], input[type='text'] {
+      font-size: 1.2em;
+    }
+
     }
   #forgot_password_link {
     text-align: right;
