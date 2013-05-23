@@ -192,6 +192,9 @@ body {
   background-image: url("add.png");
   display: none; /* toggled with jquery/js */
   cursor: pointer;
+  @media (max-width: 321px) {
+    display: inline;
+  }
 }
 .add_btn:hover {
   background-image: url("add_hover.png");
