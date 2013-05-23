@@ -1,20 +1,5 @@
 @import 'variables.css.scss';
 
-.cal {
-  padding: 10px;
-  background-color: $gray;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  @media (max-width: 320px) {
-    padding: 0;
-  }
-  tr {
-  @media (max-width: 320px) {
-    font-size: 0.2em;
-  }
-  }
-}
-
 .a_popup.completed {
   background-color: $light_blue;
 }
@@ -54,17 +39,41 @@
 
 }
 
+
+.cal {
+  width: 95%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  @media (max-width: 500px) {
+    width: 98%;
+  }
+  @media (max-width: 320px) {
+    width: 100%;
+  }
+}
+
+
 table {
+  width: 100%;
+  margin: 0 auto;
   border-collapse: collapse;
   /* margin: 10px auto; */
   border: 1px solid $dark_blue;
   background-color: $gray;
+  tr {
+  @media (max-width: 500px) {
+    font-size: 0.8em;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.2em;
+  }
+  }
   td {
     border: 1px solid black;
     margin: 0;
     padding: 0;
     background-color: $gray;
-    min-width: 75px;
+    width: 14.28%; //1/7
     min-height: 75px;
     vertical-align: top;
     @media (max-width: 321px) {
