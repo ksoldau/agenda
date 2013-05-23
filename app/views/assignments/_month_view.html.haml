@@ -39,8 +39,11 @@
       %tr 
         -week.each do |date|
           %td
-            .cal_day
+            - todayHuh = (Date.today.to_date === date)
+            .cal_day{:id => (todayHuh ? "cal_day_today" : nil) }
               = date.strftime("%d")
+              - if todayHuh
+                %span Today
             .day_cal
               - if @as_grouped_by_dd[date]
                 - @as_grouped_by_dd[date].each do |a|
