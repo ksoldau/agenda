@@ -64,26 +64,4 @@
 }
 }
 
-#header_link {
-  float: right;
-  margin: 0.7em 0.5em;
-  border-radius: 8px;
-
-  a {
-    text-align: center;
-    font-size: 1em;
-    color: $light_blue;
-    text-decoration: none;
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: $blue;
-  }
-  a:visited {
-    color: $light_blue;
-  }
-  a:hover {
-    color: $light_blue_hover;
-  }
-}
-
 
