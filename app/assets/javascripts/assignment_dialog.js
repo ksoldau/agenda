@@ -8,9 +8,10 @@ function initializeAssignmentsDialogs() {
         resizable: false, 
         modal: false,
         autoOpen: false,
-        width: 'auto',
+        width: 235,
         minHeight: 0,
       });
+
 
       $(this).mouseover( function() {
         popup.dialog("open");
