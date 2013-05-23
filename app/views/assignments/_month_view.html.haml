@@ -5,12 +5,12 @@
     {:class => "current"}
 
   .rotate_through
-    = link_to "prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
+    = link_to "Prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month),
       {:class => "which_btn"}
     - @other_class = params[:which].to_date.beginning_of_month == Date.today.beginning_of_month ? "current" : nil
-    = link_to "this month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
+    = link_to "This Month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
       {:class => "#{@other_class} which_btn"}
-    = link_to "next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
+    = link_to "Next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month), 
       {:class => "which_btn"}
 %h2
   = params[:which].to_date.strftime("%B, %Y")
