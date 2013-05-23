@@ -2,15 +2,14 @@
   .nav_view
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), 
     {:class => "current"}
-    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which])   
-
+    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which])
   .rotate_through
-    = link_to "prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week),
+    = link_to "Prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week),
       {:class => "which_btn"}
     - @other_class = params[:which].to_date.beginning_of_week == Date.today.beginning_of_week ? "current" : nil
-    = link_to "this week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
+    = link_to "This Week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
       {:class => "which_btn #{@other_class}"}    
-    = link_to "next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
+    = link_to "Next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
       {:class => "which_btn"}
 
 - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
