@@ -13,6 +13,10 @@ h2 {
   color: $light_blue;
   margin: 0;
   margin-bottom: 0.5em;
+  @media (max-width: 321px) {
+    margin-top: 0.1rem;
+    font-size: 1.1rem;
+  }
 }
 .subject {
   font-weight: bold;
