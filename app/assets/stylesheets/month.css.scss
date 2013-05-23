@@ -4,6 +4,14 @@
   padding: 10px;
   background-color: $gray;
   border-radius: 8px;
+  @media (max-width: 320px) {
+    padding: 0;
+  }
+  tr {
+  @media (max-width: 320px) {
+    font-size: 0.2em;
+  }
+  }
 }
 
 .a_popup.completed {
@@ -57,9 +65,16 @@ table {
     background-color: $gray;
     min-width: 75px;
     min-height: 75px;
+    @media (max-width: 321px) {
+      max-width: 44px;
+      min-height: 20px;
+    }
 
     .day_cal {
       min-height: 75px;
+      @media (max-width: 321px) {
+        min-height: 30px;
+      }
     }
     
   }
