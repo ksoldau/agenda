@@ -2,10 +2,15 @@
 
 .logo {
   float: left;
-  margin-top: 0.5em;
+  margin-top: 0.7rem;
   margin-left: 1em;
   margin-bottom: 0em;
   font-size: 1.5em;
+  @media (max-width: 410px) {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    margin-top: 0.7rem;
+  }
   a {
     text-decoration: none;
     color: $dark_blue;
@@ -40,9 +45,18 @@
     /*   color: $light_blue_hover; */
     /*   background-color: $blue_hover; */
     /* } */
+
+    @media (max-width: 455px) {
+      font-size: 1.1rem;
+      margin-top: 0.9rem;
+    }
   }
   .agenda {
     margin-left: 1em;
+
+    @media (max-width: 410px) {
+      margin-left: 0.6rem;
+    }
   }
   .not_current_tab:hover {
     background-color: $blue_hover;
@@ -65,9 +79,6 @@
   }
 }
 
-
-
-
 #header_link {
   float: right;
   margin: 0.7em 0.5em;
@@ -81,6 +92,9 @@
     border-radius: 8px;
     padding: 4px 8px;
     background-color: $blue;
+    @media (max-width: 410px) {
+      font-size: 0.8rem;
+    }
   }
   a:visited {
     color: $light_blue;
@@ -90,3 +104,5 @@
     background-color: $blue_hover;
   }
 }
+
+

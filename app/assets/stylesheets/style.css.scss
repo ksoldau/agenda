@@ -17,14 +17,12 @@ body {
     width: 300px;
   }
   
-  .logo {
-    margin-top: 0.2em;
-    margin-bottom: 0;
-  }
-  
   .name {
     color: $blue;
     margin: 1.4em 0.5em 0 0;
+    @media (max-width: 555px) {
+      display: none;
+    }
   }
 
 
@@ -37,6 +35,9 @@ body {
 }
 .which_btn {
   font-size: .75em;
+  @media (max-width: 339px) {
+    font-size: .68rem;
+  }
 }
 
 .new_assignment_button {
@@ -51,7 +52,10 @@ body {
 
 .week {
   max-width: 774px;
-  margin: 2em auto 0 auto;  
+  margin: 2em auto 0 auto;
+  @media (max-width: 771px) {
+    max-width: 386px;
+  }
 }
 .cal {
   width: 542px;
@@ -66,12 +70,22 @@ body {
 }
 .side {
   float: left;
+  margin: 0 15px;
+  @media (max-width: 384px) {
+    float: none;
+  }
 }
 
 .assignment_box {
   background-color: $gray;  
+  @media (min-width: 385px) {
   width: 350px;
-  margin: 15px 15px 0 15px;
+  }
+  @media (max-width: 384px) {
+    min-width: 95%;
+  }
+
+  margin: 15px 0 0 0;
   color: $dark_blue;         
   /* -moz-box-shadow: 2px 2px 6px #000; */
   /* -webkit-box-shadow: 2px 2px 6px #000; */
@@ -193,6 +207,12 @@ body {
   .nav_view {
     font-size: .75em;
     margin-left: 1em;
+    a span {
+      font-size: .75rem;
+      @media (max-width: 339px) {
+        font-size: .68rem;
+      }
+    }
   }
   .rotate_through {
     float: right;
@@ -290,5 +310,7 @@ body {
     background-image: url("pencil_hover_o.png");
   }
 }
+
+
 
 
