@@ -13,6 +13,12 @@ function initializeEditButtonAndDialogs() {
       //hide: 'fade',
       });
 
+      var viewportWidth = $(window).width();
+      if (viewportWidth < 470) {
+        dlg.dialog( "option", "width", viewportWidth - 30);
+        $(dlg.find("#assignment_description")).css("width", viewportWidth - 70);
+      }
+
       $(this).on('click', function() {
         dlg.dialog('open');
       });
@@ -35,6 +41,11 @@ function initializeDeleteDialogs() {
       modal: true, 
       autoOpen: false,
       });
+      
+      /* var viewportWidth = $(window).width(); */
+      /* if (viewportWidth < 470) { */
+      /*   dlg.dialog( "option", "width", viewportWidth - 4); */
+      /* } */
 
       $(this).on('click', function() {
         dlg.dialog('open');
