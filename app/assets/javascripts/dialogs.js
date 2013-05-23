@@ -76,6 +76,12 @@ function initializeAddDialogs() {
       autoOpen: false,
       });
 
+      var viewportWidth = $(window).width();
+      if (viewportWidth < 470) {
+        dlg.dialog( "option", "width", viewportWidth - 30);
+        $(dlg.find("#assignment_description")).css("width", viewportWidth - 70);
+      }
+
       $(this).on('click', function() {
         dlg.dialog('open');
       });
