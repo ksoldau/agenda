@@ -66,6 +66,7 @@ table {
     background-color: $gray;
     min-width: 75px;
     min-height: 75px;
+    vertical-align: top;
     @media (max-width: 321px) {
       max-width: 44px;
       min-height: 20px;
