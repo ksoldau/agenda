@@ -64,9 +64,15 @@ class AssignmentsController < ApplicationController
     session['referer'] = request.referer
 
     @as.update_attributes(params[:assignment])
-    respond_with @as do |format|
-      format.json {render json: @as.to_json}
+    
+    if request.xhr?
+      respond_with @as do |format|
+        format.json {render json: @as.to_json}
+      end
+    else 
+      redirect_to request.referer
     end
+    
   end
 
   def edit
