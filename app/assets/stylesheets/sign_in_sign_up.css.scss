@@ -24,7 +24,7 @@
 
     #user_email, #user_password, #user_password_confirmation,
     #user_first_name, #user_last_name {
-      width: 25em;
+      width: 97%;
     }
 
     label {
@@ -67,7 +67,16 @@
     a:hover {
       color: $light_blue_hover;
     }
-}
+  }
+  form[action='/users/password'] {
+    input.button {
+      font-size: 1.05rem;
+      margin-top: 1rem;
+      @media (max-width: 358px) {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }
 
 
