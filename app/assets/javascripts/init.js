@@ -108,6 +108,10 @@ $(function() {
 })
 
 
+$(function() {
+  $(".subject_dropkick").dropkick({startSpeed: 0});
+})
+
 /* $(function() { */
 /*   $( ".a_dialog").hover( */
 /*     function() { */

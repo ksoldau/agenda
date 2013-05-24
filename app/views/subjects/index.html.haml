@@ -13,6 +13,17 @@
         %a{:href =>"#tabs-#{i}"} 
           = s.name
           - i += 1
+
+  .select_subject
+    %select{:tabindex => '1', :name => 'pretty', :class => 'subject_dropkick'}
+      %option{:value=>"Pick a subject"}
+        Choose a subject
+      -i = 1
+      - @ss.each do |s| 
+        %option{:value=>"tabs-#{i}"}
+        
+          - i += 1
+          = s.name
   -i = 1;
   - @ss.each do |s|
     %div{:id => "tabs-#{i}"}
