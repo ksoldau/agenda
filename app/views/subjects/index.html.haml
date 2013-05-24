@@ -17,14 +17,14 @@
   - @ss.each do |s|
     %div{:id => "tabs-#{i}"}
       - i += 1
-      .add_btn
-        .add_dialog
-          = simple_form_for [current_user, @newa] do |f|
-            = f.association :subject, collection: current_user.subjects, :selected => s.id
-            = f.input :description
-            = f.input :due_date
-            = f.input :completed
-            = f.submit "Add", :class => "button" 
+      /* .add_btn */
+      /*   .add_dialog */
+      /*     = simple_form_for [current_user, @newa] do |f| */
+      /*       = f.association :subject, collection: current_user.subjects, :selected => s.id */
+      /*       = f.input :description */
+      /*       = f.input :due_date */
+      /*       = f.input :completed */
+      /*       = f.submit "Add", :class => "button" */ 
 
       - if @as_grouped_by_s[s]
         - @as_grouped_by_s[s].each do |a|
@@ -49,10 +49,10 @@
                   = f.input :due_date
                   = f.input :completed 
                   = f.submit
-      .delete_subj_btn
-        .delete_subj_dialog{:title => "Delete Assignment"}
-          Are you sure you want to delete this subject? Deleting this subject will also delete all of its assignments?
-          = link_to "Delete", user_subject_path(current_user, s), :method => :delete
+      /* .delete_subj_btn */
+      /*   .delete_subj_dialog{:title => "Delete Assignment"} */
+      /*     Are you sure you want to delete this subject? Deleting this subject will also delete all of its assignments? */
+      /*     = link_to "Delete", user_subject_path(current_user, s), :method => :delete */
 
 
 
