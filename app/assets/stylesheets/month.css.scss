@@ -91,6 +91,9 @@ table {
 
     .day_cal {
       min-height: 75px;
+      @media (max-width: 500px) {
+        min-height: 50px;  
+      }
       @media (max-width: 321px) {
         min-height: 30px;
       }
