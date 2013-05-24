@@ -1,6 +1,6 @@
 .header
   #header_link
- 
+    // the button on the right
     - if current_user != nil
       %span{:class => "name"}  
         Hi, 
@@ -13,6 +13,8 @@
       - if params[:controller] == "devise/sessions"
         = link_to "Sign up", new_registration_path(resource_name)
       - if params[:controller] == "devise/registrations"
+        = link_to "Sign in", new_session_path(resource_name)
+      - if params[:controller] == "devise/passwords"
         = link_to "Sign in", new_session_path(resource_name)
 
 
