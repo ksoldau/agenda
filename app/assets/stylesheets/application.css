@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery.ui.all
  *= require base
+ *= require dropkick
  *= require style
  *= require nav
  *= require week
