@@ -40,11 +40,11 @@
               %span Today
           - if !as.empty?
             - as.each do |a|
-              .as_box{:class => (a.completed ? "completed" : "not_completed")}
+              .as_box{:class => (a.completed ? "completed" : "not_completed"), :"data-path" => user_assignment_path(current_user, a)}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   due at 
-                  = a.due_date.strftime("%H:%M");
+                  = a.due_date.strftime("%I:%M %p");
                 .subject
                   = a.subject.name
                 .description
