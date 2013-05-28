@@ -337,8 +337,18 @@ ul.dk_options_inner {
 }
 
 
+//////////
+.subject_a_date {
+  margin-left: 2em;
+  @media (max-width: 695px) {
+    margin-left: 1em;
+  }
+}
+
 ///// for forms on other pages that use drop downs for now
 .dk_fouc select {
   top: 0em;
   visibility: visible;
 }
+
+
