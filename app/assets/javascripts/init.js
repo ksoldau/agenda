@@ -37,6 +37,16 @@ $(function() {
     autoOpen:false
   });
 })
+$(function() {
+  $(".edit_subj_btn").button()
+  .click(function (e) {
+  });
+});
+$(function() {
+  $(".edit_subj_dialog").dialog({
+    autoOpen: false
+  });
+});
 
 $(function() {
   $(".nav_view").buttonset()
