@@ -44,7 +44,7 @@
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   due at 
-                  = a.due_date.strftime("%I:%M %p");
+                  = a.due_date.strftime("%I:%M %P");
                 .subject
                   = a.subject.name
                 .description

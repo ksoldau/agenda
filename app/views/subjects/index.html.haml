@@ -33,13 +33,14 @@
       - if @as_grouped_by_s[s]
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
-          = date.strftime("%A %b %d, %Y");
+          .subject_a_date
+            = date.strftime("%A %b %d, %Y");
           - a.each do |a|
             .as_box{:class => (a.completed ? "completed" : "not_completed")}
               .due_time
                 -#= a.due_date.to_formatted_s(:long)
                 due at
-                = a.due_date.strftime("%I:%M %p");
+                = a.due_date.strftime("%I:%M %P");
               .subject
                 = a.subject.name
               .description

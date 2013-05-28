@@ -59,7 +59,7 @@
                           due on 
                           = a.due_date.strftime("%B %d, %Y");
                           at 
-                          = a.due_date.strftime("%H:%M");
+                          = a.due_date.strftime("%I:%M %P");
 
                     .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
                       .a_box_month
@@ -71,7 +71,7 @@
                           due on 
                           = a.due_date.strftime("%B %d, %Y");
                           at 
-                          = a.due_date.strftime("%H:%M");
+                          = a.due_date.strftime("%I:%M %P");
                         .delete_btn
                           .delete_dialog{:title => "Delete Assignment"}
                             Are you sure you want to delete this assignment?
