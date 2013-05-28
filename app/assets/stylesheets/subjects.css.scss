@@ -83,6 +83,12 @@
         float: right;
       }
     }
+    .ui-state-default:hover {
+      background-color: $blue_hover;
+      a {
+        color: $light_blue_hover;
+      }
+    }
     .ui-tabs-active {
       background-color: $gray;
       color: $dark_blue;
@@ -90,6 +96,11 @@
          background-color: $gray;
          color: $dark_blue;
        }
+    }
+    .ui-tabs-active:hover {
+      a {
+        color: $dark_blue; // this is to cancel out styling from above
+      }
     }
   }
   .ui-tabs-panel {
