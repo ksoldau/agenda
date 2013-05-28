@@ -19,10 +19,6 @@ class AssignmentsController < ApplicationController
       get_last_day_cal
       get_month_as
       get_group_month_as
-     # getAssignmentsForMonth
-     # #group assignments by date to use in view
-     # @as_grouped = @as.group_by {|a| a.due_date.to_date}
-     # @as_grouped_by_week = GroupByWeek.new(
 
     else #goes here after log in
       @assignments = current_user.assignments #devise gives us current_user
@@ -173,27 +169,6 @@ class AssignmentsController < ApplicationController
     @as_grouped_by_dd = @as.group_by {|a| a.due_date.to_date}
   end
 
-
-
-  # gets assignments that should be shown from wanted month
-  #def getAssignmentsForMonth
-  #  @month_want = params[:which]
-  #  if params[:which] != nil
-   #   @as = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
-   #                                        {:start_month => @month_want.to_date.beginning_of_month,
-   #                                          :end_month => @month_want.to_date.end_of_month})
-   # else 
-   #   @as = current_user.assignments.where("due_date >= :start_month AND due_date <= :end_month", 
-   ##                                        {:start_month => Date.today.beginning_of_month,
-   #                                          :end_month => Date.today.end_of_month})
-   # end
-
-    # should take this out of controller
-    # getting first day of calendar
-    # get first day of month, then first day of week, then previous day
-      #################################
-
-  #end
 
   def createNewAssignment
     @assignment = Assignment.new(params['assignment'])
