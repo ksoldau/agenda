@@ -53,6 +53,14 @@
                   = f.input :due_date
                   = f.input :completed 
                   = f.submit
+      .delete_subj_btn.button
+        Delete Subject
+        .delete_subj_dialog{:title => "Delete Subject"}
+          Are you sure you want to delete the 
+          = s
+          subject? Deleting this subject will also delete all of its assignments.
+          = link_to "Delete", user_subject_path(current_user, s), :method => :delete
+
       /* .delete_subj_btn */
       /*   .delete_subj_dialog{:title => "Delete Assignment"} */
       /*     Are you sure you want to delete this subject? Deleting this subject will also delete all of its assignments? */
