@@ -14,16 +14,33 @@ $(function() {
           $("#" + iddd).attr("aria-expanded", "false").attr("aria-hidden", "true");
           $("#" + iddd).attr("style", "display:none");
         });
-
+        
+        // expand correct tab area
         $("#" + idd).attr("aria-expanded", "true").attr("aria-hidden", "false");
         $("#" + idd).attr("style", "display:block");
 
+        // change which tab would be open if viewport bigger
+        var dropDownSubjectName = $(this).text().trim();
+        console.log("this is dropDownSubjectName: " + dropDownSubjectName);
+        
+        $("li[role=tab]").each( function() {
+          var tabSubjectName = $(this).text().trim();
+          console.log("this is tabSubjectName: " + tabSubjectName);
+          
+          if (tabSubjectName.indexOf(dropDownSubjectName) >= 0) {
+            $(this).addClass("ui-state-active ui-tabs-active");
+          }
+          else {
+            $(this).removeClass("ui-state-active ui-tabs-active");
+          }
+        });
+
       });
+      
     });
 });
 
 
-// switching tab view to right state
 // switching drop down to right thing based on tab click in case screen size changes
 $(function() {
   $("li[role=tab]").each ( function() {
