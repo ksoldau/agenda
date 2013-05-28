@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require radiobutton
 //= require dropkick
 //= require assignment_dialog
 //= require dialogs
