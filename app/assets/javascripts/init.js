@@ -1,137 +1,53 @@
 
- $(function() {
+$(function() {
+    //initialize buttons
+    $(".which_btn").button().click(function(event) {});
+    $(".sign_out_btn").button().click(function(event) {});
+    $(".delete_subj_btn").button().click(function(e) {});
+    $(".add_subj_btn").button().click(function(e) {});
+    $(".edit_subj_btn").button().click(function(e) {});
+
+    $( "#radio" ).buttonset(); // is this even used? 
+    $(".nav_view").buttonset();
+    $(".rotate_through").buttonset();
+
+    //initialize tabs (subject page)
     $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
     $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
-  });
 
-$(function() { 
-    $( "#radio" ).buttonset(); 
-});
-
-$(function() {
-    $( ".which_btn" )
-    .button()
-    .click(function( event ) {
-  });
-});
-
-$(function() {
-    $( ".sign_out_btn")
-    .button()
-    .click(function ( event ) {
-  });
-});
-
-$(function() {
-  $(".add_subj_btn").button()
-  .click(function (e) {
-  });
-});
-$(function() {
-  $(".delete_subj_btn").button()
-  .click(function (e) {
-  });
-});
-$(function() {
-  $(".delete_subj_dialog").dialog({
-    autoOpen:false
-  });
-})
-$(function() {
-  $(".edit_subj_btn").button()
-  .click(function (e) {
-  });
-});
-$(function() {
-  $(".edit_subj_dialog").dialog({
-    autoOpen: false
-  });
-});
-
-$(function() {
-  $(".nav_view").buttonset()
-});
-
-$(function() {
-  $(".rotate_through").buttonset()
-});
-
-$(function() {
-   $( ".a_dialog" ).dialog({
-   autoOpen: false
-   }); 
-});
-
-$(function() {
-  $(".a_popup").dialog({
-    autoOpen: false
-  });
-});
-
-$(function() {
-  $(".edit_dialog").dialog({
-    autoOpen: false
-  });
-});
-
-$(function() {
-  $(".delete_dialog").dialog({
-    autoOpen:false
-  });
-});
+    //initialize dialogs
+    $(".delete_subj_dialog").dialog({ autoOpen:false});
+    $(".edit_subj_dialog").dialog({autoOpen: false});
+    $( ".a_dialog" ).dialog({autoOpen: false}); 
+    $(".a_popup").dialog({autoOpen: false});
+    $(".edit_dialog").dialog({autoOpen: false});
+    $(".delete_dialog").dialog({autoOpen:false});
+    $(".add_subj_dialog").dialog({autoOpen: false});
+    $( ".assignment_box" ).hover(function() { $(this).find(".add_btn").toggle();});
 
 
-$(function() {
-  $(".add_subj_dialog").dialog({
-    autoOpen: false
-  });
-});
-$(function() {
-  $( ".assignment_box" ).hover(function() {
-    $(this).find(".add_btn").toggle();
-    
-    })
-})
-
-$(function() {
-  $( ".as_box").hover(
-    function() {
-      $(this).find(".delete_btn").css("visibility", "visible");
-      $(this).find(".edit_btn").css("visibility", "visible");
-    },
-    function() {
-      $(this).find(".delete_btn").css("visibility", "hidden");
-      $(this).find(".edit_btn").css("visibility", "hidden");
+    //initialize hover effects
+    $( ".as_box").hover(
+      function() {
+        $(this).find(".delete_btn").css("visibility", "visible");
+        $(this).find(".edit_btn").css("visibility", "visible");
+      },
+      function() {
+        $(this).find(".delete_btn").css("visibility", "hidden");
+        $(this).find(".edit_btn").css("visibility", "hidden");
       });
+    $("#tabs").hover(
+      function() {
+        $(this).find(".add_btn").css("visibility", "visible");
+        $(this).find(".delete_subj_btn").css("visibility", "visible");
+      },
+      function() {
+        $(this).find(".add_btn").css("visibility", "hidden");
+        $(this).find(".delete_subj_btn").css("visibility", "hidden");
+      });
+
+    //initialize dropkick js 
+    $(".subject_dropkick").dropkick({startSpeed: 0});
+
 })
-
-$(function() {
-  $("#tabs").hover(
-    function() {
-      $(this).find(".add_btn").css("visibility", "visible");
-      $(this).find(".delete_subj_btn").css("visibility", "visible");
-    },
-    function() {
-      $(this).find(".add_btn").css("visibility", "hidden");
-      $(this).find(".delete_subj_btn").css("visibility", "hidden");
-    });
-})
-
-
-$(function() {
-  $(".subject_dropkick").dropkick({startSpeed: 0});
-})
-
-/* $(function() { */
-/*   $( ".a_dialog").hover( */
-/*     function() { */
-/*       $(this).find(".delete_btn").css("visibility", "visible"); */
-/*       $(this).find(".edit_btn").css("visibility", "visible"); */
-/*     }, */
-/*     function() { */
-/*       $(this).find(".delete_btn").css("visibility", "hidden"); */
-/*       $(this).find(".edit_btn").css("visibility", "hidden"); */
-/*       }); */
-/* }) */
-
 
