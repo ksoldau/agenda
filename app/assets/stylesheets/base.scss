@@ -125,9 +125,13 @@ h3 {
   background-color: $blue;
   color: $light_blue;
   border: none;
-
 }
-
+.ui-button.ui-state-default.current {
+  background-image: none;
+  background-color: $blue_hover;
+  color: $light_blue_hover;
+  border: none;
+}
 //remove blue focus glow
 .ui-tabs-active, .ui-state-default {
   a {
