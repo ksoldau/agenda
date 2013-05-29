@@ -20,6 +20,11 @@
   -i = 1;
   - @ss.each do |s|
     %div{:id => "tabs-#{i}"}
+      .edit_subj_btn 
+        .edit_subj_dialog 
+          = simple_form_for [current_user, s] do |f| 
+            = f.input :name
+            = f.submit "Edit"
       - i += 1
       /* .add_btn */
       /*   .add_dialog */
