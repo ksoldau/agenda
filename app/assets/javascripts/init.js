@@ -49,5 +49,8 @@ $(function() {
     //initialize dropkick js 
     $(".subject_dropkick").dropkick({startSpeed: 0});
 
+    //initialize datepicker
+    $(".datepicker").datepicker();
+
 })
 

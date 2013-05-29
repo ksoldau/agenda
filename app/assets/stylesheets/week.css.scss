@@ -27,3 +27,21 @@
 /* #today_nc_border { */
 /*   border-color: $orange; */
 /* } */
+
+.add_dialog form {
+  select, input {
+    display: block;
+  }
+  .due_on_due_at {
+    display: block;
+    select {
+      display: inline-block;
+    }
+  }
+  .completed_radio_btns {
+    display: block;
+    input {
+      display: inline-block;
+    }
+  }
+}

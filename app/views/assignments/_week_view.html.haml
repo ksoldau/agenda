@@ -33,6 +33,36 @@
                 = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes 
                 = f.input :completed, :label => "Completed?", :as => "radio_buttons"
                 = f.submit "Add", :class => "add_dialog_submit"
+              /* %form{class: "add_form", remote: true} */
+              /*   Subject */
+              /*   %select{:name => 'subject', :class => 'add_dropkick'} */
+              /*     %option{:value => "Pick a subject"} */
+              /*       Choose a subject */
+              /*     - @ss.each do |s| */
+              /*       %option */
+              /*         = s.name */
+              /*   Description */
+              /*   %input{type: "text", name: "description"} */
+              /*   Due on */
+              /*   %input{type: "text", name: "date", class: "datepicker"} */
+              /*   at */
+              /*   .due_on_due_at */
+              /*     %select{name: "hour"} */
+              /*       - (0..23).each do |h| */
+              /*         %option */ 
+              /*           = h */
+              /*     %select{name: "minute"} */
+              /*       - (0..59).each do |m| */
+              /*         %option */
+              /*           = m */
+              /*   Completed? */
+              /*   .completed_radio_btns */
+              /*     %input{type: "radio", name: "completed", value: "yes"} Yes */
+              /*     %input{type: "radio", name: "completed", value: "no", checked: "true"} No */
+              /*   // fake submit button */
+              /*   .fake_submit_button */
+              /*     Submit */
+
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
