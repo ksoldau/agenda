@@ -6,6 +6,12 @@ Scratch::Application.routes.draw do
     resources :subjects
   end
 
-  root :to => 'assignments#index'
+  authenticated :user do
+    root :to => 'assignments#index'
+  end
+  
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
 end
