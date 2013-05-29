@@ -95,9 +95,6 @@ $(function() {
 
         //find prev time
         //find next time
-
-
-
       }
 
       //if date has changed
@@ -130,27 +127,46 @@ $(function() {
             var aArray = Array.prototype.slice.call(assignmentsArray);
             
             if (aArray.length > 0) {
+              console.log("GOT HERE");
               for (i = 0; i < aArray.length; i++) { 
                 var o_a = $(aArray[i]);
                 var o_due_time = o_a.find(".due_time");
-                var o_due_time_text = o_due_time.text().replace(/\s+/g, '');
-                var o_hour = Number(o_due_time_text.split(':')[0]);
-                var o_min = Number(o_due_time_text.split(':')[1]);
-                var o_date = new Date (0, 0, 1, o_hour, o_min);
-                console.log(o_hour);
+                
+                var o_due_time_text = o_due_time.text().replace(/\s+/g, ' ').trim();
+                
+                var o_hour = Number(o_due_time_text.split(' ')[2].split(':')[0]);
+                var o_min = Number(o_due_time_text.split(' ')[2].split(':')[1]);
+                
+                var am_or_pm = o_due_time_text.split(' ')[3];
+                
+                var o_24hour = o_hour;
+                
+                if (am_or_pm === "am" && o_hour === 12) {
+                  var o_24hour = 0;
+                }
+                if (am_or_pm === "pm" && o_hour > 12) {
+                  var o_24hour = o_hour + 12;
+                }
+
+                var o_date = new Date (0, 0, 1, o_24hour, o_min);
+                console.log(o_24hour);
                 console.log(o_min);
                 console.log(o_date.getTime());
                 
                 if (new_hour < 10) {
-                  new_hour = "0" + new_hour;
+                  /* new_hour = "0" + new_hour; */
                 }
                 if (new_min < 10) {
-                  new_min = "0" + new_min;
+                  /* new_min = "0" + new_min; */
                 }
                 var new_date_time = new Date(0, 0, 1, Number(new_hour), Number(new_min));
-                console.log(new_date_time.getTime());
+                console.log("this is new_date_time " + (new_date_time.getTime()/100000));
 
-                if (new_date_time.getTime() <= o_date.getTime()) {
+                console.log("this is o_date.getTime() " + (o_date.getTime()/100000));
+
+                console.log(new_date_time.getTime() <= o_date.getTime());
+                
+                if (new_date_time.getTime() >= o_date.getTime()) { //opposite bc negative for some reason
                   console.log("GOT INTO THIS IF");
                   o_a.before(assignment);
                 }
@@ -181,7 +197,19 @@ $(function() {
       if (new_min < 10 ) {
         new_min = "0" + new_min;
       }
-      trigger.closest(".as_box").find(".due_time").first().text(new_hour + ":" + new_min);
+      // back to 12 hr time
+      var am_pm = "am";
+      if (new_hour >= 12) {
+        var am_pm = "pm";
+      }
+      if (new_hour > 12) {
+        new_hour = new_hour - 12;
+      }
+      if (new_hour === 0) {
+        new_hour = 12;
+      }
+
+      trigger.closest(".as_box").find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
       
    
       //change background color based on completion 
