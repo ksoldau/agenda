@@ -313,4 +313,11 @@ body {
 
 
 
+.alert, .notice {
+  text-align: center;
+  color: $orange;
+}
 
+.error_notification, .error {
+  color: $orange;
+}
