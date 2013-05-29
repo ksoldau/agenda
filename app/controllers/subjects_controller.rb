@@ -31,6 +31,11 @@ class SubjectsController < ApplicationController
 
   def update
     session['referer'] = request.referer
+
+    #get subject want to update
+    @s = current_user.subjects.where(id: params[:id]).first
+    @s.update_attributes(params[:subject])
+
     redirect_to session['referer']
   end
 

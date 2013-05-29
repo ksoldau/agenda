@@ -172,6 +172,30 @@ function initializeDeleteSubjectDialog() {
 /* } */
 
 
+function initializeEditSubjectDialog() {
+  $(".edit_subj_btn").each(
+    function() {
+      var dialog = $(this).find(".edit_subj_dialog").dialog({
+      closeOnEscape: true, 
+      title: "Edit Subject", 
+      width: 300, 
+      height: 200, 
+      draggable: false,
+      resizable: false, 
+      modal: true, 
+      autoOpen: false, 
+      }); 
+
+      $(this).on('click', function() {
+        dialog.dialog('open');
+      });
+
+      $(this).hover( 
+        function() {}, 
+        function() {}
+      );
+    });
+}
   
 $(document).ready(function(){
 
@@ -180,6 +204,7 @@ $(document).ready(function(){
  initializeAddDialogs();
  initializeAddSubjectDialog();
  initializeDeleteSubjectDialog();
+ initializeEditSubjectDialog();
  /* initializeSignInDialog(); */
 
 })

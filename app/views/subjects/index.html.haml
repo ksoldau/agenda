@@ -51,7 +51,7 @@
                   = link_to "Delete", user_assignment_path(current_user, a), :method => :delete, :remote => true
               .edit_btn
                 .edit_dialog{:title => "Edit Assignment", 
-                :class => a.completed ? "completed" : "not_completed"}
+                  :class => a.completed ? "completed" : "not_completed"}
                   = simple_form_for [current_user, a], remote: true, html: {data: {type: 'json'}} do |f|
                     = f.association :subject, collection: current_user.subjects    
                     = f.input :description 
@@ -66,12 +66,6 @@
       /*     subject? Deleting this subject will also delete all of its assignments. */
       /*     = link_to "Delete", user_subject_path(current_user, s), :method => :delete */
 
-      /* .edit_subj_btn.button */
-      /*   Edit Subject */
-      /*   .edit_subj_dialog{:title => "Edit Subect"} */
-      /*     = simple_form_for [current_user, s] do |f| */
-      /*       = f.input :name, :input_html => {:size => 30} */
-      /*       = f.submit "Add" */
 
 
 .add_subj_btn.button

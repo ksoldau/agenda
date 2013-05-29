@@ -6,7 +6,8 @@ class AssignmentsController < ApplicationController
     session[:return_to] ||= request.referer
     
     @newa = Assignment.new    
-    
+    @ss = current_user.subjects
+
     case params[:query]
 
     when 'week'
@@ -39,7 +40,7 @@ class AssignmentsController < ApplicationController
   def create
     createNewAssignment
     #@assignment.save
-    #binding.pry
+    binding.pry
     #respond_with @assignment do |format|
     #    format.json {render json: @assignment.to_json}
     #end

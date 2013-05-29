@@ -203,13 +203,16 @@
 }
 .edit_subj_btn {
   float: right;
-  margin-top: 0.1em;
-  margin-right: 0.3em;
-  background-image: none;
-  background-color: $blue;
+  visibility: hidden; //toggled with jquery
+  width: 13px;
+  height: 13px;
   cursor: pointer;
+  background-image: url("pencil.png");
+  background-color: none;
 }
-
+.edit_subj_btn:hover {
+  background-image: url("pencil_hover.png");
+}
 
 .select_subject {
   display: none;

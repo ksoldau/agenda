@@ -5,7 +5,7 @@ $(function() {
     $(".sign_out_btn").button().click(function(event) {});
     $(".delete_subj_btn").button().click(function(e) {});
     $(".add_subj_btn").button().click(function(e) {});
-    $(".edit_subj_btn").button().click(function(e) {});
+    //$(".edit_subj_btn").button().click(function(e) {});
 
     $( "#radio" ).buttonset(); // is this even used? 
     $(".nav_view").buttonset();
