@@ -57,6 +57,11 @@
   li:hover {
     background-color: $blue_hover;
   }
+  .as_box, .subject_a_date {
+    @media (max-width: 400px) {
+      font-size: 0.9rem;
+    }
+  }
   .ui-tabs-nav {
     background-color: $gray;
     background-image: none;
