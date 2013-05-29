@@ -55,6 +55,7 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     diff-lcs (1.2.4)
+    dotenv (0.7.0)
     dropkick-rails (1.0.1)
       railties (>= 3.1)
     erubis (2.7.0)
@@ -68,6 +69,9 @@ GEM
       railties (>= 3.0.0)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     haml (4.0.2)
       tilt
     haml-rails (0.4)
@@ -186,6 +190,7 @@ DEPENDENCIES
   devise
   dropkick-rails
   factory_girl_rails
+  foreman
   haml-rails
   jquery-rails
   jquery-ui-rails

@@ -18,6 +18,7 @@ end
 
 group :test, :development do
   gem 'pry-rails'
+  gem 'foreman'
 end
 
 group :test do

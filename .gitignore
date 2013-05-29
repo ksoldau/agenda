@@ -18,3 +18,9 @@
 *.swo
 
 .DS_Store
+
+#don't share secrets with the world
+.env
+
+#don't git this because might mess things on Heroku up
+Procfile
