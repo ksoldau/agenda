@@ -1,4 +1,3 @@
-
 //initialize dialogs and make buttons open correct dialogs
 $(function() {
   //initialize dialogs for assignments
@@ -204,9 +203,9 @@ function editSubjectButtonsAndDialogs() {
   $(".edit_subj_btn").each(
     function() {
       //get subject of this edit subject button
-      subjectName = $(this).data('subject-name');
+      subjectId = $(this).data('subject-id');
       //get associated edit subject dialog
-      var dlg = $(".edit_subj_dialog[data-subject-name=" + subjectName + "]");
+      var dlg = $(".edit_subj_dialog[data-subject-id=" + subjectId + "]");
       
       $(this).on('click', function() {
         dlg.dialog('open');
@@ -225,9 +224,9 @@ function initDeleteSubjectButtonsAndDialogs() {
   $(".delete_subj_btn").each(
     function() {
       //get subject of this delete subject button
-      subjectName = $(this).data('subject-name');
+      subjectId = $(this).data('subject-id');
       //get associated edit subject dialog
-      var dlg = $(".delete_subj_dialog[data-subject-name=" + subjectName + "]");
+      var dlg = $(".delete_subj_dialog[data-subject-id=" + subjectId + "]");
 
       $(this).on('click', function() {
         dlg.dialog('open');
@@ -251,6 +250,3 @@ function initAddSubjectButtonsAndDialogs() {
       });
   });
 }
-
-
-
