@@ -219,6 +219,14 @@
   background-image: url("pencil_hover.png");
 }
 
+.edit_subj_dialog {
+  input[type="submit"] {
+    border-radius: 8px;
+    float: right;
+    margin-top: 2em;
+  }
+}
+
 .select_subject {
   display: none;
   width: 100%;
@@ -235,14 +243,8 @@
   }
 }
 
-/**
- * Your theme name here
- *
- * Say something about the theme
- *
- * Give yourself some credit here
- *
- */
+
+// The theme below was taken from dropkick.js and slightly modified
 
 /* Container */
 .dk_mytheme .dk_container {

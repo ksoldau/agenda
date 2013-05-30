@@ -177,8 +177,7 @@ function initializeEditSubjectDialog() {
     function() {
       var dialog = $(this).find(".edit_subj_dialog").dialog({
       closeOnEscape: true, 
-      title: "Edit Subject", 
-      width: 300, 
+      title: "Update Subject",
       height: 200, 
       draggable: false,
       resizable: false, 
