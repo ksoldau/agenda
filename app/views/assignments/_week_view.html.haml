@@ -25,8 +25,8 @@
             - today_complete = false;
 
         .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
-          %a.add_btn{:id => "day_#{dayn}"}
-            .add_dialog
+          %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}"}
+            .add_dialog{:'data-day' => "day#{dayn}"}
               = simple_form_for [current_user, @newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
@@ -34,36 +34,7 @@
                 order: [:month, :day, :year]
                 = f.input :completed, :label => "Completed?", :as => "radio_buttons"
                 = f.submit "Add", :class => "add_dialog_submit"
-              /* %form{class: "add_form", remote: true} */
-              /*   Subject */
-              /*   %select{:name => 'subject', :class => 'add_dropkick'} */
-              /*     %option{:value => "Pick a subject"} */
-              /*       Choose a subject */
-              /*     - @ss.each do |s| */
-              /*       %option */
-              /*         = s.name */
-              /*   Description */
-              /*   %input{type: "text", name: "description"} */
-              /*   Due on */
-              /*   %input{type: "text", name: "date", class: "datepicker"} */
-              /*   at */
-              /*   .due_on_due_at */
-              /*     %select{name: "hour"} */
-              /*       - (0..23).each do |h| */
-              /*         %option */ 
-              /*           = h */
-              /*     %select{name: "minute"} */
-              /*       - (0..59).each do |m| */
-              /*         %option */
-              /*           = m */
-              /*   Completed? */
-              /*   .completed_radio_btns */
-              /*     %input{type: "radio", name: "completed", value: "yes"} Yes */
-              /*     %input{type: "radio", name: "completed", value: "no", checked: "true"} No */
-              /*   // fake submit button */
-              /*   .fake_submit_button */
-              /*     Submit */
-
+            
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
@@ -80,12 +51,12 @@
                   = a.subject.name
                 .description
                   = a.description
-                .delete_btn
-                  .delete_dialog{:title => "Delete Assignment"}
+                .delete_btn{:'data-assignment-id' => a.id}
+                  .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
                     Are you sure you want to delete this assignment?
                     = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete, :remote => true, tabindex: -1
-                .edit_btn
-                  .edit_dialog{:title => "Update Assignment"}
+                .edit_btn{:"data-assignment-id" => a.id}
+                  .edit_dialog{:title => "Update Assignment", :"data-assignment-id" => a.id}
                     = simple_form_for [current_user, a], remote: true, html: {data: {type: 'json'}} do |f|
                       = f.association :subject, collection: current_user.subjects    
                       = f.input :description 
