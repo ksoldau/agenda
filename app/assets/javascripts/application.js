@@ -19,7 +19,6 @@
 //= require init
 //= require delete_assignment
 //= require edit_assignment
-//= require add_assignment
 //= require_tree .
 
 
