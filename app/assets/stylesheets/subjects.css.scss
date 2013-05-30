@@ -188,9 +188,12 @@
 
 .add_subj_dialog {
   input[type="submit"] {
+    float: right;
     margin-top: 1.5em;
+    margin-bottom: 0.5em;
     border: none;
     cursor: pointer;
+    border-radius: 8px;
   }
   input[type="submit"]:hover {
     background-color: $blue_hover;
