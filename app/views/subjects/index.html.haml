@@ -25,7 +25,8 @@
           Are you sure you want to delete the subject
           = s.name
           ? Deleting this subject will also delete all of its assignments.
-          = link_to "Delete", user_subject_path(current_user, s), method: :delete
+          - text = "Delete " + s.name
+          = link_to text, user_subject_path(current_user, s), method: :delete
       .edit_subj_btn 
         .edit_subj_dialog 
           = simple_form_for [current_user, s] do |f| 
