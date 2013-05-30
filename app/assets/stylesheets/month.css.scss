@@ -40,15 +40,19 @@
 }
 
 
-.cal {
+#cal_wrapper {
   width: 600px;
+  padding: 4px;
+  background-color: $gray;
   border-radius: 8px;
   margin-bottom: 20px;
+  margin: 0 auto;
   @media (max-width: 632px) {
     width: 95%;
   }
   @media (max-width: 500px) {
     width: 98%;
+    padding: 0;
   }
   @media (max-width: 320px) {
     width: 100%;

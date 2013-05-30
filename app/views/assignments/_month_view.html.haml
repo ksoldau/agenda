@@ -14,72 +14,76 @@
       {:class => "which_btn"}
 %h2
   = params[:which].to_date.strftime("%B, %Y")
-.cal
-  .cal_header
-       
-  - @list_each_week= []
-  - @list_each_week << @days_in_cal_month[0..6]
-  - @list_each_week << @days_in_cal_month[7..13]
-  - @list_each_week << @days_in_cal_month[14..20]
-  - @list_each_week << @days_in_cal_month[21..27]
-  - @list_each_week << @days_in_cal_month[28..34]
-  %table
-    %tr
-      %th Sun.
-      %th Mon.
-      %th Tues.
-      %th Wed.
-      %th Thurs.
-      %th Fri.
-      %th Sat.
-    %tr
-    - @list_each_week.each do |week|
-      /- binding.pry
-      %tr 
-        -week.each do |date|
-          %td
-            - todayHuh = (Date.today.to_date === date)
-            .cal_day{:id => (todayHuh ? "cal_day_today" : nil) }
-              = date.strftime("%d")
-              - if todayHuh
-                %span Today
-            .day_cal
-              - if @as_grouped_by_dd[date]
-                - @as_grouped_by_dd[date].each do |a|
-                  .subj_link{:class => (a.completed ? "completed" : "not_completed")}
-                    = a.subject.name
-                    .a_popup{:class => (a.completed ? "completed" : "not_completed")}
-                      .a_box_month
-                        .subject
-                          = a.subject.name
-                        .description
-                          = a.description
-                        .due_time
-                          due on 
-                          = a.due_date.strftime("%B %d, %Y");
-                          at 
-                          = a.due_date.strftime("%I:%M %P");
 
-                    .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
-                      .a_box_month
-                        .subject
-                          = a.subject.name
-                        .description
-                          = a.description
-                        .due_time
-                          due on 
-                          = a.due_date.strftime("%B %d, %Y");
-                          at 
-                          = a.due_date.strftime("%I:%M %P");
-                        .delete_btn
-                          .delete_dialog{:title => "Delete Assignment"}
-                            Are you sure you want to delete this assignment?
-                            = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete, :remote => true, tabindex: -1
-                        .edit_btn
-                          .edit_dialog{:title => "Edit Assignment"}
-                            = simple_form_for [current_user, a] do |f|
-                              = f.association :subject, collection: current_user.subjects    
-                              = f.input :description 
-                              = f.input :due_date
-                              = f.input :completed, :label => "Completed?", :as => "radio_buttons"
-                              = f.submit :class => "edit_dialog_submit"
+#cal_wrapper
+  .cal
+    .cal_header
+         
+    - @list_each_week= []
+    - @list_each_week << @days_in_cal_month[0..6]
+    - @list_each_week << @days_in_cal_month[7..13]
+    - @list_each_week << @days_in_cal_month[14..20]
+    - @list_each_week << @days_in_cal_month[21..27]
+    - @list_each_week << @days_in_cal_month[28..34]
+    %table
+      %tr
+        %th Sun.
+        %th Mon.
+        %th Tues.
+        %th Wed.
+        %th Thurs.
+        %th Fri.
+        %th Sat.
+      %tr
+      - @list_each_week.each do |week|
+        /- binding.pry
+        %tr 
+          -week.each do |date|
+            %td
+              - todayHuh = (Date.today.to_date === date)
+              .cal_day{:id => (todayHuh ? "cal_day_today" : nil) }
+                = date.strftime("%d")
+                - if todayHuh
+                  %span Today
+              .day_cal
+                - if @as_grouped_by_dd[date]
+                  - @as_grouped_by_dd[date].each do |a|
+                    .subj_link{:class => (a.completed ? "completed" : "not_completed")}
+                      = a.subject.name
+                      .a_popup{:class => (a.completed ? "completed" : "not_completed")}
+                        .a_box_month
+                          .subject
+                            = a.subject.name
+                          .description
+                            = a.description
+                          .due_time
+                            due on 
+                            = a.due_date.strftime("%B %d, %Y");
+                            .break
+                              at 
+                              = a.due_date.strftime("%I:%M %P");
+
+                      .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
+                        .a_box_month
+                          .subject
+                            = a.subject.name
+                          .description
+                            = a.description
+                          .due_time
+                            due on 
+                            = a.due_date.strftime("%B %d, %Y");
+                            .break 
+                              at 
+                              = a.due_date.strftime("%I:%M %P");
+                          .delete_btn
+                            .delete_dialog{:title => "Delete Assignment"}
+                              Are you sure you want to delete this assignment?
+                              = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete, :remote => true, tabindex: -1
+                          .edit_btn
+                            .edit_dialog{:title => "Edit Assignment"}
+                              = simple_form_for [current_user, a] do |f|
+                                = f.association :subject, collection: current_user.subjects    
+                                = f.input :description 
+                                = f.input :due_date
+                                = f.input :completed, :label => "Completed?", :as => "radio_buttons"
+                                = f.submit :class => "edit_dialog_submit"
