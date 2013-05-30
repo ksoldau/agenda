@@ -20,15 +20,15 @@
   -i = 1;
   - @ss.each do |s|
     %div{:id => "tabs-#{i}"}
-      .delete_subj_btn
-        .delete_subj_dialog{:title => "Delete Subject"}
+      .delete_subj_btn{:'data-subject-name' => s.name}
+        .delete_subj_dialog{:title => "Delete Subject", :'data-subject-name' => s.name}
           Are you sure you want to delete the subject
           = s.name
           ? Deleting this subject will also delete all of its assignments.
           - text = "Delete " + s.name
           = link_to text, user_subject_path(current_user, s), method: :delete
-      .edit_subj_btn 
-        .edit_subj_dialog 
+      .edit_subj_btn{:'data-subject-name' => s.name} 
+        .edit_subj_dialog{:'data-subject-name' => s.name} 
           = simple_form_for [current_user, s] do |f| 
             = f.input :name, input_html: {size: 30}
             = f.submit "Update", class: "button"

@@ -1,10 +1,15 @@
 
 //initialize dialogs and make buttons open correct dialogs
 $(function() {
-  //initialize dialogs
+  //initialize dialogs for assignments
   initEditDialogs();
   initDeleteDialogs();
   initAddDialogs();
+
+  //initialize dialogs for subjects
+  initEditSubjectDialogs();
+  initDeleteSubjectDialogs();
+  initAddSubjectDialog();
 
   //connect buttons and dialogs for assignments
   editButtonsAndDialogs();
@@ -12,9 +17,9 @@ $(function() {
   addButtonsAndDialogs();
 
   //connect buttons and dialogs for subjects
+  editSubjectButtonsAndDialogs();
   initAddSubjectButtonsAndDialogs();
   initDeleteSubjectButtonsAndDialogs();
-  initEditSubjectButtonsAndDialogs();
 });
 
 /*** Initialize dialogs ***/
@@ -62,6 +67,50 @@ function initAddDialogs() {
           modal: true, 
           autoOpen: false,
       });
+    });
+}
+
+//initialize edit subject dialogs
+function initEditSubjectDialogs() {
+  $(".edit_subj_dialog").each(function() {
+      $(this).dialog({
+          closeOnEscape: true, 
+          title: "Update Subject",
+          height: 200,
+          width: 300,
+          draggable: false,
+          resizable: false, 
+          modal: true, 
+          autoOpen: false, 
+      });
+  });
+}
+
+//initialize delete subject dialogs
+function initDeleteSubjectDialogs() {
+    $(".delete_subj_dialog").each(function() {
+        $(this).dialog({
+            closeOnEscape: true, 
+            title: "Delete Subject", 
+            width: 300, 
+            draggable: false,
+            resizable: false, 
+            modal: true, 
+            autoOpen: false, 
+        });
+    });
+}
+
+//initialize add subject dialogs
+function initAddSubjectDialog() {
+    //there's only one add subject button
+    $(".add_subj_dialog").dialog({
+        closeOnEscape: true,
+        title: "Add Subject", 
+        draggable: true, 
+        resizable: false, 
+        modal: true, 
+        autoOpen: false,
     });
 }
 
@@ -148,74 +197,17 @@ function addButtonsAndDialogs() {
   });
 }
 
-//initialize add subject dialogs and assign them to buttons
-function initAddSubjectButtonsAndDialogs() {
-  $(".add_subj_btn").each(
-    function() {
-      var dialog = $(this).find(".add_subj_dialog").dialog({
-      closeOnEscape: true,
-      title: "Add Subject", 
-      draggable: true, 
-      resizable: false, 
-      modal: true, 
-      autoOpen: false,
-      });
-
-      $(this).on('click', function() {
-        dialog.dialog('open');
-      });
-
-      $(this).hover(
-        function() {}, 
-        function() {}
-      );
-
-  });
-}
-
-//initialize delete subject dialogs and assign them to buttons
-function initDeleteSubjectButtonsAndDialogs() {
-  $(".delete_subj_btn").each(
-    function() {
-      var dlg = $(this).find(".delete_subj_dialog").dialog({
-      closeOnEscape: true, 
-      title: "Delete Subject", 
-      width: 300, 
-
-      draggable: false,
-      resizable: false, 
-      modal: true, 
-      autoOpen: false, 
-      }); 
-
-      $(this).on('click', function() {
-        dlg.dialog('open');
-      });
-      
-      var viewportWidth = $(window).width();
-      if (viewportWidth < 323) {
-        dlg.dialog( "option", "width", viewportWidth * .9);
-      }
-
-
-    });
-}
+/*** for subjects ***/
 
 //initialize edit subject dialogs and assign them to buttons
-function initEditSubjectButtonsAndDialogs() {
+function editSubjectButtonsAndDialogs() {
   $(".edit_subj_btn").each(
     function() {
-      var dlg = $(this).find(".edit_subj_dialog").dialog({
-      closeOnEscape: true, 
-      title: "Update Subject",
-      height: 200,
-      width: 300,
-      draggable: false,
-      resizable: false, 
-      modal: true, 
-      autoOpen: false, 
-      }); 
-
+      //get subject of this edit subject button
+      subjectName = $(this).data('subject-name');
+      //get associated edit subject dialog
+      var dlg = $(".edit_subj_dialog[data-subject-name=" + subjectName + "]");
+      
       $(this).on('click', function() {
         dlg.dialog('open');
       });
@@ -227,3 +219,38 @@ function initEditSubjectButtonsAndDialogs() {
       }
     });
 }
+
+//initialize delete subject dialogs and assign them to buttons
+function initDeleteSubjectButtonsAndDialogs() {
+  $(".delete_subj_btn").each(
+    function() {
+      //get subject of this delete subject button
+      subjectName = $(this).data('subject-name');
+      //get associated edit subject dialog
+      var dlg = $(".delete_subj_dialog[data-subject-name=" + subjectName + "]");
+
+      $(this).on('click', function() {
+        dlg.dialog('open');
+      });
+      
+      var viewportWidth = $(window).width();
+      if (viewportWidth < 323) {
+        dlg.dialog( "option", "width", viewportWidth * .9);
+      }
+
+    });
+}
+
+//initialize add subject dialogs and assign them to buttons
+function initAddSubjectButtonsAndDialogs() {
+  $(".add_subj_btn").each(function() {
+      var dlg = $(".add_subj_dialog");
+
+      $(this).on('click', function() {
+        dlg.dialog('open');
+      });
+  });
+}
+
+
+
