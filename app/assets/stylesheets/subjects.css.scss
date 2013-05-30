@@ -389,4 +389,10 @@ ul.dk_options_inner {
   visibility: visible;
 }
 
-
+//////
+.no_assignments_text {
+  text-align: center;
+  @media (max-width: 530px) {
+    font-size: 1rem;
+  }
+}
