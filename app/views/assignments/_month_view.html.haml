@@ -48,9 +48,11 @@
               .day_cal
                 - if @as_grouped_by_dd[date]
                   - @as_grouped_by_dd[date].each do |a|
-                    .subj_link{:class => (a.completed ? "completed" : "not_completed")}
+                    .subj_link{:class => (a.completed ? "completed" : "not_completed"), 
+                    :'data-assignment-id' => a.id}
                       = a.subject.name
-                      .a_popup{:class => (a.completed ? "completed" : "not_completed")}
+                      .a_popup{:class => (a.completed ? "completed" : "not_completed"), 
+                        :'data-assignment-id' => a.id}
                         .a_box_month
                           .subject
                             = a.subject.name
@@ -63,7 +65,8 @@
                               at 
                               = a.due_date.strftime("%I:%M %P");
 
-                      .a_dialog{:class => (a.completed ? "completed" : "not_completed")}              
+                      .a_dialog{:class => (a.completed ? "completed" : "not_completed"), 
+                      :'data-assignment-id' => a.id}              
                         .a_box_month
                           .subject
                             = a.subject.name
