@@ -30,7 +30,8 @@
               = simple_form_for [current_user, @newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
-                = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes 
+                = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, 
+                order: [:month, :day, :year]
                 = f.input :completed, :label => "Completed?", :as => "radio_buttons"
                 = f.submit "Add", :class => "add_dialog_submit"
               /* %form{class: "add_form", remote: true} */
