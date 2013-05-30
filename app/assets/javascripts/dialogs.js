@@ -137,13 +137,15 @@ function initializeDeleteSubjectDialog() {
       }); 
 
       $(this).on('click', function() {
-        dialog.dialog('open');
+        dlg.dialog('open');
       });
+      
+      var viewportWidth = $(window).width();
+      if (viewportWidth < 323) {
+        dlg.dialog( "option", "width", viewportWidth * .9);
+      }
 
-      $(this).hover( 
-        function() {}, 
-        function() {}
-      );
+
     });
 }
 
@@ -173,10 +175,11 @@ function initializeDeleteSubjectDialog() {
 function initializeEditSubjectDialog() {
   $(".edit_subj_btn").each(
     function() {
-      var dialog = $(this).find(".edit_subj_dialog").dialog({
+      var dlg = $(this).find(".edit_subj_dialog").dialog({
       closeOnEscape: true, 
       title: "Update Subject",
-      height: 200, 
+      height: 200,
+      width: 300,
       draggable: false,
       resizable: false, 
       modal: true, 
@@ -184,13 +187,14 @@ function initializeEditSubjectDialog() {
       }); 
 
       $(this).on('click', function() {
-        dialog.dialog('open');
+        dlg.dialog('open');
       });
 
-      $(this).hover( 
-        function() {}, 
-        function() {}
-      );
+      var viewportWidth = $(window).width();
+      if (viewportWidth < 323) {
+        dlg.dialog( "option", "width", viewportWidth * .9);
+        dlg.find("#subject_name").attr("size", "25");
+      }
     });
 }
   
