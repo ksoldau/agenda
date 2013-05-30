@@ -58,7 +58,6 @@ function updateDescription(trigger, data) {
 
 //updateTimeAndPlacement if need be
 function updateTimeAndPlacement(trigger, data) {
-    console.log("UPDATING TIME AND PLACEMENT");
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
@@ -112,14 +111,13 @@ function updateTimeAndPlacement(trigger, data) {
     // if due date and time have not changed
     else if (sameDateAndTime(new_date_and_time, old_date_and_time)) {
       //do nothing
-    }      
+    }
+
     //if date or time has changed
-    else if (new_date_and_time.getTime() !== old_date_and_time.getTime()){
-      //old assignment
-      console.log("IN THE LAST ELSE IF");
-      assignment = trigger.closest(".as_box");
-      assignment.animate({opacity: '0'}, 800, function() {
-        assignment.slideUp(600, function (e) {
+    else if (differentDateAndTime(new_date_and_time, old_date_and_time)) {
+      
+      //close old assignment
+      closeAssignment(trigger.closest(".as_box"));
 
       //figure out where to put new assignment
       var new_day_string = String(new_day);
@@ -183,12 +181,11 @@ function updateTimeAndPlacement(trigger, data) {
 
               console.log(new_date_time.getTime() <= o_date.getTime());
               
-              if (new_date_time.getTime() <= o_date.getTime()) { //opposite bc negative for some reason
-                console.log("GOT INTO THIS IF");
+              if (new_date_time.getTime() <= o_date.getTime()) {
                 o_a.before(assignment);
               }
             }; //end of for
-          }
+          }; // end of if 
 
           assignment.slideDown(600, function() {
             assignment.animate({opacity: '1'}, 600);
@@ -196,12 +193,7 @@ function updateTimeAndPlacement(trigger, data) {
 
         } // end of if
       
-      } 
-
-
-        });
-      });
-      
+      } // end of bigger for loop 
 
 
     }
@@ -227,7 +219,6 @@ function updateTimeAndPlacement(trigger, data) {
     }
 
     trigger.closest(".as_box").find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
-    
  
     //change background color based on completion 
     trigger.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
@@ -295,8 +286,19 @@ function moveAfterWeek(trigger) {
     });
 }
 
-// determines if two times are the same
+// determines if two date times are the same
 function sameDateAndTime(datetime1, datetime2) {
   return datetime1.getTime() === datetime2.getTime();
+}
+
+// determines if two date times are different
+function differentDateAndTime(datetime1, datetime2) {
+  return datetime1.getTime() !== datetime2.getTime();
+}
+
+function closeAssignment(assignment) {
+  assignment.animate({opacity: '0'}, 800, function() {
+      assignment.slideUp(600);
+  });
 }
 
