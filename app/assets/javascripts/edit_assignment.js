@@ -2,24 +2,25 @@
 $(function() {
     $(".edit_dialog").each(function() {
     
-    var dialog = $(this);
+    var dlg = $(this);
 
     //save for later
-    var trigger = dialog.data("trigger");
+    var trigger = dlg.data("trigger");
 
     //when ajax succeeds
-    dialog.find("form").on('ajax:success', function(e, data, status, xhr) {
-
-        dialog.dialog('close');
+    dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
+        
+        assignment = trigger.closest(".as_box");
       
+        dlg.dialog('close');
         //change subject if edited
-        updateSubject(trigger, data);
+        updateSubject(assignment, data);
 
         //change description based on edit
-        updateDescription(trigger, data);
+        updateDescription(assignment, data);
 
         //change of placement based on time edit
-        updateTimeAndPlacement(trigger, data);
+        updateTimeAndPlacement(assignment, data);
    
     //when ajax fails 
     }).on('ajax:failure', function(e) {
@@ -33,7 +34,7 @@ $(function() {
 
 // update subject if need be
 function updateSubject(trigger, data) {
-    var subj = trigger.closest(".as_box").find(".subject").first();
+    var subj = assignment.find(".subject").first();
     
     // if subject changed, show updated information
     if (subj.text().trim() !== data.subject.name.trim()) {
@@ -45,7 +46,7 @@ function updateSubject(trigger, data) {
 
 // update description if need be
 function updateDescription(trigger, data) {
-    var desc = trigger.closest(".as_box").find(".description").first()
+    var desc = assignment.find(".description").first()
     
     // if description changed, show updated information
     if (desc.text().trim() !== data.description.trim()) {
@@ -115,7 +116,7 @@ function updateTimeAndPlacement(trigger, data) {
 
     //if date or time has changed
     else if (differentDateAndTime(new_date_and_time, old_date_and_time)) {
-      
+      //dateOrTimeChanged(trigger.closest(".as_box", new_day,)); 
       //close old assignment
       closeAssignment(trigger.closest(".as_box"));
 
@@ -142,7 +143,6 @@ function updateTimeAndPlacement(trigger, data) {
           var aArray = Array.prototype.slice.call(assignmentsArray);
           
           if (aArray.length > 0) {
-            console.log("GOT HERE");
             for (i = 0; i < aArray.length; i++) { 
               var o_a = $(aArray[i]);
               var o_due_time = o_a.find(".due_time");
