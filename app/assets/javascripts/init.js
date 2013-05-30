@@ -38,11 +38,11 @@ $(function() {
       });
     $("#tabs").hover(
       function() {
-        $(this).find(".add_btn").css("visibility", "visible");
+        $(this).find(".edit_subj_btn").css("visibility", "visible");
         $(this).find(".delete_subj_btn").css("visibility", "visible");
       },
       function() {
-        $(this).find(".add_btn").css("visibility", "hidden");
+        $(this).find(".edit_subj_btn").css("visibility", "hidden");
         $(this).find(".delete_subj_btn").css("visibility", "hidden");
       });
 

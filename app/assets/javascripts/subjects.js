@@ -69,15 +69,15 @@ $(function() {
 
 
 
-// make the edit subject button appear and disappear based on hover
-$(function() {
-  $("#tabs .ui-tabs-panel").each( function() {
-    $(this).hover(
-      function() {
-        $(this).find(".edit_subj_btn").css("visibility", "visible");
-      },
-      function() {
-        $(this).find(".edit_subj_btn").css("visibility", "hidden");
-      });
-  });
-});
+/* // make the edit subject button appear and disappear based on hover */
+/* $(function() { */
+/*   $("#tabs .ui-tabs-panel").each( function() { */
+/*     $(this).hover( */
+/*       function() { */
+/*         $(this).find(".edit_subj_btn").css("visibility", "visible"); */
+/*       }, */
+/*       function() { */
+/*         $(this).find(".edit_subj_btn").css("visibility", "hidden"); */
+/*       }); */
+/*   }); */
+/* }); */
