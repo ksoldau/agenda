@@ -161,26 +161,6 @@ h3 {
   color: $light_blue_hover;
 }
 
-.not_completed {
-  select {
-    background-color: $orange;
-  }
- .input 
-    input {
-      background-color: $orange;
-    }
-}
-.completed {
-  select {
-    background-color: $light_blue;
-  }
-  .input
-    input {
-      background-color: $light_blue;
-    }
-      
-}
-
 /************************/
 .edit_dialog_submit:hover, .add_dialog_submit:hover {
   background-color: $blue_hover;
