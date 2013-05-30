@@ -198,14 +198,22 @@
   }
 }
 
-.delete_subj_btn {
+.delete_subj_btn.ui-button.ui-state-default {
   float: right;
-  margin-top: 0.1em;
+  width: 13px;
+  height: 13px;
+  margin-left: 0.3em;
   margin-right: 0.3em;
-  background-image: none;
-  background-color: $blue;
+  background-image: url("delete.png");
+  background-color: transparent;
   cursor: pointer;
+  visibility: hidden; //toggled with jquery
 }
+.delete_subj_btn.ui-button.ui-state-default:hover {
+  background-image: url("delete_hover.png");
+}
+
+
 .edit_subj_btn {
   float: right;
   visibility: hidden; //toggled with jquery
