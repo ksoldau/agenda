@@ -104,8 +104,6 @@ function initializeAddSubjectDialog() {
       var dialog = $(this).find(".add_subj_dialog").dialog({
       closeOnEscape: true,
       title: "Add Subject", 
-      /* width: 400, */ 
-      height: 200, 
       draggable: true, 
       resizable: false, 
       modal: true, 
@@ -127,11 +125,11 @@ function initializeAddSubjectDialog() {
 function initializeDeleteSubjectDialog() {
   $(".delete_subj_btn").each(
     function() {
-      var dialog = $(this).find(".delete_subj_dialog").dialog({
+      var dlg = $(this).find(".delete_subj_dialog").dialog({
       closeOnEscape: true, 
       title: "Delete Subject", 
       width: 300, 
-      height: 200, 
+
       draggable: false,
       resizable: false, 
       modal: true, 
