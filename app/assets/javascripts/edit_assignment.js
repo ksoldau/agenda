@@ -56,9 +56,18 @@ $(function() {
       old_year = Number(old_date.match(/\d+/g)[1]);
       old_day = Number(old_date.match(/\d+/g)[0]);
 
-      old_time = assignment.find(".due_time").text().trim();
-      old_hour = Number(old_time.split(':')[0]);
-      old_min = Number(old_time.split(':')[1]);
+      old_time = assignment.find(".due_time").text().replace(/\s+/g, ' ').trim();
+      old_hour = Number(old_time.split(' ')[2].split(':')[0]);
+      old_min = Number(old_time.split(' ')[2].split(':')[1]);
+      old_am_pm = old_time.split(' ')[3];
+
+      //make old_hour on 24 hour time
+      if (old_am_pm === "am" && old_hour === 12) {
+        old_hour = 0;
+      } 
+      if (old_am_pm === "pm" && old_hour !== 12) {
+        old_hour += 12;
+      }
       
       var old_date_and_time = new Date(old_year, 0, old_day, old_hour, old_min);
       var new_date_and_time = new Date(new_year, 0, new_day, new_hour, new_min);
@@ -80,15 +89,20 @@ $(function() {
           trigger.closest(".as_box").slideUp();
         });
       }
-      
+      /* else if (true) { */
+      /*   console.log("new_date_and_time " + new_date_and_time.getTime()); */
+      /*   console.log("old_date_and_time " + old_date_and_time.getTime()); */
+      /* } */
       // if due date and time have not changed
       else if (new_date_and_time.getTime() === old_date_and_time.getTime()) {
         //do nothing
+        console.log("GOT HEREJRIEDFKJS");
       }
       
       //if date or time has changed
-      else {
+      else if (new_date_and_time.getTime() !== old_date_and_time.getTime()){
         //old assignment
+        console.log("IN THE LAST ELSE IF");
         assignment = trigger.closest(".as_box");
         assignment.animate({opacity: '0'}, 800, function() {
           assignment.slideUp(600, function (e) {
