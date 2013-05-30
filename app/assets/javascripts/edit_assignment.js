@@ -86,19 +86,8 @@ $(function() {
         //do nothing
       }
       
-      // if date has not changed 
-      else if (old_date.getTime() === new_date_no_month.getTime()) {
-        //code not written yet
-
-        //find new time
-        new_time = new Date (0, 0, 1, new_hour, new_min);
-
-        //find prev time
-        //find next time
-      }
-
-      //if date has changed
-      else if (old_date.getTime() !== new_date_no_month.getTime()) {
+      //if date or time has changed
+      else {
         //old assignment
         assignment = trigger.closest(".as_box");
         assignment.animate({opacity: '0'}, 800, function() {
@@ -166,7 +155,7 @@ $(function() {
 
                 console.log(new_date_time.getTime() <= o_date.getTime());
                 
-                if (new_date_time.getTime() >= o_date.getTime()) { //opposite bc negative for some reason
+                if (new_date_time.getTime() <= o_date.getTime()) { //opposite bc negative for some reason
                   console.log("GOT INTO THIS IF");
                   o_a.before(assignment);
                 }
