@@ -247,6 +247,22 @@
   }
 }
 
+.delete_subj_dialog {
+  a {
+    float: right;
+    margin-top: 1.5rem;
+    background-color: $blue;
+    color: $light_blue;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  a:hover {
+    background-color: $blue_hover;
+    color: $light_blue_hover;
+  }
+}
+
 .select_subject {
   display: none;
   width: 100%;
