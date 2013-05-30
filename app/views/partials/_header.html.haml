@@ -20,9 +20,9 @@
 
   .logo
     - if current_user == nil
-      = link_to "AgendaApp", new_session_path(resource_name)
+      = link_to "Agenda", new_session_path(resource_name)
     - if current_user != nil
-      = link_to "AgendaApp", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date.beginning_of_week)
+      = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date.beginning_of_week)
   
   -if current_user != nil
     .nav
