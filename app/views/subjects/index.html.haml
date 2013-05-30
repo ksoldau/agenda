@@ -9,8 +9,8 @@
 
   .select_subject
     %select{:tabindex => '1', :name => 'pretty', :class => 'subject_dropkick'}
-      %option{:value=>"Pick a subject"}
-        Choose a subject
+      /* %option{:value=>"Pick a subject"} */
+      /*   Choose a subject */
       -i = 1
       - @ss.each do |s| 
         %option{:value=>"tabs-#{i}"}
