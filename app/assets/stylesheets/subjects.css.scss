@@ -208,11 +208,17 @@
   background-color: transparent;
   cursor: pointer;
   visibility: hidden; //toggled with jquery
+
 }
 .delete_subj_btn.ui-button.ui-state-default:hover {
   background-image: url("delete_hover.png");
 }
 
+.delete_subj_btn.ui-button.ui-state-default, .edit_subj_btn {
+  @media (max-width: 480px) {
+    margin-top: -1.5rem;
+  }
+}
 
 .edit_subj_btn {
   float: right;
@@ -222,6 +228,9 @@
   cursor: pointer;
   background-image: url("pencil.png");
   background-color: none;
+  @media (max-width: 480px) {
+    margin-right: 1.5rem;
+  }
 }
 .edit_subj_btn:hover {
   background-image: url("pencil_hover.png");
@@ -380,4 +389,10 @@ ul.dk_options_inner {
   visibility: visible;
 }
 
-
+//////
+.no_assignments_text {
+  text-align: center;
+  @media (max-width: 530px) {
+    font-size: 1rem;
+  }
+}

@@ -39,8 +39,10 @@
       /*       = f.input :description */
       /*       = f.input :due_date */
       /*       = f.input :completed */
-      /*       = f.submit "Add", :class => "button" */ 
-
+      /*       = f.submit "Add", :class => "button" */
+      - if !@as_grouped_by_s[s]
+        .no_assignments_text
+          This subject has no assignments.
       - if @as_grouped_by_s[s]
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
