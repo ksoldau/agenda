@@ -1,11 +1,10 @@
 $(function() {
   $(".edit_dialog").each(function() {
-    console.log("in the each");
+    
     var $dlg = $(this);
     var $edit_btn = $dlg.data("trigger");
 
     var $assignment = $edit_btn.closest(".as_box");
-
 
 
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
@@ -86,10 +85,7 @@ $(function() {
           $assignment.slideUp();
         });
       }
-      /* else if (true) { */
-      /*   console.log("new_date_and_time " + new_date_and_time.getTime()); */
-      /*   console.log("old_date_and_time " + old_date_and_time.getTime()); */
-      /* } */
+
       // if due date and time have not changed
       else if (new_date_and_time.getTime() === old_date_and_time.getTime()) {
         //do nothing
@@ -203,22 +199,6 @@ $(function() {
     console.log("assignment edit FAILED");
    });
 
-/*    //find new date assignment box and change the border of it if it's today, also change border of old date */
-/*       var today = new Date(); */
-/*       var d = today.getDate(); */
-/*       var dayhtml = trigger.closest(".as_box").parent(".assignment_box").find(".day_heading"); */
-/*       var day = dayhtml.text().trim(); */
-/*       var todayHuh = (day.indexOf(d + ",") >= 0); */
-/*       console.log("todayHUh was %o", todayHuh); */
-
-/*       //if no assignments go to blue */
-/*       var ab = trigger.closest(".assignment_box"); */
-/*       var as = $(ab).find(".as_box"); */
-
-/*       if (todayHuh && as.length === 0) { */
-/*        dlg.parent(".ui-dialog").css("border-color", "#000000"); */ 
-        
-/*       } */
   });
 })
 
