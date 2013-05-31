@@ -14,13 +14,7 @@ $(function() {
       updateSubject($assignment, data);
       
       //change description based on edit
-      var $desc = $assignment.find(".description").first()
-      
-      if ($desc.text().trim() !== data.description.trim()) {
-        $desc.animate({opacity: "0"}, 700, function() {
-          $desc.text(data.description).animate({opacity: "1"}, 700);
-        });
-      }
+      updateDescription($assignment, data);
 
       //change of placement based on time edit
       // make sure new day, min, and hour are all two digits
@@ -196,6 +190,9 @@ $(function() {
   });
 })
 
+/************************/
+/*** helper functions ***/
+/************************/
 
 //update the subject after edit assigment
 function updateSubject($assignment, data) {
@@ -209,5 +206,19 @@ function updateSubject($assignment, data) {
         $subj.text(data.subject.name).animate({opacity: "1"}, 700);
       });
     }
+
+}
+
+function updateDescription($assignment, data) {
+  
+  //get the description
+  var $desc = $assignment.find(".description").first()
+  
+  //update the descirption if it needs to be updated
+  if ($desc.text().trim() !== data.description.trim()) {
+    $desc.animate({opacity: "0"}, 700, function() {
+      $desc.text(data.description).animate({opacity: "1"}, 700);
+    });
+  }
 
 }
