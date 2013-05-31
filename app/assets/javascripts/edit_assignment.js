@@ -9,10 +9,6 @@ $(function() {
 
 
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
-      console.log("this is e: %o", e);
-      console.log("this is data: %o", data);
-      console.log("ajax success");
-      console.log("assignment successfully edited");
       $dlg.dialog('close');
       
       //change subject if edited
@@ -102,7 +98,6 @@ $(function() {
       //if date or time has changed
       else if (new_date_and_time.getTime() !== old_date_and_time.getTime()){
         //old assignment
-        console.log("IN THE LAST ELSE IF");
         $assignment.animate({opacity: '0'}, 800, function() {
           $assignment.slideUp(600, function (e) {
 
@@ -116,11 +111,9 @@ $(function() {
 
           // is it in the right day?
           if (htext.indexOf(new_day_string + ",") >= 0) {
-            console.log("in this if");
             var new_ab = $(h).closest(".assignment_box");
 
             var assignmentsArray = new_ab.find(".as_box");
-            console.log("length of assignmentsArray is %o", assignmentsArray.length);
 
             //
             $assignment.appendTo(new_ab);
@@ -128,7 +121,6 @@ $(function() {
             var aArray = Array.prototype.slice.call(assignmentsArray);
             
             if (aArray.length > 0) {
-              console.log("GOT HERE");
               for (i = 0; i < aArray.length; i++) { 
                 var o_a = $(aArray[i]);
                 var o_due_time = o_a.find(".due_time");
@@ -150,9 +142,7 @@ $(function() {
                 }
 
                 var o_date = new Date (0, 0, 1, o_24hour, o_min);
-                console.log(o_24hour);
-                console.log(o_min);
-                console.log(o_date.getTime());
+
                 
                 if (new_hour < 10) {
                   /* new_hour = "0" + new_hour; */
@@ -161,14 +151,8 @@ $(function() {
                   /* new_min = "0" + new_min; */
                 }
                 var new_date_time = new Date(0, 0, 1, Number(new_hour), Number(new_min));
-                console.log("this is new_date_time " + (new_date_time.getTime()/100000));
-
-                console.log("this is o_date.getTime() " + (o_date.getTime()/100000));
-
-                console.log(new_date_time.getTime() <= o_date.getTime());
-                
+                             
                 if (new_date_time.getTime() <= o_date.getTime()) { //opposite bc negative for some reason
-                  console.log("GOT INTO THIS IF");
                   o_a.before($assignment);
                 }
               }; //end of for
