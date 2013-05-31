@@ -13,42 +13,26 @@ $(function() {
       //update assignment's subject
       updateSubject($assignment, data);
       
-      //change description based on edit
+      //update description based on edit
       updateDescription($assignment, data);
 
-      //change of placement based on time edit
+      //update of placement based on edit
       updatePlacement($assignment, data);
 
+      //update time based on edit
+      updateTime($assignment, data);
+      console.log("after updateTime");
+           
    
+      //change background color based on completion
+      updateCompletionBackground($assignment, data);
 
-      //change due time based on edit
-      //change to have it only change if time changed
-      if (new_hour < 10) {
-        new_hour = "0" + new_hour;
-      }
-      if (new_min < 10 ) {
-        new_min = "0" + new_min;
-      }
-      // back to 12 hr time
-      var am_pm = "am";
-      if (new_hour >= 12) {
-        var am_pm = "pm";
-      }
-      if (new_hour > 12) {
-        new_hour = new_hour - 12;
-      }
-      if (new_hour === 0) {
-        new_hour = 12;
-      }
 
-      $assignment.find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
-      
-   
-      //change background color based on completion 
-     $assignment.addClass(data.completed ? "completed" : "not_completed", {duration: 800}
-      ).removeClass(data.completed ? "not_completed" : "completed", {duration: 800});}).on('ajax:failure', function(e) {
-    console.log("assignment edit FAILED");
-   });
+  });
+
+    $dlg.find("form").on('ajax:failure', function(e) {
+        console.log("assignment edit FAILED");
+    });
 
   });
 })
@@ -226,4 +210,79 @@ function updatePlacement($assignment, data) {
 
 
     }
+}
+
+function updateTime($assignment, data) {
+    var new_dd = data.due_date;
+    var new_parsed_date = new_dd.split('T')[0].split('-');
+    var new_parsed_time = new_dd.split('T')[1].split(':');
+    var new_min = Number(new_parsed_time[1]);
+    var new_hour = Number(new_parsed_time[0]);
+    var new_day = Number(new_parsed_date[2]);
+    var new_month = Number(new_parsed_date[1]) -1; //0 is jan
+    var new_year = Number(new_parsed_date[0]);
+    var new_date = new Date(new_year, new_month, new_day);
+
+    var url = window.location.href;
+    var url_parsed = url.split('=')[2].split('-');
+    var url_day = Number(url_parsed[2]);
+    var url_month = Number(url_parsed[1]) -1;
+    var url_year = Number(url_parsed[0]);
+    var url_date = new Date(url_year, url_month, url_day);
+    var url_date_end_week = new Date(url_date.getTime() + 6 * 24 * 60 * 60 * 1000);
+
+    old_date = $assignment.closest(".assignment_box").find(".day_heading").text().trim();
+    old_year = Number(old_date.match(/\d+/g)[1]);
+    old_day = Number(old_date.match(/\d+/g)[0]);
+
+    old_time = $assignment.find(".due_time").text().replace(/\s+/g, ' ').trim();
+    old_hour = Number(old_time.split(' ')[2].split(':')[0]);
+    old_min = Number(old_time.split(' ')[2].split(':')[1]);
+    old_am_pm = old_time.split(' ')[3];
+
+    //make old_hour on 24 hour time
+    if (old_am_pm === "am" && old_hour === 12) {
+      old_hour = 0;
+    } 
+    if (old_am_pm === "pm" && old_hour !== 12) {
+      old_hour += 12;
+    }
+    
+    var old_date_and_time = new Date(old_year, 0, old_day, old_hour, old_min);
+    var new_date_and_time = new Date(new_year, 0, new_day, new_hour, new_min);
+
+    var old_date = new Date(old_year, 0, old_day);
+    var new_date_no_month = new Date(new_year, 0, new_day);
+
+
+
+    console.log("in update time");
+    if (new_hour < 10) {
+      new_hour = "0" + new_hour;
+    }
+    if (new_min < 10 ) {
+      new_min = "0" + new_min;
+    }
+    // back to 12 hr time
+    var am_pm = "am";
+    if (new_hour >= 12) {
+      var am_pm = "pm";
+    }
+    if (new_hour > 12) {
+      new_hour = new_hour - 12;
+    }
+    if (new_hour === 0) {
+      new_hour = 12;
+    }
+
+    $assignment.find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
+    debugger;
+
+}
+
+function updateCompletionBackground($assignment, data) {
+   $assignment.addClass(data.completed ? "completed" : "not_completed", {duration: 800});
+   
+   $assignment.removeClass(data.completed ? "not_completed" : "completed", {duration: 800});
+   
 }
