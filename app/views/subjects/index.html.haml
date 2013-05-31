@@ -44,6 +44,17 @@
       - if !@as_grouped_by_s[s]
         .no_assignments_text
           This subject has no assignments.
+      .add_btn
+        /* .add_dialog */
+        /*  .add_dialog{:'data-day' => "day#{dayn}"} */
+        /*       = simple_form_for [current_user, @newa] do |f| */
+        /*         = f.association :subject, collection: current_user.subjects */    
+        /*         = f.input :description */
+        /*         = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, */ 
+        /*         order: [:month, :day, :year], :ampm => true */
+        /*         = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
+        /*         = f.submit "Add", :class => "add_dialog_submit" */
+
       - if @as_grouped_by_s[s]
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
