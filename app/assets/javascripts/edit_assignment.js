@@ -1,12 +1,13 @@
+// edit dialog with js after assignment has been edited (in week view?)
 $(function() {
   $(".edit_dialog").each(function() {
-    
-    var $dlg = $(this);
-    var $edit_btn = $dlg.data("trigger");
+ 
+    var $dlg = $(this); // the edit dialog
+    var $edit_btn = $dlg.data("trigger"); // the edit button
 
-    var $assignment = $edit_btn.closest(".as_box");
+    var $assignment = $edit_btn.closest(".as_box"); // the assignment edited
 
-
+    // do this when ajax succeeds
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
       $dlg.dialog('close');
       
@@ -27,9 +28,9 @@ $(function() {
       //change background color based on completion
       updateCompletionBackground($assignment, data);
 
-
-  });
-
+    });
+    
+    // do this when ajax fails
     $dlg.find("form").on('ajax:failure', function(e) {
         console.log("assignment edit FAILED");
     });
@@ -41,7 +42,7 @@ $(function() {
 /*** helper functions ***/
 /************************/
 
-//update the subject after edit assigment
+// update the subject after assignment's been edited
 function updateSubject($assignment, data) {
 
     //get the subject 
@@ -56,6 +57,7 @@ function updateSubject($assignment, data) {
 
 }
 
+// update the description after assignment's been edited
 function updateDescription($assignment, data) {
   
   //get the description
@@ -70,6 +72,7 @@ function updateDescription($assignment, data) {
 
 }
 
+// update placement of assignment after its been edited
 function updatePlacement($assignment, data) {
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
@@ -99,12 +102,7 @@ function updatePlacement($assignment, data) {
     old_am_pm = old_time.split(' ')[3];
 
     //make old_hour on 24 hour time
-    if (old_am_pm === "am" && old_hour === 12) {
-      old_hour = 0;
-    } 
-    if (old_am_pm === "pm" && old_hour !== 12) {
-      old_hour += 12;
-    }
+    old_hour = make24(old_hour, old_am_pm);
     
     var old_date_and_time = new Date(old_year, 0, old_day, old_hour, old_min);
     var new_date_and_time = new Date(new_year, 0, new_day, new_hour, new_min);
@@ -114,18 +112,16 @@ function updatePlacement($assignment, data) {
 
 
     // if date moved to before week
-    if (new_date.getTime() < url_date.getTime()) {
-      $assignment.animate({left: '-999px'}, 800, function() {
-       $assignment.slideUp();
-      });
+    if (movedBeforeWeek(url_date, new_date)) {
+      moveBeforeWeek($assignment);
     }
 
+
     // if date moved to after week
-    else if (new_date.getTime() > url_date_end_week.getTime()) {
-      $assignment.animate({left: '999px'}, 800, function() {
-        $assignment.slideUp();
-      });
+    if (movedAfterWeek(url_date, new_date)) {
+      moveAfterWeek($assignment);
     }
+
 
     // if due date and time have not changed
     else if (new_date_and_time.getTime() === old_date_and_time.getTime()) {
@@ -212,59 +208,29 @@ function updatePlacement($assignment, data) {
     }
 }
 
+// update due time of assignment after its been edited
 function updateTime($assignment, data) {
-    var new_dd = data.due_date;
-    var new_parsed_date = new_dd.split('T')[0].split('-');
-    var new_parsed_time = new_dd.split('T')[1].split(':');
-    var new_min = Number(new_parsed_time[1]);
-    var new_hour = Number(new_parsed_time[0]);
-    var new_day = Number(new_parsed_date[2]);
-    var new_month = Number(new_parsed_date[1]) -1; //0 is jan
-    var new_year = Number(new_parsed_date[0]);
-    var new_date = new Date(new_year, new_month, new_day);
-
-    var url = window.location.href;
-    var url_parsed = url.split('=')[2].split('-');
-    var url_day = Number(url_parsed[2]);
-    var url_month = Number(url_parsed[1]) -1;
-    var url_year = Number(url_parsed[0]);
-    var url_date = new Date(url_year, url_month, url_day);
-    var url_date_end_week = new Date(url_date.getTime() + 6 * 24 * 60 * 60 * 1000);
-
-    old_date = $assignment.closest(".assignment_box").find(".day_heading").text().trim();
-    old_year = Number(old_date.match(/\d+/g)[1]);
-    old_day = Number(old_date.match(/\d+/g)[0]);
-
-    old_time = $assignment.find(".due_time").text().replace(/\s+/g, ' ').trim();
-    old_hour = Number(old_time.split(' ')[2].split(':')[0]);
-    old_min = Number(old_time.split(' ')[2].split(':')[1]);
-    old_am_pm = old_time.split(' ')[3];
-
-    //make old_hour on 24 hour time
-    if (old_am_pm === "am" && old_hour === 12) {
-      old_hour = 0;
-    } 
-    if (old_am_pm === "pm" && old_hour !== 12) {
-      old_hour += 12;
-    }
     
-    var old_date_and_time = new Date(old_year, 0, old_day, old_hour, old_min);
-    var new_date_and_time = new Date(new_year, 0, new_day, new_hour, new_min);
-
-    var old_date = new Date(old_year, 0, old_day);
-    var new_date_no_month = new Date(new_year, 0, new_day);
-
-
-
-    console.log("in update time");
+    // due date after edit
+    var new_dd = data.due_date;
+    // get time from due date after edit
+    var new_parsed_time = new_dd.split('T')[1].split(':');
+    // due time minute after edit
+    var new_min = Number(new_parsed_time[1]);
+    // due time hour after edit
+    var new_hour = Number(new_parsed_time[0]);
+    
+    // add a leading 0 if need be
     if (new_hour < 10) {
       new_hour = "0" + new_hour;
     }
     if (new_min < 10 ) {
       new_min = "0" + new_min;
     }
+    
     // back to 12 hr time
     var am_pm = "am";
+
     if (new_hour >= 12) {
       var am_pm = "pm";
     }
@@ -274,15 +240,59 @@ function updateTime($assignment, data) {
     if (new_hour === 0) {
       new_hour = 12;
     }
-
+    
+    // update html to show new time
     $assignment.find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
-    debugger;
 
 }
 
+// update the background color of assignment after its been edited
+// background color signifies completion status
 function updateCompletionBackground($assignment, data) {
    $assignment.addClass(data.completed ? "completed" : "not_completed", {duration: 800});
    
    $assignment.removeClass(data.completed ? "not_completed" : "completed", {duration: 800});
    
 }
+
+// change from 12 hr to 24 hour 
+// based on hour and if am or pm
+function make24(hour, amPm) {
+    
+    if (old_am_pm === "am" && old_hour === 12) {
+      old_hour = 0;
+    } 
+    if (old_am_pm === "pm" && old_hour !== 12) {
+      old_hour += 12;
+    }
+
+}
+
+// is the date before the beginning of the week?
+function movedBeforeWeek(beginning_of_week, date) {
+  return date.getTime() < beginning_of_week.getTime();
+}
+
+// move the assignment to previous week 
+function moveBeforeWeek($assignment) {
+    // slide assignment left then make its container smaller
+    $assignment.animate({left: '-1500px'}, 900, function() {
+      $assignment.slideUp();
+    });
+}
+
+// is the date after the end of the week?
+function movedAfterWeek(beginning_of_week, date) {
+  var end_of_week = new Date(beginning_of_week.getTime() + 6 * 24 * 60 * 60 * 1000);
+
+  return date.getTime() > end_of_week.getTime();
+}
+
+// move the assignment to the next week
+function moveAfterWeek($assignment) {
+    $assignment.animate({left: '2000px'}, 900, function() {
+        $assignment.slideUp();
+    });
+}
+
+
