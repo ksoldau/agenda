@@ -12,11 +12,11 @@ $(function() {
       $dlg.dialog('close');
       
       //change subject if edited
-      var subj = $assignment.find(".subject").first();
+      var $subj = $assignment.find(".subject").first();
       
-      if (subj.text().trim() !== data.subject.name.trim()) {
-         subj.animate({opacity: "0"}, 700, function() {
-          subj.text(data.subject.name).animate({opacity: "1"}, 700);
+      if ($subj.text().trim() !== data.subject.name.trim()) {
+         $subj.animate({opacity: "0"}, 700, function() {
+          $subj.text(data.subject.name).animate({opacity: "1"}, 700);
         });
       }
 
