@@ -1,11 +1,40 @@
 // drop down function
 $(function() {
-  console.log("AT LEAST GOT HERE");
+  console.log("IT DOES REACH HERE");
   $(".dk_container .dk_options li a").each(
     function() {
-      console.log("IN THE FIRST ONE");
+
       $(this).on('click', function() {
-        clickOnDropDown($(this));
+        var idd = $(this).data("dk-dropdown-value")
+        
+        // close all tab areas when pick a different one
+        $(".dk_container .dk_options li a").each(
+          function() {
+          var iddd = $(this).data("dk-dropdown-value");
+
+          $("#" + iddd).attr("aria-expanded", "false").attr("aria-hidden", "true");
+          $("#" + iddd).attr("style", "display:none");
+        });
+        
+        // expand correct tab area
+        $("#" + idd).attr("aria-expanded", "true").attr("aria-hidden", "false");
+        $("#" + idd).attr("style", "display:block");
+
+        // change which tab would be open if viewport bigger
+        var dropDownSubjectName = $(this).text().trim();
+        console.log("this is dropDownSubjectName: " + dropDownSubjectName);
+        
+        $("li[role=tab]").each( function() {
+          var tabSubjectName = $(this).text().trim();
+          console.log("this is tabSubjectName: " + tabSubjectName);
+          
+          if (tabSubjectName.indexOf(dropDownSubjectName) >= 0) {
+            $(this).addClass("ui-state-active ui-tabs-active");
+          }
+          else {
+            $(this).removeClass("ui-state-active ui-tabs-active");
+          }
+        });
 
       });
       
@@ -16,10 +45,9 @@ $(function() {
 // switching drop down to right thing based on tab click in case screen size changes
 $(function() {
   $("li[role=tab]").each ( function() {
-  console.log("got here");
     $(this).on('click', function() {
       var subjectName = $(this).find("a").text().trim();
-      console.log("subjectName is " + subjectName);
+      console.log(subjectName);
       $(".dk_container .dk_toggle .dk_label").text(subjectName);
 
       // remove all current states from 
@@ -39,54 +67,19 @@ $(function() {
   });
 });
 
-// what happens when click on drop down
-function clickOnDropDown(drop_down_option) {
-    console.log("clickOnDropDown");
-    // get the id of the subject/drop down option
-    var idd = drop_down_option.data("dk-dropdown-value")
-    
-    // close all tab areas when pick a different subject
-    closeAllTabs();
-    
-    // expand correct tab area
-    expandCorrectTab($("#" + idd)); 
 
-    // change which tab would be active if viewport larger
-    makeCorrectTabActive(drop_down_option);
 
-}
 
-// close all tabs 
-function closeAllTabs() {
-  $(".dk_container .dk_options li a").each(
-    function() {
-      var iddd = $(this).data("dk-dropdown-value");
-
-      $("#" + iddd).attr("aria-expanded", "false").attr("aria-hidden", "true");
-      $("#" + iddd).attr("style", "display:none");
+// make the edit subject button appear and disappear based on hover
+$(function() {
+  $("#tabs .ui-tabs-panel").each( function() {
+    $(this).hover(
+      function() {
+        $(this).find(".edit_subj_btn").css("visibility", "visible");
+      },
+      function() {
+        $(this).find(".edit_subj_btn").css("visibility", "hidden");
+      });
   });
-}
+});
 
-// expand correct tab after subject chosen in drop down
-function expandCorrectTab($tabid) {
-
-  $tabid.attr("aria-expanded", "true").attr("aria-hidden", "false");
-  $tabid.attr("style", "display:block");
-}
-
-// make correct tab active when choose from drop down subjects
-function makeCorrectTabActive(drop_down_option) {
-  var dropDownSubjectName = drop_down_option.text().trim();
- 
-  $("li[role=tab]").each( function() {
-    var tabSubjectName = drop_down_option.text().trim();
-    console.log("this is tabSubjectName: " + tabSubjectName);
-    
-    if (tabSubjectName.indexOf(dropDownSubjectName) >= 0) {
-      $(this).addClass("ui-state-active ui-tabs-active");
-    }
-    else {
-      $(this).removeClass("ui-state-active ui-tabs-active");
-    }
-  });
-}
