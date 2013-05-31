@@ -10,15 +10,9 @@ $(function() {
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
       $dlg.dialog('close');
       
-      //change subject if edited
-      var $subj = $assignment.find(".subject").first();
+      //update assignment's subject
+      updateSubject($assignment, data);
       
-      if ($subj.text().trim() !== data.subject.name.trim()) {
-         $subj.animate({opacity: "0"}, 700, function() {
-          $subj.text(data.subject.name).animate({opacity: "1"}, 700);
-        });
-      }
-
       //change description based on edit
       var $desc = $assignment.find(".description").first()
       
@@ -203,3 +197,17 @@ $(function() {
 })
 
 
+//update the subject after edit assigment
+function updateSubject($assignment, data) {
+
+    //get the subject 
+    var $subj = $assignment.find(".subject").first();
+    
+    //update subject if needs to be updated
+    if ($subj.text().trim() !== data.subject.name.trim()) {
+       $subj.animate({opacity: "0"}, 700, function() {
+        $subj.text(data.subject.name).animate({opacity: "1"}, 700);
+      });
+    }
+
+}
