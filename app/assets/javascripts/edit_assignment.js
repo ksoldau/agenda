@@ -3,7 +3,9 @@ $(function() {
     console.log("in the each");
     var $dlg = $(this);
     var $edit_btn = $dlg.data("trigger");
-    debugger;
+
+    var $assignment = $edit_btn.closest(".as_box");
+
 
 
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
@@ -14,7 +16,7 @@ $(function() {
       $dlg.dialog('close');
       
       //change subject if edited
-      var subj = $edit_btn.closest(".as_box").find(".subject").first();
+      var subj = $assignment.find(".subject").first();
       
       if (subj.text().trim() !== data.subject.name.trim()) {
          subj.animate({opacity: "0"}, 700, function() {
@@ -23,7 +25,7 @@ $(function() {
       }
 
       //change description based on edit
-      var desc = $edit_btn.closest(".as_box").find(".description").first()
+      var desc = $assignment.find(".description").first()
       
       if (desc.text().trim() !== data.description.trim()) {
         desc.animate({opacity: "0"}, 700, function() {
@@ -51,13 +53,11 @@ $(function() {
       var url_date = new Date(url_year, url_month, url_day);
       var url_date_end_week = new Date(url_date.getTime() + 6 * 24 * 60 * 60 * 1000);
 
-      assignment = $edit_btn.closest(".as_box");
-
-      old_date = assignment.closest(".assignment_box").find(".day_heading").text().trim();
+      old_date = $assignment.closest(".assignment_box").find(".day_heading").text().trim();
       old_year = Number(old_date.match(/\d+/g)[1]);
       old_day = Number(old_date.match(/\d+/g)[0]);
 
-      old_time = assignment.find(".due_time").text().replace(/\s+/g, ' ').trim();
+      old_time = $assignment.find(".due_time").text().replace(/\s+/g, ' ').trim();
       old_hour = Number(old_time.split(' ')[2].split(':')[0]);
       old_min = Number(old_time.split(' ')[2].split(':')[1]);
       old_am_pm = old_time.split(' ')[3];
@@ -79,15 +79,15 @@ $(function() {
 
       // if date moved to before week
       if (new_date.getTime() < url_date.getTime()) {
-        $edit_btn.closest(".as_box").animate({left: '-999px'}, 800, function() {
-          $edit_btn.closest(".as_box").slideUp();
+        $assignment.animate({left: '-999px'}, 800, function() {
+         $assignment.slideUp();
         });
       }
 
       // if date moved to after week
       else if (new_date.getTime() > url_date_end_week.getTime()) {
-        $edit_btn.closest(".as_box").animate({left: '999px'}, 800, function() {
-          $edit_btn.closest(".as_box").slideUp();
+        $assignment.animate({left: '999px'}, 800, function() {
+          $assignment.slideUp();
         });
       }
       /* else if (true) { */
@@ -97,16 +97,14 @@ $(function() {
       // if due date and time have not changed
       else if (new_date_and_time.getTime() === old_date_and_time.getTime()) {
         //do nothing
-        console.log("GOT HEREJRIEDFKJS");
       }
       
       //if date or time has changed
       else if (new_date_and_time.getTime() !== old_date_and_time.getTime()){
         //old assignment
         console.log("IN THE LAST ELSE IF");
-        assignment = $edit_btn.closest(".as_box");
-        assignment.animate({opacity: '0'}, 800, function() {
-          assignment.slideUp(600, function (e) {
+        $assignment.animate({opacity: '0'}, 800, function() {
+          $assignment.slideUp(600, function (e) {
 
         //figure out where to put new assignment
         var new_day_string = String(new_day);
@@ -120,13 +118,12 @@ $(function() {
           if (htext.indexOf(new_day_string + ",") >= 0) {
             console.log("in this if");
             var new_ab = $(h).closest(".assignment_box");
-            var assignment = $edit_btn.closest(".as_box");
 
             var assignmentsArray = new_ab.find(".as_box");
             console.log("length of assignmentsArray is %o", assignmentsArray.length);
 
             //
-            assignment.appendTo(new_ab);
+            $assignment.appendTo(new_ab);
             
             var aArray = Array.prototype.slice.call(assignmentsArray);
             
@@ -172,13 +169,13 @@ $(function() {
                 
                 if (new_date_time.getTime() <= o_date.getTime()) { //opposite bc negative for some reason
                   console.log("GOT INTO THIS IF");
-                  o_a.before(assignment);
+                  o_a.before($assignment);
                 }
               }; //end of for
             }
 
-            assignment.slideDown(600, function() {
-              assignment.animate({opacity: '1'}, 600);
+            $assignment.slideDown(600, function() {
+              $assignment.animate({opacity: '1'}, 600);
             });
 
           } // end of if
@@ -213,11 +210,11 @@ $(function() {
         new_hour = 12;
       }
 
-      $edit_btn.closest(".as_box").find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
+      $assignment.find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
       
    
       //change background color based on completion 
-      $edit_btn.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
+     $assignment.addClass(data.completed ? "completed" : "not_completed", {duration: 800}
       ).removeClass(data.completed ? "not_completed" : "completed", {duration: 800});}).on('ajax:failure', function(e) {
     console.log("assignment edit FAILED");
    });
