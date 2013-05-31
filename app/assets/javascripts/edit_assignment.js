@@ -2,7 +2,8 @@ $(function() {
   $(".edit_dialog").each(function() {
     console.log("in the each");
     var $dlg = $(this);
-    var trigger = $dlg.data("trigger");
+    var $edit_btn = $dlg.data("trigger");
+    debugger;
 
 
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
@@ -13,7 +14,7 @@ $(function() {
       $dlg.dialog('close');
       
       //change subject if edited
-      var subj = trigger.closest(".as_box").find(".subject").first();
+      var subj = $edit_btn.closest(".as_box").find(".subject").first();
       
       if (subj.text().trim() !== data.subject.name.trim()) {
          subj.animate({opacity: "0"}, 700, function() {
@@ -22,7 +23,7 @@ $(function() {
       }
 
       //change description based on edit
-      var desc = trigger.closest(".as_box").find(".description").first()
+      var desc = $edit_btn.closest(".as_box").find(".description").first()
       
       if (desc.text().trim() !== data.description.trim()) {
         desc.animate({opacity: "0"}, 700, function() {
@@ -50,7 +51,7 @@ $(function() {
       var url_date = new Date(url_year, url_month, url_day);
       var url_date_end_week = new Date(url_date.getTime() + 6 * 24 * 60 * 60 * 1000);
 
-      assignment = trigger.closest(".as_box");
+      assignment = $edit_btn.closest(".as_box");
 
       old_date = assignment.closest(".assignment_box").find(".day_heading").text().trim();
       old_year = Number(old_date.match(/\d+/g)[1]);
@@ -78,15 +79,15 @@ $(function() {
 
       // if date moved to before week
       if (new_date.getTime() < url_date.getTime()) {
-        trigger.closest(".as_box").animate({left: '-999px'}, 800, function() {
-          trigger.closest(".as_box").slideUp();
+        $edit_btn.closest(".as_box").animate({left: '-999px'}, 800, function() {
+          $edit_btn.closest(".as_box").slideUp();
         });
       }
 
       // if date moved to after week
       else if (new_date.getTime() > url_date_end_week.getTime()) {
-        trigger.closest(".as_box").animate({left: '999px'}, 800, function() {
-          trigger.closest(".as_box").slideUp();
+        $edit_btn.closest(".as_box").animate({left: '999px'}, 800, function() {
+          $edit_btn.closest(".as_box").slideUp();
         });
       }
       /* else if (true) { */
@@ -103,7 +104,7 @@ $(function() {
       else if (new_date_and_time.getTime() !== old_date_and_time.getTime()){
         //old assignment
         console.log("IN THE LAST ELSE IF");
-        assignment = trigger.closest(".as_box");
+        assignment = $edit_btn.closest(".as_box");
         assignment.animate({opacity: '0'}, 800, function() {
           assignment.slideUp(600, function (e) {
 
@@ -119,7 +120,7 @@ $(function() {
           if (htext.indexOf(new_day_string + ",") >= 0) {
             console.log("in this if");
             var new_ab = $(h).closest(".assignment_box");
-            var assignment = trigger.closest(".as_box");
+            var assignment = $edit_btn.closest(".as_box");
 
             var assignmentsArray = new_ab.find(".as_box");
             console.log("length of assignmentsArray is %o", assignmentsArray.length);
@@ -212,11 +213,11 @@ $(function() {
         new_hour = 12;
       }
 
-      trigger.closest(".as_box").find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
+      $edit_btn.closest(".as_box").find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
       
    
       //change background color based on completion 
-      trigger.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
+      $edit_btn.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
       ).removeClass(data.completed ? "not_completed" : "completed", {duration: 800});}).on('ajax:failure', function(e) {
     console.log("assignment edit FAILED");
    });
