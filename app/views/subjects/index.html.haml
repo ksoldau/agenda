@@ -63,9 +63,9 @@
                 .delete_dialog{:title => "Delete Assignment"}
                   Are you sure you want to delete this assignment?
                   = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete, :remote => true
-              .edit_btn
+              .edit_btn{:'data-assignment-id' => a.id}
                 .edit_dialog{:title => "Update Assignment", 
-                  :class => a.completed ? "completed" : "not_completed"}
+                  :class => a.completed ? "completed" : "not_completed", :'data-assignment-id' => a.id}
                   = simple_form_for [current_user, a] do |f|
                     = f.association :subject, collection: current_user.subjects    
                     = f.input :description 
