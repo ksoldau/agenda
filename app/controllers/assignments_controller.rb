@@ -40,7 +40,6 @@ class AssignmentsController < ApplicationController
   def create
     createNewAssignment
     #@assignment.save
-    binding.pry
     #respond_with @assignment do |format|
     #    format.json {render json: @assignment.to_json}
     #end
