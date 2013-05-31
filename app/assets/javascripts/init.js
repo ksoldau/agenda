@@ -40,6 +40,8 @@ $(function() {
 
 })
 
+/**********************************/
+
 //initialize jquery buttons
 function initButtons() {
   $(".which_btn").button().click(function(event) {});
