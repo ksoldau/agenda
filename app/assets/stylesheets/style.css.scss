@@ -187,8 +187,8 @@ body {
   width: 13px;
   height: 13px;
   background-image: url("add.png");
-  display: none; /* toggled with jquery/js */
   cursor: pointer;
+  visibility: hidden;
   /* @media (max-width: 321px) { */
   /*   display: inline; */
   /* } */

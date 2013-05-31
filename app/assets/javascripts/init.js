@@ -21,6 +21,13 @@ $(function() {
       $(this).find(".delete_btn").css("visibility", "hidden");
       $(this).find(".edit_btn").css("visibility", "hidden");
     });
+  $( ".assignment_box").hover(
+    function() {
+      $(this).find(".add_btn").css("visibility", "visible");
+    },
+    function() {
+      $(this).find(".add_btn").css("visibility", "hidden");
+    });
   $("#tabs").hover(
     function() {
       $(this).find(".edit_subj_btn").css("visibility", "visible");
