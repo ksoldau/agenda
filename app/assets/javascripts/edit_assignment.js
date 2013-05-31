@@ -21,11 +21,11 @@ $(function() {
       }
 
       //change description based on edit
-      var desc = $assignment.find(".description").first()
+      var $desc = $assignment.find(".description").first()
       
-      if (desc.text().trim() !== data.description.trim()) {
-        desc.animate({opacity: "0"}, 700, function() {
-          desc.text(data.description).animate({opacity: "1"}, 700);
+      if ($desc.text().trim() !== data.description.trim()) {
+        $desc.animate({opacity: "0"}, 700, function() {
+          $desc.text(data.description).animate({opacity: "1"}, 700);
         });
       }
 
