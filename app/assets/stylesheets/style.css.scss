@@ -144,7 +144,9 @@ body {
    } 
 }
 
-
+#today_border, #today_nc_border {
+  color: $gray;
+}
 
 .completed {
   background-color: $light_blue;
