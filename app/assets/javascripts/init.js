@@ -36,5 +36,5 @@ function initDialogs() {
   $( ".a_dialog" ).dialog({autoOpen: false}); 
   $(".a_popup").dialog({autoOpen: false});
   $(".delete_dialog").dialog({autoOpen:false});
-  $( ".assignment_box" ).hover(function() { $(this).find(".add_btn").toggle();});
+  /* $( ".assignment_box" ).hover(function() { $(this).find(".add_btn").toggle();}); */
 }
