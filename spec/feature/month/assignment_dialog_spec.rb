@@ -43,11 +43,6 @@ feature 'create assignment', :js => true do
     find_assignment.click
     save_screenshot('screenshot31.png')
     
-
-    # don't have anyway to test this right now
-    # don't know how to get data attribute to use
-    # it to find associated dialog
-
     find_dialog = find(".a_dialog[data-assignment-id='" + assignment_id + "']")
 
     find_dialog.should have_content('Other')
