@@ -15,7 +15,7 @@ $(function() {
 
       //find open dialogs and close them?
       $(".a_dialog").dialog('close');
-      trigger_subj.delay(400).slideUp();
+      //trigger_subj.delay(400).slideUp();
       
       // log to console if ajax fails
       }).on('ajax:failure', function(e) {
