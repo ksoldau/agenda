@@ -126,7 +126,6 @@ function addButtonsAndDialogs() {
           //resize if necessary
           var viewportWidth = $(window).width();
           if (viewportWidth < 470) {
-            console.log("THIS WAS CALLED");
             dlg.dialog( "option", "width", viewportWidth - 30);
             $(dlg.find("#assignment_description")).css("width", viewportWidth - 70);
           }

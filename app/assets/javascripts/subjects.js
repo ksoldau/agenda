@@ -27,11 +27,9 @@ $(function() {
 
         // change which tab would be open if viewport bigger
         var dropDownSubjectName = $(this).text().trim();
-        console.log("this is dropDownSubjectName: " + dropDownSubjectName);
         
         $("li[role=tab]").each( function() {
           var tabSubjectName = $(this).text().trim();
-          console.log("this is tabSubjectName: " + tabSubjectName);
           
           if (tabSubjectName.indexOf(dropDownSubjectName) >= 0) {
             $(this).addClass("ui-state-active ui-tabs-active");
@@ -52,7 +50,6 @@ $(function() {
   $("li[role=tab]").each ( function() {
     $(this).on('click', function() {
       var subjectName = $(this).find("a").text().trim();
-      console.log(subjectName);
       $(".dk_container .dk_toggle .dk_label").text(subjectName);
 
       // remove all current states from 
@@ -63,7 +60,6 @@ $(function() {
       // add current state to correct drop down option
       $(".dk_options .dk_options_inner li").each ( function () {
         var a = $(this).find("a").text().trim();
-        console.log(a);
         if (a.indexOf(subjectName) >= 0) {
           $(this).addClass("dk_option_current");
         }
@@ -94,7 +90,6 @@ function addButtonsAndDialogsSubjectView() {
     $(".add_btn_subj_view").each(function() {
         //get day of this add button
         subjectId = $(this).data('subject-id');
-        console.log(subjectId);
         //get associated add dialog
         var dlg = $(".add_dialog[data-subject-id=" + subjectId + "]");
         
@@ -102,7 +97,6 @@ function addButtonsAndDialogsSubjectView() {
           //resize if necessary
           var viewportWidth = $(window).width();
           if (viewportWidth < 470) {
-            console.log("THIS WAS CALLED");
             dlg.dialog( "option", "width", viewportWidth - 30);
             $(dlg.find("#assignment_description")).css("width", viewportWidth - 70);
           }
