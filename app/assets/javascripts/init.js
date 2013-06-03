@@ -32,12 +32,12 @@ $(function() {
     function() {
       $(this).find(".edit_subj_btn").css("visibility", "visible");
       $(this).find(".delete_subj_btn").css("visibility", "visible");
-      $(this).find(".add_btn").css("visibility", "visible");
+      $(this).find(".add_btn_subj_view").css("visibility", "visible");
     },
     function() {
       $(this).find(".edit_subj_btn").css("visibility", "hidden");
       $(this).find(".delete_subj_btn").css("visibility", "hidden");
-      $(this).find(".add_btn").css("visibility", "hidden");
+      $(this).find(".add_btn_subj_view").css("visibility", "hidden");
     });
 
 })

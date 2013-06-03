@@ -182,7 +182,7 @@ body {
   background-image: url("delete.png"); 
   cursor: pointer;
 }
-.add_btn {
+.add_btn, .add_btn_subj_view {
   float:right;
   margin-top: 0.3em;
   margin-right: 0.2em;
@@ -195,7 +195,7 @@ body {
   /*   display: inline; */
   /* } */
 }
-.add_btn:hover {
+.add_btn:hover, .add_btn_subj_view:hover {
   background-image: url("add_hover.png");
 }
 
