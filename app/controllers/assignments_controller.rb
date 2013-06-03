@@ -81,7 +81,11 @@ class AssignmentsController < ApplicationController
     #deletes
     current_user.assignments.where(id: params[:id]).first.destroy
     #binding.pry
-    #redirect_to request.referer || user_assignments_path(current_user, :query => "week", :which => Date.today.beginning_of_week)
+    if request.xhr? 
+      #do nothing
+    else 
+      redirect_to request.referer
+    end 
 
   end
 

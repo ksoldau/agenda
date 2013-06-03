@@ -68,10 +68,10 @@
                 = a.subject.name
               .description
                 = a.description
-              .delete_btn
-                .delete_dialog{:title => "Delete Assignment"}
+              .delete_btn{:'data-assignment-id' => a.id}
+                .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
                   Are you sure you want to delete this assignment?
-                  = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete, :remote => true
+                  = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete
               .edit_btn{:'data-assignment-id' => a.id}
                 .edit_dialog{:title => "Update Assignment", 
                   :class => a.completed ? "completed" : "not_completed", :'data-assignment-id' => a.id}
