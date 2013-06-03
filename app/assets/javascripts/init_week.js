@@ -10,6 +10,6 @@ $(function() {
       $(this).find(".add_btn").css("visibility", "hidden");
     });
     
-})
+});
 
 

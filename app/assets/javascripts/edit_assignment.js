@@ -1,36 +1,35 @@
 // what happens when edit assignment (in week view)
 $(function() {
-    $(".edit_dialog").each(function() {
+     $(".edit_dialog").each(function() {
     
-    var dlg = $(this);
+     var dlg = $(this);
+     //save for later
+     var trigger = dlg.data("trigger");
 
-    //save for later
-    var trigger = dlg.data("trigger");
-
-    //when ajax succeeds
-    dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
+     //when ajax succeeds
+     dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
         
-        assignment = trigger.closest(".as_box");
+         assignment = trigger.closest(".as_box");
       
-        dlg.dialog('close');
-        //change subject if edited
-        updateSubject(assignment, data);
+         dlg.dialog('close');
+         //change subject if edited
+         updateSubject(assignment, data);
 
-        //change description based on edit
-        updateDescription(assignment, data);
+         //change description based on edit
+         updateDescription(assignment, data);
 
-        //change of placement based on time edit
-        updateTimeAndPlacement(assignment, data);
+         //change of placement based on time edit
+         updateTimeAndPlacement(assignment, data);
    
-    //when ajax fails 
-    }).on('ajax:failure', function(e) {
-      console.log("assignment edit FAILED");
-    });
-  });
+     //when ajax fails
+     }).on('ajax:failure', function(e) {
+       console.log("assignment edit FAILED");
+     });
+   });
 })
 
 
-/*** helper functions ***/
+/*** helper functions ***/ 
 
 // update subject if need be
 function updateSubject(trigger, data) {
@@ -300,6 +299,7 @@ function closeAssignment(assignment) {
   assignment.animate({opacity: '0'}, 800, function() {
       assignment.slideUp(600);
   });
+}
 // edit dialog with js after assignment has been edited (in week view?)
 $(function() {
   $(".edit_dialog").each(function() {
@@ -701,4 +701,3 @@ function otherTime($other_assignment) {
   
   return time;
 }
-
