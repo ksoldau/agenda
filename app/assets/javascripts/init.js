@@ -27,7 +27,6 @@ function initButtons() {
 
 //initialize jquery button sets
 function initButtonSets() {
-  $( "#radio" ).buttonset(); // is this even used? 
   $(".nav_view").buttonset();
   $(".rotate_through").buttonset();
 }
