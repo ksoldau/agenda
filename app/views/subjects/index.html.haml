@@ -51,7 +51,7 @@
       .add_btn_subj_view{:'data-subject-id' => s.id}
         .add_dialog{:'data-subject-id' => s.id}
           = simple_form_for [current_user, @newa] do |f|
-            = f.association :subject, collection: current_user.subjects
+            = f.association :subject, collection: current_user.subjects, :selected => s.id
             = f.input :description
             = f.input :due_date, order: [:month, :day, :year], :ampm => true
             = f.input :completed, :label => "Completed?", :as => "radio_buttons"
