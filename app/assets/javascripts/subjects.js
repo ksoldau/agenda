@@ -6,7 +6,6 @@ $(function() {
 
 // drop down function
 $(function() {
-  console.log("IT DOES REACH HERE");
   $(".dk_container .dk_options li a").each(
     function() {
 
