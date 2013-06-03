@@ -5,20 +5,12 @@ $(function() {
   initDeleteDialogs();
   initAddDialogs();
 
-  //initialize dialogs for subjects
-  initEditSubjectDialogs();
-  initDeleteSubjectDialogs();
-  initAddSubjectDialog();
 
   //connect buttons and dialogs for assignments
   editButtonsAndDialogs();
   deleteButtonsAndDialogs();
   addButtonsAndDialogs();
 
-  //connect buttons and dialogs for subjects
-  editSubjectButtonsAndDialogs();
-  initAddSubjectButtonsAndDialogs();
-  initDeleteSubjectButtonsAndDialogs();
 });
 
 /*** Initialize dialogs ***/
@@ -69,49 +61,6 @@ function initAddDialogs() {
     });
 }
 
-//initialize edit subject dialogs
-function initEditSubjectDialogs() {
-  $(".edit_subj_dialog").each(function() {
-      $(this).dialog({
-          closeOnEscape: true, 
-          title: "Update Subject",
-          height: 200,
-          width: 300,
-          draggable: false,
-          resizable: false, 
-          modal: true, 
-          autoOpen: false, 
-      });
-  });
-}
-
-//initialize delete subject dialogs
-function initDeleteSubjectDialogs() {
-    $(".delete_subj_dialog").each(function() {
-        $(this).dialog({
-            closeOnEscape: true, 
-            title: "Delete Subject", 
-            width: 300, 
-            draggable: false,
-            resizable: false, 
-            modal: true, 
-            autoOpen: false, 
-        });
-    });
-}
-
-//initialize add subject dialogs
-function initAddSubjectDialog() {
-    //there's only one add subject button
-    $(".add_subj_dialog").dialog({
-        closeOnEscape: true,
-        title: "Add Subject", 
-        draggable: true, 
-        resizable: false, 
-        modal: true, 
-        autoOpen: false,
-    });
-}
 
 /*** Connect buttons and dialogs ***/
 
@@ -196,57 +145,5 @@ function addButtonsAndDialogs() {
   });
 }
 
-/*** for subjects ***/
 
-//initialize edit subject dialogs and assign them to buttons
-function editSubjectButtonsAndDialogs() {
-  $(".edit_subj_btn").each(
-    function() {
-      //get subject of this edit subject button
-      subjectId = $(this).data('subject-id');
-      //get associated edit subject dialog
-      var dlg = $(".edit_subj_dialog[data-subject-id=" + subjectId + "]");
-      
-      $(this).on('click', function() {
-        dlg.dialog('open');
-      });
 
-      var viewportWidth = $(window).width();
-      if (viewportWidth < 323) {
-        dlg.dialog( "option", "width", viewportWidth * .9);
-        dlg.find("#subject_name").attr("size", "25");
-      }
-    });
-}
-
-//initialize delete subject dialogs and assign them to buttons
-function initDeleteSubjectButtonsAndDialogs() {
-  $(".delete_subj_btn").each(
-    function() {
-      //get subject of this delete subject button
-      subjectId = $(this).data('subject-id');
-      //get associated edit subject dialog
-      var dlg = $(".delete_subj_dialog[data-subject-id=" + subjectId + "]");
-
-      $(this).on('click', function() {
-        dlg.dialog('open');
-      });
-      
-      var viewportWidth = $(window).width();
-      if (viewportWidth < 323) {
-        dlg.dialog( "option", "width", viewportWidth * .9);
-      }
-
-    });
-}
-
-//initialize add subject dialogs and assign them to buttons
-function initAddSubjectButtonsAndDialogs() {
-  $(".add_subj_btn").each(function() {
-      var dlg = $(".add_subj_dialog");
-
-      $(this).on('click', function() {
-        dlg.dialog('open');
-      });
-  });
-}

@@ -1,3 +1,5 @@
+= javascript_include_tag "init_month"
+= javascript_include_tag "calendar"
 .choose_view
   .nav_view
     = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.beginning_of_week) 
