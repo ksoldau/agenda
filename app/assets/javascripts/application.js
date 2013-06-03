@@ -15,6 +15,3 @@
 //= require jquery_ujs
 //= require dialogs
 //= require init
-//= require delete_assignment
-
-
