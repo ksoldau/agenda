@@ -129,12 +129,10 @@ function updateTimeAndPlacement(trigger, data) {
 
         // is it in the right day?
         if (htext.indexOf(new_day_string + ",") >= 0) {
-          console.log("in this if");
           var new_ab = $(h).closest(".assignment_box");
           var assignment = trigger.closest(".as_box");
 
           var assignmentsArray = new_ab.find(".as_box");
-          console.log("length of assignmentsArray is %o", assignmentsArray.length);
 
           //
           assignment.appendTo(new_ab);
@@ -163,10 +161,7 @@ function updateTimeAndPlacement(trigger, data) {
               }
 
               var o_date = new Date (0, 0, 1, o_24hour, o_min);
-              console.log(o_24hour);
-              console.log(o_min);
-              console.log(o_date.getTime());
-              
+                         
               if (new_hour < 10) {
                 /* new_hour = "0" + new_hour; */
               }
@@ -174,12 +169,7 @@ function updateTimeAndPlacement(trigger, data) {
                 /* new_min = "0" + new_min; */
               }
               var new_date_time = new Date(0, 0, 1, Number(new_hour), Number(new_min));
-              console.log("this is new_date_time " + (new_date_time.getTime()/100000));
 
-              console.log("this is o_date.getTime() " + (o_date.getTime()/100000));
-
-              console.log(new_date_time.getTime() <= o_date.getTime());
-              
               if (new_date_time.getTime() <= o_date.getTime()) {
                 o_a.before(assignment);
               }
@@ -324,7 +314,6 @@ $(function() {
 
       //update time based on edit
       updateTime($assignment, data);
-      console.log("after updateTime");
            
    
       //change background color based on completion
@@ -404,8 +393,6 @@ function updatePlacement($assignment, data) {
     old_am_pm = old_time.split(' ')[3];
 
     //make old_hour on 24 hour time
-    console.log("old hour is " + old_hour);
-    console.log("old_am_pm is " + old_am_pm);
     old_hour = make24(old_hour, old_am_pm);
     
     var old_date_and_time = new Date(old_year, 0, old_day, old_hour, old_min);
@@ -553,8 +540,6 @@ function move($assignment, data) {
     old_am_pm = old_time.split(' ')[3];
 
     //make old_hour on 24 hour time
-    console.log("old hour is " + old_hour);
-    console.log("old_am_pm is " + old_am_pm);
     old_hour = make24(old_hour, old_am_pm);
     
       //close old assignment then move it and open it again
