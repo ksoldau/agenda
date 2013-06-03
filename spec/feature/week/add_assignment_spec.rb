@@ -51,8 +51,6 @@ feature 'create assignment', :js => true do
     find(new_a).should have_content('Other')
     find(new_a).should have_content('Example description')
 
-
-
   end
 
  end
