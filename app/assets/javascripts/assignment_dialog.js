@@ -31,8 +31,8 @@ function initDialogs() {
           modal: true,
           autoOpen: false,
           width: '235', 
-        });
-    });
+      });
+  });
 }
 
 //connect subject links with their assignment 

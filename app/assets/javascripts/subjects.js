@@ -1,5 +1,12 @@
+// for the subject view
+
+$(function() {
+  addButtonsAndDialogsSubjectView();
+})
+
 // drop down function
 $(function() {
+  console.log("IT DOES REACH HERE");
   $(".dk_container .dk_options li a").each(
     function() {
 
@@ -69,15 +76,45 @@ $(function() {
 
 
 
-/* // make the edit subject button appear and disappear based on hover */
-/* $(function() { */
-/*   $("#tabs .ui-tabs-panel").each( function() { */
-/*     $(this).hover( */
-/*       function() { */
-/*         $(this).find(".edit_subj_btn").css("visibility", "visible"); */
-/*       }, */
-/*       function() { */
-/*         $(this).find(".edit_subj_btn").css("visibility", "hidden"); */
-/*       }); */
-/*   }); */
-/* }); */
+// make the edit subject button appear and disappear based on hover
+$(function() {
+  $("#tabs .ui-tabs-panel").each( function() {
+    $(this).hover(
+      function() {
+        $(this).find(".edit_subj_btn").css("visibility", "visible");
+      },
+      function() {
+        $(this).find(".edit_subj_btn").css("visibility", "hidden");
+      });
+  });
+});
+
+
+//initialize add assignment dialogs and assign them to buttons
+function addButtonsAndDialogsSubjectView() {
+    $(".add_btn_subj_view").each(function() {
+        //get day of this add button
+        subjectId = $(this).data('subject-id');
+        console.log(subjectId);
+        //get associated add dialog
+        var dlg = $(".add_dialog[data-subject-id=" + subjectId + "]");
+        
+        $(this).on('click', function() {
+          //resize if necessary
+          var viewportWidth = $(window).width();
+          if (viewportWidth < 470) {
+            console.log("THIS WAS CALLED");
+            dlg.dialog( "option", "width", viewportWidth - 30);
+            $(dlg.find("#assignment_description")).css("width", viewportWidth - 70);
+          }
+        //open the add dialog
+        dlg.dialog('open');
+
+      });
+     
+     //save add button in add dialog for later
+     dlg.data("trigger", $(this));
+
+  });
+}
+

@@ -19,6 +19,7 @@
 //= require init
 //= require delete_assignment
 //= require edit_assignment
+//= require subjects
 //= require_tree .
 
 
