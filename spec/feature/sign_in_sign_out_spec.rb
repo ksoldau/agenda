@@ -49,9 +49,9 @@ feature 'sign out' do
     current_path.should == user_assignments_path(user)
 
     #click sign out 
-    find('.sign_out_btn a').click
+    find('#header_link a').click
     
     #verify signed out 
-    current_path.should == new_user_session_path
+    current_path.should == '/' #new_user_session_path
   end
 end
