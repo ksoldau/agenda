@@ -44,7 +44,7 @@
   color: $dark_blue;
   font-family: Cabin;
   width: 500px;
-  min-height: 200px;
+  min-height: 120px;
   border: none;
   @media (max-width: 695px) {
     width: 90%;
@@ -117,9 +117,6 @@
     /* @media (max-width: 625px) { */
     /*   width: 80%; */
     /* } */
-  }
-  .add_btn_subj_view {
-    float: right;
   }
 }
 
@@ -345,7 +342,7 @@ ul.dk_options_inner {
 }
 
 //////
-.no_assignments_text {
+.panel_text {
   text-align: center;
   @media (max-width: 530px) {
     font-size: 1rem;
@@ -422,4 +419,44 @@ ul.dk_options_inner {
 .panel {
   display: none; // start at display none, toggled with jquery
   padding: 0.3rem;
+  padding-bottom: 0.8rem;
 }
+.choose_panel {
+  display: block;
+}
+
+#tabs .add_btn_subj_view.no_assignment {
+  background-image: none;
+  float: none;
+  margin: 1rem auto 0 auto;
+  width: 130px;
+  height: auto;
+  text-align: center;
+  padding: 0.3rem;
+}
+
+#tabs .add_btn_subj_view.has_assignments {
+  background-image: none;
+  float: right;
+  color: $light_blue;
+  text-align: center;
+  background-color: $blue;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  margin-bottom: -1.5rem;
+  .icon-plus {
+    margin-top: -0.9rem;
+    color: $light_blue;
+    font-size: 1rem;
+  }
+}
+
+#tabs .add_btn_subj_view.has_assignments:hover {
+  background-color: $blue_hover;
+  .icon-plus {
+    color: $light_blue_hover;
+  }
+}
+
+

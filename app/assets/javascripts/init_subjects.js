@@ -118,7 +118,7 @@ function editSubjectButtonsAndDialogs() {
       var viewportWidth = $(window).width();
       if (viewportWidth < 323) {
         dlg.dialog("option", "width", viewportWidth * .9);
-        dlg.fing("#subject_name").attr("size", "25");
+        dlg.find("#subject_name").attr("size", "25");
       }
   });
 }
