@@ -418,3 +418,7 @@ ul.dk_options_inner {
   font-size: 0.9rem;
   display: none; // toggled with jquery
 }
+
+.panel {
+  display: none; // start at display none, toggled with jquery
+}
