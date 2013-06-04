@@ -46,7 +46,7 @@
   width: 500px;
   min-height: 120px;
   border: none;
-  @media (max-width: 695px) {
+  @media (max-width: 567px) {
     width: 90%;
   }
   li {
@@ -183,11 +183,6 @@
   span {
     font-size: 1rem;
   }
-  @media (max-width: 625px) {
-    span {
-    font-size: 0.75rem;
-    }
-  }
 }
 
 .add_subj_btn2 {
@@ -237,6 +232,12 @@
     color: $light_blue;
     text-shadow: none;
     font-size: 1.2rem;
+    @media (max-width: 445px) {
+      font-size: 1rem;
+    }
+    @media (max-width: 400px) {
+      font-size: 0.9rem;
+    }
   }
 }
 
@@ -251,6 +252,12 @@
 
 .dk_toggle {
   width: 175px!important; //to override inline style
+  @media (max-width: 445px) {
+    width: 160px!important;
+  }
+  @media (max-width: 400px) {
+    width: 130px!important;
+  }
   
   span.dk_label {
   }
@@ -366,6 +373,12 @@ ul.dk_options_inner {
   .edit_subj_btn {
     width: auto;
   }
+  @media (max-width: 567px) {
+    width: 90%;
+  }
+  @media (max-width: 384px) {
+    width: 95%;
+  }
 }
 
 .edit_subj_btn {
@@ -414,6 +427,12 @@ ul.dk_options_inner {
   font-size: 0.9rem;
   display: none; // toggled with jquery
   margin-top: 0.4rem;
+  @media (max-width: 445px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 350px) {
+    font-size: 0.65rem;
+  }
 }
 
 .panel {
