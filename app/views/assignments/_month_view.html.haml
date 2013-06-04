@@ -11,7 +11,7 @@
     = link_to "Prev", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.prev_month.beginning_of_month),
       {:class => "which_btn"}
     - @other_class = params[:which].to_date.beginning_of_month == Date.today.beginning_of_month ? "current" : nil
-    = link_to "This Month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
+    = link_to "This month", user_assignments_path(current_user, :query => 'month', :which => Date.today.beginning_of_month), 
       {:class => "#{@other_class} which_btn"}
     = link_to "Next", user_assignments_path(current_user, :query => 'month', :which => params[:which].to_date.next_month.beginning_of_month), 
       {:class => "which_btn"}

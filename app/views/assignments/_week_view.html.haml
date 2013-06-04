@@ -10,7 +10,7 @@
     = link_to "Prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week),
       {:class => "which_btn"}
     - @other_class = params[:which].to_date.beginning_of_week == Date.today.beginning_of_week ? "current" : nil
-    = link_to "This Week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
+    = link_to "This week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
       {:class => "which_btn #{@other_class}"}    
     = link_to "Next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
       {:class => "which_btn"}
