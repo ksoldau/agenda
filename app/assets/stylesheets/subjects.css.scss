@@ -459,4 +459,13 @@ ul.dk_options_inner {
   }
 }
 
-
+#add_subj_btn_wrapper {
+  width: 510px;
+  margin: 2rem auto 0 auto;
+  @media (max-width: 567px) {
+    width: 90%;
+  }
+  @media (max-width: 384px) {
+    width: 95%;
+  }
+}
