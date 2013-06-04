@@ -39,6 +39,14 @@
           This subject has no assignments yet.
         .add_btn_subj_view.no_assignment.button{:'data-subject-id' => s.id}
           Add Assignment
+          .add_dialog{:'data-subject-id' => s.id}
+            = simple_form_for [current_user, @newa] do |f|
+              = f.association :subject, collection: current_user.subjects, :selected => s.id
+              = f.input :description
+              = f.input :due_date, order: [:month, :day, :year], :ampm => true, :default => Date.today + 23.hours + 59.minutes 
+              = f.input :completed, :label => "Completed?", :as => "radio_buttons"
+              = f.submit "Add", :class => "add_dialog_submit"
+
       - else 
         .add_btn_subj_view.has_assignments.button{:'data-subject-id' => s.id}
           .icon-plus
@@ -86,4 +94,3 @@
       = simple_form_for [current_user, @news] do |f|
         = f.input :name, :input_html => {:size => 30}
         = f.submit "Add", :class => "button"
-
