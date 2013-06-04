@@ -18,5 +18,6 @@
  *= require month
  *= require subjects
  *= require forms
+ *= require _font-awesome
  *= require_tree .
  */
