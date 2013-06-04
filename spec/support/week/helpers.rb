@@ -1,8 +1,12 @@
 module Week
   module Helpers
+    
+    def monday_path
+      ".week .side:first-child .assignment_box:first-child"
+    end
+
     def monday
-      assignment_box = ".week .side:first-child .assignment_box:first-child"
-      find(assignment_box)
+      find(monday_path)
     end
 
     def monday_assignment 

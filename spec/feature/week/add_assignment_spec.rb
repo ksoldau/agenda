@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 RSpec.configure do |config|
-  config.include Week::Helpers, type: :feature 
+  config.include Week::Helpers, type: :feature
+  config.include All::Helpers, type: :feature
 end
 
 feature 'create assignment', :js => true do 
@@ -10,8 +11,8 @@ feature 'create assignment', :js => true do
   before do
     #sign in
     visit '/'
-    fill_in 'user[email]', :with => user.email
-    fill_in 'user[password]', :with => 'p@ssword'
+    fill_in_email(user.email)
+    fill_in_password('p@ssword')
     click_button 'Sign in'
   end
 

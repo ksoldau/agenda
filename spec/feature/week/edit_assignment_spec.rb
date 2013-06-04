@@ -1,18 +1,28 @@
 require 'spec_helper'
 
+RSpec.configure do |config|
+  config.include All::Helpers, type: :feature
+  config.include Week::Helpers, type: :feature
+end
+
 feature 'edit/delete assignment', :js => true do
   let(:user) { FactoryGirl.create(:user) }
   
   before do
     visit '/'
-    fill_in 'user[email]', :with => user.email
-    fill_in 'user[password]', :with => 'p@ssword'
+    fill_in_email(user.email)
+    fill_in_password('p@ssword')
     click_button 'Sign in'
-    find(".week .side:first-child .assignment_box:first-child").hover
-    find(".add_btn[data-day='day1']").click
-    select('Other', :from => 'assignment[subject_id]')
-    fill_in('assignment[description]', :with => 'Example description.')
-    find('input[type="submit" ]').click
+
+    monday.hover
+    
+    find(monday_path + " .add_btn").click
+    
+    within ".add_dialog" do 
+      select_subject('Other')
+      write_description('Example description')
+      submit_button.click
+    end
 
   end
 
@@ -37,7 +47,7 @@ feature 'edit/delete assignment', :js => true do
     a = ".week .side:first-child .assignment_box:first-child .as_box"
 
     # assure assignment is in Monday
-    find(a).should have_content('Example description.')
+    find(a).should have_content('Example description')
 
     #edit day
     find(a).hover
@@ -53,7 +63,7 @@ feature 'edit/delete assignment', :js => true do
     # make sure assignment moved to correct place
     page.save_screenshot 'screenshot26.png'
     visit user_assignments_path(user, :query => 'week', :which => "April 1, 2013".to_date.beginning_of_week)
-    page.should have_content('Example description.')
+    page.should have_content('Example description')
 
   end
     
