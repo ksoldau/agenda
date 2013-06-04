@@ -47,6 +47,7 @@ $(function () {
 function initButtons() {
   $(".delete_subj_btn").button().click(function(e) {});
   $(".add_subj_btn").button().click(function(e) {});
+  $(".add_subj_btn2").button().click(function(e) {});
 }
 
 function initDialogs() {
@@ -126,7 +127,7 @@ function initDeleteSubjectButtonsAndDialogs() {
   $(".delete_subj_btn").each(
     function() {
       // get subject id of this delete subject button
-      subejctId = $(this).data('subject-id');
+      subjectId = $(this).data('subject-id');
       // get associated edit subject dialog
       var dlg = $(".delete_subj_dialog[data-subject-id=" + subjectId + "]");
 
@@ -152,4 +153,5 @@ function initAddSubjectButtonsAndDialogs() {
       dlg.dialog('open');
     });
   });
+  
 }
