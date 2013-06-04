@@ -75,7 +75,7 @@ body {
   }
 }
 
-.assignment_box {
+.assignment_box, .ui-tabs {
   background-color: $gray;  
   @media (min-width: 385px) {
   width: 350px;

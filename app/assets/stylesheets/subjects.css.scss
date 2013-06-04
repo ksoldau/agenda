@@ -27,10 +27,6 @@
 
 /********/
 
-.ui-tabs-nav {
-  background-color: $gray;
-  border-color: $gray;
-}
 .ui-tabs-active {
   background-color: $gray;
   a {
@@ -43,11 +39,13 @@
 #tabs {
   margin: 2em auto 0 auto;
   background-color: $gray;
-  border-color: $gray;
+  border-radius: 8px;
   background-image: none;
   color: $dark_blue;
   font-family: Cabin;
-  width: 660px;
+  width: 500px;
+  min-height: 200px;
+  border: none;
   @media (max-width: 695px) {
     width: 90%;
   }
@@ -63,10 +61,10 @@
     }
   }
   .ui-tabs-nav {
-    background-color: $gray;
+    background-color: $light_blue;
     background-image: none;
-    border-color: $gray;
     font-family: Cabin;
+    border: none;
     @media (max-width: 695px) {
       width: 30%
     }
@@ -95,21 +93,21 @@
       }
     }
     .ui-tabs-active {
-      background-color: $gray;
       color: $dark_blue;
        a {
-         background-color: $gray;
-         color: $dark_blue;
+         color: $light_blue;
+         background-color: $dark_blue;
        }
     }
     .ui-tabs-active:hover {
       a {
-        color: $dark_blue; // this is to cancel out styling from above
+        color: $light_blue; // this is to cancel out styling from above
       }
     }
   }
   .ui-tabs-panel {
     width:400px;
+    min-height: 150px;
     @media (max-width: 695px) {
       width: 60%;
     }
@@ -121,74 +119,88 @@
     /* } */
   }
   .add_btn_subj_view {
-    float: none;
-    margin: 0 auto;
+    float: right;
     margin-bottom: 0.5em;
   }
 }
 
-.ui-tabs-panel {
-  .as_box {
-    width: 330px;
-    margin: 0 auto;
-    overflow: hidden;
-    padding-bottom: 0.2em;
-    font-size: 1em;
-    margin-bottom: 0.5em;
-    @media (max-width: 695px) {
-      width: 90%;
-    }
+/* .ui-tabs-panel { */
+/*   .as_box { */
+/*     width: 330px; */
+/*     margin: 0 auto; */
+/*     overflow: hidden; */
+/*     padding-bottom: 0.2em; */
+/*     font-size: 1em; */
+/*     margin-bottom: 0.5em; */
+/*     @media (max-width: 695px) { */
+/*       width: 90%; */
+/*     } */
 
-    .day_heading {
-      font-weight: bold;
-      margin: 2px;
-    }
-    .due_time {
-      float: right;
-      margin-right: 0.5em;
-      color: $dark_blue;
-      text-align: center;
-      font-weight: bold;
-    }
-    .subject {
-      margin-right: 0.5em;
-      color: $dark_blue;
-    }
-    .description {
-      float:left;
-      color: $dark_blue;
-      width: 100%;
-      font-weight: normal;
-    }
-    .completed {
-      margin: 10px;
-      overflow: hidden;
-      padding-bottom: 0.2em;
-    }
-    .not_completed {
-      background-color: $orange;
-      margin: 10px;
-      overflow: hidden;
-      padding-bottom: 0.2em;
-    }
-  }
-  .add_btn {
-    display: block;
-    visibility: hidden;
-  }
-  .add_dialog {
-    .new_assignment{
-      input[type="submit"] {
-        float: right;
-      }
-    }
-  }
-}
+/*     .day_heading { */
+/*       font-weight: bold; */
+/*       margin: 2px; */
+/*     } */
+/*     .due_time { */
+/*       float: right; */
+/*       margin-right: 0.5em; */
+/*       color: $dark_blue; */
+/*       text-align: center; */
+/*       font-weight: bold; */
+/*     } */
+/*     .subject { */
+/*       margin-right: 0.5em; */
+/*       color: $dark_blue; */
+/*     } */
+/*     .description { */
+/*       float:left; */
+/*       color: $dark_blue; */
+/*       width: 100%; */
+/*       font-weight: normal; */
+/*     } */
+/*     .completed { */
+/*       margin: 10px; */
+/*       overflow: hidden; */
+/*       padding-bottom: 0.2em; */
+/*     } */
+/*     .not_completed { */
+/*       background-color: $orange; */
+/*       margin: 10px; */
+/*       overflow: hidden; */
+/*       padding-bottom: 0.2em; */
+/*     } */
+/*   } */
+/*   .add_btn { */
+/*     display: block; */
+/*     visibility: hidden; */
+/*   } */
+/*   .add_dialog { */
+/*     .new_assignment{ */
+/*       input[type="submit"] { */
+/*         float: right; */
+/*       } */
+/*     } */
+/*   } */
+/* } */
 
 .add_subj_btn {
-  margin-top: 2em;
-  margin-left: 3em;
-  font-size: .75em;
+  margin-top: 1em;
+  span {
+    font-size: 1rem;
+  }
+  @media (max-width: 625px) {
+    span {
+    font-size: 0.75rem;
+    }
+  }
+}
+
+.add_subj_btn2 {
+  span {
+    font-size: 0.75rem;
+  }
+  @media (max-width: 480px) {
+    display: block;
+  }
 }
 
 .add_subj_dialog {
@@ -205,86 +217,6 @@
     color: $light_blue_hover;
   }
 }
-
-.delete_subj_btn.ui-button.ui-state-default {
-  float: right;
-  width: 13px;
-  height: 13px;
-  margin-left: 0.3em;
-  margin-right: 0.3em;
-  background-image: url("delete.png");
-  background-color: transparent;
-  cursor: pointer;
-  visibility: hidden; //toggled with jquery
-
-}
-.delete_subj_btn.ui-button.ui-state-default:hover {
-  background-image: url("delete_hover.png");
-}
-
-.delete_subj_btn.ui-button.ui-state-default, .edit_subj_btn {
-  @media (max-width: 480px) {
-    margin-top: -1.5rem;
-  }
-}
-
-.edit_subj_btn {
-  float: right;
-  visibility: hidden; //toggled with jquery
-  width: 13px;
-  height: 13px;
-  cursor: pointer;
-  background-image: url("pencil.png");
-  background-color: none;
-  @media (max-width: 480px) {
-    margin-right: 1.5rem;
-  }
-}
-.edit_subj_btn:hover {
-  background-image: url("pencil_hover.png");
-}
-
-.edit_subj_dialog {
-  input[type="submit"] {
-    border-radius: 8px;
-    float: right;
-    margin-top: 2em;
-  }
-}
-
-.delete_subj_dialog {
-  a {
-    float: right;
-    margin-top: 1.5rem;
-    background-color: $blue;
-    color: $light_blue;
-    text-decoration: none;
-    padding: 5px;
-    border-radius: 8px;
-  }
-  a:hover {
-    background-color: $blue_hover;
-    color: $light_blue_hover;
-  }
-}
-
-.select_subject {
-  display: none;
-  width: 100%;
-  @media (max-width: 480px) {
-    margin: 0 auto;
-    display: block;
-  }
-  select {
-    /* webkit-appearance: none; */
-    /* width: 200px; */
-    /* background-color: $blue; */
-    /* border-color: $blue; */
-    /* color: $light-blue; */
-  }
-}
-
-
 // The theme below was taken from dropkick.js and slightly modified
 
 /* Container */
@@ -294,7 +226,6 @@
 }
 
 .dk_container {
-  width: 180px;
   margin: 0 auto;
   float: none;
   background-image: none;
@@ -309,7 +240,7 @@
   a span {
     color: $light_blue;
     text-shadow: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 
@@ -323,7 +254,7 @@
 }
 
 .dk_toggle {
-  width: 125px!important; //to override inline style
+  width: 150px!important; //to override inline style
   
   span.dk_label {
   }
@@ -402,6 +333,7 @@ ul.dk_options_inner {
 //////////
 .subject_a_date {
   margin-left: 2em;
+  clear: both; // clear the floats
   @media (max-width: 695px) {
     margin-left: 1em;
   }
@@ -419,4 +351,70 @@ ul.dk_options_inner {
   @media (max-width: 530px) {
     font-size: 1rem;
   }
+}
+
+
+/*** Subject Bar ***/ 
+
+.subject_bar {
+  width: 500px;
+  padding: .2em;
+  border-radius: 6px;
+  background-color: $gray;
+  margin: 2rem auto 0 auto;
+  height: 2.5rem;
+  .select_subject {
+    float: left;
+    padding-top: 0.3rem;
+  }
+  .edit_subj_btn {
+    width: auto;
+  }
+}
+
+.edit_subj_btn {
+  float: right;
+  //visibility: hidden; //toggled with jquery
+  cursor: pointer;
+}
+
+.edit_subj_dialog {
+  input[type="submit"] {
+    border-radius: 8px;
+    float: right;
+    margin-top: 2em;
+  }
+}
+
+
+.delete_subj_btn.ui-button.ui-state-default {
+  float: right;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  cursor: pointer;
+  //visibility: hidden; //toggled with jquery
+}
+
+.delete_subj_btn.ui-button.ui-state-default:hover {
+}
+
+.delete_subj_dialog {
+  a {
+    float: right;
+    margin-top: 1.5rem;
+    background-color: $blue;
+    color: $light_blue;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  a:hover {
+    background-color: $blue_hover;
+    color: $light_blue_hover;
+  }
+}
+
+.delete_subj_btn, .edit_subj_btn {
+  font-size: 0.9rem;
+  display: none; // toggled with jquery
 }

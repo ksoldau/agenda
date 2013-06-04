@@ -46,6 +46,7 @@ $(function () {
 
 function initButtons() {
   $(".delete_subj_btn").button().click(function(e) {});
+  $(".edit_subj_btn").button().click(function(e) {});
   $(".add_subj_btn").button().click(function(e) {});
   $(".add_subj_btn2").button().click(function(e) {});
 }
