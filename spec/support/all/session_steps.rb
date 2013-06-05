@@ -26,10 +26,10 @@ module All
       click_button 'Sign in'
     end
 
-    def sign_up_with(email, password, first_name, last_name)
+    def sign_up_with(email, password, pw_confirmation, first_name, last_name)
       fill_in_email(email)
       fill_in_password(password)
-      fill_in_password_confirmation(password)
+      fill_in_password_confirmation(pw_confirmation)
       fill_in_first_name(first_name)
       fill_in_last_name(last_name)
       click_button 'Sign up'
@@ -38,6 +38,14 @@ module All
     def user_exists(email)
       User.where(:email => email).should_not be_empty
     end
+
+    def user_doesnt_exist(email)
+      User.where(:email => email).should be_empty
+    end
+
+    #def assignment_doesnt_exist(description)
+      #User.assignments.where(:description => description).should be_empty
+    #end
 
   end
 
@@ -72,6 +80,34 @@ module All
 
     def write_description(description)
       fill_in('assignment[description]', :with => description)
+    end
+  end
+
+  module Views
+    
+    def month_view_button_path
+      ".nav_view .ui-corner-right"
+    end
+
+    def month_view_button
+      find(month_view_button_path)
+    end
+
+    def subject_tab
+      find(".tab", :text => "Subjects")
+    end
+  
+  end
+
+  module Subjects
+    def add_subject(subject_name) 
+      subject_tab.click
+      add_subject_button.click
+
+      within ".add_subj_dialog" do
+        name_subject(subject_name)
+        submit_button.click
+      end
     end
   end
 end

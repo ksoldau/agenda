@@ -2,6 +2,7 @@ require 'spec_helper'
 RSpec.configure do |config|
   config.include All::SessionSteps, type: :feature
   config.include All::Dialogs, type: :feature
+  config.include All::Views, type: :feature
   config.include Month::Helpers, type: :feature
 end
 
@@ -12,14 +13,11 @@ feature 'create assignment', :js => true do
     #sign in
     visit '/'
     sign_in_with(user.email, 'p@ssword')
+    month_view_button.click
   end
 
   scenario 'add assignment' do
   
-    #click on button to go to month view
-    month_view_button.click
-    page.should have_selector(".cal")
-
     # bring up assignment dialog for first day in calendar
     within ".cal" do
       first_day.base.double_click
@@ -41,6 +39,21 @@ feature 'create assignment', :js => true do
     first_day_assignment.click
 
     find(".a_dialog").should have_content('Example description')
+  end
+
+  scenario 'add assignment no subject' do 
+    
+    within ".cal" do
+      first_day.base.double_click
+    end
+
+    within ".add_dialog" do
+      write_description('Example description')
+      submit_button.click
+    end
+
+    #page.should have_css(".add_dialog")
+
   end
 
 end

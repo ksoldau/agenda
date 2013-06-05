@@ -73,5 +73,3 @@ feature 'create assignment', :js => true do
 
 
 end
-
-
