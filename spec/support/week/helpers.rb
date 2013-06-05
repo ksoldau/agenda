@@ -13,16 +13,5 @@ module Week
       monday.find(".as_box")
     end
 
-    def submit_button
-      find('input[type="submit"]')
-    end
-
-    def select_subject(subject)
-      select(subject, :from => 'assignment[subject_id]')
-    end
-
-    def write_description(description)
-      fill_in('assignment[description]', :with => description)
-    end
   end
 end

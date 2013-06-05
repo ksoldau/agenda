@@ -40,5 +40,31 @@ module All
     end
 
   end
+
+  module Dialogs
+    def submit_button 
+      find('input[type="submit"]')
+    end
+
+    def select_subject(subject)
+      select(subject, :from => 'assignment[subject_id]')
+    end
+
+    def select_year(year)
+      select(year, :from => 'assignment[due_date(1i)]')
+    end
+
+    def select_month(month)
+      select(month, :from => 'assignment[due_date(2i)]')
+    end
+
+    def select_day(day)
+      select(day, :from => 'assignment[due_date(3i)]')
+    end
+
+    def write_description(description)
+      fill_in('assignment[description]', :with => description)
+    end
+  end
 end
 
