@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.configure do |config|
   config.include Week::Helpers, type: :feature
-  config.include All::Helpers, type: :feature
+  config.include All::SessionSteps, type: :feature
 end
 
 feature 'create assignment', :js => true do 

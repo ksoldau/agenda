@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.configure do |config|
-  config.include All::Helpers, type: :feature
+  config.include All::SessionSteps, type: :feature
   config.include Week::Helpers, type: :feature
 end
 

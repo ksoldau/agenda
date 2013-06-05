@@ -1,46 +1,39 @@
 require 'spec_helper'
 
+RSpec.configure do |config|
+  config.include All::SessionSteps, type: :feature
+end
+
 feature 'sign in/sign up' do
   let(:user) { FactoryGirl.create(:user) }
   
   before do
     visit '/'
-    #fill_in 'user[email]', :with => user.email
-    #fill_in 'user[password]', :with => 'p@ssword'
-    #click_button 'Sign in'
-    #wait_until { current_path != "/users/sign_in" }
-    #visit "/users/edit"
+
   end
 
   scenario 'signing in succeeds' do
-    fill_in'user[email]', :with => user.email
-    fill_in 'user[password]', :with => 'p@ssword'
-    click_button 'Sign in'
-    current_path.should == user_assignments_path(user)
+    sign_in_with(user.email, 'p@ssword')
   end
 
   scenario 'signing up succeeds' do
     click_link 'Sign up'
     current_path.should == new_user_registration_path
-    fill_in 'user[email]', :with => 'pat@example.com'
-    fill_in 'user[password]', :with => 'p@ssword'
-    fill_in 'user[password_confirmation]', :with => 'p@ssword'
-    fill_in 'user[first_name]', :with => "Pat"
-    fill_in 'user[last_name]', :with => "Johnson"
-    click_button 'Sign up'
+
+    sign_up_with('pat@example.com', 'p@ssword', 'Pat', 'Johnson')
     current_path.should == user_assignments_path(User.where(:email => "pat@example.com").first)
-    User.where(:email => "pat@example.com").should_not be_empty
+    
+    user_exists("pat@example.com")
   end
 end
+
 
 feature 'sign out' do
   let(:user) { FactoryGirl.create(:user) }
 
   before do
     visit '/'
-    fill_in 'user[email]', :with => user.email
-    fill_in 'user[password]', :with => 'p@ssword'
-    click_button 'Sign in'
+    sign_in_with(user.email, 'p@ssword')
   end
 
   scenario 'signing out succeeds' do
@@ -48,10 +41,12 @@ feature 'sign out' do
     #verify logged in 
     current_path.should == user_assignments_path(user)
 
-    #click sign out 
-    find('#header_link a').click
+    click_link 'Sign out'
     
     #verify signed out 
     current_path.should == '/' #new_user_session_path
+    page.should have_button('Sign in')
+    page.should have_link('Sign up')
+
   end
 end
