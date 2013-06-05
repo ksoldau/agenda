@@ -21,6 +21,18 @@ module Month
       find(first_day_path + " .subj_link")
     end
 
+    def assignment(day, assignment) 
+      find("td", :text => day).find(".day_cal .subj_link:nth-child(" + assignment + ")")
+    end
+
+    def current_calendar_month
+      find("h2").text().scan(/\w+/)[0]
+    end
+
+    def current_calendar_year 
+      find("h2").text().scan(/\w+/)[1]
+    end
+
 
   end
 end

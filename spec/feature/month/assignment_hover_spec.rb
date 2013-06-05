@@ -36,16 +36,9 @@ feature 'create assignment', :js => true do
     
     find(".a_popup").should have_content('Other')
     find(".a_popup").should have_content('Example description')
-    find(".a_popup").should have_content('due at')
-    # don't have anyway to test this right now
-    # don't know how to get data attribute to use
-    # it to find associated dialog
+    find(".a_popup").should have_content('due on')
 
-    #assignment_id = find(assignment).data('assignment-id')
-    
-    #find(".a_popup[data-assignment-id" + assignment_id + "]").should have_content('Other')
   end
-
 
 end
 

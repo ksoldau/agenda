@@ -62,6 +62,14 @@ module All
       select(day, :from => 'assignment[due_date(3i)]')
     end
 
+    def select_hour(hour)
+      select(hour, :from => 'assignment[due_date(4i)]')
+    end
+
+    def select_minute(minute)
+      select(minute, :from => 'assignment[due_date(5i)]')
+    end
+
     def write_description(description)
       fill_in('assignment[description]', :with => description)
     end
