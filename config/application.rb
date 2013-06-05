@@ -60,6 +60,6 @@ module Scratch
     config.assets.version = '1.0'
 
     # for font awesome
-    config.assets.paths << "#{Rails.root}/app/assets/font
+    config.assets.paths << "#{Rails.root}/app/assets/font"
   end
 end
