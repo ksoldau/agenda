@@ -1,4 +1,9 @@
 require 'spec_helper'
+RSpec.configure do |config|
+  config.include All::SessionSteps, type: :feature
+  config.include All::Dialogs, type: :feature
+  config.include Month::Helpers, type: :feature
+end
 
 feature 'create assignment', :js => true do 
   let(:user) { FactoryGirl.create(:user) }
@@ -6,36 +11,36 @@ feature 'create assignment', :js => true do
   before do
     #sign in
     visit '/'
-    fill_in 'user[email]', :with => user.email
-    fill_in 'user[password]', :with => 'p@ssword'
-    click_button 'Sign in'
+    sign_in_with(user.email, 'p@ssword')
   end
 
   scenario 'add assignment' do
-    current_path.should == user_assignments_path(user) #signed in
-
+  
     #click on button to go to month view
-    month_view_button = ".nav_view .ui-corner-right"
-    find(month_view_button).click
+    month_view_button.click
     page.should have_selector(".cal")
 
     # bring up assignment dialog for first day in calendar
-    week = ".cal table tbody tr:nth-child(3)"
-    day = week + " td:first-child"
-    find(day).base.double_click
-    save_screenshot("screenshot34.png")
+    within ".cal" do
+      first_day.base.double_click
+    end
 
     # fill in and submit add form
-    select('Other', :from => 'assignment[subject_id]')
-    fill_in('assignment[description]', :with => 'Example description.')
-    find('input[type="submit"]').click
+    within ".add_dialog" do
+      select_subject('Other')
+      write_description('Example description')
+      submit_button.click
+    end
 
     # still in assignments index view
     current_path.should == user_assignments_path(user)
 
-    new_assignment = day + " .subj_link"
-    find(new_assignment).should have_content('Other')
+    first_day_assignment.should have_content('Other')
 
+    #make sure description is correct
+    first_day_assignment.click
 
+    find(".a_dialog").should have_content('Example description')
   end
+
 end
