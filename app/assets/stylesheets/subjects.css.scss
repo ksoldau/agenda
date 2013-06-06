@@ -220,6 +220,7 @@
   margin: 0 auto;
   float: none;
   background-image: none;
+  border-radius: 8px;
   a {
     border: none;
   }
@@ -231,10 +232,7 @@
   a span {
     color: $light_blue;
     text-shadow: none;
-    font-size: 1.2rem;
-    @media (max-width: 445px) {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
     @media (max-width: 400px) {
       font-size: 0.9rem;
     }
@@ -251,13 +249,7 @@
 }
 
 .dk_toggle {
-  width: 175px!important; //to override inline style
-  @media (max-width: 445px) {
-    width: 160px!important;
-  }
-  @media (max-width: 400px) {
-    width: 130px!important;
-  }
+  width: 180px!important; //to override inline style
   
   span.dk_label {
   }
