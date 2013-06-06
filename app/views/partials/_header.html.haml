@@ -1,15 +1,18 @@
 .header
-  #header_link
-    // the button on the right
-    - if current_user != nil
+  - if current_user != nil
+    #header_link
+      = link_to "Sign out", destroy_user_session_path, :method => :delete
+    #profile_button
+      = link_to "", edit_user_registration_path, :class => 'icon-user'
+    #user
       %span{:class => "name"}  
         Hi, 
         = current_user.first_name
-      = link_to "Sign out", destroy_user_session_path, :method => :delete
-      //if on sign up page
-      //= link_to "Sign in", new_session_path(resource_name)
-      //if on sign in page
-    - if current_user == nil
+      //%span{:class => "edit_profile"}
+
+
+  - if current_user == nil
+    #header_link
       - if params[:controller] == "devise/sessions"
         = link_to "Sign up", new_registration_path(resource_name)
       - if params[:controller] == "devise/registrations"
@@ -28,7 +31,8 @@
     .nav
       .tab{:class => (params[:query] ? "current_tab agenda" : "not_current_tab agenda")}
         = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
-      .tab{:class => (!params[:query] ? "current_tab" : "not_current_tab")}
+      - subjects_page = (request.url.index('subjects') != nil)
+      .tab{:class => (!params[:query] && subjects_page ? "current_tab" : "not_current_tab")}
         =link_to "Subjects", user_subjects_path(current_user)
 
 

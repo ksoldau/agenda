@@ -19,6 +19,11 @@ h2 {
   }
 }
 
+h2.title {
+  margin-top: 2rem;
+  margin-bottom: -3rem;
+}
+
 h3 {
   text-align: center;
   color: $light_blue;
@@ -28,6 +33,10 @@ h3 {
 .subject {
   font-weight: bold;
   }
+
+h3.title {
+  margin-top: 8rem;
+}
 
 /* overide the simple_form and jquery styles*/
 .ui-dialog {

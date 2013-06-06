@@ -11,6 +11,9 @@
     margin-left: 0.5rem;
     margin-top: 0.7rem;
   }
+  @media (max-width: 345px) {
+    font-size: 0.9rem;
+  }
   a {
     text-decoration: none;
     color: $dark_blue;
@@ -50,6 +53,9 @@
       font-size: 1.1rem;
       margin-top: 1rem;
     }
+    @media (max-width: 345px) {
+      font-size: 1rem;
+    }
   }
   .agenda {
     margin-left: 1em;
@@ -83,7 +89,33 @@
   float: right;
   margin: 0.7em 0.5em;
   border-radius: 8px;
+  a {
+    text-align: center;
+    font-size: 1em;
+    color: $light_blue;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 4px 8px;
+    background-color: $blue;
+    @media (max-width: 410px) {
+      font-size: 0.75rem;
+    }
+    @media (max-width: 345px) {
+      font-size: 0.6rem;
+    }
+  }
+  a:visited {
+    color: $light_blue;
+  }
+  a:hover {
+    color: $light_blue_hover;
+    background-color: $blue_hover;
+  }
+}
 
+#user {
+  float: right;
+  margin-top: 0.7rem;
   a {
     text-align: center;
     font-size: 1em;
@@ -103,6 +135,26 @@
     color: $light_blue_hover;
     background-color: $blue_hover;
   }
+  .icon-user {
+    margin-top: 0.3rem;
+  }
 }
 
-
+#profile_button {
+  margin-top: 0.5rem;
+  float: right;
+  @media (max-width: 345px) {
+    margin-top: 0.7rem;
+  }
+  .icon-user {
+    color: $blue;
+    font-size: 1.6rem;
+    display: inline-block;
+    @media (max-width: 345px) {
+      font-size: 1.4rem;
+    }
+  }
+  .icon-user:hover {
+    color: $blue_hover;
+  }
+}
