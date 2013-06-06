@@ -28,7 +28,7 @@
             - today_complete = false;
 
         .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
-          %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}"}
+          %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}", :class => 'icon-plus'}
             .add_dialog{:'data-day' => "day#{dayn}"}
               = simple_form_for [current_user, @newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
