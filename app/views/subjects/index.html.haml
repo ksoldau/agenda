@@ -62,7 +62,7 @@
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
         - todayHuh = (Date.today.to_date == date)
-          %p.day_heading
+          %p.day_heading{:class => (todayHuh ? "today_heading" : nil)}
             = date.strftime("%A %b %d, %Y");
             - if todayHuh 
               %span Today

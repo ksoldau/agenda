@@ -491,3 +491,22 @@ ul.dk_options_inner {
     margin-top: 1.5rem;
   }
 }
+
+
+.today_heading {
+    background-color: $blue;
+    margin-top: 3px;
+    margin-left: 3px;
+    padding-left: 3px;
+    border-radius: 4px;
+    width: 70%;
+    color: $gray;
+
+    span {
+      float: right;
+      margin-right: 4px;
+      margin-top: 1px;
+      font-size: 0.9em;
+    }
+
+}

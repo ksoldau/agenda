@@ -1,7 +1,6 @@
 @import 'variables.css.scss';
 
-#today_border, #today_nc_border {
-  .day_heading {
+#today_border .day_heading, #today_nc_border .day_heading, .today_heading {
     background-color: $blue;
     margin-top: 3px;
     margin-left: 3px;
@@ -15,9 +14,9 @@
       margin-top: 1px;
       font-size: 0.8em;
     }
-
-  }
 }
+
+
 /* #today_border { */
 /*   border-color: $light_blue; */
 /*   .day_heading { */
