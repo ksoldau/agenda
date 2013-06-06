@@ -30,7 +30,7 @@
   -if current_user != nil
     .nav
       .tab{:class => (params[:query] ? "current_tab agenda" : "not_current_tab agenda")}
-        = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date)
+        = link_to "Agenda", user_assignments_path(current_user, :query => 'week', :which => Date.today.to_date.beginning_of_week)
       - subjects_page = (request.url.index('subjects') != nil)
       .tab{:class => (!params[:query] && subjects_page ? "current_tab" : "not_current_tab")}
         =link_to "Subjects", user_subjects_path(current_user)
