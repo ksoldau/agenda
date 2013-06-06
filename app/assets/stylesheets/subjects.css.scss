@@ -233,6 +233,7 @@
     color: $light_blue;
     text-shadow: none;
     font-size: 1rem;
+    margin-left: 5px;
     @media (max-width: 400px) {
       font-size: 0.9rem;
     }
@@ -372,13 +373,6 @@ ul.dk_options_inner {
     width: 95%;
   }
 }
-
-.edit_subj_btn {
-  float: right;
-  //visibility: hidden; //toggled with jquery
-  cursor: pointer;
-}
-
 .edit_subj_dialog {
   input[type="submit"] {
     border-radius: 8px;
@@ -394,6 +388,11 @@ ul.dk_options_inner {
   margin-right: 0.3em;
   cursor: pointer;
   //visibility: hidden; //toggled with jquery
+  @media (max-width: 416px ) {
+    margin-top: 0;
+    margin-right: 0;
+  }
+
 }
 
 .delete_subj_btn.ui-button.ui-state-default:hover {
@@ -422,10 +421,20 @@ ul.dk_options_inner {
   @media (max-width: 445px) {
     font-size: 0.8rem;
   }
-  @media (max-width: 350px) {
+  @media (max-width: 420px) {
     font-size: 0.65rem;
   }
 }
+
+.edit_subj_btn {
+  float: right;
+  //visibility: hidden; //toggled with jquery
+  cursor: pointer;
+  @media (max-width: 416px) {
+    margin-top: 0.1rem;
+  }
+}
+
 
 .panel {
   display: none; // start at display none, toggled with jquery
@@ -493,7 +502,9 @@ ul.dk_options_inner {
     border-radius: 4px;
     width: 70%;
     color: $gray;
-
+    @media (max-width: 400px) {
+      width: 260px; 
+    }
     span {
       float: right;
       margin-right: 4px;
