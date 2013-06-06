@@ -9,7 +9,6 @@ feature 'sign in/sign up' do
   
   before do
     visit '/'
-
   end
 
   scenario 'signing in succeeds' do

@@ -61,8 +61,11 @@
       - if @as_grouped_by_s[s]
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
-          .subject_a_date
+        - todayHuh = (Date.today.to_date == date)
+          %p.day_heading
             = date.strftime("%A %b %d, %Y");
+            - if todayHuh 
+              %span Today
           - a.each do |a|
             .as_box{:class => (a.completed ? "completed" : "not_completed")}
               .due_time

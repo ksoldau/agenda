@@ -96,11 +96,24 @@ module All
     def subject_tab
       find(".tab", :text => "Subjects")
     end
+
+    def agenda_tab
+      find(".tab", :text => "Agenda")
+    end
   
   end
 
   module Subjects
-    def add_subject(subject_name) 
+
+    def add_subject_button 
+      find(".add_subj_btn", :text => 'Add Subject')
+    end
+
+    def name_subject(name)
+      fill_in 'subject[name]', :with => name
+    end
+    
+    def add_subject(subject_name)
       subject_tab.click
       add_subject_button.click
 
