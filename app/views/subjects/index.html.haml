@@ -95,5 +95,5 @@
     Add Subject
     .add_subj_dialog
       = simple_form_for [current_user, @news] do |f|
-        = f.input :name, :input_html => {:size => 30}
+        = f.input :name, :input_html => {:size => 30, :maxlength => 14}
         = f.submit "Add", :class => "button"
