@@ -89,6 +89,9 @@
   float: right;
   margin: 0.7em 0.5em;
   border-radius: 8px;
+  @media (max-width: 455px) {
+    margin-top: 0.5rem;
+  }
   a {
     text-align: center;
     font-size: 1em;
