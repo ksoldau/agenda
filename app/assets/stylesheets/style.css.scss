@@ -53,6 +53,8 @@ body {
 .week {
   max-width: 774px;
   margin: 2em auto 15px auto;
+  overflow: hidden;
+  margin-bottom: 2rem;
   @media (max-width: 771px) {
     max-width: 386px;
   }
