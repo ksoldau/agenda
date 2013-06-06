@@ -84,6 +84,10 @@ module All
   end
 
   module Views
+
+    def logo
+      find(".logo a")
+    end
     
     def month_view_button_path
       ".nav_view .ui-corner-right"
@@ -93,12 +97,24 @@ module All
       find(month_view_button_path)
     end
 
+    def week_view_button_path
+      ".nav_view .ui-corner-left"
+    end
+
+    def week_view_button
+      find(week_view_button_path)
+    end
+
     def subject_tab
       find(".tab", :text => "Subjects")
     end
 
     def agenda_tab
       find(".tab", :text => "Agenda")
+    end
+
+    def sign_out_button 
+      find("#header_link a", text: 'Sign out')
     end
   
   end
