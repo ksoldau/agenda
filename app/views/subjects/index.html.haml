@@ -60,7 +60,7 @@
         .add_btn_subj_view.no_assignment.button{:'data-subject-id' => s.id}
           Add Assignment
           .add_dialog{:'data-subject-id' => s.id}
-            = simple_form_for [current_user, @newa] do |f|
+            = simple_form_for [@newa] do |f|
               = f.association :subject, collection: current_user.subjects, :selected => s.id
               = f.input :description
               = f.input :due_date, order: [:month, :day, :year], :ampm => true, :default => Date.today + 23.hours + 59.minutes 
