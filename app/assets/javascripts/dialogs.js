@@ -53,7 +53,7 @@ function initAddDialogs() {
           closeOnEscape: true,
           title: "Add Assignment", 
           width: 'auto',
-          draggable: false, 
+          draggable: true, 
           resizable: false, 
           modal: true, 
           autoOpen: false,
