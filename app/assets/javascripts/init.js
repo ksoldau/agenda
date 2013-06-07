@@ -29,6 +29,7 @@ function initButtons() {
 function initButtonSets() {
   $(".nav_view").buttonset();
   $(".rotate_through").buttonset();
+  $(".subject_view").buttonset();
 }
 
 //initialize jquery dialogs

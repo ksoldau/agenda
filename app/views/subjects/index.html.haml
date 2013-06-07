@@ -37,8 +37,13 @@
       a subject's assignments.
   - @ss.each do |s|
     %div{:id => "tabs-#{s.id}", :class => "panel"}
-      .incomplete_assignments_button.button
-        Only incomplete assignments
+      
+      .subject_view
+        %a.all_assignments_button.active
+          All
+        %a.incomplete_assignments_button.unactive
+          Only incomplete assignments
+
       - if !@as_grouped_by_s[s]
         .panel_text
           This subject has no assignments yet.

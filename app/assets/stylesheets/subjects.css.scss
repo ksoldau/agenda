@@ -532,8 +532,26 @@ ul.dk_options_inner {
   display: block; 
 }
 
-.incomplete_assignments_button {
-  width: 250px;
-  text-align: center;
-  padding: 2px;
+/* .incomplete_assignments_button { */
+/*   width: 250px; */
+/*   text-align: center; */
+/*   padding: 2px; */
+/*   background-color: $blue_hover; */
+/*   color: $light_blue_hover; */
+/* } */
+
+.subject_view {
+  font-size: 0.9rem;
+  .all_assignments_button.active, .incomplete_assignments_button.active {
+    background-color: $blue_hover;
+    color: $light_blue_hover;
+  }
+  .all_assignments_button.unactive, .incomplete_assignments_button.unactive {
+    background-color: $blue;
+    color: $light_blue;
+  }
+  .all_assignments_button.unactive:hover, .incomplete_assignments_button.unactive:hover {
+    background-color: $blue_hover;
+    color: $light_blue_hover;
+  }
 }

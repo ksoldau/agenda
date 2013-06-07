@@ -36,12 +36,29 @@ function addButtonsAndDialogsSubjectView() {
 $(function() {
 
   $(".incomplete_assignments_button").click( function() {
-    
-    $(this).parent(".panel").find(".all_done").hide();
-    $(this).css("backgroundColor", "#1B6Ea3");
-    $(this).css("color", "#65a4c9");
-    $(this).addClass('.pressed');
+    console.log("clicked the incomplete assignments button"); 
+
+    $(this).closest(".panel").find(".all_done").hide();
+    $(this).closest(".panel").find(".as_box.completed").hide();
+
+
+    $(this).addClass('active').removeClass('unactive')
+    $(this).closest(".panel").find(".all_assignments_button").addClass("unactive").removeClass("active");
+
 
   });
 
+});
+
+$(function() {
+
+$(".all_assignments_button").click( function() {
+  
+  $(this).closest(".panel").find(".all_done").show();
+  $(this).closest(".panel").find(".as_box.completed").show();
+
+  $(this).addClass('active').removeClass('unactive')
+  $(this).closest(".panel").find(".incomplete_assignments_button").addClass('unactive').removeClass('active');
+
+});
 });
