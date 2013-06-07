@@ -1,3 +1,5 @@
+= javascript_include_tag 'account'
+
 %h2.title 
   Edit Account Information 
 #form_wrapper
@@ -25,6 +27,15 @@
 
   
   %p.cancel_account 
-    Unhappy?
-    = link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
+    Unhappy? 
+    %a#cancel_account_button 
+      Cancel my account
+    #cancel_account_dialog
+      Are you sure you want to cancel your account?
+      %br
+      %br
+      This is irreversible.
+      %br
 
+      = link_to "Yes, cancel my account", registration_path(resource_name), :method => :delete, 
+      tabindex: -1

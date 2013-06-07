@@ -402,15 +402,14 @@ ul.dk_options_inner {
   a {
     float: right;
     margin-top: 1.5rem;
-    background-color: $blue;
-    color: $light_blue;
+    background-color: $orange;
+    color: $dark_blue;
     text-decoration: none;
     padding: 5px;
     border-radius: 8px;
   }
   a:hover {
-    background-color: $blue_hover;
-    color: $light_blue_hover;
+    background-color: $dark_orange;
   }
 }
 
@@ -512,4 +511,19 @@ ul.dk_options_inner {
       font-size: 0.9em;
     }
 
+}
+
+#cancel_account_dialog {
+  a {
+    float: right;
+    margin-top: 1.5rem;
+    background-color: $orange;
+    color: $dark_blue;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  a:hover {
+    background-color: $dark_orange;
+  }
 }
