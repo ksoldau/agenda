@@ -22,7 +22,7 @@
         %br
         Deleting this subject will also delete all of its assignments.
         - text = "Delete " + s.name
-        = link_to text, user_subject_path(current_user, s), method: :delete
+        = link_to text, user_subject_path(current_user, s), method: :delete, tabindex: -1
     .edit_subj_btn.button{:'data-subject-id' => s.id}
       Rename
       .edit_subj_dialog{:'data-subject-id' => s.id} 
