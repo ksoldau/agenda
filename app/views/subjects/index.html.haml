@@ -37,7 +37,17 @@
       a subject's assignments.
   - @ss.each do |s|
     %div{:id => "tabs-#{s.id}", :class => "panel"}
-      
+      .add_btn_subj_view.has_assignments.button{:'data-subject-id' => s.id}
+        .icon-plus
+        .add_dialog{:'data-subject-id' => s.id}
+          = simple_form_for [current_user, @newa] do |f|
+            = f.association :subject, collection: current_user.subjects, :selected => s.id
+            = f.input :description
+            = f.input :due_date, order: [:month, :day, :year], :ampm => true, :default => Date.today + 23.hours + 59.minutes 
+            = f.input :completed, :label => "Completed?", :as => "radio_buttons"
+            = f.submit "Add", :class => "add_dialog_submit"
+
+
       .subject_view
         %a.all_assignments_button.active
           All
@@ -58,16 +68,6 @@
               = f.submit "Add", :class => "add_dialog_submit"
 
       - else 
-        .add_btn_subj_view.has_assignments.button{:'data-subject-id' => s.id}
-          .icon-plus
-          .add_dialog{:'data-subject-id' => s.id}
-            = simple_form_for [current_user, @newa] do |f|
-              = f.association :subject, collection: current_user.subjects, :selected => s.id
-              = f.input :description
-              = f.input :due_date, order: [:month, :day, :year], :ampm => true, :default => Date.today + 23.hours + 59.minutes 
-              = f.input :completed, :label => "Completed?", :as => "radio_buttons"
-              = f.submit "Add", :class => "add_dialog_submit"
-
       - if @as_grouped_by_s[s]
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
