@@ -116,7 +116,10 @@ module All
     def sign_out_button 
       find("#header_link a", text: 'Sign out')
     end
-  
+    
+    def account_button 
+      find("#profile_button a")
+    end
   end
 
   module Subjects

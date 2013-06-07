@@ -1,8 +1,12 @@
 module Subjects
   module Helpers
 
+    def findDkToggle
+      find(".dk_toggle")
+    end
+
     def choose_subject(subj)
-      find(".dk_toggle").click
+      findDkToggle.click
       find(".dk_options_inner").find("a", :text => subj).click
     end
 
