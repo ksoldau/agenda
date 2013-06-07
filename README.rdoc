@@ -6,6 +6,7 @@ To see this code in action go to
 http://agenda.katiesoldau.com 
 or 
 http://ajenda.herokuapp.com
+.
 
 This is my first real rails app!
 
