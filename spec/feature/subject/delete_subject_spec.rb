@@ -51,14 +51,17 @@ feature 'create subject', :js => true do
 
   scenario 'delete a subject with assignments' do
 
-    choose = find(".dk_toggle")
+    #choose = find(".dk_toggle")
+
 
     # make sure subject exists
     user.subjects.where(name: 'Geometry').should_not be_empty
 
     # add assignments
-    add_assignment('Geometry', 'worksheet 3')
-    add_assignment('Geometry', 'worksheet 4')
+    within ".panel" do
+      add_assignment('Geometry', 'worksheet 3')
+      add_assignment('Geometry', 'worksheet 4')
+    end
 
     #make sure assignments exist
     user.assignments.where(description: 'worksheet 3').should_not be_empty
@@ -75,9 +78,6 @@ feature 'create subject', :js => true do
     #make sure that subjects assignments no longer there
     user.assignments.where(description: 'worksheet 3').should be_empty
     user.assignments.where(description: 'worksheet 3').should be_empty
-
-    choose.click
-
     
 
   end
