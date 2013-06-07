@@ -158,7 +158,6 @@ function updateTime($assignment, data) {
     if (new_min < 10 ) {
       new_min = "0" + new_min;
     }
-    
     // back to 12 hr time
     var am_pm = "am";
 
@@ -168,7 +167,7 @@ function updateTime($assignment, data) {
     if (new_hour > 12) {
       new_hour = new_hour - 12;
     }
-    if (new_hour === 0) {
+    if (new_hour == 00) {
       new_hour = 12;
     }
     
@@ -347,7 +346,6 @@ function putAssignmentInOrder($assignment, other_assignments, data) {
     if (other_assignments_array.length > 0) {
       for (i = 0; i < other_assignments_array.length; i++) {
       $other_assignment =  $(other_assignments_array[i]);
-      debugger;
         
         // if assignment comes before another, 
         // place it before it
@@ -367,7 +365,12 @@ function dueBefore(data, $other_assignment) {
   // get the time comparing assignment to
   var other_time = otherTime($other_assignment);
 
-  return new_time.getTime() <= other_time.getTime();
+  var rtrn =  new_time.getTime() <= other_time.getTime();
+  console.log("other time " + other_time.getTime());
+  console.log("new time " + new_time.getTime());
+  console.log(rtrn);
+  return rtrn;
+
 }
 
 // get the new time from the data given back from ajax
