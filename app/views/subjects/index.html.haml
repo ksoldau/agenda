@@ -17,7 +17,10 @@
       .delete_subj_dialog{:title => "Delete Subject", :'data-subject-id' => s.id}
         Are you sure you want to delete the subject
         = s.name
-        ? Deleting this subject will also delete all of its assignments.
+        ? 
+        %br
+        %br
+        Deleting this subject will also delete all of its assignments.
         - text = "Delete " + s.name
         = link_to text, user_subject_path(current_user, s), method: :delete
     .edit_subj_btn.button{:'data-subject-id' => s.id}
