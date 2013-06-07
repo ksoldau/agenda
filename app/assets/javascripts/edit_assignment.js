@@ -22,8 +22,6 @@ $(function() {
 
       //update time based on edit
       updateTime($assignment, data);
-      console.log("after updateTime");
-           
    
       //change background color based on completion
       updateCompletionBackground($assignment, data);
@@ -32,7 +30,6 @@ $(function() {
     
     // do this when ajax fails
     $dlg.find("form").on('ajax:failure', function(e) {
-        console.log("assignment edit FAILED");
     });
 
   });
@@ -102,8 +99,6 @@ function updatePlacement($assignment, data) {
     old_am_pm = old_time.split(' ')[3];
 
     //make old_hour on 24 hour time
-    console.log("old hour is " + old_hour);
-    console.log("old_am_pm is " + old_am_pm);
     old_hour = make24(old_hour, old_am_pm);
     
     var old_date_and_time = new Date(old_year, 0, old_day, old_hour, old_min);
@@ -250,8 +245,6 @@ function move($assignment, data) {
     old_am_pm = old_time.split(' ')[3];
 
     //make old_hour on 24 hour time
-    console.log("old hour is " + old_hour);
-    console.log("old_am_pm is " + old_am_pm);
     old_hour = make24(old_hour, old_am_pm);
     
       //close old assignment then move it and open it again
@@ -366,9 +359,6 @@ function dueBefore(data, $other_assignment) {
   var other_time = otherTime($other_assignment);
 
   var rtrn =  new_time.getTime() <= other_time.getTime();
-  console.log("other time " + other_time.getTime());
-  console.log("new time " + new_time.getTime());
-  console.log(rtrn);
   return rtrn;
 
 }

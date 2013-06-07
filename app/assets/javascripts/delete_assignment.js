@@ -17,9 +17,7 @@ $(function() {
       $(".a_dialog").dialog('close');
       //trigger_subj.delay(400).slideUp();
       
-      // log to console if ajax fails
       }).on('ajax:failure', function(e) {
-      console.log("log deletion FAILED");
       });
     
     //save this data for later use

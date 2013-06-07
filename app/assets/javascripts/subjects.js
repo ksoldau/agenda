@@ -36,7 +36,6 @@ function addButtonsAndDialogsSubjectView() {
 $(function() {
 
   $(".incomplete_assignments_button").click( function() {
-    console.log("clicked the incomplete assignments button"); 
 
     $(this).closest(".panel").find(".all_done").hide();
     $(this).closest(".panel").find(".as_box.completed").hide();

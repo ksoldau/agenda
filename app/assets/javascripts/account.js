@@ -5,7 +5,6 @@ $(function () {
 });
 
 function initCancelAccountDialog() {
-  console.log("GOT HERE");
   $("#cancel_account_dialog").dialog( {
     closeOnEscape: true,
     title: "Cancel my account",
