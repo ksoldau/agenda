@@ -1,12 +1,12 @@
 == Welcome!
 
-Code for a web app that is a virtual agenda/planner for school. 
-
-This is my first real rails app!
+This is the code for a virtual agenda/planner for school. 
 
 To see this code in action go to 
 http://agenda.katiesoldau.com 
 or 
 http://ajenda.herokuapp.com
+
+This is my first real rails app!
 
 
