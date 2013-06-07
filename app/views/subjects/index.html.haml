@@ -37,6 +37,8 @@
       a subject's assignments.
   - @ss.each do |s|
     %div{:id => "tabs-#{s.id}", :class => "panel"}
+      .incomplete_assignments_button.button
+        Only incomplete assignments
       - if !@as_grouped_by_s[s]
         .panel_text
           This subject has no assignments yet.
@@ -65,33 +67,38 @@
         - x = @as_grouped_by_s[s].group_by {|a| a.due_date.to_date} 
         - x.each do |date, a|
         - todayHuh = (Date.today.to_date == date)
-          %p.day_heading{:class => (todayHuh ? "today_heading" : nil)}
-            = date.strftime("%A %b %d, %Y");
-            - if todayHuh 
-              %span Today
+        - all_done = true;
           - a.each do |a|
-            .as_box{:class => (a.completed ? "completed" : "not_completed")}
-              .due_time
-                -#= a.due_date.to_formatted_s(:long)
-                due at
-                = a.due_date.strftime("%I:%M %P");
-              .subject
-                = a.subject.name
-              .description
-                = a.description
-              .delete_btn{:'data-assignment-id' => a.id}
-                .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
-                  Are you sure you want to delete this assignment?
-                  = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete
-              .edit_btn{:'data-assignment-id' => a.id}
-                .edit_dialog{:title => "Update Assignment", 
-                  :class => a.completed ? "completed" : "not_completed", :'data-assignment-id' => a.id}
-                  = simple_form_for [current_user, a] do |f|
-                    = f.association :subject, collection: current_user.subjects    
-                    = f.input :description 
-                    = f.input :due_date, :ampm =>true;
-                    = f.input :completed, :label => "Completed?", :as => "radio_buttons"
-                    = f.submit class: "edit_dialog_submit"
+            - if !a.completed
+              - all_done = false;
+          .day_subjects{:class => (all_done ? "all_done" : nil)}
+            %p.day_heading{:class => (todayHuh ? "today_heading" : nil)}
+              = date.strftime("%A %b %d, %Y");
+              - if todayHuh 
+                %span Today
+            - a.each do |a|
+              .as_box{:class => (a.completed ? "completed" : "not_completed")}
+                .due_time
+                  -#= a.due_date.to_formatted_s(:long)
+                  due at
+                  = a.due_date.strftime("%I:%M %P");
+                .subject
+                  = a.subject.name
+                .description
+                  = a.description
+                .delete_btn{:'data-assignment-id' => a.id}
+                  .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
+                    Are you sure you want to delete this assignment?
+                    = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete
+                .edit_btn{:'data-assignment-id' => a.id}
+                  .edit_dialog{:title => "Update Assignment", 
+                    :class => a.completed ? "completed" : "not_completed", :'data-assignment-id' => a.id}
+                    = simple_form_for [current_user, a] do |f|
+                      = f.association :subject, collection: current_user.subjects    
+                      = f.input :description 
+                      = f.input :due_date, :ampm =>true;
+                      = f.input :completed, :label => "Completed?", :as => "radio_buttons"
+                      = f.submit class: "edit_dialog_submit"
 
 #add_subj_btn_wrapper
   .add_subj_btn.button

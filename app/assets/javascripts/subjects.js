@@ -33,3 +33,15 @@ function addButtonsAndDialogsSubjectView() {
   });
 }
 
+$(function() {
+
+  $(".incomplete_assignments_button").click( function() {
+    
+    $(this).parent(".panel").find(".all_done").hide();
+    $(this).css("backgroundColor", "#1B6Ea3");
+    $(this).css("color", "#65a4c9");
+    $(this).addClass('.pressed');
+
+  });
+
+});
