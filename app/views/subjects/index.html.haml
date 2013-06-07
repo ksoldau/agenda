@@ -22,11 +22,11 @@
         %br
         Deleting this subject will also delete all of its assignments.
         - text = "Delete " + s.name
-        = link_to text, user_subject_path(current_user, s), method: :delete, tabindex: -1
+        = link_to text, subject_path(s), method: :delete, tabindex: -1
     .edit_subj_btn.button{:'data-subject-id' => s.id}
       Rename
       .edit_subj_dialog{:'data-subject-id' => s.id} 
-        = simple_form_for [current_user, s] do |f| 
+        = simple_form_for [s] do |f| 
           = f.input :name, input_html: {size: 30}
           = f.submit "Update", class: "button"
 
@@ -40,7 +40,7 @@
       .add_btn_subj_view.has_assignments.button{:'data-subject-id' => s.id}
         .icon-plus
         .add_dialog{:'data-subject-id' => s.id}
-          = simple_form_for [current_user, @newa] do |f|
+          = simple_form_for [@newa] do |f|
             = f.association :subject, collection: current_user.subjects, :selected => s.id
             = f.input :description
             = f.input :due_date, order: [:month, :day, :year], :ampm => true, :default => Date.today + 23.hours + 59.minutes 
@@ -94,11 +94,11 @@
                 .delete_btn{:'data-assignment-id' => a.id}
                   .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
                     Are you sure you want to delete this assignment?
-                    = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete
+                    = link_to "Yes, delete this assignment", assignment_path(a), :method => :delete
                 .edit_btn{:'data-assignment-id' => a.id}
                   .edit_dialog{:title => "Update Assignment", 
                     :class => a.completed ? "completed" : "not_completed", :'data-assignment-id' => a.id}
-                    = simple_form_for [current_user, a] do |f|
+                    = simple_form_for [a] do |f|
                       = f.association :subject, collection: current_user.subjects    
                       = f.input :description 
                       = f.input :due_date, :ampm =>true;
@@ -109,6 +109,6 @@
   .add_subj_btn.button
     Add Subject
     .add_subj_dialog
-      = simple_form_for [current_user, @news] do |f|
+      = simple_form_for [@news] do |f|
         = f.input :name, :input_html => {:size => 30, :maxlength => 14}
         = f.submit "Add", :class => "button"

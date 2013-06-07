@@ -3,16 +3,16 @@
 = javascript_include_tag "delete_assignment"
 .choose_view
   .nav_view
-    = link_to "Week", user_assignments_path(current_user, :query => 'week', :which => params[:which]), 
+    = link_to "Week", assignments_path(:query => 'week', :which => params[:which]), 
     {:class => "current"}
-    = link_to "Month", user_assignments_path(current_user, :query => 'month', :which => params[:which])
+    = link_to "Month", assignments_path(:query => 'month', :which => params[:which])
   .rotate_through
-    = link_to "Prev", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.prev_week),
+    = link_to "Prev", assignments_path(:query => 'week', :which => params[:which].to_date.prev_week),
       {:class => "which_btn"}
     - @other_class = params[:which].to_date.beginning_of_week == Date.today.beginning_of_week ? "current" : nil
-    = link_to "This week", user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week), 
+    = link_to "This week", assignments_path(:query => 'week', :which => Date.today.beginning_of_week), 
       {:class => "which_btn #{@other_class}"}    
-    = link_to "Next", user_assignments_path(current_user, :query => 'week', :which => params[:which].to_date.next_week), 
+    = link_to "Next", assignments_path(:query => 'week', :which => params[:which].to_date.next_week), 
       {:class => "which_btn"}
 
 - @key_to_day = {1 => "Monday", 2 => "Tuesday", 3 => "Wednesday", 4 => "Thursday", 5 => "Friday", 6 => "Saturday", 0 => "Sunday", }
@@ -30,7 +30,7 @@
         .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
           %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}", :class => 'icon-plus'}
             .add_dialog{:'data-day' => "day#{dayn}"}
-              = simple_form_for [current_user, @newa] do |f|
+              = simple_form_for [@newa] do |f|
                 = f.association :subject, collection: current_user.subjects    
                 = f.input :description
                 = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, 
@@ -45,7 +45,7 @@
               %span Today
           - if !as.empty?
             - as.each do |a|
-              .as_box{:class => (a.completed ? "completed" : "not_completed"), :"data-path" => user_assignment_path(current_user, a)}
+              .as_box{:class => (a.completed ? "completed" : "not_completed"), :"data-path" => assignment_path(a)}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   due at 
@@ -57,10 +57,10 @@
                 .delete_btn{:'data-assignment-id' => a.id}
                   .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
                     Are you sure you want to delete this assignment?
-                    = link_to "Yes, delete this assignment", user_assignment_path(current_user, a), :method => :delete, :remote => true, tabindex: -1
+                    = link_to "Yes, delete this assignment", assignment_path(a), :method => :delete, :remote => true, tabindex: -1
                 .edit_btn{:"data-assignment-id" => a.id}
                   .edit_dialog{:title => "Update Assignment", :"data-assignment-id" => a.id}
-                    = simple_form_for [current_user, a], remote: true, html: {data: {type: 'json'}} do |f|
+                    = simple_form_for [a], remote: true, html: {data: {type: 'json'}} do |f|
                       = f.association :subject, collection: current_user.subjects    
                       = f.input :description 
                       = f.input :due_date, order: [:month, :day, :year], :ampm => true

@@ -1,6 +1,6 @@
 %h5 this is the edit page
 
-= simple_form_for [:user, @as] do |f|
+= simple_form_for [@as] do |f|
   = f.input :completed
   = f.input :description
   = f.input :due_date

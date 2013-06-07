@@ -31,7 +31,7 @@ feature 'create assignment', :js => true do
     end
 
     # still in assignments index view
-    current_path.should == user_assignments_path(user)
+    current_path.should == assignments_path
 
     first_day_assignment.should have_content('Other')
 

@@ -12,7 +12,7 @@
       = link_to "Delete", user_assignment_path(current_user, a), :method => :delete, :remote => true
   .edit_btn
     .edit_dialog{:title => "Edit Assignment"}
-      = simple_form_for [current_user, a], remote: true, html: {data: {type: 'json'}} do |f|
+      = simple_form_for [a], remote: true, html: {data: {type: 'json'}} do |f|
         = f.association :subject, collection: current_user.subjects    
         = f.input :description 
         = f.input :due_date

@@ -23,14 +23,14 @@ class AssignmentsController < ApplicationController
 
     else #goes here after log in
       @assignments = current_user.assignments #devise gives us current_user
-      redirect_to user_assignments_path(current_user, :query => 'week', :which => Date.today.beginning_of_week);
+      redirect_to assignments_path(:query => 'week', :which => Date.today.beginning_of_week);
     end
 
   end
 
   def show
     @assignment = current_user.assignments.where(id: params[:id]).first
-    redirect_to user_assignments_path(current_user)
+    redirect_to assignments_path
   end
 
   def new
@@ -74,7 +74,6 @@ class AssignmentsController < ApplicationController
   def edit
     session[:return_to] ||= request.referer
     @as = current_user.assignments.where(id: params[:id]).first
-    #redirect_to user_assignments_path(current_user, :query => "week", :which => Date.today.end_of_month)
   end
 
   def destroy
