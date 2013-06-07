@@ -58,6 +58,7 @@ function updateDescription(trigger, data) {
 
 //updateTimeAndPlacement if need be
 function updateTimeAndPlacement(trigger, data) {
+    console.log("update time and placement")
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
@@ -115,10 +116,12 @@ function updateTimeAndPlacement(trigger, data) {
 
     //if date or time has changed
     else if (differentDateAndTime(new_date_and_time, old_date_and_time)) {
+      console.log("they are differentDateAndTime")
       //dateOrTimeChanged(trigger.closest(".as_box", new_day,)); 
       //close old assignment
-      closeAssignment(trigger.closest(".as_box"));
-
+      //closeAssignment(trigger.closest(".as_box"));
+      trigger.closest(".as_box").animate({opacity: '0'}, 800, function() {
+        assignment.slideUp(600, function() {
       //figure out where to put new assignment
       var new_day_string = String(new_day);
       
@@ -129,6 +132,7 @@ function updateTimeAndPlacement(trigger, data) {
 
         // is it in the right day?
         if (htext.indexOf(new_day_string + ",") >= 0) {
+          console.log("in the right day htext.indexOf");
           var new_ab = $(h).closest(".assignment_box");
           var assignment = trigger.closest(".as_box");
 
@@ -185,7 +189,8 @@ function updateTimeAndPlacement(trigger, data) {
       } // end of bigger for loop 
 
 
-    }
+    });
+    });
 
     //change due time based on edit
     //change to have it only change if time changed
@@ -213,6 +218,8 @@ function updateTimeAndPlacement(trigger, data) {
     trigger.closest(".as_box").addClass(data.completed ? "completed" : "not_completed", {duration: 800}
     ).removeClass(data.completed ? "not_completed" : "completed", {duration: 800});
 }
+}
+
 
 
 
@@ -289,6 +296,7 @@ function closeAssignment(assignment) {
   assignment.animate({opacity: '0'}, 800, function() {
       assignment.slideUp(600);
   });
+  console.log("got to closeAssignment");
 }
 // edit dialog with js after assignment has been edited (in week view?)
 $(function() {
@@ -634,7 +642,6 @@ function putAssignmentInOrder($assignment, other_assignments, data) {
     if (other_assignments_array.length > 0) {
       for (i = 0; i < other_assignments_array.length; i++) {
       $other_assignment =  $(other_assignments_array[i]);
-      debugger;
         
         // if assignment comes before another, 
         // place it before it
