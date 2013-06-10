@@ -17,10 +17,6 @@ $(function() {
     title: 'Add assignment'
   });
 
-  $("#test_add_dialog").on('click', function() {
-    $("#add_dialog_ajax").dialog('open');
-  });
-
   addAssignment();
 
   // hover effects

@@ -66,24 +66,6 @@
                       = f.input :due_date, order: [:month, :day, :year], :ampm => true
                       = f.input :completed, :label => "Completed?", :as => "radio_buttons" 
                       = f.submit :class => "edit_dialog_submit"
-/* .edit_dialog_ajax */
-/*   = form_for :assignment do |f| */ 
-/*     %fieldset */
-/*       %legend Edit Assignment */
-/*       = f.association :subject, collection: current_user.subjects */
-/*       = f.input :description */
-/*       = f.input :due_date, order: [:month, :day, :year], :ampm => true */
-/*       = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
-/*       = f.submit */ 
-/* .add_dialog_ajax */
-/*   = simple_form_for [@newa] do |f| */
-/*     = f.association :subject, collection: current_user.subjects */    
-/*     = f.input :description */
-/*     = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, */ 
-/*     order: [:month, :day, :year], :ampm => true */
-/*     = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
-/*     = f.submit "Add", :class => "add_dialog_submit" */
-%button#test_add_dialog test add dialog
 #add_dialog_ajax
   %form
     %label * Subject
