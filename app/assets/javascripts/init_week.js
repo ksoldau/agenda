@@ -48,11 +48,7 @@ function addAssignment() {
 // what to do when a user submits adding an assignment 
 function submitAddAssignment() {
   
-  console.log("in submitAddAssignment");
-
-
   $("#add_dialog_ajax .add_dialog_submit").on('click', function() {
-    console.log("add assignment button clicked on");
    
     $form = $("#add_dialog_ajax");
     var subject_id = getSubjectId($form);
