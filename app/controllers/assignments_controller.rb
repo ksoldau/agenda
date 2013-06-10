@@ -6,7 +6,7 @@ class AssignmentsController < ApplicationController
     session[:return_to] ||= request.referer
     
     @newa = Assignment.new    
-    @ss = current_user.subjects
+    @subjects = current_user.subjects
 
     case params[:query]
 
@@ -42,8 +42,11 @@ class AssignmentsController < ApplicationController
     #@assignment.save
     #respond_with @assignment do |format|
     #    format.json {render json: @assignment.to_json}
-    #end
-    if @assignment.save
+    if request.xhr?
+      @assignment.save
+      respond_with @assignment
+
+    elsif @assignment.save
       redirect_to request.referer
     else
       render :new #if saving doesn't work, doesn't run logic but renders view,

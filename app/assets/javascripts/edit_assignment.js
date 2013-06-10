@@ -404,6 +404,3 @@ function otherTime($other_assignment) {
   
   return time;
 }
-
-
-

@@ -87,27 +87,18 @@
 #add_dialog_ajax
   %form
     %label * Subject
-    %select
-      %option{:value => 19} Other
+    %select.select_subject
+      %option
+      - @subjects.each do |s|
+        %option{value:"#{s.id}"}
+          = s.name
     %label * Description
     %input{type:'text', maxlength: 255, size: 50, name:'description'}
     %label * Due date
-    %select{required: 'required'}
-      %option{value: "1"} January
-      %option{value: "2"} February
-      %option{value: "3"} March
-      %option{value: "4"} April
-      %option{value: "5"} May
-      %option{value: "6"} June
-      %option{value: "7"} July
-      %option{value: "8"} August
-      %option{value: "9"} September
-      %option{value: "10"} October
-      %option{value: "11"} November
-      %option{value: "12"} December
     %input{type: 'text', id: 'datepicker'}
+    %input{type: 'text', class: 'timepicker'}
     %label Completed?
     %input{type: 'radio', name:'completed', value:'yes'} Yes
     %input{type: 'radio', name:'completed', value:'no', checked:'checked'} No
-    %input{type:'submit', value:'submit'}
+    %input{type:'submit', value:'submit', class:'add_dialog_submit'}
 
