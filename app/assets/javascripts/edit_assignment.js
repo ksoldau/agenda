@@ -167,8 +167,12 @@ function updateTime($assignment, data) {
     }
     
     // update html to show new time
-    $assignment.find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
-
+    if (new_hour < 10) {
+      $assignment.find(".due_time").first().text("due at " + "0" + new_hour + ":" + new_min + " " + am_pm);
+    }
+    else {
+      $assignment.find(".due_time").first().text("due at " + new_hour + ":" + new_min + " " + am_pm);
+    }
 }
 
 // update the background color of assignment after its been edited
@@ -319,10 +323,10 @@ function putAssignmentInDay($assignment, other_assignments, data) {
 
     // add to day in case no other assignments exist 
     // to compare it to
-    $assignment.appendTo(new_ab);
+    //$assignment.appendTo(new_ab);
     
     // put assignment in right place in dom
-    putAssignmentInOrder($assignment, other_assignments, data);
+    putAssignmentInOrder($assignment, other_assignments, data, new_ab);
     
     // show the edited assignment
     $assignment.slideDown(600, function() {
@@ -331,12 +335,14 @@ function putAssignmentInDay($assignment, other_assignments, data) {
 }
 
 // put assignment in correct order
-function putAssignmentInOrder($assignment, other_assignments, data) {
+function putAssignmentInOrder($assignment, other_assignments, data, new_day) {
     
     var other_assignments_array = Array.prototype.slice.call(other_assignments);
     
     // place assignment in order with other assignments
     if (other_assignments_array.length > 0) {
+      console.log('it went into the if')
+      var beforeSomething = false;
       for (i = 0; i < other_assignments_array.length; i++) {
       $other_assignment =  $(other_assignments_array[i]);
         
@@ -344,16 +350,24 @@ function putAssignmentInOrder($assignment, other_assignments, data) {
         // place it before it
         if (dueBefore(data, $other_assignment)) {
           $other_assignment.before($assignment);
+          beforeSomething = true;
+          break;
         }
       }; //end of for
+      if (!beforeSomething) {
+        $assignment.appendTo(new_day);
+      }
+    }
+    else {
+      $assignment.appendTo(new_day);
+      console.log("FJKDSLFNJK " + new_day.text());
     }
 }
 
 // is the due date in data before the other assignment?
 function dueBefore(data, $other_assignment) {
-  
   // get the new time after assignment edited
-  var new_time = dataTime(data); 
+  var new_time = dataTime(data);
   
   // get the time comparing assignment to
   var other_time = otherTime($other_assignment);
@@ -381,13 +395,11 @@ function otherTime($other_assignment) {
   var o_due_time = $other_assignment.find(".due_time");
   var o_due_time_text = o_due_time.text().replace(/\s+/g, ' ').trim();
   var o_hour = Number(o_due_time_text.split(' ')[2].split(':')[0]);
-  var o_min = Number(o_due_time_text.split(' ')[2].split(':')[0]);
-   
+  var o_min = Number(o_due_time_text.split(' ')[2].split(':')[1]);
   var am_pm = o_due_time_text.split(' ')[3];
   
   // get the hour in terms of 24
   var o_24hour = make24(o_hour, am_pm);
-  
   var time = new Date(0, 0, 1, o_24hour, o_min);
   
   return time;
