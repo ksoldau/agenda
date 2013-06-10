@@ -137,7 +137,7 @@ feature 'create assignment', :js => true do
   page.should_not have_content('Other')
 
   #make sure moved to corrent place
-  visit user_assignments_path(user, :query => 'month', :which => "#{month} 15, 2013".to_date.beginning_of_week)
+  visit assignments_path(:query => 'month', :which => "#{month} 15, 2013".to_date.beginning_of_week)
   page.should have_content('Other')
 
   end
@@ -157,7 +157,7 @@ feature 'create assignment', :js => true do
     page.should_not have_content('Other')
     
     #make sure moved to correct place
-    visit user_assignments_path(user, :query => 'month', :which => "#{month} 15, #{next_year}".to_date.beginning_of_week)
+    visit assignments_path(:query => 'month', :which => "#{month} 15, #{next_year}".to_date.beginning_of_week)
     page.should have_content('Other')
 
   end

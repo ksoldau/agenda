@@ -43,7 +43,7 @@ feature 'edit/delete assignment', :js => true do
     end
     
     # should still be in assignments view
-    current_path.should == user_assignments_path(user)
+    current_path.should == assignments_path
 
     monday_assignment.should have_content('Other')
     monday_assignment.should have_content('Changed description')
@@ -79,7 +79,7 @@ feature 'edit/delete assignment', :js => true do
     # fix this test
 
     #make sure assignment moved to correct place
-    visit user_assignments_path(user, :query => 'week', :which => "April 1, 2013".to_date.beginning_of_week)
+    visit assignments_path(:query => 'week', :which => "April 1, 2013".to_date.beginning_of_week)
     page.should have_content('Example description')
     page.should have_content('Other')
 

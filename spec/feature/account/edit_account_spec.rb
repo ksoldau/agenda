@@ -14,7 +14,6 @@ feature 'edit account information' do
     sign_in_with(user.email, 'p@ssword')
 
     account_button.click
-    binding.pry
 
   end
 

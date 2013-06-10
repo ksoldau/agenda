@@ -18,7 +18,7 @@ feature 'create assignment', :js => true do
   end
 
   scenario 'add assignment' do
-    current_path.should == user_assignments_path(user) #signed in
+    current_path.should == assignments_path #signed in
 
     # click on add assignment button for first day in week
     monday.hover
@@ -31,7 +31,7 @@ feature 'create assignment', :js => true do
       submit_button.click
     end
    
-    current_path.should == user_assignments_path(user)
+    current_path.should == assignments_path
     monday.should have_content('Other')
     monday.should have_content('Example description')
 
@@ -40,7 +40,7 @@ feature 'create assignment', :js => true do
 
   scenario 'add assignment to Friday' do
     # check to make sure signed in
-    current_path.should == user_assignments_path(user)
+    current_path.should == assignments_path
 
     #click on add assignment for Friday
     monday.hover

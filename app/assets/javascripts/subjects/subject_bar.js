@@ -38,7 +38,6 @@ function showDeleteButton(subjectId) {
 
   // show the right delete button
   $(".delete_subj_btn[data-subject-id='" + subjectId + "']").show();
-  console.log(subjectId);
 }
 
 function showEditButton(subjectId) {
