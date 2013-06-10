@@ -3,13 +3,13 @@ $(function() {
   //initialize dialogs for assignments
   initEditDialogs();
   initDeleteDialogs();
-  initAddDialogs();
+  //initAddDialogs();
 
 
   //connect buttons and dialogs for assignments
   editButtonsAndDialogs();
   deleteButtonsAndDialogs();
-  addButtonsAndDialogs();
+  //addButtonsAndDialogs();
 
 });
 

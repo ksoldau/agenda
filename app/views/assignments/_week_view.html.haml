@@ -29,14 +29,14 @@
 
         .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
           %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}", :class => 'icon-plus'}
-            .add_dialog{:'data-day' => "day#{dayn}"}
-              = simple_form_for [@newa] do |f|
-                = f.association :subject, collection: current_user.subjects    
-                = f.input :description
-                = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, 
-                order: [:month, :day, :year], :ampm => true
-                = f.input :completed, :label => "Completed?", :as => "radio_buttons"
-                = f.submit "Add", :class => "add_dialog_submit"
+            /* .add_dialog{:'data-day' => "day#{dayn}"} */
+            /*   = simple_form_for [@newa] do |f| */
+            /*     = f.association :subject, collection: current_user.subjects */    
+            /*     = f.input :description */
+            /*     = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, */ 
+            /*     order: [:month, :day, :year], :ampm => true */
+            /*     = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
+            /*     = f.submit "Add", :class => "add_dialog_submit" */
             
           %p.day_heading 
             = @key_to_day[dayn]
@@ -66,5 +66,48 @@
                       = f.input :due_date, order: [:month, :day, :year], :ampm => true
                       = f.input :completed, :label => "Completed?", :as => "radio_buttons" 
                       = f.submit :class => "edit_dialog_submit"
-
+/* .edit_dialog_ajax */
+/*   = form_for :assignment do |f| */ 
+/*     %fieldset */
+/*       %legend Edit Assignment */
+/*       = f.association :subject, collection: current_user.subjects */
+/*       = f.input :description */
+/*       = f.input :due_date, order: [:month, :day, :year], :ampm => true */
+/*       = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
+/*       = f.submit */ 
+/* .add_dialog_ajax */
+/*   = simple_form_for [@newa] do |f| */
+/*     = f.association :subject, collection: current_user.subjects */    
+/*     = f.input :description */
+/*     = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, */ 
+/*     order: [:month, :day, :year], :ampm => true */
+/*     = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
+/*     = f.submit "Add", :class => "add_dialog_submit" */
+%button#test_add_dialog test add dialog
+#add_dialog_ajax
+  %form
+    %label * Subject
+    %select
+      %option{:value => 19} Other
+    %label * Description
+    %input{type:'text', maxlength: 255, size: 50, name:'description'}
+    %label * Due date
+    %select{required: 'required'}
+      %option{value: "1"} January
+      %option{value: "2"} February
+      %option{value: "3"} March
+      %option{value: "4"} April
+      %option{value: "5"} May
+      %option{value: "6"} June
+      %option{value: "7"} July
+      %option{value: "8"} August
+      %option{value: "9"} September
+      %option{value: "10"} October
+      %option{value: "11"} November
+      %option{value: "12"} December
+    %input{type: 'text', id: 'datepicker'}
+    %label Completed?
+    %input{type: 'radio', name:'completed', value:'yes'} Yes
+    %input{type: 'radio', name:'completed', value:'no', checked:'checked'} No
+    %input{type:'submit', value:'submit'}
 
