@@ -10,6 +10,7 @@ gem 'haml-rails' #maybe
 
 gem "dropkick-rails"
 gem "font-awesome-sass-rails"
+gem 'jquery-timepicker-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require jquery.ui.all
+ *= require jquery.timepicker.css
  *= require base
  *= require dropkick
  *= require style
