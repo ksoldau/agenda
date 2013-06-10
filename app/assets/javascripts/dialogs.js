@@ -32,8 +32,7 @@ function initEditDialogs() {
 
 //initialize delete assignment dialogs
 function initDeleteDialogs() {
-    $(".delete_dialog").each( function() {
-      $(this).dialog({
+    $(".delete_dialog").dialog({
           closeOnEscape: true,
           title: "Delete Assignment", 
           width: 300, 
@@ -43,7 +42,6 @@ function initDeleteDialogs() {
           modal: true, 
           autoOpen: false,
         });
-    });
 }
 
 //initialize add assignment dialogs
@@ -94,10 +92,7 @@ function editButtonsAndDialogs() {
 function deleteButtonsAndDialogs() {
   $(".delete_btn").each( function() {
 
-      //get assignment id of this delete button
-      assignmentId = $(this).data('assignment-id');
-      //get associated delete dialog
-      var dlg = $(".delete_dialog[data-assignment-id=" + assignmentId + "]");     
+      var dlg = $(".delete_dialog"); 
       
       //open delete dialog when click on delete button
       $(this).on('click', function() {
@@ -143,3 +138,32 @@ function addButtonsAndDialogs() {
 
 
 
+$(function () {
+  
+ $(".delete_dialog").find("button").on('click', function () {
+     
+     var $delete_btn = $($(".delete_dialog").data('trigger'));
+     var assignment_id = $delete_btn.data('assignment-id');
+    
+      $.ajax({
+        type: 'DELETE', 
+        url: '/assignments/' + assignment_id,
+      }).success(function(data, status, xhr) {
+        console.log("deleteing assignment via ajax a SUCCESS");
+        
+        // close the delete dialog
+        $(".delete_dialog").dialog('close');
+
+        //slide associated assignment up, hiding it */
+        $delete_btn.closest(".as_box").animate({opacity: '0'}, 900, function() {
+          $delete_btn.closest(".as_box").slideUp();
+          $delete_btn.closest(".as_box").remove();
+        }); 
+
+      });
+
+      return false; // prevents normal behavior of submit button
+    
+ });
+
+});

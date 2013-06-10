@@ -55,9 +55,9 @@
                 .description
                   = a.description
                 .delete_btn{:'data-assignment-id' => a.id}
-                  .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id}
-                    Are you sure you want to delete this assignment?
-                    = link_to "Yes, delete this assignment", assignment_path(a), :method => :delete, :remote => true, tabindex: -1
+                  /* .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id} */
+                  /*   Are you sure you want to delete this assignment? */
+                  /*   = link_to "Yes, delete this assignment", assignment_path(a), :method => :delete, :remote => true, tabindex: -1 */
                 .edit_btn{:"data-assignment-id" => a.id}
                   .edit_dialog{:title => "Update Assignment", :"data-assignment-id" => a.id}
                     = simple_form_for [a], remote: true, html: {data: {type: 'json'}} do |f|
@@ -66,6 +66,10 @@
                       = f.input :due_date, order: [:month, :day, :year], :ampm => true
                       = f.input :completed, :label => "Completed?", :as => "radio_buttons" 
                       = f.submit :class => "edit_dialog_submit"
+
+.delete_dialog
+  Are you sure you want to delete this assignment? 
+  %button
 #add_dialog_ajax
   %form
     %label * Subject
