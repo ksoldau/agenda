@@ -1,6 +1,7 @@
 = javascript_include_tag "init_week" 
 = javascript_include_tag "edit_assignment"
 = javascript_include_tag "delete_assignment"
+
 .choose_view
   .nav_view
     = link_to "Week", assignments_path(:query => 'week', :which => params[:which]), 
@@ -29,15 +30,6 @@
 
         .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
           %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}", :class => 'icon-plus'}
-            /* .add_dialog{:'data-day' => "day#{dayn}"} */
-            /*   = simple_form_for [@newa] do |f| */
-            /*     = f.association :subject, collection: current_user.subjects */    
-            /*     = f.input :description */
-            /*     = f.input :due_date, :default => getDate(dayn, params[:which].to_date.beginning_of_week) + 23.hours + 59.minutes, */ 
-            /*     order: [:month, :day, :year], :ampm => true */
-            /*     = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
-            /*     = f.submit "Add", :class => "add_dialog_submit" */
-            
           %p.day_heading 
             = @key_to_day[dayn]
             = getDate(dayn, params[:which].to_date.beginning_of_week).to_formatted_s(:long)
@@ -55,9 +47,6 @@
                 .description
                   = a.description
                 .delete_btn{:'data-assignment-id' => a.id}
-                  /* .delete_dialog{:title => "Delete Assignment", :'data-assignment-id' => a.id} */
-                  /*   Are you sure you want to delete this assignment? */
-                  /*   = link_to "Yes, delete this assignment", assignment_path(a), :method => :delete, :remote => true, tabindex: -1 */
                 .edit_btn{:"data-assignment-id" => a.id}
                   .edit_dialog{:title => "Update Assignment", :"data-assignment-id" => a.id}
                     = simple_form_for [a], remote: true, html: {data: {type: 'json'}} do |f|
@@ -70,6 +59,7 @@
 .delete_dialog
   Are you sure you want to delete this assignment? 
   %button
+
 #add_dialog_ajax
   %form
     %label * Subject
