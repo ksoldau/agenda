@@ -41,8 +41,9 @@ function deleteAssignment() {
         // slide associated subject link up and delete it if as box
         $subjLink = $(".subj_link[data-assignment-id=" + assignmentId + "]");
         $subjLink.animate({opacity: '0'}, 900, function() {
-         $subjLink.slideUp();
+         $subjLink.slideUp(600, function() {
           $subjLink.remove();
+          });
         });
       });
     });
