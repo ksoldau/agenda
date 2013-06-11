@@ -28,12 +28,19 @@ function openAddDialog() {
     $("td").each(
         function() {
 
-        var date = $(this).data('date');
-        var dlg = $("#add_dialog_ajax");
+          $(this).dblclick(function() {
+            defaultDate = $(this).data('date');
+            defaultMonth = defaultDate.split('-')[1];
+            defaultYear = defaultDate.split('-')[0];
+            defaultDay = defaultDate.split('-')[2];
+            defaultText = defaultMonth + '/' + defaultDay + '/' + defaultYear;
 
-        $(this).dblclick(function() {
-          dlg.dialog('open');
-        });
+            defaultTime = "11:59 pm"
+            $("#add_dialog_ajax .datepicker").val(defaultText);
+            $("#add_dialog_ajax .timepicker").val(defaultTime);
+
+            $("#add_dialog_ajax").dialog('open');
+          });
       }
     )
 }
