@@ -1,6 +1,6 @@
 $(function() {
 
-  $("#datepicker").datepicker();
+  $(".datepicker").datepicker();
   
   $(".timepicker").timepicker({
     'step': 15,
@@ -41,7 +41,7 @@ function addAssignment() {
       text = defaultMonth + "/" + defaultDay + "/" + defaultYear;
 
       defaultTime = "11:59 pm"
-      $("#add_dialog_ajax #datepicker").val(text);
+      $("#add_dialog_ajax .datepicker").val(text);
       $("#add_dialog_ajax .timepicker").val(defaultTime);
       $("#add_dialog_ajax").dialog('open');
     });
@@ -111,7 +111,7 @@ function getDescription($form) {
 
 function getMonth($form) {
 
-  var date = $("#datepicker").val(); // ex: 06/11/2013
+  var date = $(".datepicker").val(); // ex: 06/11/2013
   var month = date.split('/')[0];
 
   return month;
@@ -120,7 +120,7 @@ function getMonth($form) {
 
 function getDay($form) {
 
-  var date = $("#datepicker").val(); // ex: 06/11/2013
+  var date = $(".datepicker").val(); // ex: 06/11/2013
   var day = date.split('/')[1];
 
   return day;
@@ -128,7 +128,7 @@ function getDay($form) {
 
 function getYear($form) {
 
-  var date = $("#datepicker").val(); // ex: 06/11/2013
+  var date = $(".datepicker").val(); // ex: 06/11/2013
   var year = date.split('/')[2];
 
   return year;
