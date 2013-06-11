@@ -35,8 +35,9 @@ function deleteAssignment() {
 
         // slide associated assignment up and delete it if as box
         $assignment.animate({opacity: '0'}, 900, function() {
-         $assignment.slideUp();
+         $assignment.slideUp(600, function() {
           $assignment.remove();
+          });
         });
       });
     });
