@@ -28,7 +28,8 @@
           - if !a.completed
             - today_complete = false;
 
-        .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil)} 
+        .assignment_box{:id => (todayHuh ? (today_complete ? "today_border" : "today_nc_border") : nil), 
+        :'data-date' => getDate(dayn, params[:which].to_date.beginning_of_week)} 
           %a.add_btn{:id => "day_#{dayn}", :'data-day' => "day#{dayn}", :class => 'icon-plus'}
           %p.day_heading 
             = @key_to_day[dayn]
@@ -37,7 +38,8 @@
               %span Today
           - if !as.empty?
             - as.each do |a|
-              .as_box{:class => (a.completed ? "completed" : "not_completed"), :"data-path" => assignment_path(a)}
+              .as_box{:class => (a.completed ? "completed" : "not_completed"), :"data-path" => assignment_path(a),
+              :'data-due-time' => a.due_date.strftime("%H:%M")}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   due at 
