@@ -194,8 +194,6 @@ function movedBeforeWeek(date) {
 
   beginningOfWeek = new Date(Number(year), Number(month) - 1, Number(day));
   
-  debugger;
-
   return date.getTime() < beginningOfWeek.getTime();
 }
 
@@ -294,7 +292,6 @@ function inRightDay(data, date) {
   var new_dd = data.due_date;
   var newDate = new_dd.split('T')[0];
 
-  debugger;
   return date === newDate;
 }
 
@@ -306,10 +303,6 @@ function subString(sub, full) {
 // put assignment in the day
 function putAssignmentInDay($assignment, other_assignments, $day, data) {
 
-    // add to day in case no other assignments exist 
-    // to compare it to
-    //$assignment.appendTo(new_ab);
-    
     // put assignment in right place in dom
     putAssignmentInOrder($assignment, other_assignments, data, $day);
     
