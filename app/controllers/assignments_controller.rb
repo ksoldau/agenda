@@ -81,7 +81,7 @@ class AssignmentsController < ApplicationController
 
   def destroy
     #deletes
-    current_user.assignments.where(id: params[:id]).first.destroy
+    #current_user.assignments.where(id: params[:id]).first.destroy
     #binding.pry
     if request.xhr? 
       #do nothing

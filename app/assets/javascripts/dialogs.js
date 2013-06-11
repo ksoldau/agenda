@@ -1,5 +1,6 @@
 //initialize dialogs and make buttons open correct dialogs
 $(function() {
+
   //initialize dialogs for assignments
   initEditDialogs();
   initDeleteDialogs();
@@ -10,6 +11,9 @@ $(function() {
   editButtonsAndDialogs();
   deleteButtonsAndDialogs();
   //addButtonsAndDialogs();
+
+  //
+  deleteAssignment();
 
 });
 
@@ -136,34 +140,32 @@ function addButtonsAndDialogs() {
   });
 }
 
+// delete an assignment with ajax
+function deleteAssignment() {
+  $(".delete_btn").on('click', function() {
 
-
-$(function () {
+      var assignment_id = $(this).data('assignment-id');
+      console.log('assignment id is ' + assignment_id);
+      var $deleteButton = $(this);
   
- $(".delete_dialog").find("button").on('click', function () {
-     
-     var $delete_btn = $($(".delete_dialog").data('trigger'));
-     var assignment_id = $delete_btn.data('assignment-id');
-    
-      $.ajax({
-        type: 'DELETE', 
-        url: '/assignments/' + assignment_id,
-      }).success(function(data, status, xhr) {
-        console.log("deleteing assignment via ajax a SUCCESS");
-        
-        // close the delete dialog
-        $(".delete_dialog").dialog('close');
+      $(".delete_dialog").find("button").on('click', function() {
+      
+        $.ajax({
+          type: 'DELETE', 
+          url: '/assignments/' + assignment_id,
+        }).success(function(data,status, xhr) {
+          console.log("deleting assignment via ajax a SUCCESS");
 
-        //slide associated assignment up, hiding it */
-        $delete_btn.closest(".as_box").animate({opacity: '0'}, 900, function() {
-          $delete_btn.closest(".as_box").slideUp();
-          $delete_btn.closest(".as_box").remove();
-        }); 
+          //close the delete dialog
+          $(".delete_dialog").dialog('close');
 
+          // slide associated assignment up and delete it
+          $deleteButton.closest(".as_box").animate({opacity: '0'}, 900, function() {
+            $deleteButton.closest(".as_box").slideUp();
+            $deleteButton.closest(".as_box").remove();
+          });
+
+          });
       });
-
-      return false; // prevents normal behavior of submit button
-    
- });
-
-});
+  });
+}
