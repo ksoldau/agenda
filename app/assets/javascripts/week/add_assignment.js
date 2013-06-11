@@ -1,6 +1,3 @@
-
-// javascript only needed in week view
-
 $(function() {
 
   $("#datepicker").datepicker();
