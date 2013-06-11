@@ -194,7 +194,13 @@ function constructAssignmentHtml(data) {
   else {
     $as_box.addClass('not_completed');
   }
-
+  
+  var dueTime = data.due_date.split('T')[1].split(':');
+  var dueHour = dueTime[0];
+  var dueMinute = dueTime[1];
+  var dataDueTime = dueHour + ":" + dueMinute;
+  $as_box.data('due-time', dataDueTime);
+  
   // make edit and delete show up on hover
   $as_box.hover(
     function() {
@@ -425,7 +431,6 @@ function movedAfterWeek(date) {
 
   endOfWeek = new Date(Number(year), Number(month) - 1, Number(day));
 
-  debugger; 
 
   return date.getTime() > endOfWeek.getTime();
 }

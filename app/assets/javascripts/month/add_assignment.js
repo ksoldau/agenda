@@ -167,20 +167,7 @@ function getCompleted($form) {
 }
 
 function constructSubjectLinkHtml(data) {
-
-  $due_time = constructDueTime(data);
-  $subject = constructSubject(data);
-  $description = constructDescription(data);
-  $delete_button = constructDeleteButton(data);
-  $edit_button =  constructEditButton(data); 
-
-  var $as_box = $('<div/>', {class: 'as_box'});
-  $as_box.append($due_time);
-  $as_box.append($subject);
-  $as_box.append($description);
-  $as_box.append($delete_button);
-  $as_box.append($edit_button);
-
+  
   var $subj_link = $('<div/>', {class: 'subj_link'});
 
   if (data['completed']) {
@@ -191,6 +178,14 @@ function constructSubjectLinkHtml(data) {
   }
   
   $subj_link.data('assignment-id', data['id']);
+
+  var dueTime = data.due_date.split('T')[1];
+  var dueHour = dueTime.split(':')[0];
+  var dueMinute = dueTime.split(':')[1];
+
+  var dataDueTime = dueHour + ':' + dueMinute;
+  
+  $subj_link.data('due-time', dataDueTime);
 
   $subj_link.text(data['subject'].name);
 
