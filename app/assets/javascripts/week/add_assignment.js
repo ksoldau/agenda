@@ -1,3 +1,4 @@
+
 // javascript only needed in week view
 
 $(function() {
@@ -593,3 +594,4 @@ function otherTime($other_assignment) {
   
   return time;
 }
+
