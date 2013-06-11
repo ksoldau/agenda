@@ -442,9 +442,6 @@ function move($assignment, data) {
       $assignment.animate({opacity: '0'}, 800, function() {
         $assignment.slideUp(600, function (e) {
           moveAssignmentAndSlideDown($assignment, data);
-
-
-
         });
       });
       
