@@ -211,6 +211,17 @@ function constructAssignmentHtml(data) {
       $(this).find(".delete_btn").css("visibility", "hidden");
       $(this).find(".edit_btn").css("visibility", "hidden");
     });
+  
+  // add needed data
+  $as_box.data('assignment-id', data['id']);
+  
+  
+  // show delete dialog when delete button clicked
+  $as_box.find(".delete_btn").on('click', deleteAssignment());
+  $as_box.find(".delete_btn").on('click', function() {
+    updateDeleteDialogData($as_box.find(".delete_btn"));
+    $(".delete_dialog").dialog('open');
+  });
 
   return $as_box;
 }

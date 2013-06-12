@@ -6,17 +6,9 @@ $(function () {
 
 // delete an assignment with ajax
 function deleteAssignment() {
-
+  console.log("called");
   $(".delete_btn").on('click', function() {
-
-      var assignmentId = $(this).data('assignment-id');
-      var $deleteButton = $(this);
-
-      var $assignment = $deleteButton.closest(".as_box");
-
-      $(".delete_dialog").data('assignment-id', assignmentId);
-      $(".delete_dialog").data('assignment', $assignment);
-      
+    updateDeleteDialogData($(this)); 
   });
 
   $(".delete_dialog").find("button").on('click', function() {
@@ -43,4 +35,13 @@ function deleteAssignment() {
     });
 
 
+}
+
+function updateDeleteDialogData($delete_btn) {
+  var assignmentId = $delete_btn.closest(".as_box").data('assignment-id');
+  
+  var $assignment = $delete_btn.closest(".as_box");
+
+  $(".delete_dialog").data('assignment-id', assignmentId);
+  $(".delete_dialog").data('assignment', $assignment);
 }
