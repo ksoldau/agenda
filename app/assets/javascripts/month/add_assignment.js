@@ -86,7 +86,7 @@ function submitAddAssignment() {
       }, // need to fill this in
     }).success(function(data, status, xhr) {
       console.log("adding assignment via ajax in month view a SUCCESS");
-      placeSubjectLink(data, constructSubjectLinkHtml(data));
+      placeAssignmentLink(data, constructAssignmentLinkHtml(data));
       });
     return false; // prevents normal behavior for submit button 
   });
@@ -173,22 +173,22 @@ function getCompleted($form) {
   }
 }
 
-function constructSubjectLinkHtml(data) {
+function constructAssignmentLinkHtml(data) {
   
-  var $subj_link = $('<div/>', {class: 'subj_link'});
+  var $assignment_link = $('<div/>', {class: 'assignment_link'});
 
   // give the subject link necessary data
-  $subj_link.data('subject', data['subject'].name);
-  $subj_link.data('description', data['description']);
+  $assignment_link.data('subject', data['subject'].name);
+  $assignment_link.data('description', data['description']);
 
   if (data['completed']) {
-    $subj_link.addClass('completed'); 
+    $assignment_link.addClass('completed'); 
   }
   else {
-    $subj_link.addClass('not_completed');
+    $assignment_link.addClass('not_completed');
   }
   
-  $subj_link.data('assignment-id', data['id']);
+  $assignment_link.data('assignment-id', data['id']);
 
   var dueTime = data.due_date.split('T')[1];
   var dueHour = dueTime.split(':')[0];
@@ -196,17 +196,17 @@ function constructSubjectLinkHtml(data) {
 
   var dataDueTime = dueHour + ':' + dueMinute;
   
-  $subj_link.data('due-time', dataDueTime);
+  $assignment_link.data('due-time', dataDueTime);
 
   // make popup work for this new subject link
-  $subj_link.mouseover(mouseOverSubjectLink($subj_link));
+  $assignment_link.mouseover(mouseOverAssignmentLink($assignment_link));
   // make dialog work for this new subject link
-  $subj_link.click(clickOnSubjectLink($subj_link));
+  $assignment_link.click(clickOnAssignmentLink($assignment_link));
 
   // put subject name in 
-  $subj_link.text(data['subject'].name);
+  $assignment_link.text(data['subject'].name);
 
-  return $subj_link;
+  return $assignment_link;
 }
 
 
@@ -284,7 +284,7 @@ function getMinute60(data) {
 }
 
 // update placement of assignment after its been edited
-function placeSubjectLink(data, whatToPlace) {
+function placeAssignmentLink(data, whatToPlace) {
     $subjectLink = whatToPlace;    
     $("#add_dialog_ajax").dialog('close');
 
@@ -321,19 +321,19 @@ function placeSubjectLink(data, whatToPlace) {
     // the code for this isn't done yet
     if (movedBeforeCal(begOfCalendarDate, new_date)) {
       debugger;
-      moveBeforeWeek($subjectLink);
+      moveBeforeWeek($assignmentLink);
     }
 
     // if date moved to after week
     else if (movedAfterCal(endOfCalendarDate, new_date)) { 
       debugger;
-      moveAfterWeek($subjectLink);
+      moveAfterWeek($assignmentLink);
       
     }
     //if date or time has changed
     else {
       debugger;
-      moveSL($subjectLink, data);
+      moveSL($assignmentLink, data);
     }
 }
 
@@ -457,8 +457,7 @@ function make24(hour, amPm) {
 
 // move the assignment to new place within week
 
-function moveSL($subjectLink, data) {
-    debugger;
+function moveSL($assignmentLink, data) {;
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
@@ -468,7 +467,7 @@ function moveSL($subjectLink, data) {
     var new_date = newDate(data);
 
     //close old assignment then move it and open it again
-    moveAssignmentAndSlideDownSL($subjectLink, data);
+    moveAssignmentAndSlideDownSL($assignmentLink, data);
 }
 
 // get the new date after assignment has been edited
@@ -484,7 +483,7 @@ function newDate(data) {
 }
 
 // move assignment to new position and then show it
-function moveAssignmentAndSlideDownSL($subjectLink, data) {
+function moveAssignmentAndSlideDownSL($assignmentLink, data) {
       debugger;
 
       // list of day headings (dates) on the page
@@ -503,8 +502,8 @@ function moveAssignmentAndSlideDownSL($subjectLink, data) {
         // if assignment now in this day
         if (inRightDaySL(data, dayDate)) {
             var new_day = $(h).closest("td").find(".day_cal");
-            var others = new_day.find(".subj_link");
-            putAssignmentInDaySL($subjectLink, others, new_day, data); 
+            var others = new_day.find(".assignment_link");
+            putAssignmentInDaySL($assignmentLink, others, new_day, data); 
             break;
         } // end of if
       
@@ -526,43 +525,43 @@ function subString(sub, full) {
 }
 
 // put assignment in the day
-function putAssignmentInDaySL($subjectLink, others, day, data) {
+function putAssignmentInDaySL($assignmentLink, others, day, data) {
     debugger;
     // add to day in case no other assignments exist 
     // to compare it to
     //$subjectLink.appendTo(day);
     
     // put subject link in right place in dom
-    putSubjectLinkInOrderSL($subjectLink, others, data, day);
+    putAssignmentLinkInOrderSL($assignmentLink, others, data, day);
     
     // show the edited assignment
-    $subjectLink.hide().animate({opacity: '0'}, 0).slideDown(600).animate({opacity: '1'}, 600);
+    $assignmentLink.hide().animate({opacity: '0'}, 0).slideDown(600).animate({opacity: '1'}, 600);
 }
 
 // put assignment in correct order
-function putSubjectLinkInOrderSL($subjectLink, others, data, day) {
+function putAssignmentLinkInOrderSL($assignmentLink, others, data, day) {
     
-    var other_subj_links_array = Array.prototype.slice.call(others);
+    var other_assignment_links_array = Array.prototype.slice.call(others);
     // place assignment in order with other assignments
-    if (other_subj_links_array.length > 0) {
+    if (other_assignment_links_array.length > 0) {
       var beforeSomething = false;
-      for (i = 0; i < other_subj_links_array.length; i++) {
-      $other_link =  $(other_subj_links_array[i]);
+      for (i = 0; i < other_assignment_links_array.length; i++) {
+      $other_link =  $(other_assignment_links_array[i]);
         
         // if subject links comes before another, 
         // place it before it
         if (dueBeforeSL(data, $other_link)) {
-          $other_link.before($subjectLink);
+          $other_link.before($assignmentLink);
           beforeSomething = true;
           break;
         }
       }; //end of for
       if (!beforeSomething) {
-        $subjectLink.appendTo(day);
+        $assignmentLink.appendTo(day);
       }
     }
     else {
-      $subjectLink.appendTo(day);
+      $assignmentLink.appendTo(day);
     }
 }
 

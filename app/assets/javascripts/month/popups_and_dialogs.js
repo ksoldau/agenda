@@ -2,7 +2,7 @@
 $(function(){
   initPopUps();
   initDialogs();
-  subjectLinksPopupsAndDialogs();
+  assignmentLinksPopupsAndDialogs();
 
   //initialize dialogs for editing/deleting subject
   initEditSubjectDialogs();
@@ -45,16 +45,16 @@ function initDialogs() {
 
 //connect subject links with their assignment 
 // popups and dialogs
-function subjectLinksPopupsAndDialogs() {
-  $(".subj_link").each(function() {
+function assignmentLinksPopupsAndDialogs() {
+  $(".assignment_link").each(function() {
       
 
       // when mouse over a subject link
-      $(this).mouseover(mouseOverSubjectLink($(this)));
+      $(this).mouseover(mouseOverAssignmentLink($(this)));
       //mouseOverSubjectLink($(this));
      
       // when click on a subject link
-      clickOnSubjectLink($(this));
+      clickOnAssignmentLink($(this));
 
 
       //maybe this is how you do it
@@ -64,16 +64,16 @@ function subjectLinksPopupsAndDialogs() {
 }
 
 //what happens when mouse over a subject link
-function mouseOverSubjectLink($subjLink) {
+function mouseOverAssignmentLink($assignmentLink) {
     
     var $popUp = $(".a_popup");
 
     //when mouseover subject link
-    $subjLink.mouseover( function() {
+    $assignmentLink.mouseover( function() {
         
-        var subject = $subjLink.data('subject').trim();
-        var description = $subjLink.data('description').trim();
-        var dueDateTime = aPopUpDueDateTime($subjLink); 
+        var subject = $assignmentLink.data('subject').trim();
+        var description = $assignmentLink.data('description').trim();
+        var dueDateTime = aPopUpDueDateTime($assignmentLink); 
         
         // change the subject
         $popUp.find(".subject").text(subject);
@@ -82,7 +82,7 @@ function mouseOverSubjectLink($subjLink) {
         // change the due date
         $popUp.find(".due_time").text(dueDateTime);
         // change the color based on completion
-        if ($subjLink.hasClass("completed")) {
+        if ($assignmentLink.hasClass("completed")) {
           $popUp.addClass("completed").removeClass("not_completed");
         }
         else {
@@ -104,12 +104,12 @@ function mouseOverSubjectLink($subjLink) {
       });
 
     //if popup open move it with mouse while mouse over subject link
-    $subjLink.mousemove(function(event) {
+    $assignmentLink.mousemove(function(event) {
         $popUp.dialog("option", "position", [event.clientX - 150, event.clientY - 170]);
     });
     
     //close the popup when mouse moves out of subject link
-    $subjLink.mouseout(function() {
+    $assignmentLink.mouseout(function() {
         $popUp.dialog("close");
     });
 
@@ -117,13 +117,13 @@ function mouseOverSubjectLink($subjLink) {
 var monthNames = [ "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December" ];
 
-function aPopUpDueDateTime($subjLink) {
-  var date = $subjLink.closest("td").data('date');
+function aPopUpDueDateTime($assignmentLink) {
+  var date = $assignmentLink.closest("td").data('date');
   var year = date.split('-')[0];
   var month = date.split('-')[1];
   var day = date.split('-')[2];
 
-  var time = $subjLink.data('due-time');
+  var time = $assignmentLink.data('due-time');
   var hour = Number(time.split(':')[0]);
   var minute = time.split(':')[1];
 
@@ -142,17 +142,17 @@ function aPopUpDueDateTime($subjLink) {
 }
 
 //what happens when a subject link is clicked on
-function clickOnSubjectLink($subjLink) {
+function clickOnAssignmentLink($assignmentLink) {
     
-    $subjLink.on('click', function() {
-        var subject = $subjLink.data('subject').trim();
-        var description = $subjLink.data('description').trim();
-        var dueDateTime = aPopUpDueDateTime($subjLink); 
+    $assignmentLink.on('click', function() {
+        var subject = $assignmentLink.data('subject').trim();
+        var description = $assignmentLink.data('description').trim();
+        var dueDateTime = aPopUpDueDateTime($assignmentLink); 
 
         var $popUp = $(".a_popup");
         var $dialog = $(".a_dialog");
 
-        $subjLinkGlobal = $(this);
+        $assignmentLinkGlobal = $(this);
         
         // change the subject
         $dialog.find(".subject").text(subject);
@@ -161,7 +161,7 @@ function clickOnSubjectLink($subjLink) {
         // change the due date
         $dialog.find(".due_time").text(dueDateTime);
         // change the color based on completion
-        if ($subjLink.hasClass("completed")) {
+        if ($assignmentLink.hasClass("completed")) {
           $dialog.addClass("completed").removeClass("not_completed");
         }
         else {
@@ -169,7 +169,7 @@ function clickOnSubjectLink($subjLink) {
         }
 
         // change data assignment id
-        $dialog.data('assignment-id', $subjLink.data('assignment-id'));
+        $dialog.data('assignment-id', $assignmentLink.data('assignment-id'));
 
         //make sure pop up closed
         $popUp.dialog("close");

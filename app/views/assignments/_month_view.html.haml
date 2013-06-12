@@ -57,7 +57,7 @@
               .day_cal
                 - if @as_grouped_by_dd[date]
                   - @as_grouped_by_dd[date].each do |a|
-                    .subj_link{:class => (a.completed ? "completed" : "not_completed"), 
+                    .assignment_link{:class => (a.completed ? "completed" : "not_completed"), 
                     :'data-assignment-id' => a.id, :'data-due-time' => a.due_date.strftime("%H:%M"), 
                     :'data-subject' => a.subject.name, :'data-description' => a.description, 
                     :'data-subject-id' => a.subject.id}

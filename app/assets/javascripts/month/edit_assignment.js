@@ -11,7 +11,7 @@ $(function() {
     autoOpen: false
   });
   
-  var $subjLinkGlobal = null;
+  var $assignmentLinkGlobal = null;
   $(".edit_btn").on('click', editButtonClicked);
   $("#edit_dialog .edit_dialog_submit").on('click', submitEditAssignmentMonth);
 
@@ -23,15 +23,15 @@ function editButtonClicked() {
   $editBtn = $(this);
   
   // give edit dialog this assignment id
-  var assignmentId = $subjLinkGlobal.data('assignment-id'); 
+  var assignmentId = $assignmentLinkGlobal.data('assignment-id'); 
   $("#edit_dialog").data('assignment-id', assignmentId);
  
   // get default values for the dialog
-  var subjectId =  $subjLinkGlobal.data('subject-id');
-  var description = $subjLinkGlobal.data('description').trim();
-  var date = defaultDateFromEditBtnMonth($subjLinkGlobal);
-  var time = defaultTimeFromEditBtnMonth($subjLinkGlobal);
-  var completed = $subjLinkGlobal.hasClass("completed");
+  var subjectId =  $assignmentLinkGlobal.data('subject-id');
+  var description = $assignmentLinkGlobal.data('description').trim();
+  var date = defaultDateFromEditBtnMonth($assignmentLinkGlobal);
+  var time = defaultTimeFromEditBtnMonth($assignmentLinkGlobal);
+  var completed = $assignmentLinkGlobal.hasClass("completed");
 
   if (completed) {
     $("#edit_dialog input[value=yes]").prop('checked', true);
@@ -45,8 +45,8 @@ function editButtonClicked() {
   
 }
 
-function defaultDateFromEditBtnMonth($subjLink) {
-  defaultDate = $subjLink.closest("td").data('date');
+function defaultDateFromEditBtnMonth($assignmentLink) {
+  defaultDate = $assignmentLink.closest("td").data('date');
   defaultMonth = defaultDate.split('-')[1];
   defaultYear = defaultDate.split('-')[0];
   defaultDay = defaultDate.split('-')[2];
@@ -55,8 +55,8 @@ function defaultDateFromEditBtnMonth($subjLink) {
   return text;
 }
 
-function defaultTimeFromEditBtnMonth($subjLink) {
-  defaultTime = $subjLink.data('due-time');
+function defaultTimeFromEditBtnMonth($assignmentLink) {
+  defaultTime = $assignmentLink.data('due-time');
   defaultHour = defaultTime.split(':')[0];
   defaultMinute = defaultTime.split(':')[1];
   amPm = "am"
@@ -75,7 +75,7 @@ function defaultTimeFromEditBtnMonth($subjLink) {
 function submitEditAssignmentMonth() {
 
   var assignmentId = $("#edit_dialog").data('assignment-id');
-  var $subjLink = $subjLink;
+  var $assignmentLink = $assignmentLink;
   var $form = $("#edit_dialog");
   var subject_id = getSubjectIdMonth($form);
   var description = getDescriptionMonth($form);
@@ -107,16 +107,16 @@ function submitEditAssignmentMonth() {
       $("#edit_dialog").dialog('close');
       $(".a_dialog").dialog('close');
       debugger;
-      updateSubjectMonth($subjLinkGlobal, data);
+      updateSubjectMonth($assignmentLinkGlobal, data);
       
-      updateDescriptionMonth($subjLinkGlobal, data);
+      updateDescriptionMonth($assignmentLinkGlobal, data);
 
       //updatePlacementMonth($subjLink, data);
-      placeSubjectLink(data, $subjLinkGlobal);
+      placeAssignmentLink(data, $assignmentLinkGlobal);
 
-      updateTimeMonth($subjLinkGlobal, data);
+      updateTimeMonth($assignmentLinkGlobal, data);
    
-      updateCompletionBackgroundMonth($subjLinkGlobal, data);
+      updateCompletionBackgroundMonth($assignmentLinkGlobal, data);
 
   }).error(function(e) {
   });
@@ -212,10 +212,10 @@ function getCompletedMonth($form) {
 /************************/
 
 // update the subject after assignment's been edited
-function updateSubjectMonth($subjLink, data) {
+function updateSubjectMonth($assignmentLink, data) {
     debugger;
     //get the subject
-    var $subj = $subjLink.text().trim();
+    var $subj = $assignmentLink.text().trim();
 
     //update subject if needs to be updated
     if ($subj !== data.subject.name.trim()) {
@@ -223,16 +223,16 @@ function updateSubjectMonth($subjLink, data) {
         //$subjLink.text(data.subject.name).animate({opacity: "1"}, 700);
       //});
       // later animate this better
-      $subjLink.text(data.subject.name.trim());
+      $assignmentLink.text(data.subject.name.trim());
     }
 
 }
 
 // update the description after assignment's been edited
-function updateDescriptionMonth($subjLink, data) {
+function updateDescriptionMonth($assignmentLink, data) {
   
   //get the description
-  var $desc = $subjLink.data('description').trim();
+  var $desc = $assignmentLink.data('description').trim();
   
   //update the descirption if it needs to be updated
   if ($desc !== data.description.trim()) {
@@ -294,7 +294,7 @@ function updatePlacement($assignment, data) {
 }
 
 // update due time of assignment after its been edited
-function updateTimeMonth($subjLink, data) {
+function updateTimeMonth($assignmentLink, data) {
     
     // due date after edit
     var new_dd = data.due_date;
@@ -305,16 +305,16 @@ function updateTimeMonth($subjLink, data) {
     // due time hour after edit
     var new_hour = Number(new_parsed_time[0]);
     
-    $subjLink.data('due-time', new_hour + ':' + new_min);
+    $assignmentLink.data('due-time', new_hour + ':' + new_min);
 }
 
 // update the background color of assignment after its been edited
 // background color signifies completion status
-function updateCompletionBackgroundMonth($subjLink, data) {
+function updateCompletionBackgroundMonth($assignmentLink, data) {
 
-   $subjLink.addClass(data.completed ? "completed" : "not_completed", {duration: 800});
+   $assignmentLink.addClass(data.completed ? "completed" : "not_completed", {duration: 800});
    
-   $subjLink.removeClass(data.completed ? "not_completed" : "completed", {duration: 800});
+   $assignmentLink.removeClass(data.completed ? "not_completed" : "completed", {duration: 800});
    
 }
 

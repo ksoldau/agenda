@@ -25,7 +25,7 @@ function deleteAssignment() {
   $(".delete_dialog").find("button").on('click', function() {
       
       var assignmentId = $(".delete_dialog").data('assignment-id');
-      var $subjLink = $(".delete_dialog").data('assignment');
+      var $assignmentLink = $(".delete_dialog").data('assignment');
 
       debugger; 
       $.ajax({
@@ -41,9 +41,9 @@ function deleteAssignment() {
         $(".a_dialog").dialog('close');
 
         // slide associated subject link up and delete it if as box
-        $subjLink.animate({opacity: '0'}, 900, function() {
-         $subjLink.slideUp(600, function() {
-          $subjLink.remove();
+        $assignmentLink.animate({opacity: '0'}, 900, function() {
+         $assignmentLink.slideUp(600, function() {
+          $assignmentLink.remove();
           });
         });
       });
