@@ -188,6 +188,12 @@ function constructSubjectLinkHtml(data) {
   $subj_link.data('due-time', dataDueTime);
 
   $subj_link.text(data['subject'].name);
+  
+  $subj_link.mouseover(mouseOverSubjectLink($subj_link));
+
+  // give the subject link necessary data
+  $subj_link.data('subject', data['subject'].name);
+  $subj_link.data('description', data['description']);
 
   return $subj_link;
 }

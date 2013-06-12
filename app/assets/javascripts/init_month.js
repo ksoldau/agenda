@@ -50,7 +50,8 @@ function subjectLinksPopupsAndDialogs() {
       
 
       // when mouse over a subject link
-      mouseOverSubjectLink($(this));
+      $(this).mouseover(mouseOverSubjectLink($(this)));
+      //mouseOverSubjectLink($(this));
      
       // when click on a subject link
       clickOnSubjectLink($(this));
