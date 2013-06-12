@@ -136,7 +136,7 @@ function aPopUpDueDateTime($subjLink) {
 
   var newDate = new Date(Number(year), Number(month) - 1, Number(day));
 
-  return "due on " + monthNames[Number(month)] + " " + day + "," + year + " at " + hour + ":" + minute + " " + amPm;
+  return "due on " + monthNames[Number(month) - 1] + " " + day + "," + year + " at " + hour + ":" + minute + " " + amPm;
 
 
 }
@@ -151,6 +151,8 @@ function clickOnSubjectLink($subjLink) {
 
         var $popUp = $(".a_popup");
         var $dialog = $(".a_dialog");
+
+        $subjLinkGlobal = $(this);
         
         // change the subject
         $dialog.find(".subject").text(subject);
@@ -182,6 +184,9 @@ function clickOnSubjectLink($subjLink) {
         else {
           $dialog.parent(".ui-dialog").css("background-color", "#FF7F66");
         }
+
+        // store this assignment in the dialog
+        $dialog.data('assignment', $(this));
     });
 }
 

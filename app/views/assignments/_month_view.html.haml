@@ -2,6 +2,7 @@
 = javascript_include_tag "month/popups_and_dialogs"
 = javascript_include_tag "month/delete_assignment"
 = javascript_include_tag "month/add_assignment"
+= javascript_include_tag "month/edit_assignment"
 
 .choose_view
   .nav_view
@@ -58,30 +59,28 @@
                   - @as_grouped_by_dd[date].each do |a|
                     .subj_link{:class => (a.completed ? "completed" : "not_completed"), 
                     :'data-assignment-id' => a.id, :'data-due-time' => a.due_date.strftime("%H:%M"), 
-                    :'data-subject' => a.subject.name, :'data-description' => a.description}
+                    :'data-subject' => a.subject.name, :'data-description' => a.description, 
+                    :'data-subject-id' => a.subject.id}
                       = a.subject.name
-                      /* .a_dialog{:class => (a.completed ? "completed" : "not_completed"), */ 
-                      /* :'data-assignment-id' => a.id} */              
-                      /*   .a_box_month */
-                      /*     .subject */
-                      /*       = a.subject.name */
-                      /*     .description */
-                      /*       = a.description */
-                      /*     .due_time */
-                      /*       due on */ 
-                      /*       = a.due_date.strftime("%B %d, %Y"); */
-                      /*       .break */ 
-                      /*         at */ 
-                      /*         = a.due_date.strftime("%I:%M %P"); */
-                      /*     .delete_btn{:'data-assignment-id' => a.id} */
-                      /*     .edit_btn{:'data-assignment-id' => a.id} */
-                      /*       .edit_dialog{:title => "Edit Assignment", :'data-assignment-id' => a.id} */
-                      /*         = simple_form_for [a] do |f| */
-                      /*           = f.association :subject, collection: current_user.subjects */    
-                      /*           = f.input :description */ 
-                      /*           = f.input :due_date, :ampm => true; */
-                      /*           = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
-                      /*           = f.submit :class => "edit_dialog_submit" */
+
+#edit_dialog
+  %form
+    %label * Subject
+    %select.select_subject
+      %option
+      - @subjects.each do |s|
+        %option{value:"#{s.id}"}
+          = s.name
+    %label * Description
+    %input{type:'text', maxlength: 255, size:50, name:'description'}
+    %label * Due date
+    %input{type: 'text', class: 'datepicker'}
+    %input{type: 'text', class: 'timepicker'}
+    %label Completed?
+    %input{type: 'radio', name:'completed', value:'yes'} Yes
+    %input{type: 'radio', name:'completed', value:'no', checked:'checked'} No
+    %input{type:'submit', value:'submit', class:'edit_dialog_submit'}
+
 .delete_dialog
   Are you sure you want to delete this assignment? 
   %button
@@ -111,21 +110,8 @@
 .a_dialog
   .a_box_month
     .subject
-      //= a.subject.name
     .description
-      //= a.description
     .due_time
-
     .delete_btn
-    //{:'data-assignment-id' => a.id}
     .edit_btn
-    //{:'data-assignment-id' => a.id}
-    //.edit_dialog
-    //{:title => "Edit Assignment", :'data-assignment-id' => a.id}
-    //= simple_form_for [a] do |f|
-    //= f.association :subject, collection: current_user.subjects    
-    //= f.input :description 
-    //= f.input :due_date, :ampm => true;
-    //= f.input :completed, :label => "Completed?", :as => "radio_buttons"
-    //= f.submit :class => "edit_dialog_submit"
 

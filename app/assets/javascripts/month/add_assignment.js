@@ -39,6 +39,13 @@ function openAddDialog() {
             $("#add_dialog_ajax .datepicker").val(defaultText);
             $("#add_dialog_ajax .timepicker").val(defaultTime);
 
+            // don't change subject because want to remember the last one
+            
+            // make sure description is nothing
+            $("#add_dialog_ajax input[name=description]").val("");
+            // make sure the not completed option is checked
+            $("#add_dialog_ajax input[value=no]").prop('checked', true);
+
             $("#add_dialog_ajax").dialog('open');
           });
       }
@@ -79,7 +86,7 @@ function submitAddAssignment() {
       }, // need to fill this in
     }).success(function(data, status, xhr) {
       console.log("adding assignment via ajax in month view a SUCCESS");
-      placeSubjectLink(data);
+      placeSubjectLink(data, constructSubjectLinkHtml(data));
       });
     return false; // prevents normal behavior for submit button 
   });
@@ -193,6 +200,8 @@ function constructSubjectLinkHtml(data) {
 
   // make popup work for this new subject link
   $subj_link.mouseover(mouseOverSubjectLink($subj_link));
+  // make dialog work for this new subject link
+  $subj_link.click(clickOnSubjectLink($subj_link));
 
   // put subject name in 
   $subj_link.text(data['subject'].name);
@@ -258,7 +267,7 @@ function constructDueTime(data) {
 }
 
 function get24Hour(data) {
-  var due_date = data['due_date'];
+  var due_date = data['due_date/p'];
   var time = due_date.split('T')[1];
   var hour = time.split(':')[0];
   
@@ -275,9 +284,8 @@ function getMinute60(data) {
 }
 
 // update placement of assignment after its been edited
-function placeSubjectLink(data) {
-
-    $subjectLink = constructSubjectLinkHtml(data);
+function placeSubjectLink(data, whatToPlace) {
+    $subjectLink = whatToPlace;    
     $("#add_dialog_ajax").dialog('close');
 
     var new_dd = data.due_date;
@@ -296,29 +304,58 @@ function placeSubjectLink(data) {
     var url_month = Number(url_parsed[1]) -1;
     var url_year = Number(url_parsed[0]);
     var url_date = new Date(url_year, url_month, url_day);
+    
+    $begOfCalendar = $($("td")[0]);
+    begOfCalendarDate = $begOfCalendar.data('date');
+
+    $endOfCalendar = $($("td").last());
+    endOfCalendarDate = $endOfCalendar.data('date');
+    debugger;
 
     // end of url month needs to be more exact
-    var url_date_end_month = new Date(url_date.getTime() + 29 * 24 * 60 * 60 * 1000);
-
     var new_date_and_time = new Date(new_year, 0, new_day, new_hour, new_min);
-
     var new_date_no_month = new Date(new_year, 0, new_day);
 
 
-    // if date moved to before week
-    //if (movedBeforeWeek(url_date, new_date)) {
-    //  moveBeforeWeek($subjectLink);
-    //}
+    // if date moved to before this calendar
+    // the code for this isn't done yet
+    if (movedBeforeCal(begOfCalendarDate, new_date)) {
+      debugger;
+      moveBeforeWeek($subjectLink);
+    }
 
     // if date moved to after week
-    //else if (movedAfterWeek(url_date, new_date)) {
-    //  moveAfterWeek($subjectLink);
-    //}
-
+    else if (movedAfterCal(endOfCalendarDate, new_date)) { 
+      debugger;
+      moveAfterWeek($subjectLink);
+      
+    }
     //if date or time has changed
-    //else {
-      move($subjectLink, data);
-    //}
+    else {
+      debugger;
+      moveSL($subjectLink, data);
+    }
+}
+
+function movedBeforeCal(begCal, otherDate) {
+  var year = begCal.split('-')[0];
+  var month = begCal.split('-')[1];
+  var day = begCal.split('-')[2];
+
+  var beginningOfCal = new Date(Number(year), Number(month) - 1, Number(day));
+
+  return otherDate.getTime() < beginningOfCal.getTime();
+}
+
+function movedAfterCal(endCal, otherDate) {
+  
+  var year = endCal.split('-')[0];
+  var month = endCal.split('-')[1];
+  var day = endCal.split('-')[2];
+
+  var endOfCal = new Date(Number(year), Number(month) - 1, Number(day));
+
+  return otherDate.getTime() > endOfCal.getTime();
 }
 
 // update due time of assignment after its been edited
@@ -420,7 +457,8 @@ function make24(hour, amPm) {
 
 // move the assignment to new place within week
 
-function move($subjectLink, data) {
+function moveSL($subjectLink, data) {
+    debugger;
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
@@ -430,7 +468,7 @@ function move($subjectLink, data) {
     var new_date = newDate(data);
 
     //close old assignment then move it and open it again
-    moveAssignmentAndSlideDown($subjectLink, data);
+    moveAssignmentAndSlideDownSL($subjectLink, data);
 }
 
 // get the new date after assignment has been edited
@@ -446,7 +484,8 @@ function newDate(data) {
 }
 
 // move assignment to new position and then show it
-function moveAssignmentAndSlideDown($subjectLink, data) {
+function moveAssignmentAndSlideDownSL($subjectLink, data) {
+      debugger;
 
       // list of day headings (dates) on the page
       var calDayArray = $(".cal_day");
@@ -462,10 +501,10 @@ function moveAssignmentAndSlideDown($subjectLink, data) {
         var dayDate = $(calDayArray[i]).closest("td").data('date');
 
         // if assignment now in this day
-        if (inRightDay(data, dayDate)) {
+        if (inRightDaySL(data, dayDate)) {
             var new_day = $(h).closest("td").find(".day_cal");
             var others = new_day.find(".subj_link");
-            putAssignmentInDay($subjectLink, others, new_day, data); 
+            putAssignmentInDaySL($subjectLink, others, new_day, data); 
             break;
         } // end of if
       
@@ -474,7 +513,7 @@ function moveAssignmentAndSlideDown($subjectLink, data) {
 
 // determines if day in header on page is same as the 
 // due day of assignment after its edited
-function inRightDay(data, otherDate) {
+function inRightDaySL(data, otherDate) {
   var new_dd = data.due_date;
   var new_parsed_date = new_dd.split('T')[0];
 
@@ -487,21 +526,21 @@ function subString(sub, full) {
 }
 
 // put assignment in the day
-function putAssignmentInDay($subjectLink, others, day, data) {
-
+function putAssignmentInDaySL($subjectLink, others, day, data) {
+    debugger;
     // add to day in case no other assignments exist 
     // to compare it to
     //$subjectLink.appendTo(day);
     
     // put subject link in right place in dom
-    putSubjectLinkInOrder($subjectLink, others, data, day);
+    putSubjectLinkInOrderSL($subjectLink, others, data, day);
     
     // show the edited assignment
     $subjectLink.hide().animate({opacity: '0'}, 0).slideDown(600).animate({opacity: '1'}, 600);
 }
 
 // put assignment in correct order
-function putSubjectLinkInOrder($subjectLink, others, data, day) {
+function putSubjectLinkInOrderSL($subjectLink, others, data, day) {
     
     var other_subj_links_array = Array.prototype.slice.call(others);
     // place assignment in order with other assignments
@@ -512,7 +551,7 @@ function putSubjectLinkInOrder($subjectLink, others, data, day) {
         
         // if subject links comes before another, 
         // place it before it
-        if (dueBefore(data, $other_link)) {
+        if (dueBeforeSL(data, $other_link)) {
           $other_link.before($subjectLink);
           beforeSomething = true;
           break;
@@ -528,7 +567,7 @@ function putSubjectLinkInOrder($subjectLink, others, data, day) {
 }
 
 // is the due date in data before the other assignment?
-function dueBefore(data, $other_link) {
+function dueBeforeSL(data, $other_link) {
   // get the new time after assignment edited
   var new_time = dataTime(data);
   

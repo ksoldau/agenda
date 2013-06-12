@@ -44,7 +44,9 @@ function addAssignment() {
       defaultTime = "11:59 pm"
       $("#add_dialog_ajax .datepicker").val(text);
       $("#add_dialog_ajax .timepicker").val(defaultTime);
+      $("#add_dialog_ajax input[value=no]").prop('checked', true);
       $("#add_dialog_ajax").dialog('open');
+      
     });
 
   });

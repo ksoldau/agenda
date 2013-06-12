@@ -12,9 +12,10 @@ function deleteAssignment() {
   $(".delete_btn").on('click', function() {
 
       var assignmentId = $(this).closest(".a_dialog").data('assignment-id');
+      debugger;
       var $deleteButton = $(this);
 
-      var $assignment = $deleteButton.closest(".as_box");
+      var $assignment = $(".a_dialog").data('assignment');
 
       $(".delete_dialog").data('assignment-id', assignmentId);
       $(".delete_dialog").data('assignment', $assignment);
@@ -24,8 +25,9 @@ function deleteAssignment() {
   $(".delete_dialog").find("button").on('click', function() {
       
       var assignmentId = $(".delete_dialog").data('assignment-id');
-      var $assignment = $(".delete_dialog").data('assignment');
-      
+      var $subjLink = $(".delete_dialog").data('assignment');
+
+      debugger; 
       $.ajax({
         type: 'DELETE', 
         url: '/assignments/' + assignmentId,
@@ -39,7 +41,6 @@ function deleteAssignment() {
         $(".a_dialog").dialog('close');
 
         // slide associated subject link up and delete it if as box
-        $subjLink = $(".subj_link[data-assignment-id=" + assignmentId + "]");
         $subjLink.animate({opacity: '0'}, 900, function() {
          $subjLink.slideUp(600, function() {
           $subjLink.remove();
