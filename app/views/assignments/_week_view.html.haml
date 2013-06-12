@@ -39,7 +39,7 @@
           - if !as.empty?
             - as.each do |a|
               .as_box{:class => (a.completed ? "completed" : "not_completed"), :'data-due-time' => a.due_date.strftime("%H:%M"),
-              :'data-assignment-id' => a.id}
+              :'data-assignment-id' => a.id, :'data-subject' => a.subject.name, :'data-description' => a.description, :'data-subject-id' => a.subject.id}
                 .due_time
                   -#= a.due_date.to_formatted_s(:long)
                   due at 
@@ -50,13 +50,13 @@
                   = a.description
                 .delete_btn{:'data-assignment-id' => a.id}
                 .edit_btn{:"data-assignment-id" => a.id}
-                  .edit_dialog{:title => "Update Assignment", :"data-assignment-id" => a.id}
-                    = simple_form_for [a], remote: true, html: {data: {type: 'json'}} do |f|
-                      = f.association :subject, collection: current_user.subjects    
-                      = f.input :description 
-                      = f.input :due_date, order: [:month, :day, :year], :ampm => true
-                      = f.input :completed, :label => "Completed?", :as => "radio_buttons" 
-                      = f.submit :class => "edit_dialog_submit"
+                  /* .edit_dialog{:title => "Update Assignment", :"data-assignment-id" => a.id} */
+                  /*   = simple_form_for [a], remote: true, html: {data: {type: 'json'}} do |f| */
+                  /*     = f.association :subject, collection: current_user.subjects */    
+                  /*     = f.input :description */ 
+                  /*     = f.input :due_date, order: [:month, :day, :year], :ampm => true */
+                  /*     = f.input :completed, :label => "Completed?", :as => "radio_buttons" */ 
+                  /*     = f.submit :class => "edit_dialog_submit" */
 
 .delete_dialog
   Are you sure you want to delete this assignment? 
@@ -72,6 +72,24 @@
           = s.name
     %label * Description
     %input{type:'text', maxlength: 255, size: 50, name:'description'}
+    %label * Due date
+    %input{type: 'text', class: 'datepicker'}
+    %input{type: 'text', class: 'timepicker'}
+    %label Completed?
+    %input{type: 'radio', name:'completed', value:'yes'} Yes
+    %input{type: 'radio', name:'completed', value:'no', checked:'checked'} No
+    %input{type:'submit', value:'submit', class:'add_dialog_submit'}
+
+#edit_dialog
+  %form
+    %label * Subject
+    %select.select_subject
+      %option
+      - @subjects.each do |s|
+        %option{value:"#{s.id}"}
+          = s.name
+    %label * Description
+    %input{type:'text', maxlength: 255, size:50, name:'description'}
     %label * Due date
     %input{type: 'text', class: 'datepicker'}
     %input{type: 'text', class: 'timepicker'}

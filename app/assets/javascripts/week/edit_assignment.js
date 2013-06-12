@@ -1,4 +1,81 @@
 // edit dialog with js after assignment has been edited (in week view?)
+
+$(function() {
+  
+  $("#edit_dialog").dialog({
+    closeOnEscape: true,
+    title: "Update Assignment",
+    width: 470, 
+    draggable: true,
+    resizable: false,
+    modal: true,
+    autoOpen: false
+  });
+
+
+  
+  $(".edit_btn").on('click', editButtonClicked);
+
+});
+
+// what to do if edit button was clicked
+function editButtonClicked() {
+  
+  $editBtn = $(this);
+  $asBox = $editBtn.closest(".as_box");
+  
+  // give edit dialog this assignment id
+  var assignmentId = $asBox.data('assignment-id'); 
+  $("#edit_dialog").data('assignment-id', assignmentId);
+ 
+  // get default values for the dialog
+  var subjectId =  $asBox.data('subject-id');
+  var description = $asBox.data('description').trim();
+  var date = defaultDateFromEditBtn($editBtn);
+  var time = defaultTimeFromEditBtn($editBtn);
+  var completed = $asBox.hasClass("completed");
+
+  if (completed) {
+    $("#edit_dialog input[value=yes]").prop('checked', true);
+  }
+
+
+
+  $("#edit_dialog .datepicker").val(date);
+  $("#edit_dialog .timepicker").val(time);
+  $("#edit_dialog .select_subject").val(subjectId);
+  $("#edit_dialog input[name=description]").val(description);
+  $("#edit_dialog").dialog('open');
+  
+}
+
+function defaultDateFromEditBtn($editBtn) {
+  defaultDate = $editBtn.closest(".assignment_box").data('date');
+  defaultMonth = defaultDate.split('-')[1];
+  defaultYear = defaultDate.split('-')[0];
+  defaultDay = defaultDate.split('-')[2];
+  text = defaultMonth + '/' + defaultDay + '/' + defaultYear;
+  
+  return text;
+}
+
+function defaultTimeFromEditBtn($editBtn) {
+  defaultTime = $editBtn.closest(".as_box").data('due-time');
+  defaultHour = defaultTime.split(':')[0];
+  defaultMinute = defaultTime.split(':')[1];
+  amPm = "am"
+
+  if (Number(defaultHour) > 12) {
+    defaultHour = String(Number(defaultHour) - 12);
+    amPm = "pm";
+  }
+  if (Number(defaultHour) == 0) {
+    defaultHour = "12";
+  }
+
+  return defaultHour + ':' + defaultMinute + " " + amPm;
+}
+
 $(function() {
   $(".edit_dialog").each(function() {
  
@@ -9,6 +86,7 @@ $(function() {
 
     // do this when ajax succeeds
     $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
+      
       $dlg.dialog('close');
       
       updateSubject($assignment, data);
