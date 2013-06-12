@@ -17,8 +17,7 @@ $(function(){
 })
 
 function initPopUps() {
-    $(".a_popup").each(function() {
-        $(this).dialog({
+    $(".a_popup").dialog({
           closeOnEscape: true,
           title: "Assignment",
           draggable: false, 
@@ -27,7 +26,6 @@ function initPopUps() {
           autoOpen: false,
           width: 235,
           minHeight: 0,
-        });
     });
 }
 
@@ -50,56 +48,95 @@ function initDialogs() {
 function subjectLinksPopupsAndDialogs() {
   $(".subj_link").each(function() {
       
-      //get assignment of this subject link
-      assignmentId = $(this).data('assignment-id');
-      
-      //get associated assignment popup/dialog on hover
-      var popup = $(".a_popup[data-assignment-id=" + assignmentId + "]");
-      //get associated assignment dialog on click
-      var dlg = $(".a_dialog[data-assignment-id=" + assignmentId + "]");
-     
+
       // when mouse over a subject link
-      mouseOverSubjectLink($(this), popup, dlg);
+      mouseOverSubjectLink($(this));
      
       // when click on a subject link
-      clickOnSubjectLink($(this), popup, dlg);
+      //clickOnSubjectLink($(this));
 
 
       //maybe this is how you do it
-      dlg.data("trgr", $(this));
+      //dlg.data("trgr", $(this));
 
   });
 }
 
 //what happens when mouse over a subject link
-function mouseOverSubjectLink(subjLink, popup, dlg) {
+function mouseOverSubjectLink($subjLink) {
     
+    var $popUp = $(".a_popup");
+
     //when mouseover subject link
-    subjLink.mouseover( function() {
+    $subjLink.mouseover( function() {
         
-        //open popup and hide visibility of its titlebar (for style reasons)
-        popup.dialog("open");
-        popup.parent(".ui-dialog").find(".ui-dialog-titlebar-close").css("visibility", "hidden");
+        var subject = $subjLink.data('subject').trim();
+        var description = $subjLink.data('description').trim();
+        var dueDateTime = aPopUpDueDateTime($subjLink); 
         
-        //correctly color background based on assignment completion
-        if (popup.hasClass("completed")) {
-          popup.parent(".ui-dialog").css("background-color", "#7ECEFD");
+        // change the subject
+        $popUp.find(".subject").text(subject);
+        // change the description
+        $popUp.find(".description").text(description);
+        // change the due date
+        $popUp.find(".due_time").text(dueDateTime);
+        // change the color based on completion
+        if ($subjLink.hasClass("completed")) {
+          $popUp.addClass("completed").removeClass("not_completed");
         }
         else {
-          popup.parent(".ui-dialog").css("background-color", "#FF7F66");
+          $popUp.addClass("not_completed").removeClass("completed");
+        }
+
+        //open popup and hide visibility of its titlebar (for style reasons)
+        $popUp.dialog("open");
+        $popUp.parent(".ui-dialog").find(".ui-dialog-titlebar-close").css("visibility", "hidden");
+        
+        //correctly color background based on assignment completion
+        if ($popUp.hasClass("completed")) {
+          $popUp.parent(".ui-dialog").css("background-color", "#7ECEFD");
+        }
+        else {
+          $popUp.parent(".ui-dialog").css("background-color", "#FF7F66");
         }
 
       });
 
     //if popup open move it with mouse while mouse over subject link
-    subjLink.mousemove(function(event) {
-        popup.dialog("option", "position", [event.clientX - 150, event.clientY - 170]);
+    $subjLink.mousemove(function(event) {
+        $popUp.dialog("option", "position", [event.clientX - 150, event.clientY - 170]);
     });
     
     //close the popup when mouse moves out of subject link
-    subjLink.mouseout(function() {
-        popup.dialog("close");
+    $subjLink.mouseout(function() {
+        $popUp.dialog("close");
     });
+
+}
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+
+function aPopUpDueDateTime($subjLink) {
+  var date = $subjLink.closest("td").data('date');
+  var year = date.split('-')[0];
+  var month = date.split('-')[1];
+  var day = date.split('-')[2];
+
+  var time = $subjLink.data('due-time');
+  var hour = Number(time.split(':')[0]);
+  var minute = time.split(':')[1];
+
+  var amPm = "am";
+
+  if (hour > 12) {
+    hour = hour - 12;
+    amPm = "pm"
+  }
+
+  var newDate = new Date(Number(year), Number(month) - 1, Number(day));
+
+  return "due on " + monthNames[Number(month)] + " " + day + "," + year + " at " + hour + ":" + minute + " " + amPm;
+
 
 }
 

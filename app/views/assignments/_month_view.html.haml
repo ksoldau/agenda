@@ -57,21 +57,10 @@
                 - if @as_grouped_by_dd[date]
                   - @as_grouped_by_dd[date].each do |a|
                     .subj_link{:class => (a.completed ? "completed" : "not_completed"), 
-                    :'data-assignment-id' => a.id, :'data-due-time' => a.due_date.strftime("%H:%M")}
+                    :'data-assignment-id' => a.id, :'data-due-time' => a.due_date.strftime("%H:%M"), 
+                    :'data-subject' => a.subject.name, :'data-description' => a.description}
                       = a.subject.name
-                      .a_popup{:class => (a.completed ? "completed" : "not_completed"), 
-                        :'data-assignment-id' => a.id}
-                        .a_box_month
-                          .subject
-                            = a.subject.name
-                          .description
-                            = a.description
-                          .due_time
-                            due on 
-                            = a.due_date.strftime("%B %d, %Y");
-                            .break
-                              at 
-                              = a.due_date.strftime("%I:%M %P");
+
 
                       .a_dialog{:class => (a.completed ? "completed" : "not_completed"), 
                       :'data-assignment-id' => a.id}              
@@ -115,10 +104,9 @@
     %input{type: 'radio', name:'completed', value:'yes'} Yes
     %input{type: 'radio', name:'completed', value:'no', checked:'checked'} No
     %input{type:'submit', value:'submit', class:'add_dialog_submit'}
-  /* = simple_form_for [@newa] do |f| */
-  /*   = f.association :subject, collection: current_user.subjects */    
-  /*   = f.input :description */
-  /*   = f.input :due_date, order: [:month, :day, :year], :ampm => true */
-  /*   // :default => date + 23.hours + 59.minutes, */ 
-  /*   = f.input :completed, :label => "Completed?", :as => "radio_buttons" */
-  /*   = f.submit "Add", :class => "add_dialog_submit" */
+.a_popup
+  .a_box_month
+    .subject
+    .description
+    .due_time
+      .break
