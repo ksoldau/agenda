@@ -12,9 +12,8 @@ $(function() {
     autoOpen: false
   });
 
-
-  
   $(".edit_btn").on('click', editButtonClicked);
+  $("#edit_dialog .edit_dialog_submit").on('click', submitEditAssignment);
 
 });
 
@@ -38,8 +37,6 @@ function editButtonClicked() {
   if (completed) {
     $("#edit_dialog input[value=yes]").prop('checked', true);
   }
-
-
 
   $("#edit_dialog .datepicker").val(date);
   $("#edit_dialog .timepicker").val(time);
@@ -76,19 +73,40 @@ function defaultTimeFromEditBtn($editBtn) {
   return defaultHour + ':' + defaultMinute + " " + amPm;
 }
 
-$(function() {
-  $(".edit_dialog").each(function() {
- 
-    var $dlg = $(this); // the edit dialog
-    var $edit_btn = $dlg.data("trigger"); // the edit button
+function submitEditAssignment() {
 
-    var $assignment = $edit_btn.closest(".as_box"); // the assignment edited
+  var assignmentId = $(this).closest("#edit_dialog").data('assignment-id');
+  var $assignment = $(".as_box[data-assignment-id=" + assignmentId + "]");
+  var $form = $("#edit_dialog");
+  var subject_id = getSubjectId($form);
+  var description = getDescription($form);
+  var month = getMonth($form);
+  var day = getDay($form);
+  var year = getYear($form);
+  var hour = getHour($form);
+  var minute = getMinute($form);
+  var completed = getCompleted($form); 
+  debugger;
+  $.ajax({
+    type: 'PUT', 
+    url: '/assignments/' + assignmentId,
+    dataType: 'JSON',
+    data: {
+      'assignment': {
+        'subject_id': subject_id,
+        'description': description,
+        'due_date(2i)': month,
+        'due_date(3i)': day,
+        'due_date(1i)': year,
+        'due_date(4i)': hour, 
+        'due_date(5i)': minute,
+        'completed': completed,
+      }
+    }
+  }).success(function(data, status, xhr) {
+    
+      $("#edit_dialog").dialog('close');
 
-    // do this when ajax succeeds
-    $dlg.find("form").on('ajax:success', function(e, data, status, xhr) {
-      
-      $dlg.dialog('close');
-      
       updateSubject($assignment, data);
       
       updateDescription($assignment, data);
@@ -99,14 +117,94 @@ $(function() {
    
       updateCompletionBackground($assignment, data);
 
-    });
-    
-    // do this when ajax fails
-    $dlg.find("form").on('ajax:failure', function(e) {
-    });
-
+  }).error(function(e) {
   });
-})
+  return false;
+  //.failure( function(e) {
+  //});
+    
+}
+
+function getSubjectId($form) {
+
+  var $subject = $($form.find(".select_subject").find(":selected"));
+  var subjectId = $subject.val();
+
+  return subjectId;
+
+}
+
+function getDescription($form) {
+
+  var $descriptionField = $($form.find("input[name=description]"));
+  var description = $descriptionField.val();
+
+  return description;
+
+}
+
+function getMonth($form) {
+  var date = $("#edit_dialog .datepicker").val(); // ex: 06/11/2013
+  var month = date.split('/')[0];
+
+  return month;
+
+}
+
+function getDay($form) {
+
+  var date = $("#edit_dialog .datepicker").val(); // ex: 06/11/2013
+  var day = date.split('/')[1];
+
+  return day;
+}
+
+function getYear($form) {
+
+  var date = $("#edit_dialog .datepicker").val(); // ex: 06/11/2013
+  var year = date.split('/')[2];
+
+  return year;
+}
+
+function getHour($form) {
+  
+  var time = $("#edit_dialog .timepicker").val();
+  var hour12 = time.split(':')[0];
+  var amPm = time.split(' ')[1];
+
+  var hour24 = hour12;
+  
+
+  if (hour12 == 12 && amPm == "am") {
+    hour24 = String(0); 
+  }
+  if (hour12 >= 1 && amPm == "pm") {
+    hour24 = String(Number(hour12) + 12);
+  }
+  
+  return hour24;
+}
+
+function getMinute($form) {
+
+  var time = $("#edit_dialog .timepicker").val();
+  var minute = time.split(' ')[0].split(':')[1];
+
+  return minute;
+}
+
+function getCompleted($form) {
+
+  var checked = $('input[name=completed]:checked', '#add_dialog_ajax').val();
+
+  if (checked == "yes") {
+    return 'true';
+  }
+  else {
+    return 'false';
+  }
+}
 
 /************************/
 /*** helper functions ***/
@@ -144,6 +242,7 @@ function updateDescription($assignment, data) {
 
 // update placement of assignment after its been edited
 function updatePlacement($assignment, data) {
+    debugger;
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
