@@ -75,8 +75,9 @@ function defaultTimeFromEditBtn($editBtn) {
 
 function submitEditAssignment() {
 
-  var assignmentId = $(this).closest("#edit_dialog").data('assignment-id');
-  var $assignment = $(".as_box[data-assignment-id=" + assignmentId + "]");
+  var assignmentId = $("#edit_dialog").data('assignment-id');
+  //var $assignment = $(".as_box[data-assignment-id=" + assignmentId + "]");
+  var $assignment = $editBtn.closest(".as_box");
   var $form = $("#edit_dialog");
   var subject_id = getSubjectId($form);
   var description = getDescription($form);
@@ -242,7 +243,6 @@ function updateDescription($assignment, data) {
 
 // update placement of assignment after its been edited
 function updatePlacement($assignment, data) {
-    debugger;
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
@@ -252,15 +252,17 @@ function updatePlacement($assignment, data) {
     var new_month = Number(new_parsed_date[1]) -1; //0 is jan
     var new_year = Number(new_parsed_date[0]);
     var new_date = newDate(data); 
+    
+    var assignment_box = $assignment.closest(".assignment_box");
+    var oldDate = assignment_box.data('date');
+    debugger;
+    var oldYear = oldDate.split('-')[0];
+    var oldMonth = oldDate.split('-')[1];
+    var oldDay = oldDate.split('-')[2];
 
-    oldDate = $assignment.closest(".assignment_box").data('date');
-    oldYear = oldDate.split('-')[0];
-    oldMonth = oldDate.split('-')[1];
-    oldDay = oldDate.split('-')[2];
-
-    oldTime = $assignment.data('due-time');
-    oldHour = oldTime.split(':')[0];
-    oldMinute = oldTime.split(':')[1];
+    var oldTime = $assignment.data('due-time');
+    var oldHour = oldTime.split(':')[0];
+    var oldMinute = oldTime.split(':')[1];
 
     
     var old_datetime = new Date(Number(oldYear), Number(oldMonth) - 1, Number(oldDay)

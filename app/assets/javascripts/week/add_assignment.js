@@ -39,7 +39,8 @@ function addAssignment() {
       defaultYear = defaultDate.split('-')[0];
       defaultDay = defaultDate.split('-')[2];
       text = defaultMonth + "/" + defaultDay + "/" + defaultYear;
-
+      
+      // set defaults 
       defaultTime = "11:59 pm"
       $("#add_dialog_ajax .datepicker").val(text);
       $("#add_dialog_ajax .timepicker").val(defaultTime);
@@ -58,14 +59,15 @@ function submitAddAssignment() {
   $("#add_dialog_ajax .add_dialog_submit").on('click', function() {
    
     $form = $("#add_dialog_ajax");
-    var subject_id = getSubjectId($form);
-    var description = getDescription($form);
-    var month = getMonth($form);
-    var day = getDay($form);
-    var year = getYear($form);
-    var hour = getHour($form);
-    var minute = getMinute($form);
-    var completed = getCompleted($form); 
+    var subject_id = getSubjectIdAdd($form);
+    var description = getDescriptionAdd($form);
+    var month = getMonthAdd($form);
+    var day = getDayAdd($form);
+    var year = getYearAdd($form);
+    var hour = getHourAdd($form);
+    var minute = getMinuteAdd($form);
+    var completed = getCompletedAdd($form);
+    debugger;
 
     $.ajax({ 
       type: 'POST',
@@ -91,7 +93,7 @@ function submitAddAssignment() {
   });
 }
 
-function getSubjectId($form) {
+function getSubjectIdAdd($form) {
 
   var $subject = $($form.find(".select_subject").find(":selected"));
   var subjectId = $subject.val();
@@ -100,7 +102,7 @@ function getSubjectId($form) {
 
 }
 
-function getDescription($form) {
+function getDescriptionAdd($form) {
 
   var $descriptionField = $($form.find("input[name=description]"));
   var description = $descriptionField.val();
@@ -109,34 +111,36 @@ function getDescription($form) {
 
 }
 
-function getMonth($form) {
+function getMonthAdd($form) {
 
-  var date = $(".datepicker").val(); // ex: 06/11/2013
+  var date = $("#add_dialog_ajax .datepicker").val(); // ex: 06/11/2013
   var month = date.split('/')[0];
+
+  debugger;
 
   return month;
 
 }
 
-function getDay($form) {
+function getDayAdd($form) {
 
-  var date = $(".datepicker").val(); // ex: 06/11/2013
+  var date = $("#add_dialog_ajax .datepicker").val(); // ex: 06/11/2013
   var day = date.split('/')[1];
 
   return day;
 }
 
-function getYear($form) {
+function getYearAdd($form) {
 
-  var date = $(".datepicker").val(); // ex: 06/11/2013
+  var date = $("#add_dialog_ajax .datepicker").val(); // ex: 06/11/2013
   var year = date.split('/')[2];
 
   return year;
 }
 
-function getHour($form) {
+function getHourAdd($form) {
   
-  var time = $(".timepicker").val();
+  var time = $("#add_dialog_ajax .timepicker").val();
   var hour12 = time.split(':')[0];
   var amPm = time.split(' ')[1];
 
@@ -153,15 +157,15 @@ function getHour($form) {
   return hour24;
 }
 
-function getMinute($form) {
+function getMinuteAdd($form) {
 
-  var time = $(".timepicker").val();
+  var time = $("#add_dialog_ajax .timepicker").val();
   var minute = time.split(' ')[0].split(':')[1];
 
   return minute;
 }
 
-function getCompleted($form) {
+function getCompletedAdd($form) {
 
   var checked = $('input[name=completed]:checked', '#add_dialog_ajax').val();
 
@@ -199,7 +203,15 @@ function constructAssignmentHtml(data) {
   var dueHour = dueTime[0];
   var dueMinute = dueTime[1];
   var dataDueTime = dueHour + ":" + dueMinute;
+
+  // update data on the as_box
   $as_box.data('due-time', dataDueTime);
+  $as_box.data('subject-id', data.subject.id);
+  $as_box.data('description', data.description);
+  $as_box.data('subject', data.subject.name);
+  $as_box.data('completed', data.completed);
+  $as_box.data('assignment-id', data.id);
+  debugger;
   
   // make edit and delete show up on hover
   $as_box.hover(
@@ -222,6 +234,10 @@ function constructAssignmentHtml(data) {
     updateDeleteDialogData($as_box.find(".delete_btn"));
     $(".delete_dialog").dialog('open');
   });
+  
+  // show edit dialog when edit button clicked
+
+  $as_box.find(".edit_btn").on('click', editButtonClicked);
 
   return $as_box;
 }
