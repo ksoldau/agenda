@@ -170,6 +170,10 @@ function constructSubjectLinkHtml(data) {
   
   var $subj_link = $('<div/>', {class: 'subj_link'});
 
+  // give the subject link necessary data
+  $subj_link.data('subject', data['subject'].name);
+  $subj_link.data('description', data['description']);
+
   if (data['completed']) {
     $subj_link.addClass('completed'); 
   }
@@ -187,13 +191,11 @@ function constructSubjectLinkHtml(data) {
   
   $subj_link.data('due-time', dataDueTime);
 
-  $subj_link.text(data['subject'].name);
-  
+  // make popup work for this new subject link
   $subj_link.mouseover(mouseOverSubjectLink($subj_link));
 
-  // give the subject link necessary data
-  $subj_link.data('subject', data['subject'].name);
-  $subj_link.data('description', data['description']);
+  // put subject name in 
+  $subj_link.text(data['subject'].name);
 
   return $subj_link;
 }
