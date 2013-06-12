@@ -504,7 +504,6 @@ function putAssignmentInDay($subjectLink, others, day, data) {
 function putSubjectLinkInOrder($subjectLink, others, data, day) {
     
     var other_subj_links_array = Array.prototype.slice.call(others);
-    debugger; 
     // place assignment in order with other assignments
     if (other_subj_links_array.length > 0) {
       var beforeSomething = false;
@@ -558,7 +557,6 @@ function dataTime(data) {
 function otherTime($other_link) {
   
   dueTime = $other_link.data('due-time');
-  debugger;
   hour = dueTime.split(':')[0];
   minute = dueTime.split(':')[1];
 

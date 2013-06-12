@@ -94,13 +94,11 @@ function updatePlacement($assignment, data) {
     // if date moved to before week
     if (movedBeforeWeek(new_date)) {
       moveBeforeWeek($assignment);
-      debugger;
     }
 
     // if date moved to after week
     else if (movedAfterWeek(new_date)) {
       moveAfterWeek($assignment);
-      debugger;
     }
 
     // if date time of due date did not change
@@ -218,9 +216,7 @@ function movedAfterWeek(date) {
   var day = lastDayDate.split('-')[2];
 
   endOfWeek = new Date(Number(year), Number(month) - 1, Number(day));
-
-  debugger; 
-
+  
   return date.getTime() > endOfWeek.getTime();
 }
 
