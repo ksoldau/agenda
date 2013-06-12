@@ -53,7 +53,7 @@ function subjectLinksPopupsAndDialogs() {
       mouseOverSubjectLink($(this));
      
       // when click on a subject link
-      //clickOnSubjectLink($(this));
+      clickOnSubjectLink($(this));
 
 
       //maybe this is how you do it
@@ -141,25 +141,47 @@ function aPopUpDueDateTime($subjLink) {
 }
 
 //what happens when a subject link is clicked on
-function clickOnSubjectLink(subjLink, popup, dlg) {
+function clickOnSubjectLink($subjLink) {
+    
+    $subjLink.on('click', function() {
+        var subject = $subjLink.data('subject').trim();
+        var description = $subjLink.data('description').trim();
+        var dueDateTime = aPopUpDueDateTime($subjLink); 
 
-    subjLink.on('click', function() {
+        var $popUp = $(".a_popup");
+        var $dialog = $(".a_dialog");
         
-        //make sure pop up closed
-        popup.dialog("close");
-        
-        //open the dialog
-        dlg.dialog('open');
-        
-        //dialog background color based on assignment completeion
-        if (dlg.hasClass("completed")) {
-          dlg.parent(".ui-dialog").css("background-color", "#7ECEFD");
+        // change the subject
+        $dialog.find(".subject").text(subject);
+        // change the description
+        $dialog.find(".description").text(description);
+        // change the due date
+        $dialog.find(".due_time").text(dueDateTime);
+        // change the color based on completion
+        if ($subjLink.hasClass("completed")) {
+          $dialog.addClass("completed").removeClass("not_completed");
         }
         else {
-          dlg.parent(".ui-dialog").css("background-color", "#FF7F66");
+          $dialog.addClass("not_completed").removeClass("completed");
+        }
+
+        // change data assignment id
+        $dialog.data('assignment-id', $subjLink.data('assignment-id'));
+
+        //make sure pop up closed
+        $popUp.dialog("close");
+        
+        //open the dialog
+        $dialog.dialog('open');
+        
+        //dialog background color based on assignment completeion
+        if ($dialog.hasClass("completed")) {
+          $dialog.parent(".ui-dialog").css("background-color", "#7ECEFD");
+        }
+        else {
+          $dialog.parent(".ui-dialog").css("background-color", "#FF7F66");
         }
     });
-
 }
 
 //initialize edit subject dialogs

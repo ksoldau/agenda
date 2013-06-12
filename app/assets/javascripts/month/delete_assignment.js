@@ -11,7 +11,7 @@ function deleteAssignment() {
   // based on what assignment trying to delete
   $(".delete_btn").on('click', function() {
 
-      var assignmentId = $(this).data('assignment-id');
+      var assignmentId = $(this).closest(".a_dialog").data('assignment-id');
       var $deleteButton = $(this);
 
       var $assignment = $deleteButton.closest(".as_box");
