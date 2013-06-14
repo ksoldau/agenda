@@ -562,3 +562,12 @@ function otherTime($other_assignment) {
   
   return time;
 }
+
+
+
+// determines if a string is a substring of another
+function subString(sub, full) {
+  return full.indexOf(sub) >= 0;
+}
+
+
