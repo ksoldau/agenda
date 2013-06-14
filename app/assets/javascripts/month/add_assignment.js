@@ -9,7 +9,7 @@ $(function() {
   });
 
 
-  $("#add_dialog_ajax").dialog({
+  $("#add_dialog").dialog({
     autoOpen: false,
     width: 600,
     height: 300,
@@ -36,17 +36,17 @@ function openAddDialog() {
             defaultText = defaultMonth + '/' + defaultDay + '/' + defaultYear;
 
             defaultTime = "11:59 pm"
-            $("#add_dialog_ajax .datepicker").val(defaultText);
-            $("#add_dialog_ajax .timepicker").val(defaultTime);
+            $("#add_dialog .datepicker").val(defaultText);
+            $("#add_dialog .timepicker").val(defaultTime);
 
             // don't change subject because want to remember the last one
             
             // make sure description is nothing
-            $("#add_dialog_ajax input[name=description]").val("");
+            $("#add_dialog input[name=description]").val("");
             // make sure the not completed option is checked
-            $("#add_dialog_ajax input[value=no]").prop('checked', true);
+            $("#add_dialog input[value=no]").prop('checked', true);
 
-            $("#add_dialog_ajax").dialog('open');
+            $("#add_dialog").dialog('open');
           });
       }
     )
@@ -56,9 +56,9 @@ function openAddDialog() {
 // what to do when a user submits adding an assignment 
 function submitAddAssignment() {
   
-  $("#add_dialog_ajax .add_dialog_submit").on('click', function() {
+  $("#add_dialog .add_dialog_submit").on('click', function() {
    
-    $form = $("#add_dialog_ajax");
+    $form = $("#add_dialog");
     var subject_id = getSubjectId($form);
     var description = getDescription($form);
     var month = getMonth($form);
