@@ -526,7 +526,6 @@ function subString(sub, full) {
 
 // put assignment in the day
 function putAssignmentInDaySL($assignmentLink, others, day, data) {
-    debugger;
     // add to day in case no other assignments exist 
     // to compare it to
     //$subjectLink.appendTo(day);

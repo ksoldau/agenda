@@ -87,7 +87,6 @@ function submitEditAssignment() {
   var hour = getHour($form);
   var minute = getMinute($form);
   var completed = getCompleted($form); 
-  debugger;
   $.ajax({
     type: 'PUT', 
     url: '/assignments/' + assignmentId,
@@ -255,7 +254,6 @@ function updatePlacement($assignment, data) {
     
     var assignment_box = $assignment.closest(".assignment_box");
     var oldDate = assignment_box.data('date');
-    debugger;
     var oldYear = oldDate.split('-')[0];
     var oldMonth = oldDate.split('-')[1];
     var oldDay = oldDate.split('-')[2];

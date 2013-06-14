@@ -85,7 +85,6 @@ function submitEditAssignmentMonth() {
   var hour = getHourMonth($form);
   var minute = getMinuteMonth($form);
   var completed = getCompletedMonth($form); 
-  //debugger;
   $.ajax({
     type: 'PUT', 
     url: '/assignments/' + assignmentId,
@@ -106,7 +105,6 @@ function submitEditAssignmentMonth() {
     
       $("#edit_dialog").dialog('close');
       $(".a_dialog").dialog('close');
-      debugger;
       updateSubjectMonth($assignmentLinkGlobal, data);
       
       updateDescriptionMonth($assignmentLinkGlobal, data);
@@ -213,7 +211,6 @@ function getCompletedMonth($form) {
 
 // update the subject after assignment's been edited
 function updateSubjectMonth($assignmentLink, data) {
-    debugger;
     //get the subject
     var $subj = $assignmentLink.text().trim();
 
