@@ -117,12 +117,30 @@ function submitEditAssignment() {
    
       updateCompletionBackground($assignment, data);
 
+      updateAssignmentData($assignment, data);
+
   }).error(function(e) {
   });
   return false;
   //.failure( function(e) {
   //});
     
+}
+
+function updateAssignmentData($assignment, data) {
+  
+  $assignment.data('subject-id', data.subject.id);
+  $assignment.data('description', data.description);
+  $assignment.data('due-time', retrieveDueTime(data)); 
+}
+
+function retrieveDueTime(data) {
+  var newDateTime = data.due_date;
+  var newTime = newDateTime.split('T')[1];
+  var newTimeParsed = newTime.split(':');
+  var newHour = newTimeParsed[0];
+  var newMinute = newTimeParsed[1];
+  return newHour + ':' + newMinute;
 }
 
 function getSubjectId($form) {
@@ -196,13 +214,12 @@ function getMinute($form) {
 
 function getCompleted($form) {
 
-  var checked = $('input[name=completed]:checked', '#add_dialog_ajax').val();
-
+  var checked = $('input[name=completed]:checked', '#edit_dialog').val();
   if (checked == "yes") {
-    return 'true';
+    return true;
   }
   else {
-    return 'false';
+    return false;
   }
 }
 
