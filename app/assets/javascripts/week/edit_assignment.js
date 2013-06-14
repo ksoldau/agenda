@@ -239,7 +239,6 @@ function updateSubject($assignment, data) {
         $subj.text(data.subject.name).animate({opacity: "1"}, 700);
       });
     }
-
 }
 
 // update the description after assignment's been edited
@@ -317,11 +316,7 @@ function updateTime($assignment, data) {
     var new_min = Number(new_parsed_time[1]);
     // due time hour after edit
     var new_hour = Number(new_parsed_time[0]);
-    
-    // add a leading 0 if need be
-    if (new_hour < 10) {
-      new_hour = "0" + new_hour;
-    }
+
     if (new_min < 10 ) {
       new_min = "0" + new_min;
     }
