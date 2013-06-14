@@ -77,14 +77,14 @@ function submitEditAssignmentMonth() {
   var assignmentId = $("#edit_dialog").data('assignment-id');
   var $assignmentLink = $assignmentLink;
   var $form = $("#edit_dialog");
-  var subject_id = getSubjectIdMonth($form);
-  var description = getDescriptionMonth($form);
-  var month = getMonthMonth($form);
-  var day = getDayMonth($form);
-  var year = getYearMonth($form);
-  var hour = getHourMonth($form);
-  var minute = getMinuteMonth($form);
-  var completed = getCompletedMonth($form); 
+  var subject_id = getSubjectId($form);
+  var description = getDescription($form);
+  var month = getMonth($form);
+  var day = getDay($form);
+  var year = getYear($form);
+  var hour = getHour($form);
+  var minute = getMinute($form);
+  var completed = getCompletion($form); 
   $.ajax({
     type: 'PUT', 
     url: '/assignments/' + assignmentId,
@@ -108,9 +108,7 @@ function submitEditAssignmentMonth() {
       updateSubjectMonth($assignmentLinkGlobal, data);
       
       updateDescriptionMonth($assignmentLinkGlobal, data);
-
-      //updatePlacementMonth($subjLink, data);
-      placeAssignmentLink(data, $assignmentLinkGlobal);
+      updatePlacementMonth($assignmentLinkGlobal, data);
 
       updateTimeMonth($assignmentLinkGlobal, data);
    
@@ -118,91 +116,8 @@ function submitEditAssignmentMonth() {
 
   }).error(function(e) {
   });
-  return false;
-  //.failure( function(e) {
-  //});
+  return false; // prevents normal behavior for submit button
     
-}
-
-function getSubjectIdMonth($form) {
-
-  var $subject = $($form.find(".select_subject").find(":selected"));
-  var subjectId = $subject.val();
-
-  return subjectId;
-
-}
-
-function getDescriptionMonth($form) {
-
-  var $descriptionField = $($form.find("input[name=description]"));
-  var description = $descriptionField.val();
-
-  return description;
-
-}
-
-function getMonthMonth($form) {
-  var date = $("#edit_dialog .datepicker").val(); // ex: 06/11/2013
-  var month = date.split('/')[0];
-
-  return month;
-
-}
-
-function getDayMonth($form) {
-
-  var date = $("#edit_dialog .datepicker").val(); // ex: 06/11/2013
-  var day = date.split('/')[1];
-
-  return day;
-}
-
-function getYearMonth($form) {
-
-  var date = $("#edit_dialog .datepicker").val(); // ex: 06/11/2013
-  var year = date.split('/')[2];
-
-  return year;
-}
-
-function getHourMonth($form) {
-  
-  var time = $("#edit_dialog .timepicker").val();
-  var hour12 = time.split(':')[0];
-  var amPm = time.split(' ')[1];
-
-  var hour24 = hour12;
-  
-
-  if (hour12 == 12 && amPm == "am") {
-    hour24 = String(0); 
-  }
-  if (hour12 >= 1 && amPm == "pm") {
-    hour24 = String(Number(hour12) + 12);
-  }
-  
-  return hour24;
-}
-
-function getMinuteMonth($form) {
-
-  var time = $("#edit_dialog .timepicker").val();
-  var minute = time.split(' ')[0].split(':')[1];
-
-  return minute;
-}
-
-function getCompletedMonth($form) {
-
-  var checked = $('input[name=completed]:checked', '#add_dialog_ajax').val();
-
-  if (checked == "yes") {
-    return 'true';
-  }
-  else {
-    return 'false';
-  }
 }
 
 /************************/
@@ -241,7 +156,7 @@ function updateDescriptionMonth($assignmentLink, data) {
 }
 
 // update placement of assignment after its been edited
-function updatePlacement($assignment, data) {
+function updatePlacementMonth($assignment, data) {
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
     var new_parsed_time = new_dd.split('T')[1].split(':');
@@ -252,31 +167,26 @@ function updatePlacement($assignment, data) {
     var new_year = Number(new_parsed_date[0]);
     var new_date = newDate(data); 
     
-    var assignment_box = $assignment.closest(".assignment_box");
-    var oldDate = assignment_box.data('date');
-    debugger;
-    var oldYear = oldDate.split('-')[0];
-    var oldMonth = oldDate.split('-')[1];
-    var oldDay = oldDate.split('-')[2];
-
-    var oldTime = $assignment.data('due-time');
-    var oldHour = oldTime.split(':')[0];
-    var oldMinute = oldTime.split(':')[1];
-
-    
-    var old_datetime = new Date(Number(oldYear), Number(oldMonth) - 1, Number(oldDay)
-      , Number(oldHour), Number(oldMinute));
-
     var new_datetime = new Date(new_year, new_month, new_day, new_hour, new_min);
 
+    var old_date = $assignment.closest("td").data('date')
+    var old_year = Number(old_date.split('-')[0])
+    var old_month = Number(old_date.split('-')[1]) - 1
+    var old_day = Number(old_date.split('-')[2])
+    var old_time = $assignment.data('due-time')
+    var old_hour = Number(old_time.split(':')[0])
+    var old_minute = Number(old_time.split(':')[1])
+    
+    var old_datetime = new Date(old_year, old_month, old_day, old_hour, old_minute)
+    
     // if date moved to before week
-    if (movedBeforeWeek(new_date)) {
-      moveBeforeWeek($assignment);
+    if (movedBeforeCal(new_date)) {
+      moveBeforeCal($assignment);
     }
 
     // if date moved to after week
-    else if (movedAfterWeek(new_date)) {
-      moveAfterWeek($assignment);
+    else if (movedAfterCal(new_date)) {
+      moveAfterCal($assignment);
     }
 
     // if date time of due date did not change
@@ -286,7 +196,7 @@ function updatePlacement($assignment, data) {
     
     //if date or time has changed
     else if (!sameDateTime(new_datetime, old_datetime)){
-     move($assignment, data);
+     moveAssignmentLink($assignment, data);
     }
 }
 
@@ -315,55 +225,6 @@ function updateCompletionBackgroundMonth($assignmentLink, data) {
    
 }
 
-// is the date before the beginning of the week?
-function movedBeforeWeek(date) {
-
-  // find first day in week
-  var $firstDay = $($(".assignment_box")[0]);
-  // date of first day
-  var firstDayDate = $firstDay.data('date');
-
-  var year = firstDayDate.split('-')[0];
-  var month = firstDayDate.split('-')[1];
-  var day = firstDayDate.split('-')[2];
-
-  beginningOfWeek = new Date(Number(year), Number(month) - 1, Number(day));
-  
-  return date.getTime() < beginningOfWeek.getTime();
-}
-
-// move the assignment to previous week 
-function moveBeforeWeek($assignment) {
-    // slide assignment left then make its container smaller
-    $assignment.animate({left: '-1500px'}, 900, function() {
-      $assignment.slideUp();
-    });
-}
-
-// is the date after the end of the week?
-function movedAfterWeek(date) {
-
-  // last day in the week
-  var $lastDay = $($(".assignment_box")[6]);
-  // date of last day
-  var lastDayDate = $lastDay.data('date');
-
-  var year = lastDayDate.split('-')[0];
-  var month = lastDayDate.split('-')[1];
-  var day = lastDayDate.split('-')[2];
-
-  endOfWeek = new Date(Number(year), Number(month) - 1, Number(day));
-  
-  return date.getTime() > endOfWeek.getTime();
-}
-
-// move the assignment to the next week
-function moveAfterWeek($assignment) {
-    $assignment.animate({left: '2000px'}, 900, function() {
-        $assignment.slideUp();
-    });
-}
-
 // are these two datetimes the same?
 function sameDateTime(datetime1, datetime2) {
     return datetime1.getTime() === datetime2.getTime();
@@ -379,8 +240,6 @@ function move($assignment, data) {
         moveAssignmentAndSlideDown($assignment, data);
 
         });
-     // });
-      
 }
 
 // get the new date after assignment has been edited
@@ -426,11 +285,6 @@ function inRightDay(data, date) {
   var newDate = new_dd.split('T')[0];
 
   return date === newDate;
-}
-
-// determines if a string is a substring of another
-function subString(sub, full) {
-  return full.indexOf(sub) >= 0;
 }
 
 // put assignment in the day

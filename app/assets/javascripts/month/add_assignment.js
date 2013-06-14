@@ -66,7 +66,7 @@ function submitAddAssignment() {
     var year = getYear($form);
     var hour = getHour($form);
     var minute = getMinute($form);
-    var completed = getCompleted($form); 
+    var completed = getCompletion($form); 
 
     $.ajax({ 
       type: 'POST',
@@ -92,86 +92,9 @@ function submitAddAssignment() {
   });
 }
 
-function getSubjectId($form) {
-
-  var $subject = $($form.find(".select_subject").find(":selected"));
-  var subjectId = $subject.val();
-
-  return subjectId;
-
-}
-
-function getDescription($form) {
-
-  var $descriptionField = $($form.find("input[name=description]"));
-  var description = $descriptionField.val();
-
-  return description;
-
-}
-
-function getMonth($form) {
-  var date = $(".datepicker").val(); // ex: 06/11/2013
-  var month = date.split('/')[0];
-
-  return month;
-
-}
-
-function getDay($form) {
-
-  var date = $(".datepicker").val(); // ex: 06/11/2013
-  var day = date.split('/')[1];
-
-  return day;
-}
-
-function getYear($form) {
-
-  var date = $(".datepicker").val(); // ex: 06/11/2013
-  var year = date.split('/')[2];
-
-  return year;
-}
-
-function getHour($form) {
-  
-  var time = $(".timepicker").val();
-  var hour12 = time.split(':')[0];
-  var amPm = time.split(' ')[1];
-
-  var hour24 = hour12;
-  
-
-  if (hour12 == 12 && amPm == "am") {
-    hour24 = String(0); 
-  }
-  if (hour12 >= 1 && amPm == "pm") {
-    hour24 = String(Number(hour12) + 12);
-  }
-  
-  return hour24;
-}
-
-function getMinute($form) {
-
-  var time = $(".timepicker").val();
-  var minute = time.split(' ')[0].split(':')[1];
-
-  return minute;
-}
-
-function getCompleted($form) {
-
-  var checked = $('input[name=completed]:checked', '#add_dialog_ajax').val();
-
-  if (checked == "yes") {
-    return 'true';
-  }
-  else {
-    return 'false';
-  }
-}
+/************************/
+/*** helper functions ***/
+/************************/
 
 function constructAssignmentLinkHtml(data) {
   
@@ -285,8 +208,8 @@ function getMinute60(data) {
 
 // update placement of assignment after its been edited
 function placeAssignmentLink(data, whatToPlace) {
-    $subjectLink = whatToPlace;    
-    $("#add_dialog_ajax").dialog('close');
+    $assignmentLink = whatToPlace;    
+    $("#add_dialog").dialog('close');
 
     var new_dd = data.due_date;
     var new_parsed_date = new_dd.split('T')[0].split('-');
@@ -298,20 +221,6 @@ function placeAssignmentLink(data, whatToPlace) {
     var new_year = Number(new_parsed_date[0]);
     var new_date = newDate(data); 
 
-    var url = window.location.href;
-    var url_parsed = url.split('=')[2].split('-');
-    var url_day = Number(url_parsed[2]);
-    var url_month = Number(url_parsed[1]) -1;
-    var url_year = Number(url_parsed[0]);
-    var url_date = new Date(url_year, url_month, url_day);
-    
-    $begOfCalendar = $($("td")[0]);
-    begOfCalendarDate = $begOfCalendar.data('date');
-
-    $endOfCalendar = $($("td").last());
-    endOfCalendarDate = $endOfCalendar.data('date');
-    debugger;
-
     // end of url month needs to be more exact
     var new_date_and_time = new Date(new_year, 0, new_day, new_hour, new_min);
     var new_date_no_month = new Date(new_year, 0, new_day);
@@ -319,25 +228,31 @@ function placeAssignmentLink(data, whatToPlace) {
 
     // if date moved to before this calendar
     // the code for this isn't done yet
-    if (movedBeforeCal(begOfCalendarDate, new_date)) {
-      debugger;
+    if (movedBeforeCal(new_date)) {
       moveBeforeWeek($assignmentLink);
     }
 
     // if date moved to after week
-    else if (movedAfterCal(endOfCalendarDate, new_date)) { 
-      debugger;
+    else if (movedAfterCal(new_date)) { 
       moveAfterWeek($assignmentLink);
       
     }
+
+    // if time didn't change
+    else if (false) {
+      // don't do anything because due time/day didn't change
+    }
+
     //if date or time has changed
     else {
-      debugger;
-      moveSL($assignmentLink, data);
+      moveAssignmentLink($assignmentLink, data);
     }
 }
 
-function movedBeforeCal(begCal, otherDate) {
+function movedBeforeCal(otherDate) {
+  var $begOfCalendar = $($("td")[0]);
+  var begCal = $begOfCalendar.data('date');
+
   var year = begCal.split('-')[0];
   var month = begCal.split('-')[1];
   var day = begCal.split('-')[2];
@@ -347,8 +262,10 @@ function movedBeforeCal(begCal, otherDate) {
   return otherDate.getTime() < beginningOfCal.getTime();
 }
 
-function movedAfterCal(endCal, otherDate) {
-  
+function movedAfterCal(otherDate) {
+  var $endOfCalendar = $($("td[data-date]").last());
+
+  var endCal = $endOfCalendar.data('date');
   var year = endCal.split('-')[0];
   var month = endCal.split('-')[1];
   var day = endCal.split('-')[2];
@@ -457,18 +374,7 @@ function make24(hour, amPm) {
 
 // move the assignment to new place within week
 
-function moveSL($assignmentLink, data) {;
-    var new_dd = data.due_date;
-    var new_parsed_date = new_dd.split('T')[0].split('-');
-    var new_parsed_time = new_dd.split('T')[1].split(':');
-    var new_min = Number(new_parsed_time[1]);
-    var new_hour = Number(new_parsed_time[0]);
-    var new_day = Number(new_parsed_date[2]);
-    var new_date = newDate(data);
 
-    //close old assignment then move it and open it again
-    moveAssignmentAndSlideDownSL($assignmentLink, data);
-}
 
 // get the new date after assignment has been edited
 function newDate(data) {
@@ -482,60 +388,8 @@ function newDate(data) {
     return new_date;
 }
 
-// move assignment to new position and then show it
-function moveAssignmentAndSlideDownSL($assignmentLink, data) {
-      debugger;
 
-      // list of day headings (dates) on the page
-      var calDayArray = $(".cal_day");
-      
-      // iterate through dates on the page
-      for (var i = 0; i < calDayArray.length; i++) {
-        
-        // date in string form of day heading
-        h = calDayArray[i];
-        // text from the day heading dom element
-        htext = $(h).text();
 
-        var dayDate = $(calDayArray[i]).closest("td").data('date');
-
-        // if assignment now in this day
-        if (inRightDaySL(data, dayDate)) {
-            var new_day = $(h).closest("td").find(".day_cal");
-            var others = new_day.find(".assignment_link");
-            putAssignmentInDaySL($assignmentLink, others, new_day, data); 
-            break;
-        } // end of if
-      
-      } 
-}
-
-// determines if day in header on page is same as the 
-// due day of assignment after its edited
-function inRightDaySL(data, otherDate) {
-  var new_dd = data.due_date;
-  var new_parsed_date = new_dd.split('T')[0];
-
-  return subString(new_parsed_date, otherDate);
-}
-
-// determines if a string is a substring of another
-function subString(sub, full) {
-  return full.indexOf(sub) >= 0;
-}
-
-// put assignment in the day
-function putAssignmentInDaySL($assignmentLink, others, day, data) {
-    // add to day in case no other assignments exist 
-    // to compare it to
-    //$subjectLink.appendTo(day);
-    
-    // put subject link in right place in dom
-    putAssignmentLinkInOrderSL($assignmentLink, others, data, day);
-    
-    // show the edited assignment
-    $assignmentLink.hide().animate({opacity: '0'}, 0).slideDown(600).animate({opacity: '1'}, 600);
-}
 
 // put assignment in correct order
 function putAssignmentLinkInOrderSL($assignmentLink, others, data, day) {
